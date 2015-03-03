@@ -1,30 +1,23 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
-  resources :monsters
-
-  resources :monster_names
-
-  resources :movement_rates
+  resources :monsters do
+    resources :monster_names
+    resources :movement_rates
+    resources :damage_resistances
+    resources :attacks
+    resources :traits
+    resources :skills
+    resources :parry_scores
+    resources :page_references
+  end
+  
+  resources :books
 
   resources :terrain_types
 
-  resources :damage_resistances
-
   resources :locations
 
-  resources :attacks
-
-  resources :traits
-
-  resources :skills
-
-  resources :parry_scores
-
-  resources :page_references
-
-  resources :books
-  
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
