@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Book:</strong>
+  <%= @page_reference.book %>
+</p>
+
+<p>
+  <strong>Monster:</strong>
+  <%= @page_reference.monster %>
+</p>
+
+<p>
+  <strong>Pages:</strong>
+  <%= @page_reference.pages %>
+</p>
+
+<%= link_to 'Edit', edit_page_reference_path(@page_reference) %> |
+<%= link_to 'Back', page_references_path %>

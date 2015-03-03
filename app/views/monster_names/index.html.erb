@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Monster Names</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Monster</th>
+      <th>Primary</th>
+      <th>Name</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @monster_names.each do |monster_name| %>
+      <tr>
+        <td><%= monster_name.monster %></td>
+        <td><%= monster_name.primary %></td>
+        <td><%= monster_name.name %></td>
+        <td><%= monster_name.notes %></td>
+        <td><%= link_to 'Show', monster_name %></td>
+        <td><%= link_to 'Edit', edit_monster_name_path(monster_name) %></td>
+        <td><%= link_to 'Destroy', monster_name, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Monster name', new_monster_name_path %>

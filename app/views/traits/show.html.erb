@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Monster:</strong>
+  <%= @trait.monster %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @trait.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @trait.description %>
+</p>
+
+<p>
+  <strong>Is feature:</strong>
+  <%= @trait.is_feature %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @trait.level %>
+</p>
+
+<%= link_to 'Edit', edit_trait_path(@trait) %> |
+<%= link_to 'Back', traits_path %>

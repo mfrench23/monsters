@@ -1,0 +1,2 @@
+module ParryScoresHelper
+end

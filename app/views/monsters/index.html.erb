@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Monsters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Strength</th>
+      <th>Dexterity</th>
+      <th>Intelligence</th>
+      <th>Health</th>
+      <th>Hitpoints</th>
+      <th>Will</th>
+      <th>Perception</th>
+      <th>Fatigue</th>
+      <th>Speed</th>
+      <th>Sizemodifier</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Gear</th>
+      <th>Description</th>
+      <th>Notes</th>
+      <th>Dodge</th>
+      <th>Block</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @monsters.each do |monster| %>
+      <tr>
+        <td><%= monster.strength %></td>
+        <td><%= monster.dexterity %></td>
+        <td><%= monster.intelligence %></td>
+        <td><%= monster.health %></td>
+        <td><%= monster.hitPoints %></td>
+        <td><%= monster.will %></td>
+        <td><%= monster.perception %></td>
+        <td><%= monster.fatigue %></td>
+        <td><%= monster.speed %></td>
+        <td><%= monster.sizeModifier %></td>
+        <td><%= monster.height %></td>
+        <td><%= monster.weight %></td>
+        <td><%= monster.gear %></td>
+        <td><%= monster.description %></td>
+        <td><%= monster.notes %></td>
+        <td><%= monster.dodge %></td>
+        <td><%= monster.block %></td>
+        <td><%= link_to 'Show', monster %></td>
+        <td><%= link_to 'Edit', edit_monster_path(monster) %></td>
+        <td><%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Monster', new_monster_path %>

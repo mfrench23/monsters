@@ -1,0 +1,2 @@
+module MonsterNamesHelper
+end

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Monster:</strong>
+  <%= @movement_rate.monster %>
+</p>
+
+<p>
+  <strong>Terrain type:</strong>
+  <%= @movement_rate.terrain_type %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @movement_rate.rate %>
+</p>
+
+<%= link_to 'Edit', edit_movement_rate_path(@movement_rate) %> |
+<%= link_to 'Back', movement_rates_path %>

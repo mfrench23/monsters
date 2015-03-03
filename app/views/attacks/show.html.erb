@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Monster:</strong>
+  <%= @attack.monster %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @attack.name %>
+</p>
+
+<p>
+  <strong>Skill:</strong>
+  <%= @attack.skill %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @attack.description %>
+</p>
+
+<%= link_to 'Edit', edit_attack_path(@attack) %> |
+<%= link_to 'Back', attacks_path %>

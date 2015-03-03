@@ -1,0 +1,25 @@
+<%= form_for(@parry_score) do |f| %>
+  <% if @parry_score.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@parry_score.errors.count, "error") %> prohibited this parry_score from being saved:</h2>
+
+      <ul>
+      <% @parry_score.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :weapon %><br>
+    <%= f.text_field :weapon %>
+  </div>
+  <div class="field">
+    <%= f.label :parry %><br>
+    <%= f.number_field :parry %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
