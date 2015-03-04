@@ -13,24 +13,17 @@
 
   <div class="field">
     Names:
+    <fieldset id="monster-names">
     <ul>
       <%= f.fields_for :monster_names do |name_form| %>
-	<li>
-	  <%= name_form.label :name %>
-	  <%= name_form.text_field :name %>
-	  
-	  <%= name_form.label :primary %>
-	  <%= name_form.check_box :primary %>
-
-	  <%= name_form.label :notes %>
-	  <%= name_form.text_area :notes %>	  
-	  
-	  <%= name_form.check_box :_destroy %>
-	</li>
+	<%= render 'monster_name_fields', f: name_form %>
       <% end %>
-      <%= f.submit 'Add name', :name => "add_monster_name" %>
-      <%= f.submit 'Deleted checked names', :name => "remove_monster_name" %>
     </uL>
+      <%= link_to_add_association 'add name', f, :monster_names,
+	'data-association-insertion-method' => "append",
+	'data-association-insertion-node' => "#monster-names ul"
+      %> 
+    </fieldset>
   </div>
   <div class="field">
     <%= f.label :strength %><br>
