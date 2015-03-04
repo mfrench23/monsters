@@ -30,10 +30,7 @@
   <tbody>
     <% @monsters.each do |monster| %>
       <tr>
-	<td>
-	  <% needComma = false %>
-	  <% monster.monster_names.each do |name| %><% if needComma %>; <% else %><% needComma = true %><% end %><%= name.name %><% end %>
-	</td>
+	<td><%= monster.namelist %></td>
         <td><%= monster.strength %></td>
         <td><%= monster.dexterity %></td>
         <td><%= monster.intelligence %></td>

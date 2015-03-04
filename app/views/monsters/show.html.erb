@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <p>
   <strong>Name(s):</strong>
-  <% needComma = false %><% @monster.monster_names.each do |name| %><% if needComma %>; <% else %><% needComma = true %><% end %><%= name.name %><% end %>
+  <%= @monster.namelist %>
 </p>
 
 <p>
