@@ -92,8 +92,12 @@
 </p>
 
 <p>
-  <strong>Gear:</strong>
-  <%= @monster.gear %>
+  <strong>Traits:</strong>
+    <ul>
+      <% @monster.traits.each do |trait| %>
+	<li> <%= trait.name %> (<%= trait.description %>) <%= trait.level %> [feature? <%= trait.is_feature %> ]
+      <% end %>
+    </ul>
 </p>
 
 <p>
@@ -103,6 +107,11 @@
 	<li> <%= skill.name %> <%= skill.trait %> +<%= skill.modifier %>
       <% end %>
     </ul>
+</p>
+
+<p>
+  <strong>Gear:</strong>
+  <%= @monster.gear %>
 </p>
 
 <p>

@@ -77,15 +77,19 @@
     id: "attacks", collection: :attacks, 
     partial: 'attack_fields', label: 'add attack', header: "Attacks" %>
 
+  <%= render 'expanding_fieldset', f: f, 
+    id: "traits", collection: :traits, 
+    partial: 'trait_fields', label: 'add trait', header: "Traits" %>
+
+  <%= render 'expanding_fieldset', f: f, 
+    id: "skills", collection: :skills, 
+    partial: 'skill_fields', label: 'add skill', header: "Skills" %>
+
   <div class="field">
     <%= f.label :gear %><br>
     <%= f.text_area :gear %>
   </div>
   
-  <%= render 'expanding_fieldset', f: f, 
-    id: "skills", collection: :skills, 
-    partial: 'skill_fields', label: 'add skill', header: "Skills" %>
-
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
