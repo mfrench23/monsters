@@ -16,6 +16,7 @@ class MonstersController < ApplicationController
   def new
     @monster = Monster.new
     @monster.monster_names.build
+    @monster.attacks.build
   end
 
   # GET /monsters/1/edit
@@ -75,6 +76,7 @@ class MonstersController < ApplicationController
                                       :dexterity, :intelligence, :health, :hitPoints, :will, 
                                       :perception, :fatigue, :speed, :sizeModifier, :height, 
                                       :weight, :gear, :description, :notes, :dodge, :block,
-                                      monster_names_attributes: [:id, :name, :primary, :description, :_destroy])
+                                      monster_names_attributes: [:id, :name, :primary, :description, :_destroy],
+                                      attacks_attributes: [:id, :name, :skill, :description, :_destroy] )
     end
 end

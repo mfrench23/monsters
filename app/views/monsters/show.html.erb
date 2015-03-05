@@ -65,6 +65,16 @@
 </p>
 
 <p>
+  <strong>Attacks:</strong>
+    <ul>
+      <% @monster.attacks.each do |attack| %>
+	<li> <strong><%= attack.name %> (<%= attack.skill %>)</strong> <%= attack.description %>
+      <% end %>
+    </ul>
+</p>
+
+
+<p>
   <strong>Gear:</strong>
   <%= @monster.gear %>
 </p>

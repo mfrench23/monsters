@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   resources :monsters do
     resources :monster_names
+    resources :attacks
     resources :movement_rates
     resources :damage_resistances
-    resources :attacks
     resources :traits
     resources :skills
     resources :parry_scores

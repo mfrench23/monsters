@@ -73,6 +73,22 @@
     <%= f.label :weight %><br>
     <%= f.text_field :weight %>
   </div>
+  
+  <div class="field">
+    Names:
+    <fieldset id="attacks">
+    <ul>
+      <%= f.fields_for :attacks do |attack| %>
+	<%= render 'attack_fields', f: attack %>
+      <% end %>
+    </uL>
+      <%= link_to_add_association 'add attack form', f, :attacks,
+	'data-association-insertion-method' => "append",
+	'data-association-insertion-node' => "#attacks ul"
+      %> 
+    </fieldset>
+  </div>
+
   <div class="field">
     <%= f.label :gear %><br>
     <%= f.text_area :gear %>
