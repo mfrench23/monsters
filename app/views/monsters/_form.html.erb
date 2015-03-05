@@ -11,20 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    Names:
-    <fieldset id="monster-names">
-    <ul>
-      <%= f.fields_for :monster_names do |name_form| %>
-	<%= render 'monster_name_fields', f: name_form %>
-      <% end %>
-    </uL>
-      <%= link_to_add_association 'add name', f, :monster_names,
-	'data-association-insertion-method' => "append",
-	'data-association-insertion-node' => "#monster-names ul"
-      %> 
-    </fieldset>
-  </div>
+  <%= render 'expanding_fieldset', f: f, 
+    id: "monster-names", collection: :monster_names, 
+    partial: 'monster_name_fields', label: 'add name', header: "Names" %>
+
   <div class="field">
     <%= f.label :strength %><br>
     <%= f.number_field :strength %>
@@ -61,6 +51,11 @@
     <%= f.label :speed %><br>
     <%= f.text_field :speed %>
   </div>
+  
+  <%= render 'expanding_fieldset', f: f, 
+    id: "movement-rates", collection: :movement_rates, 
+    partial: 'movement_rate_fields', label: 'add move', header: "Move" %>
+
   <div class="field">
     <%= f.label :sizeModifier %><br>
     <%= f.number_field :sizeModifier %>
@@ -74,20 +69,9 @@
     <%= f.text_field :weight %>
   </div>
   
-  <div class="field">
-    Names:
-    <fieldset id="attacks">
-    <ul>
-      <%= f.fields_for :attacks do |attack| %>
-	<%= render 'attack_fields', f: attack %>
-      <% end %>
-    </uL>
-      <%= link_to_add_association 'add attack form', f, :attacks,
-	'data-association-insertion-method' => "append",
-	'data-association-insertion-node' => "#attacks ul"
-      %> 
-    </fieldset>
-  </div>
+  <%= render 'expanding_fieldset', f: f, 
+    id: "attacks", collection: :attacks, 
+    partial: 'attack_fields', label: 'add attack', header: "Attacks" %>
 
   <div class="field">
     <%= f.label :gear %><br>

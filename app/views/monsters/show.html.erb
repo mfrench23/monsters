@@ -50,6 +50,15 @@
 </p>
 
 <p>
+  <strong>Move:</strong>
+    <ul>
+      <% @monster.movement_rates.each do |mv| %>
+	<li> <%= mv.rate %> (<%= TerrainType.find(mv.id).name %>)
+      <% end %>
+    </ul>
+</p>
+
+<p>
   <strong>Sizemodifier:</strong>
   <%= @monster.sizeModifier %>
 </p>
@@ -72,7 +81,6 @@
       <% end %>
     </ul>
 </p>
-
 
 <p>
   <strong>Gear:</strong>

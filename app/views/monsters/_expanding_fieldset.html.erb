@@ -1,0 +1,14 @@
+  <div class="field">
+    <%= header %>:
+    <fieldset id=<%= id %>>
+    <ul>
+      <%= f.fields_for collection do |x| %>
+	<%= render partial, f: x %>
+      <% end %>
+    </ul>
+      <%= link_to_add_association label, f, collection,
+	'data-association-insertion-method' => "append",
+	'data-association-insertion-node' => "#" + id + " ul"
+      %> 
+    </fieldset>
+  </div>
