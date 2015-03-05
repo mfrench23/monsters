@@ -1,0 +1,14 @@
+<li class="control-group nested-fields">
+  <div class="controls">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :trait %>
+    <%= f.select :trait, options_for_select(%w[ST DX IQ HT Will Per]) %>
+    
+    <%= f.label :modifier %>
+    <%= f.number_field :modifier %>
+
+    <%= link_to_remove_association "remove", f %>
+  </div>
+</li>

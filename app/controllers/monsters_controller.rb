@@ -82,6 +82,7 @@ class MonstersController < ApplicationController
         movement_rates_attributes: [:id, :terrain_type_id, :rate, :_destroy],
         damage_resistances_attributes: [:id, :location_id, :dr, :notes, :_destroy],
 	page_references_attributes: [:id, :book_id, :pages, :_destroy],
-	parry_scores_attributes: [:id, :weapon, :parry, :_destroy] )
+	parry_scores_attributes: [:id, :weapon, :parry, :_destroy],
+	skills_attributes: [:id, :name, :trait, :modifier, :_destroy] )
     end
 end

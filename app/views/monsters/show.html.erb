@@ -97,6 +97,15 @@
 </p>
 
 <p>
+  <strong>Skills:</strong>
+    <ul>
+      <% @monster.skills.each do |skill| %>
+	<li> <%= skill.name %> <%= skill.trait %> +<%= skill.modifier %>
+      <% end %>
+    </ul>
+</p>
+
+<p>
   <strong>Description:</strong>
   <%= @monster.description %>
 </p>
