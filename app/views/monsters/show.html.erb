@@ -53,7 +53,7 @@
   <strong>Move:</strong>
     <ul>
       <% @monster.movement_rates.each do |mv| %>
-	<li> <%= mv.rate %> (<%= TerrainType.find(mv.id).name %>)
+	<li> <%= mv.rate %> (<%= TerrainType.find(mv.terrain_type_id).name %>)
       <% end %>
     </ul>
 </p>
@@ -71,6 +71,15 @@
 <p>
   <strong>Weight:</strong>
   <%= @monster.weight %>
+</p>
+
+<p>
+  <strong>DR:</strong>
+    <ul>
+      <% @monster.damage_resistances.each do |dr| %>
+	<li> <%= Location.find(dr.location_id).name %>: <%= dr.dr %> (<%= dr.notes %>)
+      <% end %>
+    </ul>
 </p>
 
 <p>
@@ -103,9 +112,28 @@
 </p>
 
 <p>
+  <strong>Parry:</strong>
+    <ul>
+      <% @monster.parry_scores.each do |parry| %>
+	<li> <%= parry.weapon %> <%= parry.parry %>
+      <% end %>
+    </ul>
+</p>
+
+<p>
   <strong>Block:</strong>
   <%= @monster.block %>
 </p>
+
+<p>
+  <strong>Sources:</strong>
+    <ul>
+      <% @monster.page_references.each do |pg| %>
+	<li> <%= Book.find(pg.book_id).name %> p.<%= pg.pages %>
+      <% end %>
+    </ul>
+</p>
+
 
 <%= link_to 'Edit', edit_monster_path(@monster) %> |
 <%= link_to 'Back', monsters_path %>

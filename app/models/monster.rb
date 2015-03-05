@@ -14,6 +14,9 @@ class Monster < ActiveRecord::Base
   has_many  :monster_names, dependent: :destroy
   accepts_nested_attributes_for :monster_names, allow_destroy: true,
       reject_if: lambda {|attributes| attributes['name'].blank? }
+  has_many  :parry_scores, dependent: :destroy
+  accepts_nested_attributes_for :parry_scores, allow_destroy: true, 
+      reject_if: lambda {|attributes| attributes['parry'].blank? }
   
   def namelist
     retval = ""

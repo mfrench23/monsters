@@ -70,6 +70,10 @@
   </div>
   
   <%= render 'expanding_fieldset', f: f, 
+    id: "damage-resistances", collection: :damage_resistances, 
+    partial: 'damage_resistance_fields', label: 'add DR', header: "DR" %>
+  
+  <%= render 'expanding_fieldset', f: f, 
     id: "attacks", collection: :attacks, 
     partial: 'attack_fields', label: 'add attack', header: "Attacks" %>
 
@@ -89,10 +93,20 @@
     <%= f.label :dodge %><br>
     <%= f.number_field :dodge %>
   </div>
+
+  <%= render 'expanding_fieldset', f: f, 
+    id: "parry-scores", collection: :parry_scores, 
+    partial: 'parry_score_fields', label: 'add Parry', header: "Parry" %>
+
   <div class="field">
     <%= f.label :block %><br>
     <%= f.number_field :block %>
   </div>
+  
+  <%= render 'expanding_fieldset', f: f, 
+    id: "page-references", collection: :page_references, 
+    partial: 'page_reference_fields', label: 'add page reference', header: "Sources" %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
