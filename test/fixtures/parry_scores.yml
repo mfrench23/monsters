@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  weapon: MyString
-  parry: 1
+one: 
+  monster_id: one
+  weapon: headbutt
+  parry: 9
 
 two:
-  weapon: MyString
-  parry: 1
+  monster_id: two
+  weapon: punch
+  parry: 12

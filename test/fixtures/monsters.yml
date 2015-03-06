@@ -18,6 +18,7 @@ one:
   notes: MyText
   dodge: 1
   block: 1
+  monster_class_id: two
 
 two:
   strength: 1
@@ -37,3 +38,4 @@ two:
   notes: MyText
   dodge: 1
   block: 1
+  monster_class_id: two

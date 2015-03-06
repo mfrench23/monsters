@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  monster_id: 
+  monster_id: one
   primary: false
-  name: MyString
+  name: Bob
   notes: MyText
 
 two:
-  monster_id: 
+  monster_id: two
   primary: false
-  name: MyString
+  name: Don
   notes: MyText

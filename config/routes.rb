@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  get 'monsters/index'
+
+  get 'monsters/show'
+
+  get 'monsters/new'
+
+  get 'monsters/edit'
+
+  get 'monsters/create'
+
+  get 'monsters/update'
+
+  get 'monsters/destroy'
+
+  resources :monster_classes
+
   get 'welcome/index'
 
   resources :monsters do

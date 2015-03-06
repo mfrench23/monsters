@@ -1,14 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  monster_id: 
+  monster_id: one
   name: MyString
   description: MyText
   is_feature: false
   level: 1
 
 two:
-  monster_id: 
+  monster_id: two
   name: MyString
   description: MyText
   is_feature: false

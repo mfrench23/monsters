@@ -6,7 +6,7 @@
 
 <p>
   <strong>Class:</strong>
-  <%= MonsterClass.find(@monster.monster_class_id).name %>
+  <%= (@monster.monster_class_id > 0 ? MonsterClass.find(@monster.monster_class_id).name : "" ) %>
 </p>
 
 <p>
