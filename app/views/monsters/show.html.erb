@@ -59,7 +59,7 @@
 </p>
 
 <p>
-  <strong>Sizemodifier:</strong>
+  <strong>Size Modifier:</strong>
   <%= @monster.sizeModifier %>
 </p>
 
@@ -77,7 +77,7 @@
   <strong>DR:</strong>
     <ul>
       <% @monster.damage_resistances.each do |dr| %>
-	<li> <%= Location.find(dr.location_id).name %>: <%= dr.dr %> (<%= dr.notes %>)
+	<li> <%= simpleDR dr %>
       <% end %>
     </ul>
 </p>
