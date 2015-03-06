@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <p>
   <strong>Name(s):</strong>
-  <%= @monster.monster_names.collect { |x| x.name + (x.primary ? '*' : '') }.join('; ') %>
+  <%= @monster.monster_names.sort.collect { |x| x.name + (x.primary ? ' * ' : '') }.join('; ') %>
 </p>
 
 <p>
@@ -11,51 +11,54 @@
 
 <%= render 'show_stat_block', m: @monster %>
 
-<p>
-  <strong>Attacks:</strong>
-    <ul>
-      <% @monster.attacks.each do |attack| %>
-	<li> <strong><%= attack.name %> (<%= attack.skill %>)</strong> <%= attack.description %>
-      <% end %>
-    </ul>
-</p>
-
-<p>
-  <strong>Traits:</strong>
-    <ul>
-      <% @monster.traits.each do |trait| %>
-	<li> <%= simpleTrait trait %>
-      <% end %>
-    </ul>
-</p>
-
-<p>
-  <strong>Skills:</strong>
-    <ul>
+<table>
+  <tr>
+    <td><strong>Attacks:</strong></td>
+    <td>
+      <ul>
+	<% @monster.attacks.each do |attack| %>
+	  <li> <strong><%= attack.name %> (<%= attack.skill %>)</strong> <%= attack.description %>
+	<% end %>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Traits:</strong></td>
+    <td>
+      <%= @monster.traits.collect { |x| simpleTrait x }.sort().join('; ') %>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Skills:</strong></td>
+    <td>
       <% @monster.skills.each do |skill| %>
-	<li> <%= simpleSkill skill %>
+	<%= simpleSkill skill %> <br>
       <% end %>
-    </ul>
-</p>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Gear:</strong></td>
+    <td>
+      <%= @monster.gear %>
+    </td>
+  </tr>
 
-<p>
-  <strong>Gear:</strong>
-  <%= @monster.gear %>
-</p>
+  <tr>
+    <td><strong>Notes:</strong></td>
+    <td>
+      <%= @monster.notes %>
+    </td>
+  </tr>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @monster.notes %>
-</p>
-
-<p>
-  <strong>Sources:</strong>
-    <ul>
+  <tr>
+    <td><strong>Sources:</strong></td>
+    <td>
       <% @monster.page_references.each do |pg| %>
-	<li> <%= Book.find(pg.book_id).name %> p.<%= pg.pages %>
+	<%= Book.find(pg.book_id).name %> p.<%= pg.pages %> <br>
       <% end %>
-    </ul>
-</p>
+    </td>
+  </tr>
+</table>
 
 
 <%= link_to 'Edit', edit_monster_path(@monster) %> |
