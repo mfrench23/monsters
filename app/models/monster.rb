@@ -17,15 +17,4 @@ class Monster < ActiveRecord::Base
   has_many  :parry_scores, dependent: :destroy
   accepts_nested_attributes_for :parry_scores, allow_destroy: true, 
       reject_if: lambda {|attributes| attributes['parry'].blank? }
-  
-  def namelist
-    retval = ""
-    monster_names.each.with_index(1) do |nm, i| 
-      if i < monster_names.count
-	retval = retval + "; "
-      end if
-      retval = retval + nm.name
-    end
-    return retval
-  end
 end

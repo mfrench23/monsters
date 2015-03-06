@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <p>
   <strong>Name(s):</strong>
-  <%= @monster.namelist %>
+  <%= @monster.monster_names.collect { |x| x.name + (x.primary ? '*' : '') }.join('; ') %>
 </p>
 
 <p>
