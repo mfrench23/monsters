@@ -16,6 +16,11 @@
     partial: 'monster_name_fields', label: 'add name', header: "Names" %>
 
   <div class="field">
+    <%= f.label :monster_class_id %>
+    <%= f.collection_select :monster_class_id, MonsterClass.order(:name), :id, :name %>
+  </div>
+
+  <div class="field">
     <%= f.label :strength %><br>
     <%= f.number_field :strength %>
   </div>

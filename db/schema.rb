@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305193824) do
+ActiveRecord::Schema.define(version: 20150306090224) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -49,6 +49,12 @@ ActiveRecord::Schema.define(version: 20150305193824) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "monster_classes", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "monster_names", force: :cascade do |t|
     t.integer  "monster_id", limit: 4
     t.boolean  "primary",    limit: 1
@@ -61,26 +67,29 @@ ActiveRecord::Schema.define(version: 20150305193824) do
   add_index "monster_names", ["monster_id"], name: "index_monster_names_on_monster_id", using: :btree
 
   create_table "monsters", force: :cascade do |t|
-    t.integer  "strength",     limit: 4
-    t.integer  "dexterity",    limit: 4
-    t.integer  "intelligence", limit: 4
-    t.integer  "health",       limit: 4
-    t.integer  "hitPoints",    limit: 4
-    t.integer  "will",         limit: 4
-    t.integer  "perception",   limit: 4
-    t.integer  "fatigue",      limit: 4
-    t.integer  "sizeModifier", limit: 4
-    t.string   "height",       limit: 255
-    t.string   "weight",       limit: 255
-    t.text     "gear",         limit: 65535
-    t.text     "description",  limit: 65535
-    t.text     "notes",        limit: 65535
-    t.integer  "dodge",        limit: 4
-    t.integer  "block",        limit: 4
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.decimal  "speed",                      precision: 4, scale: 2
+    t.integer  "strength",         limit: 4
+    t.integer  "dexterity",        limit: 4
+    t.integer  "intelligence",     limit: 4
+    t.integer  "health",           limit: 4
+    t.integer  "hitPoints",        limit: 4
+    t.integer  "will",             limit: 4
+    t.integer  "perception",       limit: 4
+    t.integer  "fatigue",          limit: 4
+    t.integer  "sizeModifier",     limit: 4
+    t.string   "height",           limit: 255
+    t.string   "weight",           limit: 255
+    t.text     "gear",             limit: 65535
+    t.text     "description",      limit: 65535
+    t.text     "notes",            limit: 65535
+    t.integer  "dodge",            limit: 4
+    t.integer  "block",            limit: 4
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.decimal  "speed",                          precision: 4, scale: 2
+    t.integer  "monster_class_id", limit: 4
   end
+
+  add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree
 
   create_table "movement_rates", force: :cascade do |t|
     t.integer  "monster_id",      limit: 4
@@ -149,6 +158,7 @@ ActiveRecord::Schema.define(version: 20150305193824) do
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "monsters"
   add_foreign_key "monster_names", "monsters"
+  add_foreign_key "monsters", "monster_classes"
   add_foreign_key "movement_rates", "monsters"
   add_foreign_key "movement_rates", "terrain_types"
   add_foreign_key "page_references", "books"

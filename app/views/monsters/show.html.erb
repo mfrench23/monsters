@@ -1,7 +1,12 @@
 <p id="notice"><%= notice %></p>
 <p>
   <strong>Name(s):</strong>
-  <%= @monster.monster_names.sort.collect { |x| x.name + (x.primary ? ' * ' : '') }.join('; ') %>
+  <%= simpleMonsterNames @monster %>
+</p>
+
+<p>
+  <strong>Class:</strong>
+  <%= MonsterClass.find(@monster.monster_class_id).name %>
 </p>
 
 <p>
