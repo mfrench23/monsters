@@ -5,82 +5,11 @@
 </p>
 
 <p>
-  <strong>Strength:</strong>
-  <%= @monster.strength %>
+  <strong>Description:</strong>
+  <%= @monster.description %>
 </p>
 
-<p>
-  <strong>Dexterity:</strong>
-  <%= @monster.dexterity %>
-</p>
-
-<p>
-  <strong>Intelligence:</strong>
-  <%= @monster.intelligence %>
-</p>
-
-<p>
-  <strong>Health:</strong>
-  <%= @monster.health %>
-</p>
-
-<p>
-  <strong>Hitpoints:</strong>
-  <%= @monster.hitPoints %>
-</p>
-
-<p>
-  <strong>Will:</strong>
-  <%= @monster.will %>
-</p>
-
-<p>
-  <strong>Perception:</strong>
-  <%= @monster.perception %>
-</p>
-
-<p>
-  <strong>Fatigue:</strong>
-  <%= @monster.fatigue %>
-</p>
-
-<p>
-  <strong>Speed:</strong>
-  <%= @monster.speed %>
-</p>
-
-<p>
-  <strong>Move:</strong>
-    <ul>
-      <% @monster.movement_rates.each do |mv| %>
-	<li> <%= mv.rate %> (<%= TerrainType.find(mv.terrain_type_id).name %>)
-      <% end %>
-    </ul>
-</p>
-
-<p>
-  <strong>Size Modifier:</strong>
-  <%= @monster.sizeModifier %>
-</p>
-
-<p>
-  <strong>Height:</strong>
-  <%= @monster.height %>
-</p>
-
-<p>
-  <strong>Weight:</strong>
-  <%= @monster.weight %>
-</p>
-
-<p>
-  <strong>DR:</strong>
-    <ul>
-      <% @monster.damage_resistances.each do |dr| %>
-	<li> <%= simpleDR dr %>
-      <% end %>
-    </ul>
-</p>
+<%= render 'show_stat_block', m: @monster %>
 
 <p>
   <strong>Attacks:</strong>
@@ -115,32 +44,8 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @monster.description %>
-</p>
-
-<p>
   <strong>Notes:</strong>
   <%= @monster.notes %>
-</p>
-
-<p>
-  <strong>Dodge:</strong>
-  <%= @monster.dodge %>
-</p>
-
-<p>
-  <strong>Parry:</strong>
-    <ul>
-      <% @monster.parry_scores.each do |parry| %>
-	<li> <%= parry.weapon %> <%= parry.parry %>
-      <% end %>
-    </ul>
-</p>
-
-<p>
-  <strong>Block:</strong>
-  <%= @monster.block %>
 </p>
 
 <p>

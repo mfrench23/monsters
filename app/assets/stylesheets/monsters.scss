@@ -1,3 +1,15 @@
 // Place all the styles related to the Monsters controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#fullstatblock {
+  width: 90%;
+  border-collapse: collapse;
+}
+
+#statblock {
+  border-style: solid;
+  border-width: thin;
+  vertical-align: top;
+  padding: 5px;
+}
