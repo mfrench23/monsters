@@ -47,3 +47,7 @@ group :development, :test do
   gem 'rails_layout'
 end
 
+group :test do
+  gem 'simplecov', :require => false
+end
+
