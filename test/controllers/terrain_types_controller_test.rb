@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TerrainTypesControllerTest < ActionController::TestCase
   setup do
-    @terrain_type = terrain_types(:one)
+    @terrain_type = FactoryGirl.create(:terrain_type)
   end
 
   test "should get index" do

@@ -25,11 +25,11 @@
     <td id="statblock"><strong>Perception:</strong> <%= @monster.perception %></td>
     <td id="statblock">
       <strong>SM:</strong> <%= @monster.sizeModifier %>
-      <% if m.height.length > 0 %>
+      <% if m.height.to_s.length > 0 %>
 	<br>
 	<strong>Height:</strong> <%= @monster.height %>
       <% end %>
-      <% if m.weight.length > 0 %>
+      <% if m.weight.to_s.length > 0 %>
 	<br>
 	<strong>Weight:</strong> <%= @monster.weight %>    
       <% end %>

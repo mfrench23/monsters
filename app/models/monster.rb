@@ -17,4 +17,5 @@ class Monster < ActiveRecord::Base
   has_many  :parry_scores, dependent: :destroy
   accepts_nested_attributes_for :parry_scores, allow_destroy: true, 
       reject_if: lambda {|attributes| attributes['parry'].blank? }
+  belongs_to :monster_class
 end

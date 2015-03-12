@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # cocoon for easy nested forms
 gem 'cocoon'
+# FactoryGirl to replace fixtures for test data
+gem "factory_girl_rails", "~> 4.0"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
