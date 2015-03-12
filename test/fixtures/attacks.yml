@@ -2,12 +2,6 @@
 
 one:
   monster_id: one
-  name: MyString
-  skill: MyString
-  description: MyString
-
-two:
-  monster_id: two
-  name: MyString
-  skill: MyString
-  description: MyString
+  name: Punch
+  skill: 14
+  description: 3d cr

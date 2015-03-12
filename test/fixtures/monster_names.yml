@@ -11,3 +11,11 @@ two:
   primary: false
   name: Don
   notes: MyText
+
+three:
+  monster_id: two
+  primary: true
+  name: Zed
+  notes: 
+
+

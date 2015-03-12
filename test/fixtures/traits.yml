@@ -2,14 +2,22 @@
 
 one:
   monster_id: one
-  name: MyString
-  description: MyText
+  name: Catlike Reflexes
+  description: 
   is_feature: false
-  level: 1
+  level: 
 
 two:
   monster_id: two
-  name: MyString
-  description: MyText
+  name: Geek Level
+  description: Arcane
   is_feature: false
-  level: 1
+  level: 3
+  
+cannot_swim:
+  monster_id: two
+  name: Cannot Swim 
+  description:
+  is_feature: true
+  level: 
+

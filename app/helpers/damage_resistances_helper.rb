@@ -1,6 +1,15 @@
 module DamageResistancesHelper
   def simpleDR dr
-    Location.find(dr.location_id).name + ": " + dr.dr.to_s +
-	(dr.notes.length > 0 ? " (" + dr.notes + ")" : "" )
+    location = ""
+    if(!dr.location.nil?)
+      location = dr.location.name + ": "
+    end
+    
+    notes = ""
+    if dr.notes.to_s.strip.length > 0
+      notes = " (" + dr.notes + ")"
+    end
+      
+    location + dr.dr.to_s + notes
   end
 end

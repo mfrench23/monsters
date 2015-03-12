@@ -1,7 +1,20 @@
 module TraitsHelper
   def simpleTrait trait 
-    ((trait.is_feature ? "Feature: " : "" ) + trait.name + " " +
-	(trait.description.length > 0 ? "(" + trait.description + ") " : "" ) +
-	(!trait.level.nil? ? trait.level.to_s : "" )).strip
+    description = ""
+    if trait.description.to_s.length > 0
+      description = "(" + trait.description + ") "
+    end 
+    
+    feature = ""
+    if trait.is_feature 
+      feature = "Feature: "
+    end
+    
+    level = ""
+    if !trait.level.nil? 
+      level = trait.level.to_s
+    end
+    
+    (feature + trait.name + " " + description + level).strip
   end
 end

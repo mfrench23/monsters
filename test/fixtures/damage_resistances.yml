@@ -2,12 +2,12 @@
 
 one:
   monster_id: one
-  location_id: one
+  location: head
   dr: 1
-  notes: MyText
+  notes: 
 
 two:
-  monster_id: two
-  location_id: two
-  dr: 1
-  notes: MyText
+  monster_id: one
+  location: tail
+  dr: 2
+  notes: flexible

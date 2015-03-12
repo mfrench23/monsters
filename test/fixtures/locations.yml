@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: head
+head:
+  name: Head
 
-two:
-  name: tail
+tail:
+  name: Tail

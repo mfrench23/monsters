@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306090224) do
+ActiveRecord::Schema.define(version: 20150312002649) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 20150306090224) do
   add_index "traits", ["monster_id"], name: "index_traits_on_monster_id", using: :btree
 
   add_foreign_key "attacks", "monsters"
+  add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "monsters"
   add_foreign_key "monster_names", "monsters"
