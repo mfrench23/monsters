@@ -3,8 +3,8 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
 
-    <%= f.label :trait %>
-    <%= f.select :trait, options_for_select(%w[ST DX IQ HT Will Per]) %>
+    <%= f.label :baseStat %>
+    <%= f.select :baseStat, Skill.baseStats.keys.to_a %>
     
     <%= f.label :modifier %>
     <%= f.number_field :modifier %>
