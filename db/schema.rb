@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313203024) do
+ActiveRecord::Schema.define(version: 20150313223500) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150313203024) do
     t.datetime "updated_at",                                             null: false
     t.decimal  "speed",                          precision: 4, scale: 2
     t.integer  "monster_class_id", limit: 4
+    t.string   "name",             limit: 255
   end
 
   add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree

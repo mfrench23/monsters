@@ -11,9 +11,13 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
   <%= render 'expanding_fieldset', f: f, 
     id: "monster-names", collection: :monster_names, 
-    partial: 'monster_name_fields', label: 'add name', header: "Names" %>
+    partial: 'monster_name_fields', label: 'add alias', header: "Aliases" %>
 
   <div class="field">
     <%= f.label :monster_class_id %>

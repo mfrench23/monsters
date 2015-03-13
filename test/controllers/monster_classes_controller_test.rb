@@ -24,6 +24,14 @@ class MonsterClassesControllerTest < ActionController::TestCase
     assert_redirected_to monster_class_path(assigns(:monster_class))
   end
 
+  test "should fail to create monster_class" do
+    assert_no_difference('MonsterClass.count') do
+      post :create, monster_class: { name: nil }
+    end
+
+    assert_response 200
+  end
+
   test "should show monster_class" do
     get :show, id: @monster_class
     assert_response :success
@@ -37,6 +45,11 @@ class MonsterClassesControllerTest < ActionController::TestCase
   test "should update monster_class" do
     patch :update, id: @monster_class, monster_class: { name: @monster_class.name }
     assert_redirected_to monster_class_path(assigns(:monster_class))
+  end
+
+  test "should fail to update monster_class" do
+    patch :update, id: @monster_class, monster_class: { name: nil }
+    assert_response 200
   end
 
   test "should destroy monster_class" do

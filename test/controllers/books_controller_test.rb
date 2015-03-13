@@ -24,6 +24,15 @@ class BooksControllerTest < ActionController::TestCase
     assert_redirected_to book_path(assigns(:book))
   end
 
+
+  test "should fail to create book" do
+    assert_no_difference('Book.count') do
+      post :create, book: { abbreviation: @book.abbreviation, name: nil }
+    end
+
+    assert_response 200
+  end
+
   test "should show book" do
     get :show, id: @book
     assert_response :success
@@ -37,6 +46,11 @@ class BooksControllerTest < ActionController::TestCase
   test "should update book" do
     patch :update, id: @book, book: { abbreviation: @book.abbreviation, name: @book.name }
     assert_redirected_to book_path(assigns(:book))
+  end
+
+  test "should fail to update book" do
+    patch :update, id: @book, book: { abbreviation: @book.abbreviation, name: nil }
+    assert_response 200
   end
 
   test "should destroy book" do

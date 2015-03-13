@@ -24,6 +24,14 @@ class TerrainTypesControllerTest < ActionController::TestCase
     assert_redirected_to terrain_type_path(assigns(:terrain_type))
   end
 
+  test "should fail to create terrain_type" do
+    assert_no_difference('TerrainType.count') do
+      post :create, terrain_type: { name: nil }
+    end
+
+    assert_response 200
+  end
+  
   test "should show terrain_type" do
     get :show, id: @terrain_type
     assert_response :success
@@ -37,6 +45,11 @@ class TerrainTypesControllerTest < ActionController::TestCase
   test "should update terrain_type" do
     patch :update, id: @terrain_type, terrain_type: { name: @terrain_type.name }
     assert_redirected_to terrain_type_path(assigns(:terrain_type))
+  end
+
+  test "should fail to update terrain_type" do
+    patch :update, id: @terrain_type, terrain_type: { name: nil }
+    assert_response 200
   end
 
   test "should destroy terrain_type" do

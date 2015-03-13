@@ -12,10 +12,11 @@ class Monster < ActiveRecord::Base
   has_many  :movement_rates, dependent: :destroy
   accepts_nested_attributes_for :movement_rates, allow_destroy: true, reject_if: :all_blank
   has_many  :monster_names, dependent: :destroy
-  accepts_nested_attributes_for :monster_names, allow_destroy: true,
-      reject_if: lambda {|attributes| attributes['name'].blank? }
+  accepts_nested_attributes_for :monster_names, allow_destroy: true, reject_if: :all_blank
   has_many  :parry_scores, dependent: :destroy
-  accepts_nested_attributes_for :parry_scores, allow_destroy: true, 
-      reject_if: lambda {|attributes| attributes['parry'].blank? }
+  accepts_nested_attributes_for :parry_scores, allow_destroy: true, reject_if: :all_blank
+
   belongs_to :monster_class
+
+  validates :name, :monster_class_id, presence: true
 end
