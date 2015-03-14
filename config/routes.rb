@@ -1,40 +1,18 @@
 Rails.application.routes.draw do
-  get 'monsters/index'
-
-  get 'monsters/show'
-
-  get 'monsters/new'
-
-  get 'monsters/edit'
-
-  get 'monsters/create'
-
-  get 'monsters/update'
-
-  get 'monsters/destroy'
-
-  resources :monster_classes
+  root 'welcome#index'
 
   get 'welcome/index'
 
   resources :monsters do
-    resources :monster_names
-    resources :attacks
-    resources :movement_rates
-    resources :damage_resistances
-    resources :traits
-    resources :skills
-    resources :parry_scores
-    resources :page_references
   end
   
+  resources :monster_classes
+
   resources :books
 
   resources :terrain_types
 
   resources :locations
-
-  root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
