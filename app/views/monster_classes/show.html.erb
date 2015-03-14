@@ -5,5 +5,11 @@
   <%= @monster_class.name %>
 </p>
 
+<ul>
+  <% @monster_class.monsters.each do |monster| %>
+    <li> <%= link_to monster.name, monster %>
+  <% end %>
+</ul>
+
 <%= link_to 'Edit', edit_monster_class_path(@monster_class) %> |
 <%= link_to 'Back', monster_classes_path %>

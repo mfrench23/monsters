@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Number of monsters</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @monster_classes.each do |monster_class| %>
       <tr>
         <td><%= monster_class.name %></td>
+        <td class="count"><%= monster_class.monsters.count %></td>
         <td><%= link_to 'Show', monster_class %></td>
         <td><%= link_to 'Edit', edit_monster_class_path(monster_class) %></td>
         <td><%= link_to 'Destroy', monster_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
