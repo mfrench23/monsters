@@ -6,6 +6,6 @@ class SkillsHelperTest < ActionView::TestCase
   end
   
   test "should format skills" do
-    assert_equal "Brawling @DX+1", simpleSkill(@one)
+    assert_equal "Basketweaving @DX+1", simpleSkill(@one)
   end
 end

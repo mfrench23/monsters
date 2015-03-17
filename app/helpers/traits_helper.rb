@@ -1,12 +1,9 @@
 module TraitsHelper
   def simpleTrait trait 
-    description = ""
-    if trait.description.to_s.length > 0
-      description = "(" + trait.description + ") "
-    end 
-    
+    master = trait.master_trait
+
     feature = ""
-    if trait.is_feature 
+    if master.is_feature 
       feature = "Feature: "
     end
     
@@ -15,6 +12,6 @@ module TraitsHelper
       level = trait.level.to_s
     end
     
-    (feature + trait.name + " " + description + level).strip
+    (feature + master.name + " " + level).strip
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317202335) do
+ActiveRecord::Schema.define(version: 20150317205342) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -164,15 +164,16 @@ ActiveRecord::Schema.define(version: 20150317202335) do
   end
 
   create_table "traits", force: :cascade do |t|
-    t.integer  "monster_id",  limit: 4
-    t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
-    t.boolean  "is_feature",  limit: 1
-    t.integer  "level",       limit: 4
+    t.integer  "monster_id",      limit: 4
+    t.integer  "level",           limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "masterTrait_id",  limit: 4
+    t.integer  "master_trait_id", limit: 4
   end
 
+  add_index "traits", ["masterTrait_id"], name: "index_traits_on_masterTrait_id", using: :btree
+  add_index "traits", ["master_trait_id"], name: "index_traits_on_master_trait_id", using: :btree
   add_index "traits", ["monster_id"], name: "index_traits_on_monster_id", using: :btree
 
   add_foreign_key "attacks", "monsters"
@@ -188,5 +189,6 @@ ActiveRecord::Schema.define(version: 20150317202335) do
   add_foreign_key "parry_scores", "monsters"
   add_foreign_key "skills", "master_skills"
   add_foreign_key "skills", "monsters"
+  add_foreign_key "traits", "master_traits"
   add_foreign_key "traits", "monsters"
 end

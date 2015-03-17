@@ -3,5 +3,4 @@ FactoryGirl.define do
     name "Wombat Reflexes"
     is_feature false
   end
-
 end

@@ -1,13 +1,7 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-
-    <%= f.label :is_feature %>
-    <%= f.check_box :is_feature %>
+    <%= f.label :master_trait_id %>
+    <%= f.collection_select :master_trait_id, MasterTrait.order(:name), :id, :name %>
 
     <%= f.label :level %>
     <%= f.number_field :level %>
