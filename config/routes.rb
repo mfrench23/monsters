@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  get 'welcome/index'
+  resources :master_traits
 
-  resources :monsters do
-  end
+  resources :master_skills
+
+  resources :monsters
   
   resources :monster_classes
 

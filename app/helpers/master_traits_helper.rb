@@ -1,0 +1,2 @@
+module MasterTraitsHelper
+end

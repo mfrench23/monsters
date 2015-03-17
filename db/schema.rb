@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313223500) do
+ActiveRecord::Schema.define(version: 20150317192813) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -48,6 +48,26 @@ ActiveRecord::Schema.define(version: 20150313223500) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "master_skills", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.integer  "baseStat",   limit: 4
+    t.text     "notes",      limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "master_skills", ["name"], name: "index_master_skills_on_name", using: :btree
+
+  create_table "master_traits", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.text     "notes",      limit: 65535
+    t.boolean  "is_feature", limit: 1
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "master_traits", ["name"], name: "index_master_traits_on_name", using: :btree
 
   create_table "monster_classes", force: :cascade do |t|
     t.string   "name",       limit: 255

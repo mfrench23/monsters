@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Master Traits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Notes</th>
+      <th>Is feature</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @master_traits.each do |master_trait| %>
+      <tr>
+        <td><%= master_trait.name %></td>
+        <td><%= master_trait.notes %></td>
+        <td><%= master_trait.is_feature %></td>
+        <td><%= link_to 'Show', master_trait %></td>
+        <td><%= link_to 'Edit', edit_master_trait_path(master_trait) %></td>
+        <td><%= link_to 'Destroy', master_trait, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master trait', new_master_trait_path %>

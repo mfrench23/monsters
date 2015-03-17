@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @master_trait.name %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @master_trait.notes %>
+</p>
+
+<p>
+  <strong>Is feature:</strong>
+  <%= @master_trait.is_feature %>
+</p>
+
+<%= link_to 'Edit', edit_master_trait_path(@master_trait) %> |
+<%= link_to 'Back', master_traits_path %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Master Skills</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Basestat</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @master_skills.each do |master_skill| %>
+      <tr>
+        <td><%= master_skill.name %></td>
+        <td><%= master_skill.baseStat %></td>
+        <td><%= master_skill.notes %></td>
+        <td><%= link_to 'Show', master_skill %></td>
+        <td><%= link_to 'Edit', edit_master_skill_path(master_skill) %></td>
+        <td><%= link_to 'Destroy', master_skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Master skill', new_master_skill_path %>

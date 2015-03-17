@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @master_skill.name %>
+</p>
+
+<p>
+  <strong>Basestat:</strong>
+  <%= @master_skill.baseStat %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @master_skill.notes %>
+</p>
+
+<%= link_to 'Edit', edit_master_skill_path(@master_skill) %> |
+<%= link_to 'Back', master_skills_path %>
