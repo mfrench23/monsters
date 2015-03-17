@@ -1,10 +1,7 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-
-    <%= f.label :baseStat %>
-    <%= f.select :baseStat, Skill.baseStats.keys.to_a %>
+    <%= f.label :master_skill_id %>
+    <%= f.collection_select :master_skill_id, MasterSkill.order(:name), :id, :name %>
     
     <%= f.label :modifier %>
     <%= f.number_field :modifier %>

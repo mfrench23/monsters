@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :skill do
-    name "Brawling"
-    baseStat 2
     modifier 1
+    association :master_skill
   end
 end

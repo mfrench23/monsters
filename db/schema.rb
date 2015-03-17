@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317192813) do
+ActiveRecord::Schema.define(version: 20150317202335) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -147,15 +147,14 @@ ActiveRecord::Schema.define(version: 20150317192813) do
   add_index "parry_scores", ["monster_id_id"], name: "index_parry_scores_on_monster_id_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
-    t.integer  "monster_id", limit: 4
-    t.string   "name",       limit: 255
-    t.integer  "modifier",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "baseStat",   limit: 4
+    t.integer  "monster_id",      limit: 4
+    t.integer  "modifier",        limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "master_skill_id", limit: 4
   end
 
-  add_index "skills", ["baseStat"], name: "index_skills_on_baseStat", using: :btree
+  add_index "skills", ["master_skill_id"], name: "index_skills_on_master_skill_id", using: :btree
   add_index "skills", ["monster_id"], name: "index_skills_on_monster_id", using: :btree
 
   create_table "terrain_types", force: :cascade do |t|
@@ -187,6 +186,7 @@ ActiveRecord::Schema.define(version: 20150317192813) do
   add_foreign_key "page_references", "books"
   add_foreign_key "page_references", "monsters"
   add_foreign_key "parry_scores", "monsters"
+  add_foreign_key "skills", "master_skills"
   add_foreign_key "skills", "monsters"
   add_foreign_key "traits", "monsters"
 end

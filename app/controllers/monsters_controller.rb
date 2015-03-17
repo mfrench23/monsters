@@ -85,7 +85,7 @@ class MonstersController < ApplicationController
         damage_resistances_attributes: [:id, :location_id, :dr, :notes, :_destroy],
 	page_references_attributes: [:id, :book_id, :pages, :_destroy],
 	parry_scores_attributes: [:id, :weapon, :parry, :_destroy],
-	skills_attributes: [:id, :name, :baseStat, :modifier, :_destroy],
+	skills_attributes: [:id, :master_skill_id, :modifier, :_destroy],
 	traits_attributes: [:id, :name, :description, :is_feature, :level, :_destroy] )
     end
 end

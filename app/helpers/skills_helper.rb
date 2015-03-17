@@ -1,11 +1,12 @@
 module SkillsHelper
   def simpleSkill skill 
-    name = skill.name + " @"
+    master = skill.master_skill
+    name = master.name + " @"
     mod = ""
     if skill.modifier>0
       mod = "+"
     end
-    atval = skill.baseStat + mod + skill.modifier.to_s
+    atval = master.baseStat + mod + skill.modifier.to_s
     
     name + atval
   end

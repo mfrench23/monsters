@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :master_skill do
-    name "Plate-spinning"
+    name "Brawling"
     baseStat 2
   end
 
