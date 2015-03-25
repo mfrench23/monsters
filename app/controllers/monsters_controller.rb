@@ -27,10 +27,12 @@ class MonstersController < ApplicationController
   # POST /monsters
   # POST /monsters.json
   def create
-    @monster = Monster.new(monster_params)
+    form = MonsterForm.new(params)
+    service = CreateMonster.new(form)
+    @monster = service.call
 
     respond_to do |format|
-      if @monster.save
+      if @monster.errors.size() == 0
 	format.html { redirect_to @monster, notice: 'Monster was successfully created.' }
 	format.json { render :show, status: :created, location: @monster }
       else
@@ -43,9 +45,11 @@ class MonstersController < ApplicationController
   # PATCH/PUT /monsters/1
   # PATCH/PUT /monsters/1.json
   def update
-    @monster = Monster.find(params[:id])
+    form = MonsterForm.new(params)
+    service = UpdateMonster.new(params[:id], form)
+    @monster = service.call
     respond_to do |format|
-      if @monster.update(monster_params)
+      if @monster.errors.size() == 0
 	format.html { redirect_to @monster, notice: 'Monster was successfully updated.' }
 	format.json { render :show, status: :ok, location: @monster }
       else
@@ -70,22 +74,5 @@ class MonstersController < ApplicationController
     def set_monster
       @monster = Monster.find(params[:id])
     end
-    
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def monster_params
-      params.require(:monster).permit(
-	:name,
-	:strength, :dexterity, :intelligence, :health, :hitPoints, :will, 
-        :perception, :fatigue, :speed, :sizeModifier, :height, 
-        :weight, :gear, :description, :notes, :dodge, :block,
-	:monster_class_id,
-        monster_names_attributes: [:id, :name, :primary, :description, :_destroy],
-        attacks_attributes: [:id, :name, :skill, :description, :_destroy],
-        movement_rates_attributes: [:id, :terrain_type_id, :rate, :_destroy],
-        damage_resistances_attributes: [:id, :location_id, :dr, :notes, :_destroy],
-	page_references_attributes: [:id, :book_id, :pages, :_destroy],
-	parry_scores_attributes: [:id, :weapon, :parry, :_destroy],
-	skills_attributes: [:id, :master_skill_id, :modifier, :_destroy],
-	traits_attributes: [:id, :master_trait_id, :level, :_destroy] )
-    end
+
 end
