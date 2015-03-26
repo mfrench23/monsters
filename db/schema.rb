@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317205342) do
+ActiveRecord::Schema.define(version: 20150326234004) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -168,11 +168,9 @@ ActiveRecord::Schema.define(version: 20150317205342) do
     t.integer  "level",           limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "masterTrait_id",  limit: 4
     t.integer  "master_trait_id", limit: 4
   end
 
-  add_index "traits", ["masterTrait_id"], name: "index_traits_on_masterTrait_id", using: :btree
   add_index "traits", ["master_trait_id"], name: "index_traits_on_master_trait_id", using: :btree
   add_index "traits", ["monster_id"], name: "index_traits_on_monster_id", using: :btree
 
