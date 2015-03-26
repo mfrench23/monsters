@@ -16,3 +16,25 @@
 td.count {
   text-align: center;
 }
+footer.gurps {
+  border: 1px solid #d4d4d4;
+  background-image: linear-gradient(to bottom, white, #f2f2f2);
+  background-color: #f9f9f9;
+  -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: center;
+  font-size: 80%;
+  position: fixed;
+  bottom: 0px;
+}
+header {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+}
+main {
+  padding-top: 36px;
+}
+
