@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326234004) do
+ActiveRecord::Schema.define(version: 20150327182758) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(version: 20150326234004) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
+
+  add_index "books", ["abbreviation"], name: "index_books_on_abbreviation", using: :btree
+  add_index "books", ["name"], name: "index_books_on_name", using: :btree
 
   create_table "damage_resistances", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -75,9 +78,10 @@ ActiveRecord::Schema.define(version: 20150326234004) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "monster_classes", ["name"], name: "index_monster_classes_on_name", using: :btree
+
   create_table "monster_names", force: :cascade do |t|
     t.integer  "monster_id", limit: 4
-    t.boolean  "primary",    limit: 1
     t.string   "name",       limit: 255
     t.text     "notes",      limit: 65535
     t.datetime "created_at",               null: false
@@ -85,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150326234004) do
   end
 
   add_index "monster_names", ["monster_id"], name: "index_monster_names_on_monster_id", using: :btree
+  add_index "monster_names", ["name"], name: "index_monster_names_on_name", using: :btree
 
   create_table "monsters", force: :cascade do |t|
     t.integer  "strength",         limit: 4
@@ -111,6 +116,7 @@ ActiveRecord::Schema.define(version: 20150326234004) do
   end
 
   add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree
+  add_index "monsters", ["name"], name: "index_monsters_on_name", using: :btree
 
   create_table "movement_rates", force: :cascade do |t|
     t.integer  "monster_id",      limit: 4
@@ -162,6 +168,8 @@ ActiveRecord::Schema.define(version: 20150326234004) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "terrain_types", ["name"], name: "index_terrain_types_on_name", using: :btree
 
   create_table "traits", force: :cascade do |t|
     t.integer  "monster_id",      limit: 4

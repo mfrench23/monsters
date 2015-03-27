@@ -3,8 +3,8 @@ require 'test_helper'
 class MonsterNameTest < ActiveSupport::TestCase
   setup do
     @one = FactoryGirl.create(:monster_name)
-    @two = FactoryGirl.create(:monster_name, name: "Don", primary: false)
-    @three = FactoryGirl.create(:monster_name, name: "Zed", primary: true)
+    @two = FactoryGirl.create(:monster_name, name: "Don")
+    @three = FactoryGirl.create(:monster_name, name: "Zed")
   end
   
   test "comparison" do
@@ -13,6 +13,6 @@ class MonsterNameTest < ActiveSupport::TestCase
     assert_equal 0, @one <=> @one
     assert_equal -1, @one <=> @two
     assert_equal 1, @two <=> @one
-    assert_equal -1, @three <=> @two
+    assert_equal 1, @three <=> @two
   end
 end
