@@ -10,7 +10,7 @@
 
 <p>
   <strong>Class:</strong>
-  <%= (@monster.monster_class_id > 0 ? MonsterClass.find(@monster.monster_class_id).name : "" ) %>
+  <%= @class %>
 </p>
 
 <p>
@@ -18,7 +18,7 @@
   <%= @monster.description %>
 </p>
 
-<%= render 'show_stat_block', m: @monster %>
+<%= render 'show_stat_block', monster: @monster %>
 
 <table>
   <tr>

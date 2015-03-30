@@ -1,64 +1,64 @@
 <table id="fullstatblock">
   <tr>
     <td id="statblock">
-      <strong>ST:</strong> <%= m.strength %>
+      <strong>ST:</strong> <%= monster.strength %>
     </td id="statblock">
-    <td id="statblock"><strong>Hitpoints:</strong> <%= @monster.hitPoints %></td>
-    <td id="statblock"><strong>Speed:</strong> <%= @monster.speed %></td>
+    <td id="statblock"><strong>Hitpoints:</strong> <%= monster.hitPoints %></td>
+    <td id="statblock"><strong>Speed:</strong> <%= monster.speed %></td>
   </tr>
   <tr>
     <td id="statblock">
-      <strong>DX:</strong> <%= m.dexterity %>
+      <strong>DX:</strong> <%= monster.dexterity %>
     </td id="statblock">
-    <td id="statblock"><strong>Will:</strong> <%= @monster.will %></td>
+    <td id="statblock"><strong>Will:</strong> <%= monster.will %></td>
     <td id="statblock">
       <strong>Move:</strong>
-      <% @monster.movement_rates.each do |mv| %>
+      <% monster.movement_rates.each do |mv| %>
 	<%= mv.rate %> (<%= TerrainType.find(mv.terrain_type_id).name %>)<br>
       <% end %>
     </td>
   </tr>
   <tr>
     <td id="statblock">
-      <strong>IQ:</strong> <%= m.intelligence %>
+      <strong>IQ:</strong> <%= monster.intelligence %>
     </td>
-    <td id="statblock"><strong>Perception:</strong> <%= @monster.perception %></td>
+    <td id="statblock"><strong>Perception:</strong> <%= monster.perception %></td>
     <td id="statblock">
-      <strong>SM:</strong> <%= @monster.sizeModifier %>
-      <% if m.height.to_s.length > 0 %>
+      <strong>SM:</strong> <%= monster.sizeModifier %>
+      <% if monster.height.to_s.length > 0 %>
 	<br>
-	<strong>Height:</strong> <%= @monster.height %>
+	<strong>Height:</strong> <%= monster.height %>
       <% end %>
-      <% if m.weight.to_s.length > 0 %>
+      <% if monster.weight.to_s.length > 0 %>
 	<br>
-	<strong>Weight:</strong> <%= @monster.weight %>
+	<strong>Weight:</strong> <%= monster.weight %>
       <% end %>
     </td>
   </tr>
   <tr>
     <td id="statblock">
-      <strong>HT:</strong> <%= m.health %>
+      <strong>HT:</strong> <%= monster.health %>
     </td>
-    <td id="statblock"><strong>Fatigue:</strong> <%= @monster.fatigue %></td>
+    <td id="statblock"><strong>Fatigue:</strong> <%= monster.fatigue %></td>
     <td id="statblock">
 
     </td>
   </tr>
   <tr>
-    <td id="statblock"><strong>Dodge:</strong> <%= @monster.dodge %></td>
+    <td id="statblock"><strong>Dodge:</strong> <%= monster.dodge %></td>
     <td id="statblock">
       <strong>Parry:</strong>
-	<% @monster.parry_scores.each do |parry| %>
+	<% monster.parry_scores.each do |parry| %>
 	  <%= parry.weapon %> <%= parry.parry %> <br>
 	<% end %>
       <br>
-      <% if ! m.block.nil? %>
-	<strong>Block:</strong> <%= @monster.block %>
+      <% if ! monster.block.nil? %>
+	<strong>Block:</strong> <%= monster.block %>
       <% end %>
     </td>
     <td id="statblock">
       <strong>DR:</strong>
-	<% @monster.damage_resistances.each do |dr| %>
+	<% monster.damage_resistances.each do |dr| %>
 	  <%= simpleDR dr %> <br>
 	<% end %>
     </td>

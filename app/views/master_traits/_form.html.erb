@@ -1,10 +1,10 @@
-<%= form_for(@master_trait) do |f| %>
-  <% if @master_trait.errors.any? %>
+<%= form_for(master_trait) do |f| %>
+  <% if master_trait.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@master_trait.errors.count, "error") %> prohibited this master_trait from being saved:</h2>
+      <h2><%= pluralize(master_trait.errors.count, "error") %> prohibited this master_trait from being saved:</h2>
 
       <ul>
-      <% @master_trait.errors.full_messages.each do |message| %>
+      <% master_trait.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

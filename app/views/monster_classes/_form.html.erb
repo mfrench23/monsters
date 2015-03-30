@@ -1,10 +1,10 @@
-<%= form_for(@monster_class) do |f| %>
-  <% if @monster_class.errors.any? %>
+<%= form_for(monster_class) do |f| %>
+  <% if monster_class.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@monster_class.errors.count, "error") %> prohibited this monster_class from being saved:</h2>
+      <h2><%= pluralize(monster_class.errors.count, "error") %> prohibited this monster class from being saved:</h2>
 
       <ul>
-      <% @monster_class.errors.full_messages.each do |message| %>
+      <% monster_class.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
