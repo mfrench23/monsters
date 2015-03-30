@@ -31,7 +31,7 @@ class TerrainTypesControllerTest < ActionController::TestCase
 
     assert_response 200
   end
-  
+
   test "should show terrain_type" do
     get :show, id: @terrain_type
     assert_response :success

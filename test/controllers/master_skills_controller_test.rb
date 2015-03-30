@@ -31,7 +31,7 @@ class MasterSkillsControllerTest < ActionController::TestCase
 
     assert_response 200
   end
-  
+
   test "should show master_skill" do
     get :show, id: @master_skill
     assert_response :success

@@ -21,7 +21,6 @@ class CreateMonsters < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_column :monsters, :speed, :decimal, precision:4, scale:2
-    
     add_foreign_key :page_references, :monsters
     add_foreign_key :page_references, :books
     add_foreign_key :skills, :monsters
@@ -32,6 +31,5 @@ class CreateMonsters < ActiveRecord::Migration
     add_foreign_key :movement_rates, :monsters
     add_foreign_key :movement_rates, :terrain_types
     add_foreign_key :monster_names, :monsters
-    
   end
 end

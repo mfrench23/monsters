@@ -2,7 +2,7 @@
   <div class="controls">
     <%= f.label :master_skill_id %>
     <%= f.collection_select :master_skill_id, MasterSkill.order(:name), :id, :name %>
-    
+
     <%= f.label :modifier %>
     <%= f.number_field :modifier %>
 

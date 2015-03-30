@@ -6,7 +6,7 @@ class MonsterNameTest < ActiveSupport::TestCase
     @two = FactoryGirl.create(:monster_name, name: "Don")
     @three = FactoryGirl.create(:monster_name, name: "Zed")
   end
-  
+
   test "comparison" do
     assert_equal nil, @one <=> "Fish"
     assert_equal nil, "Fish" <=> @one

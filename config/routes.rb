@@ -1,18 +1,11 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-
   resources :master_traits
-
   resources :master_skills
-
   resources :monsters
-  
   resources :monster_classes
-
   resources :books
-
   resources :terrain_types
-
   resources :locations
 
   # The priority is based upon order of creation: first created -> highest priority.

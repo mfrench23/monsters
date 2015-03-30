@@ -31,7 +31,7 @@ class LocationsControllerTest < ActionController::TestCase
 
     assert_response 200
   end
-  
+
   test "should show location" do
     get :show, id: @location
     assert_response :success

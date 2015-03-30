@@ -15,8 +15,8 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <%= render 'expanding_fieldset', f: f, 
-    id: "monster-names", collection: :monster_names, 
+  <%= render 'expanding_fieldset', f: f,
+    id: "monster-names", collection: :monster_names,
     partial: 'monster_name_fields', label: 'add alias', header: "Aliases" %>
 
   <div class="field">
@@ -60,9 +60,9 @@
     <%= f.label :speed %><br>
     <%= f.text_field :speed %>
   </div>
-  
-  <%= render 'expanding_fieldset', f: f, 
-    id: "movement-rates", collection: :movement_rates, 
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "movement-rates", collection: :movement_rates,
     partial: 'movement_rate_fields', label: 'add move', header: "Move" %>
 
   <div class="field">
@@ -77,28 +77,28 @@
     <%= f.label :weight %><br>
     <%= f.text_field :weight %>
   </div>
-  
-  <%= render 'expanding_fieldset', f: f, 
-    id: "damage-resistances", collection: :damage_resistances, 
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "damage-resistances", collection: :damage_resistances,
     partial: 'damage_resistance_fields', label: 'add DR', header: "DR" %>
-  
-  <%= render 'expanding_fieldset', f: f, 
-    id: "attacks", collection: :attacks, 
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "attacks", collection: :attacks,
     partial: 'attack_fields', label: 'add attack', header: "Attacks" %>
 
-  <%= render 'expanding_fieldset', f: f, 
-    id: "traits", collection: :traits, 
+  <%= render 'expanding_fieldset', f: f,
+    id: "traits", collection: :traits,
     partial: 'trait_fields', label: 'add trait', header: "Traits" %>
 
-  <%= render 'expanding_fieldset', f: f, 
-    id: "skills", collection: :skills, 
+  <%= render 'expanding_fieldset', f: f,
+    id: "skills", collection: :skills,
     partial: 'skill_fields', label: 'add skill', header: "Skills" %>
 
   <div class="field">
     <%= f.label :gear %><br>
     <%= f.text_area :gear %>
   </div>
-  
+
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
@@ -111,20 +111,16 @@
     <%= f.label :dodge %><br>
     <%= f.number_field :dodge %>
   </div>
-
-  <%= render 'expanding_fieldset', f: f, 
-    id: "parry-scores", collection: :parry_scores, 
+  <%= render 'expanding_fieldset', f: f,
+    id: "parry-scores", collection: :parry_scores,
     partial: 'parry_score_fields', label: 'add Parry', header: "Parry" %>
-
   <div class="field">
     <%= f.label :block %><br>
     <%= f.number_field :block %>
   </div>
-  
-  <%= render 'expanding_fieldset', f: f, 
-    id: "page-references", collection: :page_references, 
+  <%= render 'expanding_fieldset', f: f,
+    id: "page-references", collection: :page_references,
     partial: 'page_reference_fields', label: 'add page reference', header: "Sources" %>
-  
   <div class="actions">
     <%= f.submit %>
   </div>

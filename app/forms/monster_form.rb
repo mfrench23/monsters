@@ -4,14 +4,14 @@ class MonsterForm
   def initialize(params=nil)
     @params = monster_params(params)
   end
-  
+
   private
 
     def monster_params(params)
       params.require(:monster).permit(
         :name,
-        :strength, :dexterity, :intelligence, :health, :hitPoints, :will, 
-        :perception, :fatigue, :speed, :sizeModifier, :height, 
+        :strength, :dexterity, :intelligence, :health, :hitPoints, :will,
+        :perception, :fatigue, :speed, :sizeModifier, :height,
         :weight, :gear, :description, :notes, :dodge, :block,
         :monster_class_id,
         monster_names_attributes: [:id, :name, :description, :_destroy],

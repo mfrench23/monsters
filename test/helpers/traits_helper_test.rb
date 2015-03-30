@@ -7,7 +7,7 @@ class TraitsHelperTest < ActionView::TestCase
     @master = FactoryGirl.create(:master_trait, is_feature: true)
     @three = FactoryGirl.create(:trait, master_trait: @master)
   end
-  
+
   test "should format traits" do
     assert_equal "Wombat Reflexes", simpleTrait(@one)
     assert_equal "Wombat Reflexes 3", simpleTrait(@two)

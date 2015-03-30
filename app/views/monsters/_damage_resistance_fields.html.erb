@@ -2,7 +2,7 @@
   <div class="controls">
     <%= f.label :location_id %>
     <%= f.collection_select :location_id, Location.order(:name), :id, :name, include_blank: true %>
-    
+
     <%= f.label :dr %>
     <%= f.number_field :dr %>
 

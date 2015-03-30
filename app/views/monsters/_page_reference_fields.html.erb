@@ -2,7 +2,7 @@
   <div class="controls">
     <%= f.label :book_id %>
     <%= f.collection_select :book_id, Book.order(:name), :id, :name, include_blank: true %>
-    
+
     <%= f.label :pages %>
     <%= f.text_field :pages %>
 
