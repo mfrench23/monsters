@@ -34,7 +34,7 @@
       <tr>
         <td><%= monster.name %></td>
 	<td><%= simpleMonsterNames monster %></td>
-	<td><%= ( monster.monster_class_id > 0 ? MonsterClass.find(monster.monster_class_id).name : "" ) %></td>
+	<td><%= monster.monster_class_name %></td>
         <td><%= monster.strength %></td>
         <td><%= monster.dexterity %></td>
         <td><%= monster.intelligence %></td>

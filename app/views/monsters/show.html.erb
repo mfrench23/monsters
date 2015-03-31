@@ -10,7 +10,7 @@
 
 <p>
   <strong>Class:</strong>
-  <%= @class %>
+  <%= @monster.monster_class_name %>
 </p>
 
 <p>
@@ -63,7 +63,7 @@
     <td><strong>Sources:</strong></td>
     <td>
       <% @monster.page_references.each do |pg| %>
-	<%= Book.find(pg.book_id).name %> p.<%= pg.pages %> <br>
+	<%= pg.book?.name %> p.<%= pg.pages %> <br>
       <% end %>
     </td>
   </tr>

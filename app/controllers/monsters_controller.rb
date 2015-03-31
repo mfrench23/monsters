@@ -10,7 +10,6 @@ class MonstersController < ApplicationController
   # GET /monsters/1
   # GET /monsters/1.json
   def show
-    @class = (@monster.monster_class_id > 0 ? MonsterClass.find(@monster.monster_class_id).name : "" )
   end
 
   # GET /monsters/new

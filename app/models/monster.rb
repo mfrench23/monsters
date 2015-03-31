@@ -17,6 +17,7 @@ class Monster < ActiveRecord::Base
   accepts_nested_attributes_for :parry_scores, allow_destroy: true, reject_if: :all_blank
 
   belongs_to :monster_class
+  delegate :name, to: :monster_class, prefix: true
 
   validates :name, :monster_class_id, presence: true
 end
