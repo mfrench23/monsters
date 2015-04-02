@@ -11,10 +11,10 @@ class MonsterTest < ActiveSupport::TestCase
       @one.freeform_trait_list="Faketrait"
     end
     assert_difference "MasterTrait.count", 2 do
-      @one.freeform_trait_list="Arglebargle (with; note; containing; semis) 3; Further Arglebargle"
+      @one.freeform_trait_list="Arglebargle (with) 3; Further Arglebargle"
     end
     assert_difference "MasterTrait.count", 2 do
-      @one.freeform_trait_list="Arglebargle (Dungeon); Exceptional Arglebargle 1"
+      @one.freeform_trait_list="Arglebargle (Dungeon; Urban; Mountain); Exceptional Arglebargle 1"
     end
   end
 end
