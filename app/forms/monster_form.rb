@@ -14,6 +14,7 @@ class MonsterForm
         :perception, :fatigue, :speed, :sizeModifier, :height,
         :weight, :gear, :description, :notes, :dodge, :block,
         :monster_class_id,
+	:freeform_trait_list,
         monster_names_attributes: [:id, :name, :description, :_destroy],
         attacks_attributes: [:id, :name, :skill, :description, :_destroy],
         movement_rates_attributes: [:id, :terrain_type_id, :rate, :_destroy],

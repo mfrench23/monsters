@@ -1,4 +1,6 @@
 class Monster < ActiveRecord::Base
+  include TraitList
+
   has_many :page_references, dependent: :destroy
   accepts_nested_attributes_for :page_references, allow_destroy: true, reject_if: :all_blank
   has_many :skills, dependent: :destroy
@@ -20,4 +22,14 @@ class Monster < ActiveRecord::Base
   delegate :name, to: :monster_class, prefix: true
 
   validates :name, :monster_class_id, presence: true
+
+  def freeform_trait_list
+    ""
+  end
+
+  def freeform_trait_list=(value)
+    TraitList.getList(value).each do |trait|
+      self.traits << trait
+    end
+  end
 end
