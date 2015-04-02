@@ -1,5 +1,5 @@
 module DamageResistancesHelper
-  def simpleDR dr
+  def simpleDR(dr)
     location = ""
     if(!dr.location.nil?)
       location = dr.location.name + ": "

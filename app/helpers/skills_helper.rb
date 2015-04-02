@@ -1,5 +1,5 @@
 module SkillsHelper
-  def simpleSkill skill
+  def simpleSkill(skill)
     master = skill.master_skill
     name = master.name + " @"
     mod = ""
