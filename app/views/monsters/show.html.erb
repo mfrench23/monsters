@@ -5,7 +5,7 @@
 
 <p>
   <strong>Aliases:</strong>
-  <%= simpleMonsterNames @monster %>
+  <%= @monster.names_to_s %>
 </p>
 
 <p>
@@ -41,7 +41,7 @@
     <td><strong>Skills:</strong></td>
     <td>
       <% @monster.skills.each do |skill| %>
-	<%= simpleSkill skill %> <br>
+	<%= skill.to_s %> <br>
       <% end %>
     </td>
   </tr>

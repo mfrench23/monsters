@@ -32,4 +32,9 @@ class Monster < ActiveRecord::Base
       self.traits << trait
     end
   end
+
+  # All the monster's aliases, in a semicolon-delimited list.
+  def names_to_s
+    monster_names.sort.collect { |x| x.name }.join('; ')
+  end
 end

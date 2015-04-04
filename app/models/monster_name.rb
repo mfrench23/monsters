@@ -9,4 +9,5 @@ class MonsterName < ActiveRecord::Base
     (self.name <=> other.name).nonzero? ||
 	0
   end
+
 end

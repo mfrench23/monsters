@@ -33,7 +33,7 @@
     <% @monsters.each do |monster| %>
       <tr>
         <td><%= monster.name %></td>
-	<td><%= simpleMonsterNames monster %></td>
+	<td><%= monster.names_to_s %></td>
 	<td><%= monster.monster_class_name %></td>
         <td><%= monster.strength %></td>
         <td><%= monster.dexterity %></td>
