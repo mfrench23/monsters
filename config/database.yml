@@ -13,7 +13,7 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
+  username: <%= ENV['MONSTERS_DATABASE_UNAME'] %>
   password: <%= ENV['MONSTERS_DATABASE_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
 
@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: monsters_production
-  username: monsters
-  password: <%= ENV['MONSTERS_DATABASE_PASSWORD'] %>
+  username: <%= ENV['MONSTERS_PROD_DATABASE_UNAME'] %>
+  password: <%= ENV['MONSTERS_PROD_DATABASE_PASSWORD'] %>

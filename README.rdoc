@@ -1,28 +1,53 @@
 == README
+=== Background
+GURPS[http://www.sjgames.com/gurps/] is a pen-and-paper role-playing game.
+While it can be used for any genre, I'm running a 
+{GURPS Dungeon Fantasy}[http://www.sjgames.com/gurps/books/dungeonfantasy/]
+game. Doing so requires keeping track of a lot of different information,
+including the game statistics for a large number of hostile monsters.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is meant to help me in this task... while helping me learn
+about and gain experience with Ruby and Rails.
 
-Things you may want to cover:
+=== Installation
 
-* Ruby version
+==== Requirements
+I use Ruby 2.2.1, Rails 4.2.0, and MySQL 5.5.41, on an Xubuntu 14.04 virtual 
+machine in Oracle VM VirtualBox. I expect one could get away with earlier
+versions, but I can make no promises. I assume you've got Ruby, Rails, and
+MySQL installed.
 
-* System dependencies
+==== Install
+First, clone the code to a local directory.
 
-* Configuration
+   $ git clone https://github.com/mfrench23/monsters.git
 
-* Database creation
+Next, you'll need to set up some environmental variables to tell the code
+about your db. Edit your .bashrc file, and add the following lines:
 
-* Database initialization
+   export MONSTERS_DATABASE_UNAME="username"
+   export MONSTERS_DATABASE_PASSWORD="password"
 
-* How to run the test suite
+   export MONSTERS_PROD_DATABASE_UNAME="username"
+   export MONSTERS_PROD_DATABASE_PASSWORD="password"
 
-* Services (job queues, cache servers, search engines, etc.)
+Of course, you'll want to replace "username" and "password" with appropriate
+values for your db. The first pair are used for the development and test
+schemas, while the second pair are used for production. In practice, you'll
+likely only need to set up one pair on any given machine.
 
-* Deployment instructions
+Be sure to source your .bashrc file to pick up the new variables.
 
-* ...
+   source $HOME/.bashrc
 
+Now that you've got your environmental variables set up, you can create
+your dev schema:
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+   cd monsters
+   rake db:create
+   rake db:reset
+
+Finally, start your server and direct your browser to http://localhost:3000:
+
+   bin/rails server
+
