@@ -5,10 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-TerrainType.create(name: 'ground')
-TerrainType.create(name: 'water')
-TerrainType.create(name: 'air')
-TerrainType.create(name: 'tunneling')
+MoveType.create(name: 'ground')
+MoveType.create(name: 'water')
+MoveType.create(name: 'air')
+MoveType.create(name: 'tunneling')
 
 Location.create(name: 'eye')
 Location.create(name: 'skull')

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :monsters
   resources :monster_classes
   resources :books
-  resources :terrain_types
+  resources :move_types
   resources :locations
 
   # The priority is based upon order of creation: first created -> highest priority.

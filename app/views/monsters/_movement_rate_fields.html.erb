@@ -1,7 +1,7 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.label :terrain_type_id %>
-    <%= f.collection_select :terrain_type_id, TerrainType.order(:name), :id, :name, include_blank: true %>
+    <%= f.label :move_type_id %>
+    <%= f.collection_select :move_type_id, MoveType.order(:name), :id, :name, include_blank: true %>
 
     <%= f.label :rate %>
     <%= f.number_field :rate %>

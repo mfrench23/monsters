@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327182758) do
+ActiveRecord::Schema.define(version: 20150421210118) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -118,16 +118,24 @@ ActiveRecord::Schema.define(version: 20150327182758) do
   add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree
   add_index "monsters", ["name"], name: "index_monsters_on_name", using: :btree
 
+  create_table "move_types", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "move_types", ["name"], name: "index_move_types_on_name", using: :btree
+
   create_table "movement_rates", force: :cascade do |t|
-    t.integer  "monster_id",      limit: 4
-    t.integer  "terrain_type_id", limit: 4
-    t.integer  "rate",            limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "monster_id",   limit: 4
+    t.integer  "rate",         limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "move_type_id", limit: 4
   end
 
   add_index "movement_rates", ["monster_id"], name: "index_movement_rates_on_monster_id", using: :btree
-  add_index "movement_rates", ["terrain_type_id"], name: "index_movement_rates_on_terrain_type_id", using: :btree
+  add_index "movement_rates", ["move_type_id"], name: "index_movement_rates_on_move_type_id", using: :btree
 
   create_table "page_references", force: :cascade do |t|
     t.integer  "book_id",    limit: 4
@@ -163,14 +171,6 @@ ActiveRecord::Schema.define(version: 20150327182758) do
   add_index "skills", ["master_skill_id"], name: "index_skills_on_master_skill_id", using: :btree
   add_index "skills", ["monster_id"], name: "index_skills_on_monster_id", using: :btree
 
-  create_table "terrain_types", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "terrain_types", ["name"], name: "index_terrain_types_on_name", using: :btree
-
   create_table "traits", force: :cascade do |t|
     t.integer  "monster_id",      limit: 4
     t.integer  "level",           limit: 4
@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(version: 20150327182758) do
   add_foreign_key "monster_names", "monsters"
   add_foreign_key "monsters", "monster_classes"
   add_foreign_key "movement_rates", "monsters"
-  add_foreign_key "movement_rates", "terrain_types"
+  add_foreign_key "movement_rates", "move_types"
   add_foreign_key "page_references", "books"
   add_foreign_key "page_references", "monsters"
   add_foreign_key "parry_scores", "monsters"
