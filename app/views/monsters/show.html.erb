@@ -34,7 +34,7 @@
   <tr>
     <td><strong>Traits:</strong></td>
     <td>
-      <%= @monster.traits.collect { |x| simpleTrait x }.sort().join('; ') %>
+      <%= @monster.traits.collect { |x| x.to_s }.sort().join('; ') %>
     </td>
   </tr>
   <tr>
