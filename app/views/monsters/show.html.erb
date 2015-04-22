@@ -40,9 +40,7 @@
   <tr>
     <td><strong>Skills:</strong></td>
     <td>
-      <% @monster.skills.each do |skill| %>
-	<%= skill.to_s %> <br>
-      <% end %>
+      <%= @monster.skills.collect { |x| x.to_s }.sort().join('; ') %>
     </td>
   </tr>
   <tr>
