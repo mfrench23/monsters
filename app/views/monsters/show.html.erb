@@ -63,7 +63,7 @@
     <td><strong>Sources:</strong></td>
     <td>
       <% @monster.page_references.each do |pg| %>
-	<%= pg.book?.name %> p.<%= pg.pages %> <br>
+	<%= pg.to_s %> <br>
       <% end %>
     </td>
   </tr>
