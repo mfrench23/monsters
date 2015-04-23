@@ -16,8 +16,8 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :baseStat %><br>
-    <%= f.select :baseStat, MasterSkill.baseStats.keys.to_a %>
+    <%= f.label :characteristic %><br>
+    <%= f.collection_select :characteristic_id, Characteristic.all, :id, :name %>
   </div>
 
   <div class="field">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423045533) do
+ActiveRecord::Schema.define(version: 20150423114343) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20150423045533) do
   add_index "books", ["abbreviation"], name: "index_books_on_abbreviation", using: :btree
   add_index "books", ["name"], name: "index_books_on_name", using: :btree
 
+  create_table "characteristics", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.integer  "sequence_number", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "damage_resistances", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
     t.integer  "location_id", limit: 4
@@ -53,13 +60,14 @@ ActiveRecord::Schema.define(version: 20150423045533) do
   end
 
   create_table "master_skills", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.integer  "baseStat",   limit: 4
-    t.text     "notes",      limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "name",              limit: 255
+    t.text     "notes",             limit: 65535
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "characteristic_id", limit: 4
   end
 
+  add_index "master_skills", ["characteristic_id"], name: "index_master_skills_on_characteristic_id", using: :btree
   add_index "master_skills", ["name"], name: "index_master_skills_on_name", using: :btree
 
   create_table "master_traits", force: :cascade do |t|
@@ -186,6 +194,7 @@ ActiveRecord::Schema.define(version: 20150423045533) do
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "monsters"
+  add_foreign_key "master_skills", "characteristics"
   add_foreign_key "monster_names", "monsters"
   add_foreign_key "monsters", "monster_classes"
   add_foreign_key "movement_rates", "monsters"

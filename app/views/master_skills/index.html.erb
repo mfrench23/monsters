@@ -16,7 +16,7 @@
     <% @master_skills.each do |master_skill| %>
       <tr>
         <td><%= master_skill.name %></td>
-        <td><%= master_skill.baseStat %></td>
+        <td><%= master_skill.characteristic.to_s %></td>
         <td><%= master_skill.notes %></td>
         <td><%= link_to 'Show', master_skill %></td>
         <td><%= link_to 'Edit', edit_master_skill_path(master_skill) %></td>

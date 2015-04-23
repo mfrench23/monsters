@@ -18,7 +18,7 @@ class MasterSkillsControllerTest < ActionController::TestCase
 
   test "should create master_skill" do
     assert_difference('MasterSkill.count') do
-      post :create, master_skill: { baseStat: @master_skill.baseStat, name: @master_skill.name, notes: @master_skill.notes }
+      post :create, master_skill: { characteristic_id: @master_skill.characteristic_id, name: @master_skill.name, notes: @master_skill.notes }
     end
 
     assert_redirected_to master_skill_path(assigns(:master_skill))
@@ -26,7 +26,7 @@ class MasterSkillsControllerTest < ActionController::TestCase
 
   test "should fail to create master_skill" do
     assert_no_difference('MasterSkill.count') do
-      post :create, master_skill: { baseStat: @master_skill.baseStat, name: nil, notes: @master_skill.notes }
+      post :create, master_skill: { characteristic_id: @master_skill.characteristic_id, name: nil, notes: @master_skill.notes }
     end
 
     assert_response 200
@@ -43,12 +43,12 @@ class MasterSkillsControllerTest < ActionController::TestCase
   end
 
   test "should update master_skill" do
-    patch :update, id: @master_skill, master_skill: { baseStat: @master_skill.baseStat, name: @master_skill.name, notes: @master_skill.notes }
+    patch :update, id: @master_skill, master_skill: { characteristic_id: @master_skill.characteristic_id, name: @master_skill.name, notes: @master_skill.notes }
     assert_redirected_to master_skill_path(assigns(:master_skill))
   end
 
   test "should fail to update master_skill" do
-    patch :update, id: @master_skill, master_skill: { baseStat: nil }
+    patch :update, id: @master_skill, master_skill: { characteristic_id: nil }
     assert_response 200
   end
 
