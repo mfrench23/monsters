@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421210118) do
+ActiveRecord::Schema.define(version: 20150423045533) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
     t.string   "name",        limit: 255
     t.string   "skill",       limit: 255
-    t.string   "description", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "attacks", ["monster_id"], name: "index_attacks_on_monster_id", using: :btree
