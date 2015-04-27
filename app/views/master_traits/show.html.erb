@@ -15,5 +15,11 @@
   <%= @master_trait.is_feature %>
 </p>
 
+<ul>
+<% @master_trait.traits.each do |trait| %>
+  <li><%= link_to trait.monster.to_s, trait.monster %>
+<% end %>
+</ul>
+
 <%= link_to 'Edit', edit_master_trait_path(@master_trait) %> |
 <%= link_to 'Back', master_traits_path %>

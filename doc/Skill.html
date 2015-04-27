@@ -125,9 +125,9 @@
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/skill.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/models/skill.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">master_skill</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; @&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">master_skill</span>.<span class="ruby-identifier">baseStat</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Modifier</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">modifier</span>).<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">master_skill</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; @&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">master_skill</span>.<span class="ruby-identifier">characteristic</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Modifier</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">modifier</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

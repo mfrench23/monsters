@@ -2,6 +2,8 @@
 
 <h1>Listing Move Types</h1>
 
+<%= page_entries_info @move_types %>
+
 <table>
   <thead>
     <tr>
@@ -24,4 +26,5 @@
 
 <br>
 
+<%= paginate @move_types %>
 <%= link_to 'New Move type', new_move_type_path %>

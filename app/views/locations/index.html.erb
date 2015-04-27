@@ -2,6 +2,8 @@
 
 <h1>Listing Locations</h1>
 
+<%= page_entries_info @locations %>
+
 <table>
   <thead>
     <tr>
@@ -24,4 +26,5 @@
 
 <br>
 
+<%= paginate @locations %>
 <%= link_to 'New Location', new_location_path %>

@@ -4,7 +4,7 @@ class MonsterClassesController < ApplicationController
   # GET /monster_classes
   # GET /monster_classes.json
   def index
-    @monster_classes = MonsterClass.all
+    @monster_classes = MonsterClass.order(:name).page params[:page]
   end
 
   # GET /monster_classes/1

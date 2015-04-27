@@ -251,7 +251,7 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/monster_classes_controller.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@monster_classes</span> = <span class="ruby-constant">MonsterClass</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@monster_classes</span> = <span class="ruby-constant">MonsterClass</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>).<span class="ruby-identifier">page</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

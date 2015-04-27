@@ -4,7 +4,7 @@ class MoveTypesController < ApplicationController
   # GET /move_types
   # GET /move_types.json
   def index
-    @move_types = MoveType.all
+    @move_types = MoveType.order(:name).page params[:page]
   end
 
   # GET /move_types/1

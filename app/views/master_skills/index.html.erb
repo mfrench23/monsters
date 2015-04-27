@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Master Skills</h1>
+<h1>Master Skills</h1>
+
+<%= page_entries_info @master_skills %>
 
 <table>
   <thead>
@@ -28,4 +30,5 @@
 
 <br>
 
+<%= paginate @master_skills %>
 <%= link_to 'New Master skill', new_master_skill_path %>

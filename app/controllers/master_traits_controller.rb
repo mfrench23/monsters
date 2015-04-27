@@ -4,7 +4,7 @@ class MasterTraitsController < ApplicationController
   # GET /master_traits
   # GET /master_traits.json
   def index
-    @master_traits = MasterTrait.all
+    @master_traits = MasterTrait.order(:name, :notes).page params[:page]
   end
 
   # GET /master_traits/1

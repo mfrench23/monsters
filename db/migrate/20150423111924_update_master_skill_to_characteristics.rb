@@ -7,10 +7,10 @@ class UpdateMasterSkillToCharacteristics < ActiveRecord::Migration
     Characteristic.new(:name => 'HT', :sequence_number => 4).save
     Characteristic.new(:name => 'Will', :sequence_number => 5).save
     Characteristic.new(:name => 'Per', :sequence_number => 6).save
-    
+
     execute "update master_skills set characteristic_id = baseStat"
   end
-  
+
   def down
     execute "update master_skills set baseStat = characteristic_id where characteristic_id <= 6"
     Characteristic.where(name: 'ST').destroy

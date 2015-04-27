@@ -36,6 +36,9 @@ gem "factory_girl_rails", "~> 4.0"
 # Use Puma as the app server
 gem 'puma'
 
+# Use Kaminari for pagination
+gem 'kaminari'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

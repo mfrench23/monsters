@@ -4,7 +4,7 @@ class MonstersController < ApplicationController
   # GET /monsters
   # GET /monsters.json
   def index
-    @monsters = Monster.all
+    @monsters = Monster.order(:name).page params[:page]
   end
 
   # GET /monsters/1
@@ -74,5 +74,4 @@ class MonstersController < ApplicationController
     def set_monster
       @monster = Monster.find(params[:id])
     end
-
 end

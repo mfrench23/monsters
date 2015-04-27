@@ -2,6 +2,8 @@
 
 <h1>Listing Monsters</h1>
 
+<%= page_entries_info @monsters %>
+
 <table>
   <thead>
     <tr>
@@ -56,4 +58,5 @@
 
 <br>
 
+<%= paginate @monsters %>
 <%= link_to 'New Monster', new_monster_path %>

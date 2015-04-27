@@ -4,7 +4,7 @@ class MasterSkillsController < ApplicationController
   # GET /master_skills
   # GET /master_skills.json
   def index
-    @master_skills = MasterSkill.all
+    @master_skills = MasterSkill.order(:name).page params[:page]
   end
 
   # GET /master_skills/1

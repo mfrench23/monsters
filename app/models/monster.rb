@@ -37,4 +37,8 @@ class Monster < ActiveRecord::Base
   def names_to_s
     monster_names.sort.collect { |x| x.name }.join('; ')
   end
+  
+  def to_s 
+    name
+  end
 end

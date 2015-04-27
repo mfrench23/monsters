@@ -31,4 +31,8 @@ class MonsterTest < ActiveSupport::TestCase
     @one.monster_names << FactoryGirl.create(:monster_name, name: "Celine")
     assert_equal @one.names_to_s, "Bob; Celine; Don"
   end
+  
+  test "to_s" do
+    assert_equal @one.to_s, "Tim the Test Monster"
+  end
 end
