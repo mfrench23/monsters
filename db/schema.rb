@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150423114343) do
+ActiveRecord::Schema.define(version: 20150428020323) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -135,11 +135,12 @@ ActiveRecord::Schema.define(version: 20150423114343) do
   add_index "move_types", ["name"], name: "index_move_types_on_name", using: :btree
 
   create_table "movement_rates", force: :cascade do |t|
-    t.integer  "monster_id",   limit: 4
-    t.integer  "rate",         limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "move_type_id", limit: 4
+    t.integer  "monster_id",    limit: 4
+    t.integer  "rate",          limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "move_type_id",  limit: 4
+    t.integer  "enhanced_rate", limit: 4
   end
 
   add_index "movement_rates", ["monster_id"], name: "index_movement_rates_on_monster_id", using: :btree

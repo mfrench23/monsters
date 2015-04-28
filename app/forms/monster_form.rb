@@ -17,7 +17,7 @@ class MonsterForm
 	:freeform_trait_list,
         monster_names_attributes: [:id, :name, :description, :_destroy],
         attacks_attributes: [:id, :name, :skill, :description, :_destroy],
-        movement_rates_attributes: [:id, :move_type_id, :rate, :_destroy],
+        movement_rates_attributes: [:id, :move_type_id, :rate, :enhanced_rate, :_destroy],
         damage_resistances_attributes: [:id, :location_id, :dr, :notes, :_destroy],
         page_references_attributes: [:id, :book_id, :pages, :_destroy],
         parry_scores_attributes: [:id, :weapon, :parry, :_destroy],
