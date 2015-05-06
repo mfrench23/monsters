@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506204802) do
+ActiveRecord::Schema.define(version: 20150506230642) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150506204802) do
     t.datetime "updated_at",                null: false
   end
 
+  add_index "attacks", ["monster_id", "name"], name: "index_attacks_on_monster_id_and_name", unique: true, using: :btree
   add_index "attacks", ["monster_id"], name: "index_attacks_on_monster_id", using: :btree
 
   create_table "books", force: :cascade do |t|
@@ -31,8 +32,7 @@ ActiveRecord::Schema.define(version: 20150506204802) do
     t.datetime "updated_at",               null: false
   end
 
-  add_index "books", ["abbreviation"], name: "index_books_on_abbreviation", using: :btree
-  add_index "books", ["name"], name: "index_books_on_name", using: :btree
+  add_index "books", ["name"], name: "index_books_on_name", unique: true, using: :btree
 
   create_table "characteristic_monsters", force: :cascade do |t|
     t.integer  "characteristic_id", limit: 4
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 20150506204802) do
     t.datetime "updated_at",                  null: false
   end
 
+  add_index "characteristics", ["name"], name: "index_characteristics_on_name", unique: true, using: :btree
+  add_index "characteristics", ["sequence_number"], name: "index_characteristics_on_sequence_number", unique: true, using: :btree
+
   create_table "damage_resistances", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
     t.integer  "location_id", limit: 4
@@ -70,6 +73,8 @@ ActiveRecord::Schema.define(version: 20150506204802) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "locations", ["name"], name: "index_locations_on_name", unique: true, using: :btree
 
   create_table "master_skills", force: :cascade do |t|
     t.string   "name",              limit: 255
@@ -98,7 +103,7 @@ ActiveRecord::Schema.define(version: 20150506204802) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "monster_classes", ["name"], name: "index_monster_classes_on_name", using: :btree
+  add_index "monster_classes", ["name"], name: "index_monster_classes_on_name", unique: true, using: :btree
 
   create_table "monster_names", force: :cascade do |t|
     t.integer  "monster_id", limit: 4
@@ -135,7 +140,7 @@ ActiveRecord::Schema.define(version: 20150506204802) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "move_types", ["name"], name: "index_move_types_on_name", using: :btree
+  add_index "move_types", ["name"], name: "index_move_types_on_name", unique: true, using: :btree
 
   create_table "movement_rates", force: :cascade do |t|
     t.integer  "monster_id",    limit: 4

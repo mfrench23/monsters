@@ -3,7 +3,9 @@ require 'test_helper'
 class DamageResistancesHelperTest < ActionView::TestCase
   setup do
     @one = FactoryGirl.create(:damage_resistance)
-    @two = FactoryGirl.create(:damage_resistance_2)
+    
+    loc = FactoryGirl.create(:location, name: "Tail")
+    @two = FactoryGirl.create(:damage_resistance, location: loc, dr: 2, notes: "Flexible")
   end
 
   test "should format correctly" do

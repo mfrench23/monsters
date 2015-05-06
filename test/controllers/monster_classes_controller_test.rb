@@ -18,7 +18,7 @@ class MonsterClassesControllerTest < ActionController::TestCase
 
   test "should create monster_class" do
     assert_difference('MonsterClass.count') do
-      post :create, monster_class: { name: @monster_class.name }
+      post :create, monster_class: { name: "Animal, Stuffy" }
     end
 
     assert_redirected_to monster_class_path(assigns(:monster_class))

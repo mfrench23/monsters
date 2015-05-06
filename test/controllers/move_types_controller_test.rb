@@ -18,7 +18,7 @@ class MoveTypesControllerTest < ActionController::TestCase
 
   test "should create move_type" do
     assert_difference('MoveType.count') do
-      post :create, move_type: { name: @move_type.name }
+      post :create, move_type: { name: "crawling diagonally" }
     end
 
     assert_redirected_to move_type_path(assigns(:move_type))
