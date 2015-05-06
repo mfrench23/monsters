@@ -17,11 +17,24 @@ class Monster < ActiveRecord::Base
   accepts_nested_attributes_for :monster_names, allow_destroy: true, reject_if: :all_blank
   has_many  :parry_scores, dependent: :destroy
   accepts_nested_attributes_for :parry_scores, allow_destroy: true, reject_if: :all_blank
+  has_many  :characteristic_monsters, dependent: :destroy
+  accepts_nested_attributes_for :characteristic_monsters, allow_destroy: true, reject_if: :all_blank
+
+  has_many :characteristics, :through => :characteristic_monsters
 
   belongs_to :monster_class
   delegate :name, to: :monster_class, prefix: true
 
   validates :name, :monster_class_id, presence: true
+
+  def build_out
+    monster_names.build
+    attacks.build
+    movement_rates.build
+    Characteristic.find_each do |c|
+      characteristic_monsters.build(characteristic: c, score: nil)
+    end
+  end
 
   def freeform_trait_list
     ""
@@ -33,12 +46,16 @@ class Monster < ActiveRecord::Base
     end
   end
 
+  def characteristic_score(characteristic_name)
+    self.characteristic_monsters.where(:characteristic => Characteristic.find_by(name: characteristic_name)).first.try { |x| x.score }
+  end
+
   # All the monster's aliases, in a semicolon-delimited list.
   def names_to_s
     monster_names.sort.collect { |x| x.name }.join('; ')
   end
-  
-  def to_s 
+
+  def to_s
     name
   end
 end

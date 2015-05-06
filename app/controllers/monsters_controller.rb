@@ -15,9 +15,7 @@ class MonstersController < ApplicationController
   # GET /monsters/new
   def new
     @monster = Monster.new
-    @monster.monster_names.build
-    @monster.attacks.build
-    @monster.movement_rates.build
+    @monster.build_out
   end
 
   # GET /monsters/1/edit

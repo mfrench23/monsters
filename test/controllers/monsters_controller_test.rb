@@ -18,7 +18,11 @@ class MonstersControllerTest < ActionController::TestCase
 
   test "should create monster" do
     assert_difference('Monster.count') do
-      post :create, monster: { block: @monster.block, description: @monster.description, dexterity: @monster.dexterity, dodge: @monster.dodge, fatigue: @monster.fatigue, gear: @monster.gear, health: @monster.health, height: @monster.height, hitPoints: @monster.hitPoints, intelligence: @monster.intelligence, monster_class_id: @monster.monster_class_id, name: @monster.name, notes: @monster.notes, perception: @monster.perception, sizeModifier: @monster.sizeModifier, speed: @monster.speed, strength: @monster.strength, weight: @monster.weight, will: @monster.will }
+      post :create, monster: { block: @monster.block, description: @monster.description, 
+                               dodge: @monster.dodge, gear: @monster.gear, height: @monster.height, 
+                               monster_class_id: @monster.monster_class_id, name: @monster.name, 
+                               notes: @monster.notes, speed: @monster.speed, weight: @monster.weight,
+                               characteristic_monsters: @monster.characteristic_monsters }
     end
 
     assert_redirected_to monster_path(assigns(:monster))
@@ -43,7 +47,7 @@ class MonstersControllerTest < ActionController::TestCase
   end
 
   test "should update monster" do
-    patch :update, id: @monster, monster: { block: @monster.block, description: @monster.description, dexterity: @monster.dexterity, dodge: @monster.dodge, fatigue: @monster.fatigue, gear: @monster.gear, health: @monster.health, height: @monster.height, hitPoints: @monster.hitPoints, intelligence: @monster.intelligence, notes: @monster.notes, perception: @monster.perception, sizeModifier: @monster.sizeModifier, speed: @monster.speed, strength: @monster.strength, weight: @monster.weight, will: @monster.will }
+    patch :update, id: @monster, monster: { block: @monster.block, description: @monster.description, dodge: @monster.dodge, gear: @monster.gear, height: @monster.height, notes: @monster.notes, speed: @monster.speed, weight: @monster.weight }
     assert_redirected_to monster_path(assigns(:monster))
   end
 

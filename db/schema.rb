@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428020323) do
+ActiveRecord::Schema.define(version: 20150506204802) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -33,6 +33,18 @@ ActiveRecord::Schema.define(version: 20150428020323) do
 
   add_index "books", ["abbreviation"], name: "index_books_on_abbreviation", using: :btree
   add_index "books", ["name"], name: "index_books_on_name", using: :btree
+
+  create_table "characteristic_monsters", force: :cascade do |t|
+    t.integer  "characteristic_id", limit: 4
+    t.integer  "monster_id",        limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "score",             limit: 4
+  end
+
+  add_index "characteristic_monsters", ["characteristic_id", "monster_id"], name: "characteristic_monsters_uniq_join_table_idx", unique: true, using: :btree
+  add_index "characteristic_monsters", ["characteristic_id"], name: "index_characteristic_monsters_on_characteristic_id", using: :btree
+  add_index "characteristic_monsters", ["monster_id"], name: "index_characteristic_monsters_on_monster_id", using: :btree
 
   create_table "characteristics", force: :cascade do |t|
     t.string   "name",            limit: 255
@@ -100,15 +112,6 @@ ActiveRecord::Schema.define(version: 20150428020323) do
   add_index "monster_names", ["name"], name: "index_monster_names_on_name", using: :btree
 
   create_table "monsters", force: :cascade do |t|
-    t.integer  "strength",         limit: 4
-    t.integer  "dexterity",        limit: 4
-    t.integer  "intelligence",     limit: 4
-    t.integer  "health",           limit: 4
-    t.integer  "hitPoints",        limit: 4
-    t.integer  "will",             limit: 4
-    t.integer  "perception",       limit: 4
-    t.integer  "fatigue",          limit: 4
-    t.integer  "sizeModifier",     limit: 4
     t.string   "height",           limit: 255
     t.string   "weight",           limit: 255
     t.text     "gear",             limit: 65535
@@ -192,6 +195,8 @@ ActiveRecord::Schema.define(version: 20150428020323) do
   add_index "traits", ["monster_id"], name: "index_traits_on_monster_id", using: :btree
 
   add_foreign_key "attacks", "monsters"
+  add_foreign_key "characteristic_monsters", "characteristics"
+  add_foreign_key "characteristic_monsters", "monsters"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "monsters"

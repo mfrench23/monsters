@@ -9,10 +9,8 @@ class MonsterForm
 
     def monster_params(params)
       params.require(:monster).permit(
-        :name,
-        :strength, :dexterity, :intelligence, :health, :hitPoints, :will,
-        :perception, :fatigue, :speed, :sizeModifier, :height,
-        :weight, :gear, :description, :notes, :dodge, :block,
+        :name, :height, :weight, :gear,
+	:description, :notes, :dodge, :block,
         :monster_class_id,
 	:freeform_trait_list,
         monster_names_attributes: [:id, :name, :description, :_destroy],
@@ -22,6 +20,7 @@ class MonsterForm
         page_references_attributes: [:id, :book_id, :pages, :_destroy],
         parry_scores_attributes: [:id, :weapon, :parry, :_destroy],
         skills_attributes: [:id, :master_skill_id, :modifier, :_destroy],
-        traits_attributes: [:id, :master_trait_id, :level, :_destroy] )
+        traits_attributes: [:id, :master_trait_id, :level, :_destroy],
+	characteristic_monsters_attributes: [:id, :characteristic_id, :score] )
     end
 end

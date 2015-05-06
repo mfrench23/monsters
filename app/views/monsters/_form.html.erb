@@ -24,38 +24,13 @@
     <%= f.collection_select :monster_class_id, MonsterClass.order(:name), :id, :name %>
   </div>
 
-  <div class="field">
-    <%= f.label :strength %><br>
-    <%= f.number_field :strength %>
-  </div>
-  <div class="field">
-    <%= f.label :dexterity %><br>
-    <%= f.number_field :dexterity %>
-  </div>
-  <div class="field">
-    <%= f.label :intelligence %><br>
-    <%= f.number_field :intelligence %>
-  </div>
-  <div class="field">
-    <%= f.label :health %><br>
-    <%= f.number_field :health %>
-  </div>
-  <div class="field">
-    <%= f.label :hitPoints %><br>
-    <%= f.number_field :hitPoints %>
-  </div>
-  <div class="field">
-    <%= f.label :will %><br>
-    <%= f.number_field :will %>
-  </div>
-  <div class="field">
-    <%= f.label :perception %><br>
-    <%= f.number_field :perception %>
-  </div>
-  <div class="field">
-    <%= f.label :fatigue %><br>
-    <%= f.number_field :fatigue %>
-  </div>
+  <%= f.fields_for :characteristic_monsters do |characteristic_monster_form| %>
+    <div class="field">
+      <%= characteristic_monster_form.label :score, characteristic_monster_form.object.characteristic.to_s %>
+      <%= characteristic_monster_form.hidden_field :characteristic_id %>
+      <%= characteristic_monster_form.number_field :score %>
+    </div>
+  <% end %>
   <div class="field">
     <%= f.label :speed %><br>
     <%= f.text_field :speed %>
@@ -65,10 +40,6 @@
     id: "movement-rates", collection: :movement_rates,
     partial: 'movement_rate_fields', label: 'add move', header: "Move" %>
 
-  <div class="field">
-    <%= f.label :sizeModifier %><br>
-    <%= f.number_field :sizeModifier %>
-  </div>
   <div class="field">
     <%= f.label :height %><br>
     <%= f.text_field :height %>
