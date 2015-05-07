@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :characteristic_monster do
-    association :characteristic
+    characteristic {FactoryGirl.build(:characteristic)}
     score 10
   end
 

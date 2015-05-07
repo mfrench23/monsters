@@ -47,7 +47,7 @@ class Monster < ActiveRecord::Base
   end
 
   def characteristic_score(characteristic_name)
-    self.characteristic_monsters.where(:characteristic => Characteristic.find_by(name: characteristic_name)).first.try { |x| x.score }
+    self.characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.first.try { |x| x.score }
   end
 
   # All the monster's aliases, in a semicolon-delimited list.
