@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508205807) do
+ActiveRecord::Schema.define(version: 20150508221801) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150508205807) do
     t.datetime "created_at",                                                        null: false
     t.datetime "updated_at",                                                        null: false
     t.decimal  "step_size",                   precision: 4, scale: 2, default: 1.0
+    t.decimal  "base_value",                  precision: 6, scale: 2
   end
 
   add_index "characteristics", ["name"], name: "index_characteristics_on_name", unique: true, using: :btree

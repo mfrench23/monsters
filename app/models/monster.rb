@@ -34,7 +34,7 @@ class Monster < ActiveRecord::Base
     attacks.build
     movement_rates.build
     Characteristic.find_each do |c|
-      characteristic_monsters.build(characteristic: c, score: nil)
+      characteristic_monsters.build(characteristic: c, score: c.base_value)
     end
   end
 
