@@ -49,8 +49,8 @@ Characteristic.create(name: 'HP', sequence_number: 5, base_value: 10 )
 will = Characteristic.create(name: 'Will', sequence_number: 6, base_value: 10 )
 per = Characteristic.create(name: 'Per', sequence_number: 7, base_value: 10 )
 Characteristic.create(name: 'Fatigue', sequence_number: 8, base_value: 10 )
-Characteristic.create(name: 'SM', sequence_number: 9, base_value: 0 )
-Characteristic.create(name: 'Speed', sequence_number: 10, step_size: 0.25, base_value: 5.0 )
+Characteristic.create(name: 'Speed', sequence_number: 9, step_size: 0.25, base_value: 5.0 )
+Characteristic.create(name: 'SM', sequence_number: 10, base_value: 0 )
 
 
 MasterSkill.create(name: 'Acrobatics', characteristic: dx )
