@@ -25,11 +25,7 @@
   </div>
 
   <%= f.fields_for :characteristic_monsters do |characteristic_monster_form| %>
-    <div class="field">
-      <%= characteristic_monster_form.label :score, characteristic_monster_form.object.characteristic.to_s %>
-      <%= characteristic_monster_form.hidden_field :characteristic_id %>
-      <%= characteristic_monster_form.number_field :score, :step => characteristic_monster_form.object.characteristic.step_size %>
-    </div>
+    <%= render 'characteristic_monster_fields', f: characteristic_monster_form %>
   <% end %>
 
   <%= render 'expanding_fieldset', f: f,

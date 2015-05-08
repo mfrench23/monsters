@@ -1,0 +1,5 @@
+<div class="field">
+  <%= f.label :score, f.object.characteristic.to_s %>
+  <%= f.hidden_field :characteristic_id %>
+  <%= f.number_field :score, :step => f.object.characteristic.step_size %>
+</div>
