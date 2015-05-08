@@ -21,7 +21,7 @@ class MonstersControllerTest < ActionController::TestCase
       post :create, monster: { block: @monster.block, description: @monster.description, 
                                dodge: @monster.dodge, gear: @monster.gear, height: @monster.height, 
                                monster_class_id: @monster.monster_class_id, name: @monster.name, 
-                               notes: @monster.notes, speed: @monster.speed, weight: @monster.weight,
+                               notes: @monster.notes, weight: @monster.weight,
                                characteristic_monsters: @monster.characteristic_monsters }
     end
 
@@ -47,7 +47,7 @@ class MonstersControllerTest < ActionController::TestCase
   end
 
   test "should update monster" do
-    patch :update, id: @monster, monster: { block: @monster.block, description: @monster.description, dodge: @monster.dodge, gear: @monster.gear, height: @monster.height, notes: @monster.notes, speed: @monster.speed, weight: @monster.weight }
+    patch :update, id: @monster, monster: { block: @monster.block, description: @monster.description, dodge: @monster.dodge, gear: @monster.gear, height: @monster.height, notes: @monster.notes, weight: @monster.weight }
     assert_redirected_to monster_path(assigns(:monster))
   end
 

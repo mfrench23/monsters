@@ -1,6 +1,8 @@
 class Monster < ActiveRecord::Base
   include TraitList
 
+  attr_accessor :freeform_trait_list
+
   has_many :page_references, dependent: :destroy
   accepts_nested_attributes_for :page_references, allow_destroy: true, reject_if: :all_blank
   has_many :skills, dependent: :destroy
@@ -36,10 +38,6 @@ class Monster < ActiveRecord::Base
     end
   end
 
-  def freeform_trait_list
-    ""
-  end
-
   def freeform_trait_list=(value)
     TraitList.getList(value).each do |trait|
       self.traits << trait
@@ -47,7 +45,7 @@ class Monster < ActiveRecord::Base
   end
 
   def characteristic_score(characteristic_name)
-    self.characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.first.try { |x| x.score }
+    self.characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.first.try { |x| x.characteristic.normalize(x.score) }
   end
 
   # All the monster's aliases, in a semicolon-delimited list.

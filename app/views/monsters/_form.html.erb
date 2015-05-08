@@ -28,13 +28,9 @@
     <div class="field">
       <%= characteristic_monster_form.label :score, characteristic_monster_form.object.characteristic.to_s %>
       <%= characteristic_monster_form.hidden_field :characteristic_id %>
-      <%= characteristic_monster_form.number_field :score %>
+      <%= characteristic_monster_form.number_field :score, :step => characteristic_monster_form.object.characteristic.step_size %>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :speed %><br>
-    <%= f.text_field :speed %>
-  </div>
 
   <%= render 'expanding_fieldset', f: f,
     id: "movement-rates", collection: :movement_rates,

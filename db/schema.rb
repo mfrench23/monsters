@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506230642) do
+ActiveRecord::Schema.define(version: 20150508205807) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 20150506230642) do
   create_table "characteristic_monsters", force: :cascade do |t|
     t.integer  "characteristic_id", limit: 4
     t.integer  "monster_id",        limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "score",             limit: 4
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.decimal  "score",                       precision: 6, scale: 2
   end
 
   add_index "characteristic_monsters", ["characteristic_id", "monster_id"], name: "characteristic_monsters_uniq_join_table_idx", unique: true, using: :btree
@@ -49,8 +49,9 @@ ActiveRecord::Schema.define(version: 20150506230642) do
   create_table "characteristics", force: :cascade do |t|
     t.string   "name",            limit: 255
     t.integer  "sequence_number", limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
+    t.decimal  "step_size",                   precision: 4, scale: 2, default: 1.0
   end
 
   add_index "characteristics", ["name"], name: "index_characteristics_on_name", unique: true, using: :btree
@@ -124,9 +125,8 @@ ActiveRecord::Schema.define(version: 20150506230642) do
     t.text     "notes",            limit: 65535
     t.integer  "dodge",            limit: 4
     t.integer  "block",            limit: 4
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
-    t.decimal  "speed",                          precision: 4, scale: 2
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "monster_class_id", limit: 4
     t.string   "name",             limit: 255
   end
