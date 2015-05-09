@@ -1,17 +1,17 @@
-<table id="fullstatblock">
+<table class="statblock">
   <tr>
-    <td id="statblock">
+    <td class="statblock">
       <strong>ST:</strong> <%= monster.characteristic_score "ST" %>
-    </td id="statblock">
-    <td id="statblock"><strong>Hitpoints:</strong> <%= monster.characteristic_score "HP" %></td>
-    <td id="statblock"><strong>Speed:</strong> <%= monster.characteristic_score "Speed" %></td>
+    </td class="statblock">
+    <td class="statblock"><strong>Hitpoints:</strong> <%= monster.characteristic_score "HP" %></td>
+    <td class="statblock"><strong>Speed:</strong> <%= monster.characteristic_score "Speed" %></td>
   </tr>
   <tr>
-    <td id="statblock">
+    <td class="statblock">
       <strong>DX:</strong> <%= monster.characteristic_score "DX" %>
-    </td id="statblock">
-    <td id="statblock"><strong>Will:</strong> <%= monster.characteristic_score "Will" %></td>
-    <td id="statblock">
+    </td class="statblock">
+    <td class="statblock"><strong>Will:</strong> <%= monster.characteristic_score "Will" %></td>
+    <td class="statblock">
       <strong>Move:</strong>
       <% monster.movement_rates.each do |mv| %>
 	<%= mv.rate %><%= mv.enhanced_rate.nil? ? "" : "/" + mv.enhanced_rate.to_s %> (<%= mv.move_type_name %>)<br>
@@ -19,11 +19,11 @@
     </td>
   </tr>
   <tr>
-    <td id="statblock">
+    <td class="statblock">
       <strong>IQ:</strong> <%= monster.characteristic_score "IQ" %>
     </td>
-    <td id="statblock"><strong>Perception:</strong> <%= monster.characteristic_score "Per" %></td>
-    <td id="statblock">
+    <td class="statblock"><strong>Perception:</strong> <%= monster.characteristic_score "Per" %></td>
+    <td class="statblock">
       <strong>SM:</strong> <%= monster.characteristic_score "SM" %>
       <% if monster.height.to_s.length > 0 %>
 	<br>
@@ -36,17 +36,17 @@
     </td>
   </tr>
   <tr>
-    <td id="statblock">
+    <td class="statblock">
       <strong>HT:</strong> <%= monster.characteristic_score "HT" %>
     </td>
-    <td id="statblock"><strong>Fatigue:</strong> <%= monster.characteristic_score "Fatigue" %></td>
-    <td id="statblock">
+    <td class="statblock"><strong>Fatigue:</strong> <%= monster.characteristic_score "Fatigue" %></td>
+    <td class="statblock">
 
     </td>
   </tr>
   <tr>
-    <td id="statblock"><strong>Dodge:</strong> <%= monster.dodge %></td>
-    <td id="statblock">
+    <td class="statblock"><strong>Dodge:</strong> <%= monster.dodge %></td>
+    <td class="statblock">
       <strong>Parry:</strong>
 	<% monster.parry_scores.each do |parry| %>
 	  <%= parry.weapon %> <%= parry.parry %> <br>
@@ -56,7 +56,7 @@
 	<strong>Block:</strong> <%= monster.block %>
       <% end %>
     </td>
-    <td id="statblock">
+    <td class="statblock">
       <strong>DR:</strong>
 	<% monster.damage_resistances.each do |dr| %>
 	  <%= simpleDR dr %> <br>

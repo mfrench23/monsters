@@ -24,16 +24,16 @@
     <%= f.collection_select :monster_class_id, MonsterClass.order(:name), :id, :name %>
   </div>
 
-  <div id="threecolumblock">
-    <div id="threecol1">
+  <div class="threecolumblock">
+    <div class="threecol1">
       <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /ST|DX|IQ|HT/ }  %>
       <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
     </div>
-    <div id="threecol2">
+    <div class="threecol2">
       <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /HP|Will|Per|Fatigue/ }  %>
       <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
     </div>
-    <div id="threecol3">
+    <div class="threecol3">
       <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /Speed/ }  %>
       <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
 
@@ -41,18 +41,18 @@
 	id: "movement-rates", collection: :movement_rates,
 	partial: 'movement_rate_fields', label: 'add move', header: "Move" %>
 
-      <div id="threecolumblock">
-        <div id="threecol1">
+      <div class="threecolumblock">
+        <div class="threecol1">
 	  <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /SM/ }  %>
           <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
 	</div>
-	<div id="threecol2">
+	<div class="threecol2">
 	  <div class="field">
 	    <%= f.label :height %><br>
 	    <%= f.text_field :height %>
 	  </div>
 	</div>
-	<div id="threecol3">
+	<div class="threecol3">
 	  <div class="field">
 	    <%= f.label :weight %><br>
 	    <%= f.text_field :weight %>

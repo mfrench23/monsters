@@ -2,31 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#fullstatblock {
+table.statblock {
   width: 90%;
   border-collapse: collapse;
 }
 
-#statblock {
+td.statblock {
   border-style: solid;
   border-width: thin;
   padding: 5px;
 }
 
-#threecolumnblock {
+div.threecolumnblock {
   display: table;
 }
-#threecol1 {
+div.threecol1 {
   display: table-cell;
   width: 20%;
   padding: 10px;
 }
-#threecol2 {
+div.threecol2 {
   display: table-cell;
   width: 20%;
   padding: 10px;
 }
-#threecol3 {
+div.threecol3 {
   display: table-cell;
   width: 60%;
   padding: 10px;
