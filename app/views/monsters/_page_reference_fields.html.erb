@@ -1,11 +1,11 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.label :book_id %>
     <%= f.collection_select :book_id, Book.order(:name), :id, :name, include_blank: true %>
-
-    <%= f.label :pages %>
+  </div>
+  <div class="controls">
     <%= f.text_field :pages %>
-
+  </div>
+  <div class="controls">
     <%= link_to_remove_association "remove", f %>
   </div>
 </li>

@@ -68,12 +68,12 @@
   <%= render 'expanding_fieldset', f: f,
     id: "damage-resistances", collection: :damage_resistances,
     partial: 'damage_resistance_fields', label: 'add DR', header: "DR",
-	header_list: nil  %>
+	header_list: [ :location, :dr, :notes ]  %>
 
   <%= render 'expanding_fieldset', f: f,
     id: "attacks", collection: :attacks,
     partial: 'attack_fields', label: 'add attack', header: "Attacks",
-	header_list: nil  %>
+	header_list: [ :name, :skill, :description ]  %>
 
   <div class="field">
     <%= f.label :freeform_trait_list %><br>
@@ -82,12 +82,12 @@
   <%= render 'expanding_fieldset', f: f,
     id: "traits", collection: :traits,
     partial: 'trait_fields', label: 'add trait', header: "Traits",
-	header_list: nil  %>
+	header_list: [ :master_trait_id, :level ]  %>
 
   <%= render 'expanding_fieldset', f: f,
     id: "skills", collection: :skills,
     partial: 'skill_fields', label: 'add skill', header: "Skills",
-	header_list: nil  %>
+	header_list: [ :master_skill_id, :modifier ]  %>
 
   <div class="field">
     <%= f.label :gear %><br>
@@ -109,7 +109,7 @@
   <%= render 'expanding_fieldset', f: f,
     id: "parry-scores", collection: :parry_scores,
     partial: 'parry_score_fields', label: 'add Parry', header: "Parry",
-	header_list: nil  %>
+	header_list: [ :weapon, :parry ]  %>
   <div class="field">
     <%= f.label :block %><br>
     <%= f.number_field :block %>
@@ -117,7 +117,7 @@
   <%= render 'expanding_fieldset', f: f,
     id: "page-references", collection: :page_references,
     partial: 'page_reference_fields', label: 'add page reference', header: "Sources",
-	header_list: nil  %>
+	header_list: [ :book_id, :pages ]  %>
   <div class="actions">
     <%= f.submit %>
   </div>
