@@ -1,7 +1,7 @@
   <div class="field">
     <%= header %>:
     <fieldset id=<%= id %>>
-    <ul>
+    <ul class="nested-fields">
       <%= f.fields_for collection do |x| %>
 	<%= render partial, f: x %>
       <% end %>

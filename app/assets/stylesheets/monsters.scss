@@ -31,3 +31,13 @@ div.threecol3 {
   width: 60%;
   padding: 10px;
 }
+
+ul.nested-fields {
+  display: table;
+}
+li.nested-fields {
+  display: table-row;
+}
+div.controls {
+  display: table-cell;
+}
