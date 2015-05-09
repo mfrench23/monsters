@@ -17,7 +17,8 @@
   </div>
   <%= render 'expanding_fieldset', f: f,
     id: "monster-names", collection: :monster_names,
-    partial: 'monster_name_fields', label: 'add alias', header: "Aliases" %>
+    partial: 'monster_name_fields', label: 'add alias', header: "Aliases",
+	header_list: nil  %>
 
   <div class="field">
     <%= f.label :monster_class_id %>
@@ -39,7 +40,8 @@
 
       <%= render 'expanding_fieldset', f: f,
 	id: "movement-rates", collection: :movement_rates,
-	partial: 'movement_rate_fields', label: 'add move', header: "Move" %>
+	partial: 'movement_rate_fields', label: 'add move', header: "Move",
+	header_list: [ :move_type_id, :rate, :enhanced_rate ] %>
 
       <div class="threecolumblock">
         <div class="threecol1">
@@ -65,11 +67,13 @@
 
   <%= render 'expanding_fieldset', f: f,
     id: "damage-resistances", collection: :damage_resistances,
-    partial: 'damage_resistance_fields', label: 'add DR', header: "DR" %>
+    partial: 'damage_resistance_fields', label: 'add DR', header: "DR",
+	header_list: nil  %>
 
   <%= render 'expanding_fieldset', f: f,
     id: "attacks", collection: :attacks,
-    partial: 'attack_fields', label: 'add attack', header: "Attacks" %>
+    partial: 'attack_fields', label: 'add attack', header: "Attacks",
+	header_list: nil  %>
 
   <div class="field">
     <%= f.label :freeform_trait_list %><br>
@@ -77,11 +81,13 @@
   </div>
   <%= render 'expanding_fieldset', f: f,
     id: "traits", collection: :traits,
-    partial: 'trait_fields', label: 'add trait', header: "Traits" %>
+    partial: 'trait_fields', label: 'add trait', header: "Traits",
+	header_list: nil  %>
 
   <%= render 'expanding_fieldset', f: f,
     id: "skills", collection: :skills,
-    partial: 'skill_fields', label: 'add skill', header: "Skills" %>
+    partial: 'skill_fields', label: 'add skill', header: "Skills",
+	header_list: nil  %>
 
   <div class="field">
     <%= f.label :gear %><br>
@@ -102,14 +108,16 @@
   </div>
   <%= render 'expanding_fieldset', f: f,
     id: "parry-scores", collection: :parry_scores,
-    partial: 'parry_score_fields', label: 'add Parry', header: "Parry" %>
+    partial: 'parry_score_fields', label: 'add Parry', header: "Parry",
+	header_list: nil  %>
   <div class="field">
     <%= f.label :block %><br>
     <%= f.number_field :block %>
   </div>
   <%= render 'expanding_fieldset', f: f,
     id: "page-references", collection: :page_references,
-    partial: 'page_reference_fields', label: 'add page reference', header: "Sources" %>
+    partial: 'page_reference_fields', label: 'add page reference', header: "Sources",
+	header_list: nil  %>
   <div class="actions">
     <%= f.submit %>
   </div>

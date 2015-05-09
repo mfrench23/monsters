@@ -38,6 +38,11 @@ ul.nested-fields {
 li.nested-fields {
   display: table-row;
 }
+li.nested-header {
+  text-align: center;
+  font-weight: bold;
+}
 div.controls {
   display: table-cell;
+  text-align: center;
 }

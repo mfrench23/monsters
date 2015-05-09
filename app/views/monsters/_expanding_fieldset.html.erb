@@ -1,11 +1,18 @@
   <div class="field">
     <%= header %>:
     <fieldset id=<%= id %>>
-    <ul class="nested-fields">
-      <%= f.fields_for collection do |x| %>
-	<%= render partial, f: x %>
-      <% end %>
-    </ul>
+      <ul class="nested-fields">
+        <% if not header_list.nil? %>
+	  <li class="control-group nested-fields nested-header">
+	    <% header_list.each do |header_item| %>
+                <div class="controls"><%= f.label header_item %></div>
+	    <% end %>
+	  </li>
+        <% end %>
+	<%= f.fields_for collection do |x| %>
+	  <%= render partial, f: x %>
+	<% end %>
+      </ul>
       <%= link_to_add_association label, f, collection,
 	'data-association-insertion-method' => "append",
 	'data-association-insertion-node' => "#" + id + " ul"

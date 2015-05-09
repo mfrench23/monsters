@@ -1,14 +1,11 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.label :move_type_id %>
     <%= f.collection_select :move_type_id, MoveType.order(:name), :id, :name, include_blank: true %>
   </div>
   <div class="controls">
-    <%= f.label :rate %>
     <%= f.number_field :rate %>
   </div>
   <div class="controls">
-    <%= f.label :enhanced_rate %>
     <%= f.number_field :enhanced_rate %>
   </div>
   <div class="controls">
