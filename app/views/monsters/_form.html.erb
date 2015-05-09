@@ -24,22 +24,44 @@
     <%= f.collection_select :monster_class_id, MonsterClass.order(:name), :id, :name %>
   </div>
 
-  <%= f.fields_for :characteristic_monsters do |characteristic_monster_form| %>
-    <%= render 'characteristic_monster_fields', f: characteristic_monster_form %>
-  <% end %>
+  <div id="threecolumblock">
+    <div id="threecol1">
+      <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /ST|DX|IQ|HT/ }  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+    </div>
+    <div id="threecol2">
+      <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /HP|Will|Per|Fatigue/ }  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+    </div>
+    <div id="threecol3">
+      <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /Speed/ }  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
 
-  <%= render 'expanding_fieldset', f: f,
-    id: "movement-rates", collection: :movement_rates,
-    partial: 'movement_rate_fields', label: 'add move', header: "Move" %>
+      <%= render 'expanding_fieldset', f: f,
+	id: "movement-rates", collection: :movement_rates,
+	partial: 'movement_rate_fields', label: 'add move', header: "Move" %>
 
-  <div class="field">
-    <%= f.label :height %><br>
-    <%= f.text_field :height %>
+      <div id="threecolumblock">
+        <div id="threecol1">
+	  <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /SM/ }  %>
+          <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+	</div>
+	<div id="threecol2">
+	  <div class="field">
+	    <%= f.label :height %><br>
+	    <%= f.text_field :height %>
+	  </div>
+	</div>
+	<div id="threecol3">
+	  <div class="field">
+	    <%= f.label :weight %><br>
+	    <%= f.text_field :weight %>
+	  </div>
+	</div>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :weight %><br>
-    <%= f.text_field :weight %>
-  </div>
+
 
   <%= render 'expanding_fieldset', f: f,
     id: "damage-resistances", collection: :damage_resistances,

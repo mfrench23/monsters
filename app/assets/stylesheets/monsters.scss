@@ -12,3 +12,22 @@
   border-width: thin;
   padding: 5px;
 }
+
+#threecolumnblock {
+  display: table;
+}
+#threecol1 {
+  display: table-cell;
+  width: 20%;
+  padding: 10px;
+}
+#threecol2 {
+  display: table-cell;
+  width: 20%;
+  padding: 10px;
+}
+#threecol3 {
+  display: table-cell;
+  width: 60%;
+  padding: 10px;
+}

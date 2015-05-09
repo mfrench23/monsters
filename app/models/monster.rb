@@ -30,7 +30,6 @@ class Monster < ActiveRecord::Base
   validates :name, :monster_class_id, presence: true
 
   def build_out
-    monster_names.build
     attacks.build
     movement_rates.build
     Characteristic.find_each do |c|
