@@ -1,11 +1,11 @@
   <div class="field">
     <%= header %>:
     <fieldset id=<%= id %>>
-      <ul class="nested-fields">
+      <ul class="nested-fields nested-field-container">
         <% if (not header_list.nil?) %>
-	  <li class="control-group nested-fields nested-header">
+	  <li class="control-group nested-fields nested-header" style="display: <%= (f.object.send(collection).any? ? "table-row" : "none" ) %>;">
 	    <% header_list.each do |header_item| %>
-                <div class="controls"><%= f.label header_item %></div>
+                <span class="controls"><%= f.label header_item %></span>
 	    <% end %>
 	  </li>
         <% end %>
