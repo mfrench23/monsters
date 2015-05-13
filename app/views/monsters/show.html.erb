@@ -3,70 +3,77 @@
   <%= @monster.name %>
 </h1>
 
-<p>
-  <strong>Aliases:</strong>
-  <%= @monster.names_to_s %>
-</p>
+<div>
+  <% if @monster.monster_names.count > 0 %>
+    <div>
+      <span class="field-label show">Aliases</span>
+      <%= @monster.names_to_s %>
+    </div>
+  <% end %>
 
-<p>
-  <strong>Class:</strong>
-  <%= @monster.monster_class_name %>
-</p>
+  <% unless @monster.monster_class_name.empty? %>
+    <div>
+      <span class="field-label show">Class</span>
+      <%= @monster.monster_class_name %>
+    </div>
+  <% end %>
 
-<p>
-  <strong>Description:</strong>
-  <%=simple_format @monster.description %>
-</p>
+  <% unless @monster.description.to_s.empty? %>
+    <div>
+      <span class="field-label show">Description</span>
+      <%=simple_format @monster.description %>
+    </div>
+  <% end %>
 
-<%= render 'show_stat_block', monster: @monster %>
+  <%= render 'show_stat_block', monster: @monster %>
 
-<table>
-  <tr>
-    <td><strong>Attacks:</strong></td>
-    <td>
-      <ul>
-	<% @monster.attacks.each do |attack| %>
-	  <li> <strong><%= attack.name %> (<%= attack.skill %>)</strong> <%= attack.description %>
-	<% end %>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Traits:</strong></td>
-    <td>
-      <%= @monster.traits.collect { |x| x.to_s }.sort().join('; ') %>
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Skills:</strong></td>
-    <td>
-      <%= @monster.skills.collect { |x| x.to_s }.sort().join('; ') %>
-    </td>
-  </tr>
-  <tr>
-    <td><strong>Gear:</strong></td>
-    <td>
-      <%= @monster.gear %>
-    </td>
-  </tr>
-
-  <tr>
-    <td><strong>Notes:</strong></td>
-    <td>
-      <%= @monster.notes %>
-    </td>
-  </tr>
-
-  <tr>
-    <td><strong>Sources:</strong></td>
-    <td>
-      <% @monster.page_references.each do |pg| %>
-	<%= pg.to_s %> <br>
+  <div>
+    <span class="field-label show">Attacks</span>
+      <% if not @monster.attacks.any? %>
+        None
+      <% else %>
+	<ul>
+	  <% @monster.attacks.each do |attack| %>
+	    <li> <strong><%= attack.name %> (<%= attack.skill %>)</strong> <%= attack.description %>
+	  <% end %>
+	</ul>
       <% end %>
-    </td>
-  </tr>
-</table>
+  </div>
 
+  <% if @monster.traits.any? %>
+    <div><span class="field-label show">Traits</span>
+	<%= @monster.traits.collect { |x| x.to_s }.sort().join('; ') %>
+    </div>
+  <% end %>
+
+  <% if not @monster.skills.any? %>
+    <div><span class="field-label show">Skills</span>
+	<%= @monster.skills.collect { |x| x.to_s }.sort().join('; ') %>
+    </div>
+  <% end %>
+
+  <% unless @monster.gear.to_s.empty? %>
+    <div><span class="field-label show">Gear</span>
+	<%= @monster.gear %>
+    </div>
+  <% end %>
+
+  <% unless @monster.notes.to_s.empty? %>
+    <div><span class="field-label show">Notes</span>
+	<%= @monster.notes %>
+    </div>
+  <% end %>
+
+  <% if @monster.page_references.any? %>
+    <div><span class="field-label show">Sources</span>
+	<% @monster.page_references.each do |pg| %>
+	  <%= pg.to_s %> <br>
+	<% end %>
+    </div>
+  <% end %>
+</div>
+
+<br>
 
 <%= link_to 'Edit', edit_monster_path(@monster) %> |
 <%= link_to 'Index', monsters_path %>
