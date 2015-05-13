@@ -1,5 +1,5 @@
   <div class="field">
-    <span class="expanding-fieldset-label"><%= header %>:</span>
+    <span class="field-label"><%= header %></span>
     <fieldset id=<%= id %> class="expanding-fieldset-container">
       <ul class="nested-fields" style="display: <%= (f.object.send(collection).any? ? "table-row" : "none" ) %>;">
         <% if (not header_list.nil?) %>

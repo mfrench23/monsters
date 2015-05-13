@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <%= render 'expanding_fieldset', f: f,
@@ -50,13 +50,13 @@
 	</div>
 	<div class="threecol2">
 	  <div class="field">
-	    <%= f.label :height %><br>
+	    <%= f.label :height %>
 	    <%= f.text_field :height %>
 	  </div>
 	</div>
 	<div class="threecol3">
 	  <div class="field">
-	    <%= f.label :weight %><br>
+	    <%= f.label :weight %>
 	    <%= f.text_field :weight %>
 	  </div>
 	</div>
@@ -76,7 +76,7 @@
 	header_list: [ :name, :skill, :description ]  %>
 
   <div class="field">
-    <%= f.label :freeform_trait_list %><br>
+    <%= f.label :freeform_trait_list %>
     <%= f.text_area :freeform_trait_list %>
   </div>
   <%= render 'expanding_fieldset', f: f,
@@ -90,20 +90,20 @@
 	header_list: [ :master_skill_id, :modifier ]  %>
 
   <div class="field">
-    <%= f.label :gear %><br>
+    <%= f.label :gear %>
     <%= f.text_area :gear %>
   </div>
 
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :notes %><br>
+    <%= f.label :notes %>
     <%= f.text_area :notes %>
   </div>
   <div class="field">
-    <%= f.label :dodge %><br>
+    <%= f.label :dodge %>
     <%= f.number_field :dodge %>
   </div>
   <%= render 'expanding_fieldset', f: f,
@@ -111,7 +111,7 @@
     partial: 'parry_score_fields', label: 'add Parry', header: "Parry",
 	header_list: [ :weapon, :parry ]  %>
   <div class="field">
-    <%= f.label :block %><br>
+    <%= f.label :block %>
     <%= f.number_field :block %>
   </div>
   <%= render 'expanding_fieldset', f: f,
