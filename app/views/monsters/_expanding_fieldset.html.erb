@@ -1,7 +1,7 @@
   <div class="field">
-    <%= header %>:
-    <fieldset id=<%= id %>>
-      <ul class="nested-fields nested-field-container">
+    <span class="expanding-fieldset-label"><%= header %>:</span>
+    <fieldset id=<%= id %> class="expanding-fieldset-container">
+      <ul class="nested-fields">
         <% if (not header_list.nil?) %>
 	  <li class="control-group nested-fields nested-header" style="display: <%= (f.object.send(collection).any? ? "table-row" : "none" ) %>;">
 	    <% header_list.each do |header_item| %>
