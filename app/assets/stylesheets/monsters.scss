@@ -43,3 +43,21 @@ li.nested-header {
   padding: 0px;
   width: 85%;
 }
+.trait {
+  display: table-cell;
+}
+ul.vertical-list {
+  list-style-type:none; 
+  padding: 0; 
+  margin: 0;
+}
+span.attack-label {
+  font-weight: bold;
+  margin: 0 5px 0 0;
+}
+span.attack-description {
+}
+li.attack-line {
+  padding-left: 30px;
+  text-indent: -30px;
+}
