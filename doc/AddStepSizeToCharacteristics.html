@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class CreateMonsterClasses - RDoc Documentation</title>
+<title>class AddStepSizeToCharacteristics - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -78,9 +78,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-CreateMonsterClasses">
-  <h1 id="class-CreateMonsterClasses" class="class">
-    class CreateMonsterClasses
+<main role="main" aria-labelledby="class-AddStepSizeToCharacteristics">
+  <h1 id="class-AddStepSizeToCharacteristics" class="class">
+    class AddStepSizeToCharacteristics
   </h1>
 
   <section class="description">
@@ -125,13 +125,9 @@
 
           
           <div class="method-source-code" id="change-source">
-            <pre><span class="ruby-comment"># File db/migrate/20150306084646_create_monster_classes.rb, line 2</span>
+            <pre><span class="ruby-comment"># File db/migrate/20150508205249_add_step_size_to_characteristics.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change</span>
-  <span class="ruby-identifier">create_table</span> <span class="ruby-value">:monster_classes</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span> <span class="ruby-value">:name</span>
-
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">timestamps</span> <span class="ruby-identifier">null</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">add_column</span> <span class="ruby-identifier">add_column</span> <span class="ruby-value">:characteristics</span>, <span class="ruby-value">:step_size</span>, <span class="ruby-value">:decimal</span>, <span class="ruby-identifier">precision</span><span class="ruby-value">4</span>, <span class="ruby-identifier">scale</span><span class="ruby-value">2</span>, <span class="ruby-identifier">default</span><span class="ruby-operator">:</span> <span class="ruby-value">1.0</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -137,7 +137,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">form</span> = <span class="ruby-constant">MonsterForm</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">service</span> = <span class="ruby-constant">CreateMonster</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">form</span>)
@@ -182,7 +182,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 64</span>
+            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -219,7 +219,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -287,9 +287,7 @@
             <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@monster</span> = <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">monster_names</span>.<span class="ruby-identifier">build</span>
-  <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">attacks</span>.<span class="ruby-identifier">build</span>
-  <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">movement_rates</span>.<span class="ruby-identifier">build</span>
+  <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">build_out</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -352,7 +350,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">form</span> = <span class="ruby-constant">MonsterForm</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">service</span> = <span class="ruby-constant">UpdateMonster</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>], <span class="ruby-identifier">form</span>)

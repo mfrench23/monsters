@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class RenameTerrainTypesToMoveTypes - RDoc Documentation</title>
+<title>class ChangeCharacteristicMonstersScoreToDecimal - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -70,7 +70,9 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-change">#change</a>
+    <li ><a href="#method-i-down">#down</a>
+    
+    <li ><a href="#method-i-up">#up</a>
     
   </ul>
 </div>
@@ -78,9 +80,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-RenameTerrainTypesToMoveTypes">
-  <h1 id="class-RenameTerrainTypesToMoveTypes" class="class">
-    class RenameTerrainTypesToMoveTypes
+<main role="main" aria-labelledby="class-ChangeCharacteristicMonstersScoreToDecimal">
+  <h1 id="class-ChangeCharacteristicMonstersScoreToDecimal" class="class">
+    class ChangeCharacteristicMonstersScoreToDecimal
   </h1>
 
   <section class="description">
@@ -106,10 +108,10 @@
        </header>
 
     
-      <div id="method-i-change" class="method-detail ">
+      <div id="method-i-down" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">change</span><span
+          <span class="method-name">down</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -124,10 +126,43 @@
           
 
           
-          <div class="method-source-code" id="change-source">
-            <pre><span class="ruby-comment"># File db/migrate/20150421195029_rename_terrain_types_to_move_types.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">change</span>
-  <span class="ruby-identifier">rename_table</span> <span class="ruby-value">:terrain_types</span>, <span class="ruby-value">:move_types</span>
+          <div class="method-source-code" id="down-source">
+            <pre><span class="ruby-comment"># File db/migrate/20150508204732_change_characteristic_monsters_score_to_decimal.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">down</span>
+  <span class="ruby-identifier">change_column</span> <span class="ruby-value">:characteristic_monsters</span>, <span class="ruby-value">:score</span>, <span class="ruby-value">:integer</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-up" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">up</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="up-source">
+            <pre><span class="ruby-comment"># File db/migrate/20150508204732_change_characteristic_monsters_score_to_decimal.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">up</span>
+  <span class="ruby-identifier">change_column</span> <span class="ruby-value">:characteristic_monsters</span>, <span class="ruby-value">:score</span>, <span class="ruby-value">:decimal</span>, <span class="ruby-value">:precision</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">6</span>, <span class="ruby-value">:scale</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class CreateTraits - RDoc Documentation</title>
+<title>class RemoveSpeedFromMonsters - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -78,9 +78,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-CreateTraits">
-  <h1 id="class-CreateTraits" class="class">
-    class CreateTraits
+<main role="main" aria-labelledby="class-RemoveSpeedFromMonsters">
+  <h1 id="class-RemoveSpeedFromMonsters" class="class">
+    class RemoveSpeedFromMonsters
   </h1>
 
   <section class="description">
@@ -125,17 +125,9 @@
 
           
           <div class="method-source-code" id="change-source">
-            <pre><span class="ruby-comment"># File db/migrate/20150303015432_create_traits.rb, line 2</span>
+            <pre><span class="ruby-comment"># File db/migrate/20150508205807_remove_speed_from_monsters.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change</span>
-  <span class="ruby-identifier">create_table</span> <span class="ruby-value">:traits</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">references</span> <span class="ruby-value">:monster</span>, <span class="ruby-identifier">index</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span> <span class="ruby-value">:name</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span> <span class="ruby-value">:description</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">boolean</span> <span class="ruby-value">:is_feature</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">integer</span> <span class="ruby-value">:level</span>
-
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">timestamps</span> <span class="ruby-identifier">null</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">remove_column</span> <span class="ruby-value">:monsters</span>, <span class="ruby-value">:speed</span>, <span class="ruby-value">:decimal</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

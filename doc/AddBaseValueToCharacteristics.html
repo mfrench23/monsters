@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class CreateMasterSkills - RDoc Documentation</title>
+<title>class AddBaseValueToCharacteristics - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -78,9 +78,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-CreateMasterSkills">
-  <h1 id="class-CreateMasterSkills" class="class">
-    class CreateMasterSkills
+<main role="main" aria-labelledby="class-AddBaseValueToCharacteristics">
+  <h1 id="class-AddBaseValueToCharacteristics" class="class">
+    class AddBaseValueToCharacteristics
   </h1>
 
   <section class="description">
@@ -125,16 +125,9 @@
 
           
           <div class="method-source-code" id="change-source">
-            <pre><span class="ruby-comment"># File db/migrate/20150317192720_create_master_skills.rb, line 2</span>
+            <pre><span class="ruby-comment"># File db/migrate/20150508221801_add_base_value_to_characteristics.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">change</span>
-  <span class="ruby-identifier">create_table</span> <span class="ruby-value">:master_skills</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span> <span class="ruby-value">:name</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">integer</span> <span class="ruby-value">:baseStat</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">text</span> <span class="ruby-value">:notes</span>
-
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">timestamps</span> <span class="ruby-identifier">null</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">add_index</span> <span class="ruby-value">:master_skills</span>, <span class="ruby-value">:name</span>
+  <span class="ruby-identifier">add_column</span> <span class="ruby-value">:characteristics</span>, <span class="ruby-value">:base_value</span>, <span class="ruby-value">:decimal</span>, <span class="ruby-value">:precision</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">6</span>, <span class="ruby-value">:scale</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

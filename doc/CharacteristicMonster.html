@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class CascadeDeleteFromLocationToDamageResistances - RDoc Documentation</title>
+<title>class CharacteristicMonster - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -58,29 +58,19 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Migration
+  <p class="link">ActiveRecord::Base
   
 </div>
 
     
     
-    <!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-change">#change</a>
-    
-  </ul>
-</div>
-
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-CascadeDeleteFromLocationToDamageResistances">
-  <h1 id="class-CascadeDeleteFromLocationToDamageResistances" class="class">
-    class CascadeDeleteFromLocationToDamageResistances
+<main role="main" aria-labelledby="class-CharacteristicMonster">
+  <h1 id="class-CharacteristicMonster" class="class">
+    class CharacteristicMonster
   </h1>
 
   <section class="description">
@@ -100,47 +90,6 @@
     
 
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-    
-      <div id="method-i-change" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">change</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="change-source">
-            <pre><span class="ruby-comment"># File db/migrate/20150312002649_cascade_delete_from_location_to_damage_resistances.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">change</span>
-  <span class="ruby-identifier">add_foreign_key</span> <span class="ruby-value">:damage_resistances</span>, <span class="ruby-value">:locations</span>, <span class="ruby-value">:dependent</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:destroy</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
-  
   </section>
 </main>
 

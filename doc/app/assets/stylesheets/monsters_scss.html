@@ -201,18 +201,77 @@ href="../../../Monsters.html">Monsters</a> controller here. // They will
 automatically be included in application.css. // You can use Sass (SCSS)
 here: <a href="http://sass-lang.com">sass-lang.com</a>/</p>
 
-<p>fullstatblock {</p>
+<p>div.threecolumnblock {</p>
 
-<pre>width: 90%;
-border-collapse: collapse;</pre>
+<pre>display: table;</pre>
+
+<p>} div.threecol1 {</p>
+
+<pre>display: table-cell;
+width: 20%;
+padding: 10px;</pre>
+
+<p>} div.threecol2 {</p>
+
+<pre>display: table-cell;
+width: 20%;
+padding: 10px;</pre>
+
+<p>} div.threecol3 {</p>
+
+<pre>display: table-cell;
+width: 60%;
+padding: 10px;</pre>
 
 <p>}</p>
 
-<p>statblock {</p>
+<p>li.nested-fields {</p>
 
-<pre>border-style: solid;
-border-width: thin;
-padding: 5px;</pre>
+<pre>display: table-row;</pre>
+
+<p>} li.nested-header {</p>
+
+<pre>text-align: center;
+font-weight: bold;</pre>
+
+<p>} .controls {</p>
+
+<pre>display: table-cell;
+text-align: center;
+vertical-align: top;
+padding: 3px;</pre>
+
+<p>}</p>
+
+<p>.add_fields {</p>
+
+<pre>font-size: 80%;</pre>
+
+<p>} .expanding-fieldset-container {</p>
+
+<pre>//border-style: none;
+padding: 0px;
+width: 85%;</pre>
+
+<p>} .trait {</p>
+
+<pre>display: table-cell;</pre>
+
+<p>} ul.vertical-list {</p>
+
+<pre>list-style-type:none; 
+padding: 0; 
+margin: 0;</pre>
+
+<p>} span.attack-label {</p>
+
+<pre>font-weight: bold;
+margin: 0 5px 0 0;</pre>
+
+<p>} span.attack-description { } li.attack-line {</p>
+
+<pre>padding-left: 30px;
+text-indent: -30px;</pre>
 
 <p>}</p>
 </main>

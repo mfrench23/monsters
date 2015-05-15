@@ -72,6 +72,8 @@
     
     <li ><a href="#method-c-new">::new</a>
     
+    <li ><a href="#method-i-actual">#actual</a>
+    
     <li ><a href="#method-i-to_s">#to_s</a>
     
   </ul>
@@ -105,6 +107,19 @@
         <h3>Attributes</h3>
       </header>
 
+      
+      <div id="attribute-i-modval" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">modval</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
       
       <div id="attribute-i-string" class="method-detail">
         <div class="method-heading attribute-method-heading">
@@ -148,12 +163,13 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/models/skill/modifier.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/models/skill/modifier.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">number</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">number</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span>
     <span class="ruby-identifier">mod</span> = <span class="ruby-string">&quot;+&quot;</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@string</span> = <span class="ruby-identifier">mod</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">number</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-ivar">@modval</span> = <span class="ruby-identifier">number</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -171,6 +187,39 @@
        <header>
          <h3>Public Instance Methods</h3>
        </header>
+
+    
+      <div id="method-i-actual" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">actual</span><span
+            class="method-args">(score)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="actual-source">
+            <pre><span class="ruby-comment"># File app/models/skill/modifier.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">actual</span>(<span class="ruby-identifier">score</span>)
+  <span class="ruby-keyword">return</span> (<span class="ruby-identifier">score</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">score</span><span class="ruby-operator">+</span><span class="ruby-identifier">modval</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-to_s" class="method-detail ">
@@ -192,7 +241,7 @@
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/skill/modifier.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/models/skill/modifier.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-ivar">@string</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

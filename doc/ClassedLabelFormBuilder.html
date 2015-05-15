@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class IndexNameOnTerrainTypes - RDoc Documentation</title>
+<title>class ClassedLabelFormBuilder - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -58,7 +58,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Migration
+  <p class="link">ActionView::Helpers::FormBuilder
   
 </div>
 
@@ -70,7 +70,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-change">#change</a>
+    <li class="calls-super" ><a href="#method-i-label">#label</a>
     
   </ul>
 </div>
@@ -78,9 +78,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-IndexNameOnTerrainTypes">
-  <h1 id="class-IndexNameOnTerrainTypes" class="class">
-    class IndexNameOnTerrainTypes
+<main role="main" aria-labelledby="class-ClassedLabelFormBuilder">
+  <h1 id="class-ClassedLabelFormBuilder" class="class">
+    class ClassedLabelFormBuilder
   </h1>
 
   <section class="description">
@@ -106,11 +106,11 @@
        </header>
 
     
-      <div id="method-i-change" class="method-detail ">
+      <div id="method-i-label" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">change</span><span
-            class="method-args">()</span>
+          <span class="method-name">label</span><span
+            class="method-args">(method, text = nil, options = {}, &block)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -122,14 +122,18 @@
           
           
           
+            <div class="method-calls-super">
+              Calls superclass method
+              
+            </div>
+          
 
           
-          <div class="method-source-code" id="change-source">
-            <pre><span class="ruby-comment"># File db/migrate/20150327182758_index_name_on_terrain_types.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">change</span>
-  <span class="ruby-identifier">change_table</span> <span class="ruby-value">:terrain_types</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">index</span> <span class="ruby-value">:name</span>
-  <span class="ruby-keyword">end</span>
+          <div class="method-source-code" id="label-source">
+            <pre><span class="ruby-comment"># File app/helpers/classed_label_form_builder.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">label</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">text</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge!</span>({ <span class="ruby-value">:class</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;field-label&quot;</span> })
+  <span class="ruby-keyword">super</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

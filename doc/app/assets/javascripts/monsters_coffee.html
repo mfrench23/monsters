@@ -196,10 +196,24 @@
 
 <main role="main" aria-label="Page app/assets/javascripts/monsters.coffee">
 
-<p>Place all the behaviors and hooks related to the matching controller here.
-All this logic will automatically be available in application.js. You can
-use CoffeeScript in this file: <a
+<p># Place all the behaviors and hooks related to the matching controller
+here. # All this logic will automatically be available in application.js. #
+You can use CoffeeScript in this file: <a
 href="http://coffeescript.org">coffeescript.org</a>/</p>
+
+<p>$(document).bind &#39;cocoon:after-insert&#39;, (e, inserted_item) -&gt;</p>
+
+<pre>e.target.style.display = &#39;table-row&#39;
+if $(&#39;#&#39; + e.target.parentElement.id + &#39; ul &gt; li:visible&#39;).length &gt; 0
+  e.target.firstElementChild.style.display = &#39;table-row&#39;
+return</pre>
+
+<p>$(document).bind &#39;cocoon:after-remove&#39;, (e) -&gt;</p>
+
+<pre>if $(&#39;#&#39; + e.target.parentElement.id + &#39; ul &gt; li:visible&#39;).length == 1
+  e.target.firstElementChild.style.display = &#39;none&#39;
+  e.target.style.display = &#39;none&#39;
+return</pre>
 </main>
 
 
