@@ -4,6 +4,12 @@ module DamageResistancesHelper
       notes = " (" + dr.notes + ")"
     end
 
-    [dr.location.to_s, dr.dr.to_s].join(": ") + notes.to_s
+    if dr.location.to_s.empty?
+      pre = dr.dr.to_s
+    else
+      pre = [dr.location.to_s, dr.dr.to_s].join(": ")
+    end
+
+    pre.to_s + notes.to_s
   end
 end
