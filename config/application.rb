@@ -25,5 +25,7 @@ module Monsters
 
     config.autoload_paths += %W(#{config.root}/services)
     config.autoload_paths += %W(#{config.root}/forms)
+
+    Rack::Utils.multipart_part_limit = 0 # temporary until fix in Rack 1.7
   end
 end

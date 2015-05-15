@@ -27,6 +27,9 @@ class Monster < ActiveRecord::Base
   belongs_to :monster_class
   delegate :name, to: :monster_class, prefix: true
 
+  has_attached_file :illustration, :styles => { :medium => "300x300>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :illustration, :content_type => /\Aimage\/.*\Z/
+
   validates :name, :monster_class_id, presence: true
 
   def build_out

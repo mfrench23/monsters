@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
+<% if @monster.illustration.exists? %>
+  <div style="float: right; width: 300px; height: 300px; border: 1px solid #d4d4d4;">
+    <%= image_tag @monster.illustration.url(:medium) %>
+  </div>
+<% end %>
+
 <h1>
   <%= @monster.name %>
 </h1>

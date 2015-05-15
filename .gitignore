@@ -15,3 +15,6 @@
 
 # Ignore coverage reports
 coverage
+
+# Ignore any uploaded images
+/public/system/*
