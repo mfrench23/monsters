@@ -69,7 +69,7 @@
       </div>
     <% end %>
 
-    <% if not @monster.skills.any? %>
+    <% if @monster.skills.any? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Skills</div>
         <div class="trait">
