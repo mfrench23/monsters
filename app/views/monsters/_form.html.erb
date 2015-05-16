@@ -18,7 +18,7 @@
   <%= render 'expanding_fieldset', f: f,
     id: "monster-names", collection: :monster_names,
     partial: 'monster_name_fields', label: 'add alias', header: "Aliases",
-	header_list: [ :name, :notes ]  %>
+	header_list: [ :name, :notes ], freeform: nil  %>
 
   <div class="field">
     <%= f.label :monster_class_id %>
@@ -41,7 +41,7 @@
       <%= render 'expanding_fieldset', f: f,
 	id: "movement-rates", collection: :movement_rates,
 	partial: 'movement_rate_fields', label: 'add move', header: "Move",
-	header_list: [ :move_type_id, :rate, :enhanced_rate ] %>
+	header_list: [ :move_type_id, :rate, :enhanced_rate ], freeform: nil %>
 
       <div class="threecolumblock">
         <div class="threecol1">
@@ -68,27 +68,23 @@
   <%= render 'expanding_fieldset', f: f,
     id: "damage-resistances", collection: :damage_resistances,
     partial: 'damage_resistance_fields', label: 'add DR', header: "DR",
-	header_list: [ :location, :dr, :notes ]  %>
+	header_list: [ :location, :dr, :notes ], freeform: nil  %>
 
   <%= render 'expanding_fieldset', f: f,
     id: "attacks", collection: :attacks,
     partial: 'attack_fields', label: 'add attack', header: "Attacks",
-	header_list: [ :name, :skill, :description ]  %>
-
-  <div class="field">
-    <%= f.label :freeform_trait_list %>
-    <%= f.text_area :freeform_trait_list %>
-  </div>
+	header_list: [ :name, :skill, :description ], freeform: nil  %>
 
   <%= render 'expanding_fieldset', f: f,
     id: "traits", collection: :traits,
     partial: 'trait_fields', label: 'add trait', header: "Traits",
-	header_list: [ :master_trait_id, :level ]  %>
+	header_list: [ :master_trait_id, :level ],
+	freeform: :freeform_trait_list %>
 
   <%= render 'expanding_fieldset', f: f,
     id: "skills", collection: :skills,
     partial: 'skill_fields', label: 'add skill', header: "Skills",
-	header_list: [ :master_skill_id, :modifier ]  %>
+	header_list: [ :master_skill_id, :modifier ], freeform: nil  %>
 
   <div class="field">
     <%= f.label :gear %>
@@ -110,7 +106,7 @@
   <%= render 'expanding_fieldset', f: f,
     id: "parry-scores", collection: :parry_scores,
     partial: 'parry_score_fields', label: 'add Parry', header: "Parry",
-	header_list: [ :weapon, :parry ]  %>
+	header_list: [ :weapon, :parry ], freeform: nil  %>
   <div class="field">
     <%= f.label :block %>
     <%= f.number_field :block %>
@@ -118,7 +114,7 @@
   <%= render 'expanding_fieldset', f: f,
     id: "page-references", collection: :page_references,
     partial: 'page_reference_fields', label: 'add page reference', header: "Sources",
-	header_list: [ :book_id, :pages ]  %>
+	header_list: [ :book_id, :pages ], freeform: nil  %>
 
   <% if monster.illustration.exists? %>
     <div class="illo">
