@@ -51,13 +51,13 @@
 	<div class="threecol2">
 	  <div class="field">
 	    <%= f.label :height %>
-	    <%= f.text_field :height %>
+	    <%= f.text_field :height, :size => 10 %>
 	  </div>
 	</div>
 	<div class="threecol3">
 	  <div class="field">
 	    <%= f.label :weight %>
-	    <%= f.text_field :weight %>
+	    <%= f.text_field :weight, :size => 10 %>
 	  </div>
 	</div>
       </div>
@@ -79,6 +79,7 @@
     <%= f.label :freeform_trait_list %>
     <%= f.text_area :freeform_trait_list %>
   </div>
+
   <%= render 'expanding_fieldset', f: f,
     id: "traits", collection: :traits,
     partial: 'trait_fields', label: 'add trait', header: "Traits",
@@ -120,7 +121,7 @@
 	header_list: [ :book_id, :pages ]  %>
 
   <% if monster.illustration.exists? %>
-    <div style="float: right; width: 300px; height: 300px; border: 1px solid #d4d4d4;">
+    <div class="illo">
       <%= image_tag monster.illustration.url(:medium) %>
     </div>
   <% end %>

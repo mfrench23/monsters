@@ -25,7 +25,6 @@ li.nested-fields {
   display: table-row;
 }
 li.nested-header {
-  text-align: center;
   font-weight: bold;
 }
 .controls {
@@ -39,9 +38,7 @@ li.nested-header {
   font-size: 80%;  
 }
 .expanding-fieldset-container {
-  //border-style: none;
   padding: 0px;
-  width: 85%;
 }
 .trait {
   display: table-cell;
@@ -60,4 +57,10 @@ span.attack-description {
 li.attack-line {
   padding-left: 30px;
   text-indent: -30px;
+}
+.illo {
+  float: right; 
+  width: 300px; 
+  min-height: 300px; 
+  border: 1px solid #d4d4d4;
 }

@@ -22,8 +22,6 @@
       <th>Sizemodifier</th>
       <th>Height</th>
       <th>Weight</th>
-      <th>Dodge</th>
-      <th>Block</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -46,8 +44,6 @@
         <td><%= monster.characteristic_score "SM" %></td>
         <td><%= monster.height %></td>
         <td><%= monster.weight %></td>
-        <td><%= monster.dodge %></td>
-        <td><%= monster.block %></td>
         <td><%= link_to 'Show', monster %></td>
         <td><%= link_to 'Edit', edit_monster_path(monster) %></td>
         <td><%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
