@@ -1,6 +1,9 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.file_field :image %>
+    <%= f.file_field :image, :class => "imageInput", :onchange => "updateThumb(this)" %>
+    <span class="preview">
+      <%= image_tag f.object.send(:image).url(:small) %>
+    </span>
   </div>
   <div class="controls">
     <%= f.text_area :notes %>
