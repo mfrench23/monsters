@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515220140) do
+ActiveRecord::Schema.define(version: 20150516170825) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -70,6 +70,20 @@ ActiveRecord::Schema.define(version: 20150515220140) do
   add_index "damage_resistances", ["location_id"], name: "index_damage_resistances_on_location_id", using: :btree
   add_index "damage_resistances", ["monster_id"], name: "index_damage_resistances_on_monster_id", using: :btree
 
+  create_table "illustrations", force: :cascade do |t|
+    t.integer  "illustratable_id",   limit: 4
+    t.string   "illustratable_type", limit: 255
+    t.text     "notes",              limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+  end
+
+  add_index "illustrations", ["illustratable_type", "illustratable_id"], name: "index_illustrations_on_illustratable_type_and_illustratable_id", using: :btree
+
   create_table "locations", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
@@ -119,21 +133,17 @@ ActiveRecord::Schema.define(version: 20150515220140) do
   add_index "monster_names", ["name"], name: "index_monster_names_on_name", using: :btree
 
   create_table "monsters", force: :cascade do |t|
-    t.string   "height",                    limit: 255
-    t.string   "weight",                    limit: 255
-    t.text     "gear",                      limit: 65535
-    t.text     "description",               limit: 65535
-    t.text     "notes",                     limit: 65535
-    t.integer  "dodge",                     limit: 4
-    t.integer  "block",                     limit: 4
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.integer  "monster_class_id",          limit: 4
-    t.string   "name",                      limit: 255
-    t.string   "illustration_file_name",    limit: 255
-    t.string   "illustration_content_type", limit: 255
-    t.integer  "illustration_file_size",    limit: 4
-    t.datetime "illustration_updated_at"
+    t.string   "height",           limit: 255
+    t.string   "weight",           limit: 255
+    t.text     "gear",             limit: 65535
+    t.text     "description",      limit: 65535
+    t.text     "notes",            limit: 65535
+    t.integer  "dodge",            limit: 4
+    t.integer  "block",            limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "monster_class_id", limit: 4
+    t.string   "name",             limit: 255
   end
 
   add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree

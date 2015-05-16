@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
-<% if @monster.illustration.exists? %>
+<% if @monster.illustrations.any? %>
   <div class="illo">
-    <%= image_tag @monster.illustration.url(:medium) %>
+    <% @monster.illustrations.each do |illustration| %>
+      <%= image_tag illustration.image.url(:medium) %>
+      <%= illustration.notes.to_s %>
+    <% end %>
   </div>
 <% end %>
 

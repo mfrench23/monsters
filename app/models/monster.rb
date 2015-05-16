@@ -27,8 +27,8 @@ class Monster < ActiveRecord::Base
   belongs_to :monster_class
   delegate :name, to: :monster_class, prefix: true
 
-  has_attached_file :illustration, :styles => { :medium => "300x300>" }, :default_url => "/images/:style/missing.png"
-  validates_attachment_content_type :illustration, :content_type => /\Aimage\/.*\Z/
+  has_many :illustrations, :as => :illustratable
+  accepts_nested_attributes_for :illustrations, allow_destroy: true, :reject_if => lambda { |x| x['image'].nil? }
 
   validates :name, :monster_class_id, presence: true
 

@@ -13,7 +13,7 @@ class MonsterForm
 	:description, :notes, :dodge, :block,
         :monster_class_id,
 	:freeform_trait_list,
-	:illustration,
+	illustrations_attributes: [:id, :image, :notes, :_destroy],
         monster_names_attributes: [:id, :name, :description, :_destroy],
         attacks_attributes: [:id, :name, :skill, :description, :_destroy],
         movement_rates_attributes: [:id, :move_type_id, :rate, :enhanced_rate, :_destroy],

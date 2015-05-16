@@ -116,15 +116,10 @@
     partial: 'page_reference_fields', label: 'add page reference', header: "Sources",
 	header_list: [ :book_id, :pages ], freeform: nil  %>
 
-  <% if monster.illustration.exists? %>
-    <div class="illo">
-      <%= image_tag monster.illustration.url(:medium) %>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :illustration %>
-    <%= f.file_field :illustration %>
-  </div>
+  <%= render 'expanding_fieldset', f: f,
+    id: "illustrations", collection: :illustrations,
+    partial: 'illustration_fields', label: 'add illustration', header: "Illustrations",
+	header_list: [ :image, :notes ], freeform: nil  %>
 
   <div class="actions" style="clear: both;">
     <%= f.submit %>
