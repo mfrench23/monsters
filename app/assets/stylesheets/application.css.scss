@@ -50,3 +50,79 @@ input[type="number"] {
 .field-label.show {
   font-weight: bold;
 }
+
+.nav
+{
+  width: 100%;
+  background-color: #f9f9f9;
+  float: left;
+}
+.nav,
+.nav ul,
+.nav li
+{
+  margin: 0px;
+  padding: 2px;
+}
+.nav ul
+{
+  display: none;
+  position: absolute;
+  margin-left: -19px;
+  margin-top: 7px;
+}
+.nav ul ul
+{
+  margin-top: -1.2em;
+  left: 99%;
+}
+.nav li:hover > ul
+{
+  display: block;
+}
+.nav ul.parent_hover
+{
+  display: block;
+}
+.nav li
+{
+  list-style-type: none;
+  float: left;
+  border: 1px solid #777777;
+  color: #000033;
+  background-color: #f9f9f9;
+  position: relative;
+  padding: 10px 15px 10px;
+}
+.nav + *
+{
+  clear: left;
+}
+.endmenu
+{
+  clear: left;
+}
+.nav a
+{
+  color: #000033;
+  display:block;
+  width: 100%;
+  text-decoration: none;
+}
+.nav a:hover
+{
+  background-color: #d0d0ff;
+}
+.nav > li
+{
+  float: left;
+}
+.nav span
+{
+  display: block;
+}
+.nav li:hover
+{
+  background-color: #d0d0ff;
+}
+
