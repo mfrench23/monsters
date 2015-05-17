@@ -1,32 +1,26 @@
 <%# add navigation links to this file %>
   <li><%= link_to 'Monsters', monsters_path %>
-    <ul>
-      <li><%= link_to 'List All Monsters', monsters_path %></li>
-      <li><%= link_to 'New Monster', new_monster_path %></li>
-    </ul>
+    <%= entity_links :monster %>
   </li>
   <li><%= link_to 'Books', controller: 'books' %>
-    <ul>
-      <li><%= link_to 'List All Books', controller: 'books' %></li>
-      <li><%= link_to 'New Book', new_book_path %></li>
-    </ul>
+    <%= entity_links :book %>
   </li>
   <li><%= link_to 'Skill List', controller: 'master_skills' %>
-    <ul>
-      <li><%= link_to 'List All Skills', controller: 'master_skills' %></li>
-      <li><%= link_to 'New Skill', new_master_skill_path %></li>
-    </ul>
+    <%= entity_links :master_skill %>
   </li>
   <li><%= link_to 'Trait List', controller: 'master_traits' %>
-    <ul>
-      <li><%= link_to 'List All Traits', controller: 'master_traits' %></li>
-      <li><%= link_to 'New Trait', new_master_trait_path %></li>
-    </ul>
+    <%= entity_links :master_trait %>
   </li>
   <li><span>Utility</span>
     <ul>
-      <li><%= link_to 'Monster Classes', controller: 'monster_classes' %></li>
-      <li><%= link_to 'Hit Locations', controller: 'locations' %></li>
-      <li><%= link_to 'Move Types', controller: 'move_types' %></li>
+      <li><%= link_to 'Monster Classes', controller: 'monster_classes' %>
+        <%= entity_links :monster_class %>
+      </li>
+      <li><%= link_to 'Hit Locations', controller: 'locations' %>
+        <%= entity_links :location %>
+      </li>
+      <li><%= link_to 'Move Types', controller: 'move_types' %>
+        <%= entity_links :move_type %>
+      </li>
     </ul>
   </li>
