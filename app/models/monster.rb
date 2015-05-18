@@ -41,7 +41,7 @@ class Monster < ActiveRecord::Base
   end
 
   def freeform_trait_list=(value)
-    TraitList.getList(value).each do |trait|
+    TraitList::FreeformTraitList.new(value).list.each do |trait|
       self.traits << trait
     end
   end
