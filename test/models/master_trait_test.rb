@@ -2,9 +2,9 @@ require 'test_helper'
 
 class MasterTraitTest < ActiveSupport::TestCase
   setup do
-    @one = FactoryGirl.create(:master_trait)
-    @two = FactoryGirl.create(:master_trait, is_feature: true)
-    @three = FactoryGirl.create(:master_trait, notes: "Fragile")
+    @one = FactoryGirl.build(:master_trait)
+    @two = FactoryGirl.build(:master_trait, is_feature: true)
+    @three = FactoryGirl.build(:master_trait, notes: "Fragile")
   end
 
   test "to_s" do

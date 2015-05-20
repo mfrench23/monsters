@@ -2,14 +2,14 @@ require 'test_helper'
 
 class PageReferenceTest < ActiveSupport::TestCase
   setup do
-    @one = FactoryGirl.create(:page_reference)
+    @one = FactoryGirl.build(:page_reference)
 
-    @book = FactoryGirl.create(:book, name: "No Point?", abbreviation: "NPt")
-    @two = FactoryGirl.create(:page_reference, book: @book, pages: "23-4")
-    @three = FactoryGirl.create(:page_reference, book: nil, pages: "23-4")
+    @book = FactoryGirl.build(:book, name: "No Point?", abbreviation: "NPt")
+    @two = FactoryGirl.build(:page_reference, book: @book, pages: "23-4")
+    @three = FactoryGirl.build(:page_reference, book: nil, pages: "23-4")
     
-    @bookNameOnly = FactoryGirl.create(:book, name: "Some Other Book", abbreviation: "")
-    @four = FactoryGirl.create(:page_reference, book: @bookNameOnly, pages: nil)
+    @bookNameOnly = FactoryGirl.build(:book, name: "Some Other Book", abbreviation: "")
+    @four = FactoryGirl.build(:page_reference, book: @bookNameOnly, pages: nil)
   end
 
   test "to_s" do

@@ -2,12 +2,12 @@ require 'test_helper'
 
 class DamageResistancesHelperTest < ActionView::TestCase
   setup do
-    @one = FactoryGirl.create(:damage_resistance)
+    @one = FactoryGirl.build(:damage_resistance)
     
-    loc = FactoryGirl.create(:location, name: "Tail")
-    @two = FactoryGirl.create(:damage_resistance, location: loc, dr: 2, notes: "Flexible")
-    @three = FactoryGirl.create(:damage_resistance, location: nil, dr: 3)
-    @four = FactoryGirl.create(:damage_resistance, location: nil, dr: 4, notes: "wooden")
+    loc = FactoryGirl.build(:location, name: "Tail")
+    @two = FactoryGirl.build(:damage_resistance, location: loc, dr: 2, notes: "Flexible")
+    @three = FactoryGirl.build(:damage_resistance, location: nil, dr: 3)
+    @four = FactoryGirl.build(:damage_resistance, location: nil, dr: 4, notes: "wooden")
   end
 
   test "should format correctly with a location" do

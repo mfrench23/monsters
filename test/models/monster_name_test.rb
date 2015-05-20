@@ -2,9 +2,9 @@ require 'test_helper'
 
 class MonsterNameTest < ActiveSupport::TestCase
   setup do
-    @one = FactoryGirl.create(:monster_name)
-    @two = FactoryGirl.create(:monster_name, name: "Don")
-    @three = FactoryGirl.create(:monster_name, name: "Zed")
+    @one = FactoryGirl.build(:monster_name)
+    @two = FactoryGirl.build(:monster_name, name: "Don")
+    @three = FactoryGirl.build(:monster_name, name: "Zed")
   end
 
   test "comparison" do

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MonsterTest < ActiveSupport::TestCase
   setup do
-    @one = FactoryGirl.create(:monster)
+    @one = FactoryGirl.build(:monster)
   end
 
   test "freeform_trait_list adds to master traits - one simple trait" do
@@ -24,11 +24,11 @@ class MonsterTest < ActiveSupport::TestCase
   end
   
   test "names_to_s" do
-    @one.monster_names << FactoryGirl.create(:monster_name, name: "Don")
+    @one.monster_names << FactoryGirl.build(:monster_name, name: "Don")
     assert_equal @one.names_to_s, "Don"
-    @one.monster_names << FactoryGirl.create(:monster_name)
+    @one.monster_names << FactoryGirl.build(:monster_name)
     assert_equal @one.names_to_s, "Bob; Don"
-    @one.monster_names << FactoryGirl.create(:monster_name, name: "Celine")
+    @one.monster_names << FactoryGirl.build(:monster_name, name: "Celine")
     assert_equal @one.names_to_s, "Bob; Celine; Don"
   end
   

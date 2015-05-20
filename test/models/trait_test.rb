@@ -2,10 +2,10 @@ require 'test_helper'
 
 class TraitTest < ActiveSupport::TestCase
   setup do
-    @one = FactoryGirl.create(:trait)
-    @two = FactoryGirl.create(:trait, level: 3)
-    @master = FactoryGirl.create(:master_trait, is_feature: true)
-    @three = FactoryGirl.create(:trait, master_trait: @master)
+    @one = FactoryGirl.build(:trait)
+    @two = FactoryGirl.build(:trait, level: 3)
+    @master = FactoryGirl.build(:master_trait, is_feature: true)
+    @three = FactoryGirl.build(:trait, master_trait: @master)
   end
 
   test "to_s" do
