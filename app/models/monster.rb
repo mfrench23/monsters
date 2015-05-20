@@ -3,6 +3,8 @@ class Monster < ActiveRecord::Base
 
   attr_accessor :freeform_trait_list
 
+  before_save :convert_skills
+
   has_many :page_references, dependent: :destroy
   accepts_nested_attributes_for :page_references, allow_destroy: true, reject_if: :all_blank
   has_many :skills, dependent: :destroy
@@ -57,5 +59,11 @@ class Monster < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def convert_skills
+    skills.each do |skill|
+      skill.convert_actual_to_modifier(characteristic_score(skill.characteristic))
+    end
   end
 end

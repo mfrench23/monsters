@@ -3,6 +3,9 @@
     <%= f.collection_select :master_skill_id, MasterSkill.order(:name), :id, :name %>
   </div>
   <div class="controls">
+    <%= f.number_field :actual %> ... or...
+  </div>
+  <div class="controls">
     <%= f.number_field :modifier %>
   </div>
   <div class="controls">
