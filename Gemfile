@@ -56,6 +56,9 @@ group :development, :test do
   gem 'spring'
 
   gem 'rails_layout'
+
+  # detects N+1 queries while browsing in development
+  gem "bullet"
 end
 
 group :test do

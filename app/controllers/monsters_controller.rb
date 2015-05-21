@@ -4,7 +4,7 @@ class MonstersController < ApplicationController
   # GET /monsters
   # GET /monsters.json
   def index
-    @monsters = Monster.order(:name).page params[:page]
+    @monsters = Monster.order(:name).includes(:monster_names, :monster_class, characteristic_monsters: [:characteristic] ).page params[:page]
   end
 
   # GET /monsters/1
@@ -70,6 +70,6 @@ class MonstersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_monster
-      @monster = Monster.find(params[:id])
+      @monster = Monster.includes(:monster_names, :monster_class, characteristic_monsters: [:characteristic] ).find(params[:id])
     end
 end

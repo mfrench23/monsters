@@ -36,6 +36,6 @@ class Skill < ActiveRecord::Base
   private
 
   def calc_modifier(monster_score)
-    self.actual - monster_score.to_i
+    self.actual.to_i - monster_score.to_i
   end
 end

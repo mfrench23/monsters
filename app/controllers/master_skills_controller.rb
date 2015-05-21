@@ -4,7 +4,7 @@ class MasterSkillsController < ApplicationController
   # GET /master_skills
   # GET /master_skills.json
   def index
-    @master_skills = MasterSkill.order(:name).page params[:page]
+    @master_skills = MasterSkill.order(:name).includes(:characteristic).page params[:page]
   end
 
   # GET /master_skills/1
@@ -64,7 +64,7 @@ class MasterSkillsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_master_skill
-      @master_skill = MasterSkill.find(params[:id])
+      @master_skill = MasterSkill.includes(:characteristic).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
