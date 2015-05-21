@@ -5,12 +5,7 @@ module Monster::SkillList
 
     def initialize(value)
       @list = []
-      out = break_on_semicolons(value)
-      out.map! do |skill_text|
-	translate_skill(skill_text)
-      end
-      out = out.reject { |x| x.nil? }
-      @text = out.join(";").strip
+      @text = break_on_semicolons(value).map { |t| translate_skill(t) }.reject { |x| x.nil? }.join(";").strip
     end
 
     private

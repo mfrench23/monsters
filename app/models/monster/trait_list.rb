@@ -4,15 +4,12 @@ module Monster::TraitList
 
     def initialize(value)
       out = break_on_semicolons(value)
-      # convert string patterns into Trait objects
-      out.map! do |line|
-	string_to_trait(line)
-      end
-      @list = out
+      @list = out.map { |line| string_to_trait(line) }
     end
 
     private
 
+    # convert string patterns into Trait objects
     def string_to_trait(line)
       sline = line.strip
       if m = sline.match(/^(.*) \((.*)\) ([0-9]*)$/) then

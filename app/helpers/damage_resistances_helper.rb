@@ -3,13 +3,6 @@ module DamageResistancesHelper
     if dr.notes.to_s.strip.length > 0
       notes = " (" + dr.notes + ")"
     end
-
-    if dr.location.to_s.empty?
-      pre = dr.dr.to_s
-    else
-      pre = [dr.location.to_s, dr.dr.to_s].join(": ")
-    end
-
-    pre.to_s + notes.to_s
+    (dr.location.to_s.empty? ? dr.dr.to_s : [dr.location.to_s, dr.dr.to_s].join(": ") )  + notes.to_s
   end
 end

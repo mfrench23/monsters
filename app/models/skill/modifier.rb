@@ -3,10 +3,8 @@ class Skill::Modifier
   attr_accessor :modval
 
   def initialize(number)
-    if ! number.to_s.empty?
-      if number >= 0
-	mod = "+"
-      end
+    if (! number.to_s.empty?) && (number >= 0)
+      mod = "+"
     end
     @string = mod.to_s + number.to_s
     @modval = number

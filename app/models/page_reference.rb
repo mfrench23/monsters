@@ -3,17 +3,9 @@ class PageReference < ActiveRecord::Base
   belongs_to :monster
 
   def to_s
-    s = ""
-    pg = ""
     if not pages.nil?
       pg = "p. " + pages
     end
-
-    if book.nil?
-      s = pg
-    else
-      s = ( (book.abbreviation.nil? or book.abbreviation.empty?) ? book.name : book.abbreviation ) + " #{pg}"
-    end
-    s.strip
+    ( book.nil? ? pg : book.to_reference_s + " #{pg}" ).strip
   end
 end
