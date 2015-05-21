@@ -41,4 +41,10 @@ class MonsterTest < ActiveSupport::TestCase
     @one.freeform_skill_list = "garbage entry that isn't a good skill"
     assert_equal false, @one.validate
   end
+
+  test "can save with freeform skill entries that aren't bogus" do
+    assert_equal true, @one.validate
+    @one.freeform_skill_list = "Stealth@DX+1; Acrobatics-12; Hiking 11"
+    assert_equal true, @one.validate
+  end
 end
