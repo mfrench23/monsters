@@ -5,7 +5,7 @@ class Skill < ActiveRecord::Base
   has_one :characteristic, :through => :master_skill
 
   validates :master_skill, presence: true
-  validates_with ActualOrModifierValidator
+  validate :has_modifier_or_actual
 
   def to_s
     if(modifier)
@@ -37,5 +37,11 @@ class Skill < ActiveRecord::Base
 
   def calc_modifier(monster_score)
     self.actual.to_i - monster_score.to_i
+  end
+
+  def has_modifier_or_actual
+    if actual.blank? && modifier.blank?
+      errors[:modifier] << "Either 'modifier' or 'actual' must be populated"
+    end
   end
 end
