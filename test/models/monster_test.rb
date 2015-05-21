@@ -35,4 +35,10 @@ class MonsterTest < ActiveSupport::TestCase
   test "to_s" do
     assert_equal @one.to_s, "Tim the Test Monster"
   end
+
+  test "cannot save with pending freeform skill entries" do
+    assert_equal true, @one.validate
+    @one.freeform_skill_list = "garbage entry that isn't a good skill"
+    assert_equal false, @one.validate
+  end
 end

@@ -33,6 +33,7 @@ class Monster < ActiveRecord::Base
   accepts_nested_attributes_for :illustrations, allow_destroy: true, :reject_if => lambda { |x| x['image'].nil? }
 
   validates :name, :monster_class_id, presence: true
+  validates :freeform_skill_list, absence: true
 
   def build_out
     attacks.build
@@ -46,6 +47,18 @@ class Monster < ActiveRecord::Base
     TraitList::FreeformTraitList.new(value).list.each do |trait|
       self.traits << trait
     end
+  end
+
+  def freeform_skill_list=(value)
+    sl = SkillList::FreeformSkillList.new(value)
+    sl.list.each do |skill|
+      self.skills << skill
+    end
+    @freeform_skill_list = sl.text
+  end
+
+  def freeform_skill_list
+    @freeform_skill_list
   end
 
   def characteristic_score(characteristic_name)
