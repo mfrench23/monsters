@@ -16,19 +16,20 @@ module Monster::TraitList
     def string_to_trait(line)
       sline = line.strip
       if m = sline.match(/^(.*) \((.*)\) ([0-9]*)$/) then
-	mt = MasterTrait.find_or_create_by(:name => m[1], :notes => m[2])
-	retval = Trait.new(:master_trait => mt, :level => m[3])
+	name = m[1]
+	notes = m[2]
+	level = m[3]
       elsif m = sline.match(/^(.*) ([0-9][0-9]*)$/) then
-	mt = MasterTrait.find_or_create_by(:name => m[1], :notes => nil)
-	retval = Trait.new(:master_trait => mt, :level => m[2])
+	name = m[1]
+	level = m[2]
       elsif m = sline.match(/^(.*) \((.*)\)$/) then
-	mt = MasterTrait.find_or_create_by(:name => m[1], :notes => m[2])
-	retval = Trait.new(:master_trait => mt)
+	name = m[1]
+	notes = m[2]
       else
-	mt = MasterTrait.find_or_create_by(:name => sline, :notes => nil)
-	retval = Trait.new(:master_trait => mt)
+	name = sline
       end
-      retval
+      mt = MasterTrait.find_or_create_by(:name => name, :notes => notes)
+      Trait.new(:master_trait => mt, :level => level)
     end
   end
 end

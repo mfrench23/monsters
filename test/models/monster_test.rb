@@ -6,9 +6,29 @@ class MonsterTest < ActiveSupport::TestCase
   end
 
   test "freeform_trait_list adds to master traits - one simple trait" do
+    name = "Faketrait"
     assert_difference "MasterTrait.count" do
-      @one.freeform_trait_list="Faketrait"
+      @one.freeform_trait_list = name
     end
+    mt = MasterTrait.find_by(:name => name)
+    assert_equal false, mt.name.to_s.empty?
+    assert_equal true, mt.notes.to_s.empty?
+    trait = @one.traits.first
+    assert_equal mt, trait.master_trait
+    assert_equal true, trait.level.to_s.empty?
+  end
+
+  test "freeform_trait_list adds to master traits - one trait with level and notes" do
+    name = "Bogotrait (Disintegration) 3"
+    assert_difference "MasterTrait.count" do
+      @one.freeform_trait_list = name
+    end
+    mt = MasterTrait.find_by(:name => "Bogotrait")
+    assert_equal false, mt.name.to_s.empty?
+    assert_equal "Disintegration", mt.notes
+    trait = @one.traits.first
+    assert_equal mt, trait.master_trait
+    assert_equal "3", trait.level.to_s
   end
 
   test "freeform_trait_list adds to master traits - 2 traits, one complex" do
