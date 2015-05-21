@@ -8,9 +8,17 @@ class Skill < ActiveRecord::Base
   validates_with ActualOrModifierValidator
 
   def to_s
-    mod = Modifier.new(modifier)
-    actual = mod.actual( monster.try(:characteristic_score, characteristic) )
-    master_skill.name + " @" + characteristic.to_s + mod.to_s + (actual.nil? ? "" : "=" + actual.to_s )
+    if(modifier)
+      mod = Modifier.new(modifier)
+      actval = mod.actual( monster.try(:characteristic_score, characteristic) )
+      at_sym = " @" + characteristic.to_s + mod.to_s
+      eq_sym = "="
+    else
+      actval = actual
+      at_sym = nil
+      eq_sym = "-"
+    end
+    master_skill.name + at_sym.to_s + (actval.nil? ? "" : eq_sym.to_s + actval.to_s )
   end
 
   def actual
@@ -18,7 +26,7 @@ class Skill < ActiveRecord::Base
   end
 
   def actual=(value)
-    @actual = value.to_i
+    @actual = value
   end
 
   def convert_actual_to_modifier(monster_score)
