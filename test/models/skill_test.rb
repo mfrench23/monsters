@@ -4,10 +4,11 @@ class SkillTest < ActiveSupport::TestCase
   setup do
     @one = FactoryGirl.build(:skill)
     @monster = FactoryGirl.build(:monster)
+    @skill_no_mod = FactoryGirl.build(:skill, modifier: nil, actual: 14)
   end
 
   test "prints correctly" do
-    assert_equal "Basketweaving @DX+1", @one.to_s
+    assert_equal "Stealth @DX+1", @one.to_s
   end
   
   test "modifier as string is formatted [+-]#" do
@@ -24,9 +25,8 @@ class SkillTest < ActiveSupport::TestCase
   end
   
   test "modifier can modify a monster" do
-    assert_equal "Basketweaving @DX+1", @one.to_s
+    assert_equal "Stealth @DX+1", @one.to_s
     @one.monster = @monster
-    assert_equal 10, @one.monster.characteristic_score("DX")
-    assert_equal "Basketweaving @DX+1=11", @one.to_s
+    assert_equal "Stealth @DX+1=11", @one.to_s
   end
 end

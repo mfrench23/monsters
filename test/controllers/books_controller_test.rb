@@ -3,6 +3,7 @@ require 'test_helper'
 class BooksControllerTest < ActionController::TestCase
   setup do
     @book = FactoryGirl.create(:book)
+    @unsaved_book = FactoryGirl.build(:book, name: "War & Peace", abbreviation: "W&P")
   end
 
   test "should get index" do
@@ -18,7 +19,7 @@ class BooksControllerTest < ActionController::TestCase
 
   test "should create book" do
     assert_difference('Book.count') do
-      post :create, book: { abbreviation: @book.abbreviation, name: @book.name + " 2" }
+      post :create, book: { abbreviation: @unsaved_book.abbreviation, name: @unsaved_book.name }
     end
 
     assert_redirected_to book_path(assigns(:book))

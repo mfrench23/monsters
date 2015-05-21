@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MoveTypesControllerTest < ActionController::TestCase
   setup do
-    @move_type = FactoryGirl.create(:move_type)
+    @move_type = MoveType.find_by(name: "ground")
   end
 
   test "should get index" do

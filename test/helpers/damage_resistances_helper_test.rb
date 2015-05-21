@@ -11,7 +11,7 @@ class DamageResistancesHelperTest < ActionView::TestCase
   end
 
   test "should format correctly with a location" do
-    assert_equal "Skull: 1", simpleDR(@one)
+    assert_equal "skull: 1", simpleDR(@one)
   end
   test "should format correctly with a location and a note" do
     assert_equal "Tail: 2 (Flexible)", simpleDR(@two)

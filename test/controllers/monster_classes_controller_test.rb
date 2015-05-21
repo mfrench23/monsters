@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MonsterClassesControllerTest < ActionController::TestCase
   setup do
-    @monster_class = FactoryGirl.create(:monster_class)
+    @monster_class = MonsterClass.find_by(name: "Undead")
   end
 
   test "should get index" do

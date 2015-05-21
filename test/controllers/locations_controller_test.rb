@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LocationsControllerTest < ActionController::TestCase
   setup do
-    @location = FactoryGirl.create(:location)
+    @location = Location.find_by(name: "skull")
   end
 
   test "should get index" do

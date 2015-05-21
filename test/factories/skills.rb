@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :skill do
     modifier 1
-    association :master_skill
+    master_skill {MasterSkill.find_by(name: "Stealth")}
   end
 end

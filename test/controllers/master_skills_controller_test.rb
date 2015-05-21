@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MasterSkillsControllerTest < ActionController::TestCase
   setup do
-    @master_skill = FactoryGirl.create(:master_skill)
+    @master_skill = MasterSkill.find_by(name: "Stealth")
   end
 
   test "should get index" do
