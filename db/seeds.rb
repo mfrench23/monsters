@@ -53,6 +53,8 @@ Characteristic.find_or_create_by(name: 'Speed', sequence_number: 9, step_size: 0
 Characteristic.find_or_create_by(name: 'SM', sequence_number: 10, base_value: 0 )
 Characteristic.find_or_create_by(name: 'OR', sequence_number: 11, base_value: nil )
 Characteristic.find_or_create_by(name: 'PR', sequence_number: 12, base_value: nil )
+Characteristic.find_or_create_by(name: 'Block', sequence_number: 13, base_value: nil )
+Characteristic.find_or_create_by(name: 'Dodge', sequence_number: 14, base_value: 7 )
 
 
 MasterSkill.find_or_create_by(name: 'Acrobatics', characteristic: dx )

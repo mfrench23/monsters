@@ -18,8 +18,7 @@ class MonstersControllerTest < ActionController::TestCase
 
   test "should create monster" do
     assert_difference('Monster.count') do
-      post :create, monster: { block: @monster.block, description: @monster.description, 
-                               dodge: @monster.dodge, gear: @monster.gear, height: @monster.height, 
+      post :create, monster: { description: @monster.description, height: @monster.height, 
                                monster_class_id: @monster.monster_class_id, name: @monster.name, 
                                notes: @monster.notes, weight: @monster.weight,
                                characteristic_monsters: @monster.characteristic_monsters }
@@ -30,7 +29,7 @@ class MonstersControllerTest < ActionController::TestCase
 
   test "should fail to create monster" do
     assert_no_difference('Monster.count') do
-      post :create, monster: { block: @monster.block }
+      post :create, monster: { name: nil }
     end
 
     assert_response 200
@@ -47,7 +46,7 @@ class MonstersControllerTest < ActionController::TestCase
   end
 
   test "should update monster" do
-    patch :update, id: @monster, monster: { block: @monster.block, description: @monster.description, dodge: @monster.dodge, gear: @monster.gear, height: @monster.height, notes: @monster.notes, weight: @monster.weight }
+    patch :update, id: @monster, monster: { description: "Updated description" }
     assert_redirected_to monster_path(assigns(:monster))
   end
 

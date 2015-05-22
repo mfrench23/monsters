@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522225126) do
+ActiveRecord::Schema.define(version: 20150522230331) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -140,8 +140,6 @@ ActiveRecord::Schema.define(version: 20150522225126) do
     t.text     "gear",              limit: 65535
     t.text     "description",       limit: 65535
     t.text     "notes",             limit: 65535
-    t.integer  "dodge",             limit: 4
-    t.integer  "block",             limit: 4
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.integer  "monster_class_id",  limit: 4

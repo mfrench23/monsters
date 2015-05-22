@@ -27,21 +27,12 @@
 
   <div class="threecolumblock">
     <div class="threecol1">
-      <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /ST|DX|IQ|HT/ }  %>
+      <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /ST|DX|IQ|HT|Dodge/ }  %>
       <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
-      <div class="field">
-	<%= f.label :dodge %>
-	<%= f.number_field :dodge %>
-      </div>
     </div>
     <div class="threecol2">
-      <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /HP|Will|Per|Fatigue/ }  %>
+      <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /HP|Will|Per|Fatigue|Block/ }  %>
       <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
-
-      <div class="field">
-	<%= f.label :block %>
-	<%= f.number_field :block %>
-      </div>
     </div>
     <div class="threecol3">
       <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /Speed/ }  %>

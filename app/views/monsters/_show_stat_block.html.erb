@@ -4,7 +4,7 @@
     <div><span class="field-label show">DX</span> <%= monster.characteristic_score "DX" %></div>
     <div><span class="field-label show">IQ</span> <%= monster.characteristic_score "IQ" %></div>
     <div><span class="field-label show">HT</span> <%= monster.characteristic_score "HT" %></div>
-    <div><span class="field-label show">Dodge</span> <%= monster.dodge %></div>
+    <div><span class="field-label show">Dodge</span> <%= monster.characteristic_score "Dodge" %></div>
   </div>
   <div class="threecol2">
     <div><span class="field-label show">Hitpoints</span> <%= monster.characteristic_score "HP" %></div>
@@ -17,8 +17,8 @@
 	  <%= parry.weapon %> <%= parry.parry %> <br>
 	<% end %>
       <br>
-      <% if ! monster.block.nil? %>
-	<span class="field-label show">Block</span> <%= monster.block %>
+      <% if ! (monster.characteristic_score "Dodge").to_s.empty? %>
+	<span class="field-label show">Block</span> <%= monster.characteristic_score "Block" %>
       <% end %>
     </div>
   </div>
