@@ -29,10 +29,18 @@
     <div class="threecol1">
       <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /ST|DX|IQ|HT/ }  %>
       <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <div class="field">
+	<%= f.label :dodge %>
+	<%= f.number_field :dodge %>
+      </div>
     </div>
     <div class="threecol2">
       <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /HP|Will|Per|Fatigue/ }  %>
       <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <div class="field">
+	<%= f.label :block %>
+	<%= f.number_field :block %>
+      </div>
     </div>
     <div class="threecol3">
       <% charSet = monster.characteristic_monsters.select { |x| x.characteristic.name =~ /Speed/ }  %>
@@ -61,9 +69,12 @@
 	  </div>
 	</div>
       </div>
+        <%= render 'expanding_fieldset', f: f,
+	  id: "parry-scores", collection: :parry_scores,
+	  partial: 'parry_score_fields', label: 'add Parry', header: "Parry",
+	      header_list: [ :weapon, :parry ], freeform: nil  %>
     </div>
   </div>
-
 
   <%= render 'expanding_fieldset', f: f,
     id: "damage-resistances", collection: :damage_resistances,
@@ -100,18 +111,7 @@
     <%= f.label :notes %>
     <%= f.text_area :notes %>
   </div>
-  <div class="field">
-    <%= f.label :dodge %>
-    <%= f.number_field :dodge %>
-  </div>
-  <%= render 'expanding_fieldset', f: f,
-    id: "parry-scores", collection: :parry_scores,
-    partial: 'parry_score_fields', label: 'add Parry', header: "Parry",
-	header_list: [ :weapon, :parry ], freeform: nil  %>
-  <div class="field">
-    <%= f.label :block %>
-    <%= f.number_field :block %>
-  </div>
+
   <%= render 'expanding_fieldset', f: f,
     id: "page-references", collection: :page_references,
     partial: 'page_reference_fields', label: 'add page reference', header: "Sources",
