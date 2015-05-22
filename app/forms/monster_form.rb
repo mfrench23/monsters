@@ -21,7 +21,7 @@ class MonsterForm
         damage_resistances_attributes: [:id, :location_id, :dr, :notes, :_destroy],
         page_references_attributes: [:id, :book_id, :pages, :_destroy],
         parry_scores_attributes: [:id, :weapon, :parry, :_destroy],
-        skills_attributes: [:id, :master_skill_id, :modifier, :actual, :specialization, :_destroy],
+        skills_attributes: [:id, :master_skill_id, :modifier, :actual, :specialization, :tech_level, :_destroy],
         traits_attributes: [:id, :master_trait_id, :level, :_destroy],
 	characteristic_monsters_attributes: [:id, :characteristic_id, :score] )
     end

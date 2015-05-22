@@ -72,6 +72,8 @@
     
     <li ><a href="#method-i-monsters_by_class">#monsters_by_class</a>
     
+    <li ><a href="#method-i-monsters_by_creation_date">#monsters_by_creation_date</a>
+    
   </ul>
 </div>
 
@@ -128,6 +130,39 @@
             <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">monsters_by_class</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-string">&quot;inner join monster_classes on monster_classes.id = monsters.monster_class_id&quot;</span>).<span class="ruby-identifier">group</span>(<span class="ruby-string">&quot;monster_classes.name&quot;</span>).<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-monsters_by_creation_date" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">monsters_by_creation_date</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="monsters_by_creation_date-source">
+            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">monsters_by_creation_date</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&quot;date(created_at)&quot;</span>).<span class="ruby-identifier">count</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

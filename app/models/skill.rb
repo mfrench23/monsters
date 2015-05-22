@@ -6,7 +6,7 @@ class Skill < ActiveRecord::Base
 
   validates :master_skill, presence: true
   validate :validate_has_modifier_or_actual
-  validate :validate_has_required_specialization
+  validate :validate_has_required
 
   def to_s
     if(modifier)
@@ -19,8 +19,7 @@ class Skill < ActiveRecord::Base
       at_sym = nil
       eq_sym = "-"
     end
-    spec = (specialization.to_s.empty? ? nil : " (" + specialization + ")")
-    master_skill.name + spec.to_s + at_sym.to_s + (actval.nil? ? "" : eq_sym.to_s + actval.to_s )
+    master_skill.name + spec_to_s + tl_to_s + at_sym.to_s + (actval.nil? ? "" : eq_sym.to_s + actval.to_s )
   end
 
   def actual
@@ -41,16 +40,26 @@ class Skill < ActiveRecord::Base
     self.actual.to_i - monster_score.to_i
   end
 
+  def spec_to_s
+    (specialization.to_s.empty? ? nil : " (" + specialization + ")").to_s
+  end
+
+  def tl_to_s
+    ( tech_level.to_s.empty? ? nil : "/TL#{tech_level}" ).to_s
+  end
+
   def validate_has_modifier_or_actual
     if actual.blank? && modifier.blank?
       errors[:modifier] << "Either 'modifier' or 'actual' must be populated"
     end
   end
 
-  def validate_has_required_specialization
-    #if master_skill.requires_specialization && specialization.blank?
+  def validate_has_required
     if master_skill.requires_specialization && specialization.blank?
       errors[:specialization] << "#{master_skill.name} requires specialization"
+    end
+    if master_skill.requires_tech_level && tech_level.blank?
+      errors[:tech_level] << "#{master_skill.name} requires TL"
     end
   end
 end

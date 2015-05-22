@@ -6,6 +6,13 @@
     <%= f.text_field :specialization %>
   </div>
   <div class="controls">
+    <% options = [["-", nil]] %>
+    <% (0..6).each do |tl| %>
+      <% options << ["TL #{tl}", "#{tl}"] %>
+    <% end %>
+    <%= f.select(:tech_level, options) %>
+  </div>
+  <div class="controls">
     <%= f.number_field :actual %> ... or...
   </div>
   <div class="controls">

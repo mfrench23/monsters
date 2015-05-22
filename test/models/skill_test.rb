@@ -10,6 +10,16 @@ class SkillTest < ActiveSupport::TestCase
     assert_equal "Stealth @DX+1", @one.to_s
   end
   
+  test "prints correctly with specialization" do
+    one = FactoryGirl.build(:skill, master_skill: MasterSkill.find_by(name: "Animal Handling"), specialization: "Rats", modifier: 1)
+    assert_equal "Animal Handling (Rats) @IQ+1", one.to_s
+  end
+
+  test "prints correctly with TL" do
+    one = FactoryGirl.build(:skill, master_skill: MasterSkill.find_by(name: "Alchemy"), tech_level: "3", modifier: 1)
+    assert_equal "Alchemy/TL3 @IQ+1", one.to_s
+  end
+
   test "modifier as string is formatted [+-]#" do
     assert_equal "+3", Skill::Modifier.new(3).to_s
     assert_equal "-2", Skill::Modifier.new(-2).to_s
@@ -70,6 +80,15 @@ class SkillTest < ActiveSupport::TestCase
     skill = FactoryGirl.build(:skill, modifier: 1, master_skill: master)
     assert_equal false, skill.validate
     skill.specialization = "Lions and tigers and bears"
+    assert_equal true, skill.validate
+  end
+
+  test "cannot save a skill without required TL" do
+    master = MasterSkill.find_by(name: "Alchemy")
+    assert_equal true, master.requires_tech_level
+    skill = FactoryGirl.build(:skill, modifier: 1, master_skill: master)
+    assert_equal false, skill.validate
+    skill.tech_level = "3"
     assert_equal true, skill.validate
   end
 end

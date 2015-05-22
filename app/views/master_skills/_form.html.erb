@@ -20,6 +20,10 @@
     <%= f.check_box :requires_specialization %>
   </div>
   <div class="field">
+    <%= f.label :requires_tech_level %><br>
+    <%= f.check_box :requires_tech_level %>
+  </div>
+  <div class="field">
     <%= f.label :characteristic %><br>
     <%= f.collection_select :characteristic_id, Characteristic.all, :id, :name %>
   </div>

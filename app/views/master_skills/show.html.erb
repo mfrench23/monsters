@@ -20,5 +20,10 @@
   <%= @master_skill.requires_specialization %>
 </p>
 
+<p>
+  <strong>Requires TL:</strong>
+  <%= @master_skill.requires_tech_level %>
+</p>
+
 <%= link_to 'Edit', edit_master_skill_path(@master_skill) %> |
 <%= link_to 'Back', master_skills_path %>
