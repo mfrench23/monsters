@@ -1,1 +1,4 @@
 <h1>Home</h1>
+
+<h2>Count of monsters by class</h2>
+<%= pie_chart Monster.joins("inner join monster_classes on monster_classes.id = monsters.monster_class_id").group("monster_classes.name").count %>
