@@ -50,16 +50,19 @@ class Skill < ActiveRecord::Base
 
   def validate_has_modifier_or_actual
     if actual.blank? && modifier.blank?
-      errors[:modifier] << "Either 'modifier' or 'actual' must be populated"
+      errors[:modifier] << ": Either 'modifier' or 'actual' must be populated"
     end
   end
 
   def validate_has_required
     if master_skill.requires_specialization && specialization.blank?
-      errors[:specialization] << "#{master_skill.name} requires specialization"
+      errors[:specialization] << ": #{master_skill.name} requires specialization"
     end
     if master_skill.requires_tech_level && tech_level.blank?
-      errors[:tech_level] << "#{master_skill.name} requires TL"
+      errors[:tech_level] << ": #{master_skill.name} requires TL"
+    end
+    if (! master_skill.requires_tech_level) && (!tech_level.blank?)
+      errors[:tech_level] << ": #{master_skill.name} may not have a TL"
     end
   end
 end

@@ -91,4 +91,13 @@ class SkillTest < ActiveSupport::TestCase
     skill.tech_level = "3"
     assert_equal true, skill.validate
   end
+
+  test "cannot save a skill with TL when not required" do
+    master = MasterSkill.find_by(name: "Brawling")
+    assert_equal true, (! master.requires_tech_level)
+    skill = FactoryGirl.build(:skill, modifier: 1, master_skill: master)
+    assert_equal true, skill.validate
+    skill.tech_level = "3"
+    assert_equal false, skill.validate
+  end
 end
