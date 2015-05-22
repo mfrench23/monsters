@@ -203,3 +203,6 @@ MasterSkill.find_or_create_by(name: 'Weather Sense', characteristic: iq )
 MasterSkill.find_or_create_by(name: 'Whip', characteristic: dx )
 MasterSkill.find_or_create_by(name: 'Wrestling', characteristic: dx )
 MasterSkill.find_or_create_by(name: 'Writing', characteristic: iq )
+
+Book.find_or_create_by(name: "Dungeon Fantasy 2: Dungeons", abbreviation: "DF2")
+Book.find_or_create_by(name: "Dungeon Fantasy Monsters 1", abbreviation: "DFM1")
