@@ -19,9 +19,10 @@
       <th>Perception</th>
       <th>Fatigue</th>
       <th>Speed</th>
-      <th>Sizemodifier</th>
-      <th>Height</th>
-      <th>Weight</th>
+      <th>Size Modifier</th>
+      <th>OR</th>
+      <th>PR</th>
+      <th>CER</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -42,8 +43,9 @@
         <td><%= monster.characteristic_score "Fatigue" %></td>
         <td><%= monster.characteristic_score "Speed" %></td>
         <td><%= monster.characteristic_score "SM" %></td>
-        <td><%= monster.height %></td>
-        <td><%= monster.weight %></td>
+        <td><%= monster.offensive_rating %></td>
+        <td><%= monster.protective_rating %></td>
+        <td><%= monster.combat_effectiveness_rating %></td>
         <td><%= link_to 'Show', monster %></td>
         <td><%= link_to 'Edit', edit_monster_path(monster) %></td>
         <td><%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' } %></td>

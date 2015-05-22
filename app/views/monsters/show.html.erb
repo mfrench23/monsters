@@ -116,6 +116,17 @@
       </div>
     <% end %>
 
+    <% unless @monster.offensive_rating.to_s.empty? && @monster.protective_rating.to_s.empty? %>
+      <div style="display: table-row;">
+        <div class="field-label show trait">Threat Ratings</div>
+        <div class="trait">
+	  <div>Offensive Rating: <%= @monster.offensive_rating %></div>
+	  <div>Protective Rating: <%= @monster.protective_rating %></div>
+	  <div>Combat Effectiveness Rating: <%= @monster.combat_effectiveness_rating %></div>
+	</div>
+      </div>
+    <% end %>
+
   </div>
 </div>
 

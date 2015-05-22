@@ -67,4 +67,12 @@ class MonsterTest < ActiveSupport::TestCase
     @one.freeform_skill_list = "Stealth@DX+1; Acrobatics-12; Hiking 11"
     assert_equal true, @one.validate
   end
+
+  test "Combat Effectiveness Rating calculation" do
+    assert_nil @one.combat_effectiveness_rating
+    @one.offensive_rating = 17
+    assert_nil @one.combat_effectiveness_rating
+    @one.protective_rating = 21
+    assert_equal 38, @one.combat_effectiveness_rating
+  end
 end

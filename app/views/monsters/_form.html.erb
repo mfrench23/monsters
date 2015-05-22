@@ -126,6 +126,14 @@
     <%= f.label :parts_value %>
     <%= f.text_field :parts_value %> per pound
   </div>
+  <div class="field">
+    <%= f.label :offensive_rating %>
+    <%= f.number_field :offensive_rating %>
+  </div>
+  <div class="field" style="clear: both;">
+    <%= f.label :protective_rating %>
+    <%= f.number_field :protective_rating %>
+  </div>
 
   <div class="actions" style="clear: both;">
     <%= f.submit %>

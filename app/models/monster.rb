@@ -68,6 +68,10 @@ class Monster < ActiveRecord::Base
     self.characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.first.try { |x| x.characteristic.normalize(x.score) }
   end
 
+  def combat_effectiveness_rating
+    offensive_rating.nil? || protective_rating.nil? ? nil : offensive_rating.to_i + protective_rating.to_i
+  end
+
   # All the monster's aliases, in a semicolon-delimited list.
   def names_to_s
     monster_names.sort.collect { |x| x.name }.join('; ')
