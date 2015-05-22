@@ -1,7 +1,12 @@
 <h1>Home</h1>
 
-<h2>Count of monsters by class</h2>
-<%= pie_chart charts_monsters_by_class_path %>
+<% if Monster.count > 0 %>
+  <h2>Count of monsters by class</h2>
+  <%= pie_chart charts_monsters_by_class_path %>
 
-<h2>Monsters by date of creation</h2>
-<%= line_chart charts_monsters_by_creation_date_path %>
+  <h2>Monsters by date of creation</h2>
+  <%= line_chart charts_monsters_by_creation_date_path %>
+<% else %>
+  Welcome to your new GURPS monsters database! The first step is to enter
+  your monsters. <%= link_to 'Start here!', new_monster_path %>
+<% end %>
