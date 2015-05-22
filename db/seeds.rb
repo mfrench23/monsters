@@ -51,6 +51,8 @@ per = Characteristic.find_or_create_by(name: 'Per', sequence_number: 7, base_val
 Characteristic.find_or_create_by(name: 'Fatigue', sequence_number: 8, base_value: 10 )
 Characteristic.find_or_create_by(name: 'Speed', sequence_number: 9, step_size: 0.25, base_value: 5.0 )
 Characteristic.find_or_create_by(name: 'SM', sequence_number: 10, base_value: 0 )
+Characteristic.find_or_create_by(name: 'OR', sequence_number: 11, base_value: nil )
+Characteristic.find_or_create_by(name: 'PR', sequence_number: 12, base_value: nil )
 
 
 MasterSkill.find_or_create_by(name: 'Acrobatics', characteristic: dx )

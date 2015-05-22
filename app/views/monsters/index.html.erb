@@ -43,8 +43,8 @@
         <td><%= monster.characteristic_score "Fatigue" %></td>
         <td><%= monster.characteristic_score "Speed" %></td>
         <td><%= monster.characteristic_score "SM" %></td>
-        <td><%= monster.offensive_rating %></td>
-        <td><%= monster.protective_rating %></td>
+        <td><%= monster.characteristic_score "OR" %></td>
+        <td><%= monster.characteristic_score "PR" %></td>
         <td><%= monster.combat_effectiveness_rating %></td>
         <td><%= link_to 'Show', monster %></td>
         <td><%= link_to 'Edit', edit_monster_path(monster) %></td>

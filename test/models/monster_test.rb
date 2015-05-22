@@ -70,9 +70,9 @@ class MonsterTest < ActiveSupport::TestCase
 
   test "Combat Effectiveness Rating calculation" do
     assert_nil @one.combat_effectiveness_rating
-    @one.offensive_rating = 17
+    @one.characteristic_monsters << CharacteristicMonster.new(characteristic: Characteristic.find_by(name: "OR"), score: 17)
     assert_nil @one.combat_effectiveness_rating
-    @one.protective_rating = 21
+    @one.characteristic_monsters << CharacteristicMonster.new(characteristic: Characteristic.find_by(name: "PR"), score: 21)
     assert_equal 38, @one.combat_effectiveness_rating
   end
 end

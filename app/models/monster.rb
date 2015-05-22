@@ -69,6 +69,8 @@ class Monster < ActiveRecord::Base
   end
 
   def combat_effectiveness_rating
+    offensive_rating = characteristic_score "OR"
+    protective_rating = characteristic_score "PR"
     offensive_rating.nil? || protective_rating.nil? ? nil : offensive_rating.to_i + protective_rating.to_i
   end
 
