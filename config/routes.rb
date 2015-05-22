@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'charts/monsters_by_class'
-
   root 'welcome#index'
   resources :master_traits
   resources :master_skills
@@ -9,6 +7,9 @@ Rails.application.routes.draw do
   resources :books
   resources :move_types
   resources :locations
+
+  get 'charts/monsters_by_class'
+  get 'charts/monsters_by_creation_date'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
