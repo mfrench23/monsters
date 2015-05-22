@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>README - Rails Application Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-README">README</a>
+    <li><a href="#label-Background">Background</a>
+    <li><a href="#label-Installation">Installation</a>
+    <li><a href="#label-Requirements">Requirements</a>
+    <li><a href="#label-Install">Install</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./README_rdoc.html">README</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page README.rdoc">
+
+<h2 id="label-README"><a href="README_rdoc.html">README</a><span><a href="#label-README">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="label-Background">Background<span><a href="#label-Background">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p><a href="http://www.sjgames.com/gurps/">GURPS</a> is a pen-and-paper
+role-playing game. While it can be used for any genre, I&#39;m running a 
+<a href="http://www.sjgames.com/gurps/books/dungeonfantasy/">GURPS Dungeon
+Fantasy</a> game. Doing so requires keeping track of a lot of different
+information, including the game statistics for a large number of hostile
+monsters.</p>
+
+<p>This project is meant to help me in this task… while helping me learn about
+and gain experience with Ruby and Rails.</p>
+
+<h3 id="label-Installation">Installation<span><a href="#label-Installation">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<h4 id="label-Requirements">Requirements<span><a href="#label-Requirements">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>I use Ruby 2.2.1, Rails 4.2.0, and MySQL 5.5.41, on an Xubuntu 14.04
+virtual  machine in Oracle VM VirtualBox. I expect one could get away with
+earlier versions, but I can make no promises. I assume you&#39;ve got Ruby,
+Rails, and MySQL installed.</p>
+
+<h4 id="label-Install">Install<span><a href="#label-Install">&para;</a> <a href="#top">&uarr;</a></span></h4>
+
+<p>First, clone the code to a local directory.</p>
+
+<pre>$ git clone https://github.com/mfrench23/monsters.git</pre>
+
+<p>Next, you&#39;ll need to set up some environmental variables to tell the
+code about your db. Edit your .bashrc file, and add the following lines:</p>
+
+<pre class="ruby"><span class="ruby-identifier">export</span> <span class="ruby-constant">MONSTERS_DATABASE_UNAME</span>=<span class="ruby-string">&quot;username&quot;</span>
+<span class="ruby-identifier">export</span> <span class="ruby-constant">MONSTERS_DATABASE_PASSWORD</span>=<span class="ruby-string">&quot;password&quot;</span>
+
+<span class="ruby-identifier">export</span> <span class="ruby-constant">MONSTERS_PROD_DATABASE_UNAME</span>=<span class="ruby-string">&quot;username&quot;</span>
+<span class="ruby-identifier">export</span> <span class="ruby-constant">MONSTERS_PROD_DATABASE_PASSWORD</span>=<span class="ruby-string">&quot;password&quot;</span>
+</pre>
+
+<p>Of course, you&#39;ll want to replace “username” and “password” with
+appropriate values for your db. The first pair are used for the development
+and test schemas, while the second pair are used for production. In
+practice, you&#39;ll likely only need to set up one pair on any given
+machine.</p>
+
+<p>Be sure to source your .bashrc file to pick up the new variables.</p>
+
+<pre>source $HOME/.bashrc</pre>
+
+<p>Now that you&#39;ve got your environmental variables set up, you can create
+your dev schema:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cd</span> <span class="ruby-identifier">monsters</span>
+<span class="ruby-identifier">rake</span> <span class="ruby-identifier">db</span>:<span class="ruby-identifier">create</span>
+<span class="ruby-identifier">rake</span> <span class="ruby-identifier">db</span>:<span class="ruby-identifier">reset</span>
+</pre>
+
+<p>Finally, start your server and direct your browser to <a
+href="http://localhost:3000">localhost:3000</a>:</p>
+
+<pre>bin/rails server</pre>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

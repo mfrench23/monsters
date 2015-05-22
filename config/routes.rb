@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'charts/monsters_by_class'
+
   root 'welcome#index'
   resources :master_traits
   resources :master_skills
