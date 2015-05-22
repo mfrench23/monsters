@@ -16,6 +16,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :requires_specialization %><br>
+    <%= f.check_box :requires_specialization %>
+  </div>
+  <div class="field">
     <%= f.label :characteristic %><br>
     <%= f.collection_select :characteristic_id, Characteristic.all, :id, :name %>
   </div>

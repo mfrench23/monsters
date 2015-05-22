@@ -5,7 +5,8 @@ class Skill < ActiveRecord::Base
   has_one :characteristic, :through => :master_skill
 
   validates :master_skill, presence: true
-  validate :has_modifier_or_actual
+  validate :validate_has_modifier_or_actual
+  validate :validate_has_required_specialization
 
   def to_s
     if(modifier)
@@ -18,7 +19,8 @@ class Skill < ActiveRecord::Base
       at_sym = nil
       eq_sym = "-"
     end
-    master_skill.name + at_sym.to_s + (actval.nil? ? "" : eq_sym.to_s + actval.to_s )
+    spec = (specialization.to_s.empty? ? nil : " (" + specialization + ")")
+    master_skill.name + spec.to_s + at_sym.to_s + (actval.nil? ? "" : eq_sym.to_s + actval.to_s )
   end
 
   def actual
@@ -39,9 +41,16 @@ class Skill < ActiveRecord::Base
     self.actual.to_i - monster_score.to_i
   end
 
-  def has_modifier_or_actual
+  def validate_has_modifier_or_actual
     if actual.blank? && modifier.blank?
       errors[:modifier] << "Either 'modifier' or 'actual' must be populated"
+    end
+  end
+
+  def validate_has_required_specialization
+    #if master_skill.requires_specialization && specialization.blank?
+    if master_skill.requires_specialization && specialization.blank?
+      errors[:specialization] << "#{master_skill.name} requires specialization"
     end
   end
 end

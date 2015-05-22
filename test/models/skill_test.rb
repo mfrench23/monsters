@@ -63,4 +63,13 @@ class SkillTest < ActiveSupport::TestCase
     skill.modifier = 3
     assert_equal true, skill.validate
   end
+
+  test "cannot save a skill without required specialization" do
+    master = MasterSkill.find_by(name: "Animal Handling")
+    assert_equal true, master.requires_specialization
+    skill = FactoryGirl.build(:skill, modifier: 1, master_skill: master)
+    assert_equal false, skill.validate
+    skill.specialization = "Lions and tigers and bears"
+    assert_equal true, skill.validate
+  end
 end

@@ -84,7 +84,7 @@
   <%= render 'expanding_fieldset', f: f,
     id: "skills", collection: :skills,
     partial: 'skill_fields', label: 'add skill', header: "Skills",
-	header_list: [ :master_skill_id, :actual, :modifier ],
+	header_list: [ :master_skill_id, :specialization, :actual, :modifier ],
 	freeform: :freeform_skill_list  %>
 
   <div class="field">

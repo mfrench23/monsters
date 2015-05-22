@@ -15,5 +15,10 @@
   <%= @master_skill.notes %>
 </p>
 
+<p>
+  <strong>Requires specialization:</strong>
+  <%= @master_skill.requires_specialization %>
+</p>
+
 <%= link_to 'Edit', edit_master_skill_path(@master_skill) %> |
 <%= link_to 'Back', master_skills_path %>
