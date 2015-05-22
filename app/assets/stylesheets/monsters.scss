@@ -42,6 +42,8 @@ li.nested-header {
 }
 .trait {
   display: table-cell;
+  vertical-align: top;
+  padding: 3px;
 }
 ul.vertical-list {
   list-style-type:none; 

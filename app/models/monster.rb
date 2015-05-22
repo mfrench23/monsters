@@ -32,6 +32,9 @@ class Monster < ActiveRecord::Base
   has_many :illustrations, :as => :illustratable
   accepts_nested_attributes_for :illustrations, allow_destroy: true, :reject_if => lambda { |x| x['image'].nil? }
 
+  monetize :parts_value_cents, :allow_nil => true,
+      :numericality => { :greater_than_or_equal_to => 0 }
+
   validates :name, :monster_class_id, presence: true
   validates :freeform_skill_list, absence: true
 

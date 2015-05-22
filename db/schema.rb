@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522201656) do
+ActiveRecord::Schema.define(version: 20150522220702) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -135,17 +135,18 @@ ActiveRecord::Schema.define(version: 20150522201656) do
   add_index "monster_names", ["name"], name: "index_monster_names_on_name", using: :btree
 
   create_table "monsters", force: :cascade do |t|
-    t.string   "height",           limit: 255
-    t.string   "weight",           limit: 255
-    t.text     "gear",             limit: 65535
-    t.text     "description",      limit: 65535
-    t.text     "notes",            limit: 65535
-    t.integer  "dodge",            limit: 4
-    t.integer  "block",            limit: 4
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "monster_class_id", limit: 4
-    t.string   "name",             limit: 255
+    t.string   "height",            limit: 255
+    t.string   "weight",            limit: 255
+    t.text     "gear",              limit: 65535
+    t.text     "description",       limit: 65535
+    t.text     "notes",             limit: 65535
+    t.integer  "dodge",             limit: 4
+    t.integer  "block",             limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "monster_class_id",  limit: 4
+    t.string   "name",              limit: 255
+    t.integer  "parts_value_cents", limit: 4
   end
 
   add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree

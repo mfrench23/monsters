@@ -106,6 +106,16 @@
 	</div>
       </div>
     <% end %>
+
+    <% unless @monster.parts_value.to_s.empty? %>
+      <div style="display: table-row;">
+        <div class="field-label show trait">Parts Value</div>
+        <div class="trait">
+	  <%= money_without_cents_and_with_symbol @monster.parts_value %>/lb.
+	</div>
+      </div>
+    <% end %>
+
   </div>
 </div>
 

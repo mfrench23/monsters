@@ -1,4 +1,4 @@
-Fri, 22 May 2015 13:44:40 -0700
+Fri, 22 May 2015 15:15:01 -0700
 README.rdoc	Fri, 10 Apr 2015 16:09:32 -0700
 app/controllers/application_controller.rb	Fri, 10 Apr 2015 11:26:41 -0700
 app/controllers/books_controller.rb	Mon, 27 Apr 2015 10:06:46 -0700
@@ -23,7 +23,7 @@ app/models/illustration.rb	Sat, 16 May 2015 13:08:39 -0700
 app/models/location.rb	Fri, 10 Apr 2015 11:26:41 -0700
 app/models/master_skill.rb	Thu, 23 Apr 2015 04:53:06 -0700
 app/models/master_trait.rb	Mon, 27 Apr 2015 09:55:10 -0700
-app/models/monster.rb	Thu, 21 May 2015 14:12:24 -0700
+app/models/monster.rb	Fri, 22 May 2015 15:09:49 -0700
 app/models/monster/freeform_list.rb	Thu, 21 May 2015 15:57:08 -0700
 app/models/monster/skill_list.rb	Thu, 21 May 2015 16:02:09 -0700
 app/models/monster/trait_list.rb	Thu, 21 May 2015 16:00:13 -0700
@@ -33,7 +33,7 @@ app/models/move_type.rb	Tue, 21 Apr 2015 12:53:02 -0700
 app/models/movement_rate.rb	Tue, 21 Apr 2015 13:35:29 -0700
 app/models/page_reference.rb	Thu, 21 May 2015 16:13:28 -0700
 app/models/parry_score.rb	Wed, 22 Apr 2015 16:04:57 -0700
-app/models/skill.rb	Fri, 22 May 2015 13:42:34 -0700
+app/models/skill.rb	Fri, 22 May 2015 14:03:45 -0700
 app/models/skill/modifier.rb	Thu, 21 May 2015 16:03:03 -0700
 app/models/trait.rb	Fri, 10 Apr 2015 11:26:41 -0700
 app/services/create_monster.rb	Sat, 16 May 2015 09:02:57 -0700

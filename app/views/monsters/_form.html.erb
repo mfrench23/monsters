@@ -122,6 +122,11 @@
     partial: 'illustration_fields', label: 'add illustration', header: "Illustrations",
 	header_list: [ :image, :notes ], freeform: nil  %>
 
+  <div class="field">
+    <%= f.label :parts_value %>
+    <%= f.text_field :parts_value %> per pound
+  </div>
+
   <div class="actions" style="clear: both;">
     <%= f.submit %>
   </div>
