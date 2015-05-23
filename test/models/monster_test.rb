@@ -64,8 +64,8 @@ class MonsterTest < ActiveSupport::TestCase
 
   test "can save with freeform skill entries that aren't bogus" do
     assert_equal true, @one.validate
-    @one.freeform_skill_list = "Stealth@DX+1; Acrobatics-12; Hiking 11"
-    assert_equal true, @one.validate
+    @one.freeform_skill_list = "Stealth@DX+1; Acrobatics-12; Hiking 11; Animal Handling (Big Cats)-12"
+    assert_equal true, @one.validate, @one.errors.messages
   end
 
   test "Combat Effectiveness Rating calculation" do

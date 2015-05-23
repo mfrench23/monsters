@@ -14,12 +14,19 @@ class SkillListTest < ActiveSupport::TestCase
   end
 
   test "can translate a simple list - with modifier" do
-    list = Monster::SkillList::FreeformSkillList.new("Stealth@DX+1")
-    assert_equal "", list.text
-    assert_equal 1, list.list.count
-    skill = list.list.first
-    assert_equal 1, skill.modifier.to_i
-    assert_equal "Stealth @DX+1", skill.to_s
+    perform_freeform_test "Stealth @DX+1"
+  end
+
+  test "can translate a simple list - with TL" do
+    perform_freeform_test "Alchemy/TL3 @IQ+1"
+  end
+
+  test "can translate a simple list - with required specialization" do
+    perform_freeform_test "Animal Handling (Bears) @IQ+1"
+  end
+
+  test "can translate a simple list - with TL and specialization" do
+    perform_freeform_test "Engineer (Civil)/TL3 @IQ+1"
   end
 
   test "can translate several skills in a list" do
@@ -38,5 +45,14 @@ class SkillListTest < ActiveSupport::TestCase
     list = Monster::SkillList::FreeformSkillList.new("Ohno; Stealth@DX+1; Crapskill; Acrobatics-14")
     assert_equal 2, list.list.count
     assert_equal "Ohno; Crapskill", list.text
+  end
+  
+  def perform_freeform_test(text)
+    list = Monster::SkillList::FreeformSkillList.new(text)
+    assert_equal "", list.text
+    assert_equal 1, list.list.count
+    skill = list.list.first
+    assert_equal 1, skill.modifier.to_i
+    assert_equal text.to_s, skill.to_s
   end
 end
