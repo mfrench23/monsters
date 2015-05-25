@@ -10,19 +10,7 @@
       <th><%= sortable "name" %></th>
       <th>Aliases</th>
       <th>Class</th>
-      <th>Strength</th>
-      <th>Dexterity</th>
-      <th>Intelligence</th>
-      <th>Health</th>
-      <th>Hitpoints</th>
-      <th>Will</th>
-      <th>Perception</th>
-      <th>Fatigue</th>
-      <th>Speed</th>
-      <th>Size Modifier</th>
-      <th>OR</th>
-      <th>PR</th>
-      <th>CER</th>
+      <th>Description</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -33,19 +21,7 @@
         <td><%= link_to monster.name, monster %></td>
 	<td><%= monster.names_to_s %></td>
 	<td><%= monster.monster_class_name %></td>
-        <td><%= monster.characteristic_score "ST" %></td>
-        <td><%= monster.characteristic_score "DX" %></td>
-        <td><%= monster.characteristic_score "IQ" %></td>
-        <td><%= monster.characteristic_score "HT" %></td>
-        <td><%= monster.characteristic_score "HP" %></td>
-        <td><%= monster.characteristic_score "Will" %></td>
-        <td><%= monster.characteristic_score "Per" %></td>
-        <td><%= monster.characteristic_score "Fatigue" %></td>
-        <td><%= monster.characteristic_score "Speed" %></td>
-        <td><%= monster.characteristic_score "SM" %></td>
-        <td><%= monster.characteristic_score "OR" %></td>
-        <td><%= monster.characteristic_score "PR" %></td>
-        <td><%= monster.combat_effectiveness_rating %></td>
+        <td><%= truncate monster.description, :length => 60, :separator => /\s/, :omission => "\u2026" %></td>
         <td><%= link_to 'Edit', edit_monster_path(monster) %></td>
         <td><%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
