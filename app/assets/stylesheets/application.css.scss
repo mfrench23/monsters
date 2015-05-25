@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 td.count {
   text-align: center;
 }
@@ -23,7 +26,6 @@ footer.gurps {
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-align: center;
   font-size: 80%;
   position: fixed;
@@ -43,7 +45,7 @@ input[type="number"] {
 
 .field-label {
   float: left;
-  width: 70px;
+  min-width: 75px;
   padding-right: 5px;
 }
 
