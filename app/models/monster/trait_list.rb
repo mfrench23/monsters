@@ -3,7 +3,7 @@ module Monster::TraitList
     attr_accessor :list
 
     def initialize(value)
-      out = break_on_semicolons(value)
+      out = freeform_break(value)
       @list = out.map { |line| string_to_trait(line) }
     end
 

@@ -19,7 +19,7 @@ class Skill < ActiveRecord::Base
       at_sym = nil
       eq_sym = "-"
     end
-    master_skill.name + spec_to_s + tl_to_s + at_sym.to_s + (actval.nil? ? "" : eq_sym.to_s + actval.to_s )
+    master_skill.name + spec_to_s + tl_to_s + at_sym.to_s + (actval.nil? ? "" : eq_sym.to_s + actval.to_s ) + (notes.to_s.empty? ? "" : " (#{notes})" )
   end
 
   def actual

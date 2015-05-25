@@ -37,10 +37,18 @@ class MonsterTest < ActiveSupport::TestCase
     end
   end
 
-  test "freeform_trait_list adds to master traits - 2 traits, one with semicolons inside parens" do
+  test "freeform_trait_list adds to master traits - 2 traits, one complex, delim by comma" do
     assert_difference "MasterTrait.count", 2 do
-      @one.freeform_trait_list="Arglebargle (Dungeon; Urban; Mountain); Exceptional Arglebargle 1"
+      @one.freeform_trait_list="Arglebargle (with) 3, Further Arglebargle"
     end
+    assert_equal 3, @one.traits.first.level
+  end
+
+  test "freeform_trait_list adds to master traits - 2 traits, one with semicolons inside parens and a trailing period" do
+    assert_difference "MasterTrait.count", 2 do
+      @one.freeform_trait_list="Arglebargle (Dungeon; Urban; Mountain); Exceptional Arglebargle 1."
+    end
+    assert_equal "Arglebargle", @one.traits.first.master_trait.name
   end
   
   test "names_to_s" do

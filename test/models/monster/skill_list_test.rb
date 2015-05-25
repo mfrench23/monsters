@@ -25,6 +25,11 @@ class SkillListTest < ActiveSupport::TestCase
     perform_freeform_test "Animal Handling (Bears) @IQ+1"
   end
 
+  test "can translate a simple list - with required specialization and optional notes" do
+    skill = perform_freeform_test "Animal Handling (Bears) @IQ+1 (+1 with picnic basket)"
+    assert_equal "+1 with picnic basket", skill.notes
+  end
+
   test "can translate a simple list - with TL and specialization" do
     perform_freeform_test "Engineer (Civil)/TL3 @IQ+1"
   end
@@ -36,7 +41,7 @@ class SkillListTest < ActiveSupport::TestCase
   end
 
   test "can translate several skills in a list in various formats" do
-    list = Monster::SkillList::FreeformSkillList.new("Stealth DX+1; Acrobatics=14; Brawling   12; Blowpipe   DX+2;   Detect Lies-Per+1; Camouflage-IQ+1")
+    list = Monster::SkillList::FreeformSkillList.new("Stealth DX+1, Acrobatics=14 (conditional +2 for Being Cool); Brawling   12; Blowpipe   DX+2;   Detect Lies-Per+1; Camouflage-IQ+1")
     assert_equal "", list.text
     assert_equal 6, list.list.count
   end
@@ -54,5 +59,6 @@ class SkillListTest < ActiveSupport::TestCase
     skill = list.list.first
     assert_equal 1, skill.modifier.to_i
     assert_equal text.to_s, skill.to_s
+    skill
   end
 end

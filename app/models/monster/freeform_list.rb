@@ -1,14 +1,14 @@
 class Monster::FreeformList
-  # break on semicolons, ignoring semi's inside parenthetical phrases
-  def break_on_semicolons(value)
+  # break on semicolons or commas, ignoring either if inside parenthetical phrases
+  def freeform_break(value)
     paren = 0
     value.delete("\n").gsub(/./) do |c|
-      if c == "(" then
+      if c == "("
 	paren += 1
-      elsif c == ")" then
+      elsif c == ")"
 	paren -= 1
-      elsif c == ";" then
-	if paren == 0 then
+      elsif c == ";" || c == ","
+	if paren == 0
 	  c = "\n"
 	end
       end
