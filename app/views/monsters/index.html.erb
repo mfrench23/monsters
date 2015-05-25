@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Monsters</h1>
+<h2><%= "with names starting with '#{params[:starts_with]}'" unless params[:starts_with].to_s.empty? %></h2>
 
 <%= page_entries_info @monsters %>
 
