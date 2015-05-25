@@ -7,7 +7,7 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th><%= sortable "name" %></th>
       <th>Aliases</th>
       <th>Class</th>
       <th>Strength</th>
@@ -53,6 +53,12 @@
   </tbody>
 </table>
 
+<br>
+Filter by first letter of name:
+<% Monster.group("substr(upper(name), 1,1)").count.map do |starting_character, count| %>
+  <span style="padding-right: 5px;"><%= link_to "#{starting_character}", monsters_path(:starts_with => "#{starting_character}") %></span>
+<% end %>
+  <span style="padding-right: 5px;"><%= link_to "(All)", monsters_path %></span>
 <br>
 
 <%= paginate @monsters %>

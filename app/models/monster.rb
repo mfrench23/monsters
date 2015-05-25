@@ -1,5 +1,6 @@
 class Monster < ActiveRecord::Base
   include TraitList
+  include Filterable
 
   attr_accessor :freeform_trait_list
 
@@ -37,6 +38,8 @@ class Monster < ActiveRecord::Base
 
   validates :name, :monster_class_id, presence: true
   validates :freeform_skill_list, absence: true
+
+  scope :starts_with, -> (name) { where("upper(name) like ?", "#{name}%")}
 
   def build_out
     attacks.build

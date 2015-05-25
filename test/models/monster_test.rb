@@ -5,6 +5,16 @@ class MonsterTest < ActiveSupport::TestCase
     @one = FactoryGirl.build(:monster)
   end
 
+  test "test starts_with filter" do
+    fakename = "Obviously Fake Monster Name"
+    one = FactoryGirl.create(:monster, name: fakename)
+    testval = false;
+    Monster.filter(:starts_with => "A").map { |m| if fakename == m.name then testval = true end }
+    assert_equal false, testval
+    Monster.filter(:starts_with => "O").map { |m| if fakename == m.name then testval = true end }
+    assert_equal true, testval
+  end
+
   test "freeform_trait_list adds to master traits - one simple trait" do
     name = "Faketrait"
     assert_difference "MasterTrait.count" do
