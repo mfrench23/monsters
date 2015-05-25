@@ -23,14 +23,14 @@
       <th>OR</th>
       <th>PR</th>
       <th>CER</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @monsters.each do |monster| %>
       <tr>
-        <td><%= monster.name %></td>
+        <td><%= link_to monster.name, monster %></td>
 	<td><%= monster.names_to_s %></td>
 	<td><%= monster.monster_class_name %></td>
         <td><%= monster.characteristic_score "ST" %></td>
@@ -46,7 +46,6 @@
         <td><%= monster.characteristic_score "OR" %></td>
         <td><%= monster.characteristic_score "PR" %></td>
         <td><%= monster.combat_effectiveness_rating %></td>
-        <td><%= link_to 'Show', monster %></td>
         <td><%= link_to 'Edit', edit_monster_path(monster) %></td>
         <td><%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
