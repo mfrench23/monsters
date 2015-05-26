@@ -1,0 +1,10 @@
+<h2>Top <%= n %> <%= characteristic %> Scores</h2>
+<table style="width:95%;">
+  <tr><th>Monster</th><th>Score</th></tr>
+  <% Monster.joins("inner join characteristic_monsters on monsters.id = characteristic_monsters.monster_id inner join characteristics on characteristic_monsters.characteristic_id = characteristics.id").where("characteristics.name = '" + characteristic + "'").order("characteristic_monsters.score desc").limit(n).each do |m| %>
+    <tr>
+      <td><%= link_to m.name, m %></td>
+      <td style="text-align: center;"><%= m.characteristic_score(characteristic) %></td>
+    </tr>
+  <% end %>
+</table>

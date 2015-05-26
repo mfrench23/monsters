@@ -8,22 +8,46 @@
 	<%= pie_chart charts_monsters_by_class_path %>
       </div>
       <div class="dashboard-item">
-	<h2>Top 5 ST Scores</h2>
-	<table style="width:95%;">
-	  <tr><th>Monster</th><th>Score</th></tr>
-	  <% Monster.joins("inner join characteristic_monsters on monsters.id = characteristic_monsters.monster_id inner join characteristics on characteristic_monsters.characteristic_id = characteristics.id").where("characteristics.name = 'ST'").order("characteristic_monsters.score desc").limit(5).each do |m| %>
-	    <tr>
-	      <td><%= link_to m.name, m %></td>
-	      <td style="text-align: center;"><%= m.characteristic_score("ST") %></td>
-	    </tr>
-	  <% end %>
-	</table>
+	<%= render "top_N_characteristics", n: 5, characteristic: "ST" %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "IQ" %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "HP" %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "Per" %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "Speed" %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "OR" %>
       </div>
     </div>
     <div class="dashboard-col">
       <div class="dashboard-item">
 	<h2>Monsters by date of creation</h2>
 	<%= line_chart charts_monsters_by_creation_date_path %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "DX" %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "HT" %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "Will" %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "Fatigue" %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "SM" %>
+      </div>
+      <div class="dashboard-item">
+	<%= render "top_N_characteristics", n: 5, characteristic: "PR" %>
       </div>
     </div>
   </div>
