@@ -150,3 +150,18 @@ input[type="number"] {
   background-image: url(/images/down_arrow.gif);
 }
 
+// dashboard
+div.dashboard {
+  width: 100%;
+  display: table;
+}
+div.dashboard-col {
+  width: 50%;
+  display: table-cell;
+}
+div.dashboard-item {
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
