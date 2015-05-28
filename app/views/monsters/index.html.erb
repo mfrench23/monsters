@@ -19,12 +19,12 @@
   <tbody>
     <% @monsters.each do |monster| %>
       <tr>
-        <td><%= link_to monster.name, monster %></td>
+        <td><%= link_to monster.name, monster.specific %></td>
 	<td><%= monster.names_to_s %></td>
 	<td><%= monster.monster_class_name %></td>
         <td><%= truncate monster.description, :length => 60, :separator => /\s/, :omission => "\u2026" %></td>
-        <td><%= link_to 'Edit', edit_monster_path(monster) %></td>
-        <td><%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_polymorphic_path(monster.specific) %></td>
+        <td><%= link_to 'Destroy', monster.specific, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,4 +39,4 @@ Filter by first letter of name:
 <br>
 
 <%= paginate @monsters %>
-<%= link_to 'New Monster', new_monster_path %>
+<%= link_to 'New Creature', new_creature_path %>

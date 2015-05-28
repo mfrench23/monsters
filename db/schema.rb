@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525153643) do
+ActiveRecord::Schema.define(version: 20150527211946) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -58,17 +58,26 @@ ActiveRecord::Schema.define(version: 20150525153643) do
   add_index "characteristics", ["name"], name: "index_characteristics_on_name", unique: true, using: :btree
   add_index "characteristics", ["sequence_number"], name: "index_characteristics_on_sequence_number", unique: true, using: :btree
 
+  create_table "creatures", force: :cascade do |t|
+    t.string   "height",            limit: 255
+    t.string   "weight",            limit: 255
+    t.text     "gear",              limit: 65535
+    t.integer  "parts_value_cents", limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
   create_table "damage_resistances", force: :cascade do |t|
-    t.integer  "monster_id",  limit: 4
     t.integer  "location_id", limit: 4
     t.integer  "dr",          limit: 4
     t.text     "notes",       limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "creature_id", limit: 4
   end
 
+  add_index "damage_resistances", ["creature_id"], name: "fk_rails_4331246e6a", using: :btree
   add_index "damage_resistances", ["location_id"], name: "index_damage_resistances_on_location_id", using: :btree
-  add_index "damage_resistances", ["monster_id"], name: "index_damage_resistances_on_monster_id", using: :btree
 
   create_table "illustrations", force: :cascade do |t|
     t.integer  "illustratable_id",   limit: 4
@@ -135,18 +144,17 @@ ActiveRecord::Schema.define(version: 20150525153643) do
   add_index "monster_names", ["name"], name: "index_monster_names_on_name", using: :btree
 
   create_table "monsters", force: :cascade do |t|
-    t.string   "height",            limit: 255
-    t.string   "weight",            limit: 255
-    t.text     "gear",              limit: 65535
-    t.text     "description",       limit: 65535
-    t.text     "notes",             limit: 65535
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "monster_class_id",  limit: 4
-    t.string   "name",              limit: 255
-    t.integer  "parts_value_cents", limit: 4
+    t.text     "description",      limit: 65535
+    t.text     "notes",            limit: 65535
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "monster_class_id", limit: 4
+    t.string   "name",             limit: 255
+    t.integer  "actable_id",       limit: 4
+    t.string   "actable_type",     limit: 255
   end
 
+  add_index "monsters", ["actable_type", "actable_id"], name: "index_monsters_on_actable_type_and_actable_id", using: :btree
   add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree
   add_index "monsters", ["name"], name: "index_monsters_on_name", using: :btree
 
@@ -187,14 +195,13 @@ ActiveRecord::Schema.define(version: 20150525153643) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "monster_id_id", limit: 4
-    t.integer  "monster_id",    limit: 4
+    t.integer  "creature_id",   limit: 4
   end
 
-  add_index "parry_scores", ["monster_id"], name: "index_parry_scores_on_monster_id", using: :btree
+  add_index "parry_scores", ["creature_id"], name: "fk_rails_35c038380b", using: :btree
   add_index "parry_scores", ["monster_id_id"], name: "index_parry_scores_on_monster_id_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
-    t.integer  "monster_id",      limit: 4
     t.integer  "modifier",        limit: 4
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
@@ -202,28 +209,29 @@ ActiveRecord::Schema.define(version: 20150525153643) do
     t.string   "specialization",  limit: 255
     t.string   "tech_level",      limit: 255
     t.text     "notes",           limit: 65535
+    t.integer  "creature_id",     limit: 4
   end
 
+  add_index "skills", ["creature_id"], name: "fk_rails_e3b79040cb", using: :btree
   add_index "skills", ["master_skill_id"], name: "index_skills_on_master_skill_id", using: :btree
-  add_index "skills", ["monster_id"], name: "index_skills_on_monster_id", using: :btree
 
   create_table "traits", force: :cascade do |t|
-    t.integer  "monster_id",      limit: 4
     t.integer  "level",           limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "master_trait_id", limit: 4
+    t.integer  "creature_id",     limit: 4
   end
 
+  add_index "traits", ["creature_id"], name: "fk_rails_f9ff4d72c5", using: :btree
   add_index "traits", ["master_trait_id"], name: "index_traits_on_master_trait_id", using: :btree
-  add_index "traits", ["monster_id"], name: "index_traits_on_monster_id", using: :btree
 
   add_foreign_key "attacks", "monsters"
   add_foreign_key "characteristic_monsters", "characteristics"
   add_foreign_key "characteristic_monsters", "monsters"
+  add_foreign_key "damage_resistances", "creatures"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
-  add_foreign_key "damage_resistances", "monsters"
   add_foreign_key "master_skills", "characteristics"
   add_foreign_key "monster_names", "monsters"
   add_foreign_key "monsters", "monster_classes"
@@ -231,9 +239,9 @@ ActiveRecord::Schema.define(version: 20150525153643) do
   add_foreign_key "movement_rates", "move_types"
   add_foreign_key "page_references", "books"
   add_foreign_key "page_references", "monsters"
-  add_foreign_key "parry_scores", "monsters"
+  add_foreign_key "parry_scores", "creatures"
+  add_foreign_key "skills", "creatures"
   add_foreign_key "skills", "master_skills"
-  add_foreign_key "skills", "monsters"
+  add_foreign_key "traits", "creatures"
   add_foreign_key "traits", "master_traits"
-  add_foreign_key "traits", "monsters"
 end

@@ -1,27 +1,16 @@
 class Monster < ActiveRecord::Base
-  include TraitList
   include Filterable
 
-  attr_accessor :freeform_trait_list
-
-  before_save :convert_skills
+  actable # can be a "superclass" for MTI - gem active_record-acts_as
 
   has_many :page_references, dependent: :destroy
   accepts_nested_attributes_for :page_references, allow_destroy: true, reject_if: :all_blank
-  has_many :skills, dependent: :destroy
-  accepts_nested_attributes_for :skills, allow_destroy: true, reject_if: :all_blank
-  has_many :traits, dependent: :destroy
-  accepts_nested_attributes_for :traits, allow_destroy: true, reject_if: :all_blank
   has_many :attacks, dependent: :destroy
   accepts_nested_attributes_for :attacks, allow_destroy: true, reject_if: :all_blank
-  has_many  :damage_resistances, dependent: :destroy
-  accepts_nested_attributes_for :damage_resistances, allow_destroy: true, reject_if: :all_blank
   has_many  :movement_rates, dependent: :destroy
   accepts_nested_attributes_for :movement_rates, allow_destroy: true, reject_if: :all_blank
   has_many  :monster_names, dependent: :destroy
   accepts_nested_attributes_for :monster_names, allow_destroy: true, reject_if: :all_blank
-  has_many  :parry_scores, dependent: :destroy
-  accepts_nested_attributes_for :parry_scores, allow_destroy: true, reject_if: :all_blank
   has_many  :characteristic_monsters, dependent: :destroy
   accepts_nested_attributes_for :characteristic_monsters, allow_destroy: true, reject_if: :all_blank
 
@@ -33,38 +22,17 @@ class Monster < ActiveRecord::Base
   has_many :illustrations, :as => :illustratable
   accepts_nested_attributes_for :illustrations, allow_destroy: true, :reject_if => lambda { |x| x['image'].nil? }
 
-  monetize :parts_value_cents, :allow_nil => true,
-      :numericality => { :greater_than_or_equal_to => 0 }
-
   validates :name, :monster_class_id, presence: true
-  validates :freeform_skill_list, absence: true
 
   scope :starts_with, -> (name) { where("upper(name) like ?", "#{name}%")}
 
   def build_out
     attacks.build
     movement_rates.build
+    # TODO Only populate the appropriate list of characteristics
     Characteristic.find_each do |c|
       characteristic_monsters.build(characteristic: c, score: c.base_value)
     end
-  end
-
-  def freeform_trait_list=(value)
-    TraitList::FreeformTraitList.new(value).list.each do |trait|
-      self.traits << trait
-    end
-  end
-
-  def freeform_skill_list=(value)
-    sl = SkillList::FreeformSkillList.new(value)
-    sl.list.each do |skill|
-      self.skills << skill
-    end
-    @freeform_skill_list = sl.text
-  end
-
-  def freeform_skill_list
-    @freeform_skill_list
   end
 
   def characteristic_score(characteristic_name)
@@ -86,9 +54,24 @@ class Monster < ActiveRecord::Base
     name
   end
 
-  def convert_skills
-    skills.each do |skill|
-      skill.convert_actual_to_modifier(characteristic_score(skill.characteristic))
-    end
+  # required because cocoon uses reflect_on_association, which isn't fooled by actable
+  def build_monster_name
+    MonsterName.new
+  end
+
+  def build_movement_rate
+    MovementRate.new
+  end
+
+  def build_attack
+    Attack.new
+  end
+
+  def build_page_reference
+    PageReference.new
+  end
+
+  def build_illustration
+    Illustration.new
   end
 end

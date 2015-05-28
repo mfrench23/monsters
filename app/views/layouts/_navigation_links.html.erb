@@ -1,6 +1,9 @@
 <%# add navigation links to this file %>
   <li><%= link_to 'Monsters', monsters_path %>
-    <%= entity_links :monster %>
+    <ul>
+      <li><%= link_to 'List All Monsters', monsters_path %></li>
+      <li><%= link_to 'New Creature', new_creature_path %></li>
+    </ul>
   </li>
   <li><%= link_to 'Books', controller: 'books' %>
     <%= entity_links :book %>

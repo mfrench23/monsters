@@ -48,6 +48,9 @@ gem "paperclip", "~> 4.2"
 # Chartkick for charts
 gem "chartkick"
 
+# multiple table inheritance
+gem 'active_record-acts_as'
+
 gem "money-rails"
 
 group :development, :test do

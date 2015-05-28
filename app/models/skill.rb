@@ -1,5 +1,5 @@
 class Skill < ActiveRecord::Base
-  belongs_to :monster
+  belongs_to :creature
   belongs_to :master_skill
 
   has_one :characteristic, :through => :master_skill
@@ -11,7 +11,7 @@ class Skill < ActiveRecord::Base
   def to_s
     if(modifier)
       mod = Modifier.new(modifier)
-      actval = mod.actual( monster.try(:characteristic_score, characteristic) )
+      actval = mod.actual( creature.try(:characteristic_score, characteristic) )
       at_sym = " @" + characteristic.to_s + mod.to_s
       eq_sym = "="
     else

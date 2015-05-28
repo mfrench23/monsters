@@ -7,7 +7,7 @@
 
 <ul>
   <% @monster_class.monsters.each do |monster| %>
-    <li> <%= link_to monster.name, monster %>
+    <li> <%= link_to monster.name, monster.specific %>
   <% end %>
 </ul>
 

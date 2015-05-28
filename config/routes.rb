@@ -1,15 +1,22 @@
 Rails.application.routes.draw do
   root 'welcome#index'
+
+  # JSON data for charts
+  get 'charts/monsters_by_class'
+  get 'charts/monsters_by_creation_date'
+
+  # more complicated routing due to multiple table inheritance
+  resources :monsters, :only => [:index]
+  resources :creatures, :except => [:index]
+
+  # other resources
   resources :master_traits
   resources :master_skills
-  resources :monsters
   resources :monster_classes
   resources :books
   resources :move_types
   resources :locations
 
-  get 'charts/monsters_by_class'
-  get 'charts/monsters_by_creation_date'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

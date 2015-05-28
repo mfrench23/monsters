@@ -65,13 +65,40 @@
     <a href="ChartsController.html">ChartsController</a>
   </li>
   <li class="class">
-    <a href="CreateMonster.html">CreateMonster</a>
+    <a href="Creature.html">Creature</a>
+  </li>
+  <li class="class">
+    <a href="Creature/FreeformList.html">Creature::FreeformList</a>
+  </li>
+  <li class="module">
+    <a href="Creature/SkillList.html">Creature::SkillList</a>
+  </li>
+  <li class="class">
+    <a href="Creature/SkillList/FreeformSkillList.html">Creature::SkillList::FreeformSkillList</a>
+  </li>
+  <li class="module">
+    <a href="Creature/TraitList.html">Creature::TraitList</a>
+  </li>
+  <li class="class">
+    <a href="Creature/TraitList/FreeformTraitList.html">Creature::TraitList::FreeformTraitList</a>
+  </li>
+  <li class="class">
+    <a href="CreatureForm.html">CreatureForm</a>
+  </li>
+  <li class="class">
+    <a href="CreaturesController.html">CreaturesController</a>
   </li>
   <li class="class">
     <a href="DamageResistance.html">DamageResistance</a>
   </li>
   <li class="module">
     <a href="DamageResistancesHelper.html">DamageResistancesHelper</a>
+  </li>
+  <li class="module">
+    <a href="Filterable.html">Filterable</a>
+  </li>
+  <li class="module">
+    <a href="Filterable/ClassMethods.html">Filterable::ClassMethods</a>
   </li>
   <li class="class">
     <a href="Illustration.html">Illustration</a>
@@ -98,28 +125,10 @@
     <a href="Monster.html">Monster</a>
   </li>
   <li class="class">
-    <a href="Monster/FreeformList.html">Monster::FreeformList</a>
-  </li>
-  <li class="module">
-    <a href="Monster/SkillList.html">Monster::SkillList</a>
-  </li>
-  <li class="class">
-    <a href="Monster/SkillList/FreeformSkillList.html">Monster::SkillList::FreeformSkillList</a>
-  </li>
-  <li class="module">
-    <a href="Monster/TraitList.html">Monster::TraitList</a>
-  </li>
-  <li class="class">
-    <a href="Monster/TraitList/FreeformTraitList.html">Monster::TraitList::FreeformTraitList</a>
-  </li>
-  <li class="class">
     <a href="MonsterClass.html">MonsterClass</a>
   </li>
   <li class="class">
     <a href="MonsterClassesController.html">MonsterClassesController</a>
-  </li>
-  <li class="class">
-    <a href="MonsterForm.html">MonsterForm</a>
   </li>
   <li class="class">
     <a href="MonsterFormBuilder.html">MonsterFormBuilder</a>
@@ -155,9 +164,6 @@
     <a href="Trait.html">Trait</a>
   </li>
   <li class="class">
-    <a href="UpdateMonster.html">UpdateMonster</a>
-  </li>
-  <li class="class">
     <a href="WelcomeController.html">WelcomeController</a>
   </li>
 </ul>
@@ -166,34 +172,24 @@
 <ul>
 
   <li class="method">
-    <a href="MonsterForm.html#method-c-new">::new</a>
+    <a href="CreatureForm.html#method-c-new">::new</a>
     &mdash;
-    <span class="container">MonsterForm</span>
+    <span class="container">CreatureForm</span>
 
   <li class="method">
-    <a href="Monster/SkillList/FreeformSkillList.html#method-c-new">::new</a>
+    <a href="Creature/SkillList/FreeformSkillList.html#method-c-new">::new</a>
     &mdash;
-    <span class="container">Monster::SkillList::FreeformSkillList</span>
+    <span class="container">Creature::SkillList::FreeformSkillList</span>
 
   <li class="method">
-    <a href="Monster/TraitList/FreeformTraitList.html#method-c-new">::new</a>
+    <a href="Creature/TraitList/FreeformTraitList.html#method-c-new">::new</a>
     &mdash;
-    <span class="container">Monster::TraitList::FreeformTraitList</span>
+    <span class="container">Creature::TraitList::FreeformTraitList</span>
 
   <li class="method">
     <a href="Skill/Modifier.html#method-c-new">::new</a>
     &mdash;
     <span class="container">Skill::Modifier</span>
-
-  <li class="method">
-    <a href="CreateMonster.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">CreateMonster</span>
-
-  <li class="method">
-    <a href="UpdateMonster.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">UpdateMonster</span>
 
   <li class="method">
     <a href="MonsterName.html#method-i-3C-3D-3E">#&lt;=&gt;</a>
@@ -216,9 +212,24 @@
     <span class="container">Skill</span>
 
   <li class="method">
-    <a href="Monster/FreeformList.html#method-i-break_on_semicolons">#break_on_semicolons</a>
+    <a href="Monster.html#method-i-build_attack">#build_attack</a>
     &mdash;
-    <span class="container">Monster::FreeformList</span>
+    <span class="container">Monster</span>
+
+  <li class="method">
+    <a href="Monster.html#method-i-build_illustration">#build_illustration</a>
+    &mdash;
+    <span class="container">Monster</span>
+
+  <li class="method">
+    <a href="Monster.html#method-i-build_monster_name">#build_monster_name</a>
+    &mdash;
+    <span class="container">Monster</span>
+
+  <li class="method">
+    <a href="Monster.html#method-i-build_movement_rate">#build_movement_rate</a>
+    &mdash;
+    <span class="container">Monster</span>
 
   <li class="method">
     <a href="Monster.html#method-i-build_out">#build_out</a>
@@ -226,17 +237,17 @@
     <span class="container">Monster</span>
 
   <li class="method">
-    <a href="CreateMonster.html#method-i-call">#call</a>
+    <a href="Monster.html#method-i-build_page_reference">#build_page_reference</a>
     &mdash;
-    <span class="container">CreateMonster</span>
-
-  <li class="method">
-    <a href="UpdateMonster.html#method-i-call">#call</a>
-    &mdash;
-    <span class="container">UpdateMonster</span>
+    <span class="container">Monster</span>
 
   <li class="method">
     <a href="Monster.html#method-i-characteristic_score">#characteristic_score</a>
+    &mdash;
+    <span class="container">Monster</span>
+
+  <li class="method">
+    <a href="Monster.html#method-i-combat_effectiveness_rating">#combat_effectiveness_rating</a>
     &mdash;
     <span class="container">Monster</span>
 
@@ -246,14 +257,19 @@
     <span class="container">Skill</span>
 
   <li class="method">
-    <a href="Monster.html#method-i-convert_skills">#convert_skills</a>
+    <a href="Creature.html#method-i-convert_skills">#convert_skills</a>
     &mdash;
-    <span class="container">Monster</span>
+    <span class="container">Creature</span>
 
   <li class="method">
     <a href="BooksController.html#method-i-create">#create</a>
     &mdash;
     <span class="container">BooksController</span>
+
+  <li class="method">
+    <a href="CreaturesController.html#method-i-create">#create</a>
+    &mdash;
+    <span class="container">CreaturesController</span>
 
   <li class="method">
     <a href="LocationsController.html#method-i-create">#create</a>
@@ -276,11 +292,6 @@
     <span class="container">MonsterClassesController</span>
 
   <li class="method">
-    <a href="MonstersController.html#method-i-create">#create</a>
-    &mdash;
-    <span class="container">MonstersController</span>
-
-  <li class="method">
     <a href="MoveTypesController.html#method-i-create">#create</a>
     &mdash;
     <span class="container">MoveTypesController</span>
@@ -289,6 +300,11 @@
     <a href="BooksController.html#method-i-destroy">#destroy</a>
     &mdash;
     <span class="container">BooksController</span>
+
+  <li class="method">
+    <a href="CreaturesController.html#method-i-destroy">#destroy</a>
+    &mdash;
+    <span class="container">CreaturesController</span>
 
   <li class="method">
     <a href="LocationsController.html#method-i-destroy">#destroy</a>
@@ -311,11 +327,6 @@
     <span class="container">MonsterClassesController</span>
 
   <li class="method">
-    <a href="MonstersController.html#method-i-destroy">#destroy</a>
-    &mdash;
-    <span class="container">MonstersController</span>
-
-  <li class="method">
     <a href="MoveTypesController.html#method-i-destroy">#destroy</a>
     &mdash;
     <span class="container">MoveTypesController</span>
@@ -324,6 +335,11 @@
     <a href="BooksController.html#method-i-edit">#edit</a>
     &mdash;
     <span class="container">BooksController</span>
+
+  <li class="method">
+    <a href="CreaturesController.html#method-i-edit">#edit</a>
+    &mdash;
+    <span class="container">CreaturesController</span>
 
   <li class="method">
     <a href="LocationsController.html#method-i-edit">#edit</a>
@@ -346,11 +362,6 @@
     <span class="container">MonsterClassesController</span>
 
   <li class="method">
-    <a href="MonstersController.html#method-i-edit">#edit</a>
-    &mdash;
-    <span class="container">MonstersController</span>
-
-  <li class="method">
     <a href="MoveTypesController.html#method-i-edit">#edit</a>
     &mdash;
     <span class="container">MoveTypesController</span>
@@ -361,19 +372,29 @@
     <span class="container">ApplicationHelper</span>
 
   <li class="method">
-    <a href="Monster.html#method-i-freeform_skill_list">#freeform_skill_list</a>
+    <a href="Filterable/ClassMethods.html#method-i-filter">#filter</a>
     &mdash;
-    <span class="container">Monster</span>
+    <span class="container">Filterable::ClassMethods</span>
 
   <li class="method">
-    <a href="Monster.html#method-i-freeform_skill_list-3D">#freeform_skill_list=</a>
+    <a href="Creature/FreeformList.html#method-i-freeform_break">#freeform_break</a>
     &mdash;
-    <span class="container">Monster</span>
+    <span class="container">Creature::FreeformList</span>
 
   <li class="method">
-    <a href="Monster.html#method-i-freeform_trait_list-3D">#freeform_trait_list=</a>
+    <a href="Creature.html#method-i-freeform_skill_list">#freeform_skill_list</a>
     &mdash;
-    <span class="container">Monster</span>
+    <span class="container">Creature</span>
+
+  <li class="method">
+    <a href="Creature.html#method-i-freeform_skill_list-3D">#freeform_skill_list=</a>
+    &mdash;
+    <span class="container">Creature</span>
+
+  <li class="method">
+    <a href="Creature.html#method-i-freeform_trait_list-3D">#freeform_trait_list=</a>
+    &mdash;
+    <span class="container">Creature</span>
 
   <li class="method">
     <a href="BooksController.html#method-i-index">#index</a>
@@ -441,6 +462,11 @@
     <span class="container">BooksController</span>
 
   <li class="method">
+    <a href="CreaturesController.html#method-i-new">#new</a>
+    &mdash;
+    <span class="container">CreaturesController</span>
+
+  <li class="method">
     <a href="LocationsController.html#method-i-new">#new</a>
     &mdash;
     <span class="container">LocationsController</span>
@@ -461,11 +487,6 @@
     <span class="container">MonsterClassesController</span>
 
   <li class="method">
-    <a href="MonstersController.html#method-i-new">#new</a>
-    &mdash;
-    <span class="container">MonstersController</span>
-
-  <li class="method">
     <a href="MoveTypesController.html#method-i-new">#new</a>
     &mdash;
     <span class="container">MoveTypesController</span>
@@ -479,6 +500,11 @@
     <a href="BooksController.html#method-i-show">#show</a>
     &mdash;
     <span class="container">BooksController</span>
+
+  <li class="method">
+    <a href="CreaturesController.html#method-i-show">#show</a>
+    &mdash;
+    <span class="container">CreaturesController</span>
 
   <li class="method">
     <a href="LocationsController.html#method-i-show">#show</a>
@@ -501,11 +527,6 @@
     <span class="container">MonsterClassesController</span>
 
   <li class="method">
-    <a href="MonstersController.html#method-i-show">#show</a>
-    &mdash;
-    <span class="container">MonstersController</span>
-
-  <li class="method">
     <a href="MoveTypesController.html#method-i-show">#show</a>
     &mdash;
     <span class="container">MoveTypesController</span>
@@ -514,6 +535,11 @@
     <a href="DamageResistancesHelper.html#method-i-simpleDR">#simpleDR</a>
     &mdash;
     <span class="container">DamageResistancesHelper</span>
+
+  <li class="method">
+    <a href="MonstersController.html#method-i-sortable">#sortable</a>
+    &mdash;
+    <span class="container">MonstersController</span>
 
   <li class="method">
     <a href="Book.html#method-i-to_reference_s">#to_reference_s</a>
@@ -566,6 +592,11 @@
     <span class="container">BooksController</span>
 
   <li class="method">
+    <a href="CreaturesController.html#method-i-update">#update</a>
+    &mdash;
+    <span class="container">CreaturesController</span>
+
+  <li class="method">
     <a href="LocationsController.html#method-i-update">#update</a>
     &mdash;
     <span class="container">LocationsController</span>
@@ -584,11 +615,6 @@
     <a href="MonsterClassesController.html#method-i-update">#update</a>
     &mdash;
     <span class="container">MonsterClassesController</span>
-
-  <li class="method">
-    <a href="MonstersController.html#method-i-update">#update</a>
-    &mdash;
-    <span class="container">MonstersController</span>
 
   <li class="method">
     <a href="MoveTypesController.html#method-i-update">#update</a>

@@ -3,7 +3,7 @@ require 'test_helper'
 class SkillTest < ActiveSupport::TestCase
   setup do
     @one = FactoryGirl.build(:skill)
-    @monster = FactoryGirl.build(:monster)
+    @creature = FactoryGirl.build(:creature)
   end
 
   test "prints correctly" do
@@ -35,27 +35,27 @@ class SkillTest < ActiveSupport::TestCase
   
   test "modifier can modify a monster" do
     assert_equal "Stealth @DX+1", @one.to_s
-    @one.monster = @monster
+    @one.creature = @creature
     assert_equal "Stealth @DX+1=11", @one.to_s
   end
 
   test "can save monster with a skill with modifier" do
     skill_no_act = FactoryGirl.build(:skill, modifier: 4, actual: nil)
     assert_equal "Stealth @DX+4", skill_no_act.to_s
-    @monster.skills << skill_no_act
-    assert_equal true, @monster.save
-    assert_equal 1, @monster.skills.count
-    sk = @monster.skills.first
+    @creature.skills << skill_no_act
+    assert_equal true, @creature.save
+    assert_equal 1, @creature.skills.count
+    sk = @creature.skills.first
     assert_equal "Stealth @DX+4=14", sk.to_s
   end
 
   test "can save a skill with actual, no modifier, and get back a modifier value" do
     skill_no_mod = FactoryGirl.build(:skill, modifier: nil, actual: 14)
     assert_equal "Stealth-14", skill_no_mod.to_s
-    assert_equal 0, @monster.skills.count
-    @monster.skills << skill_no_mod
-    assert_equal true, @monster.save
-    sk = @monster.skills.first
+    assert_equal 0, @creature.skills.count
+    @creature.skills << skill_no_mod
+    assert_equal true, @creature.save
+    sk = @creature.skills.first
     assert_equal "Stealth @DX+4=14", sk.to_s
   end
 
@@ -64,7 +64,7 @@ class SkillTest < ActiveSupport::TestCase
     assert_nil skill.modifier
     assert_nil skill.actual
     assert_equal false, skill.validate
-    @monster.skills << skill
+    @creature.skills << skill
     assert_equal false, skill.validate
     skill.actual = 12
     assert_equal true, skill.validate

@@ -70,19 +70,9 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-create">#create</a>
-    
-    <li ><a href="#method-i-destroy">#destroy</a>
-    
-    <li ><a href="#method-i-edit">#edit</a>
-    
     <li ><a href="#method-i-index">#index</a>
     
-    <li ><a href="#method-i-new">#new</a>
-    
-    <li ><a href="#method-i-show">#show</a>
-    
-    <li ><a href="#method-i-update">#update</a>
+    <li ><a href="#method-i-sortable">#sortable</a>
     
   </ul>
 </div>
@@ -118,120 +108,6 @@
        </header>
 
     
-      <div id="method-i-create" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">create</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>POST /monsters POST /monsters.json</p>
-          
-          
-
-          
-          <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 27</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-identifier">form</span> = <span class="ruby-constant">MonsterForm</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
-  <span class="ruby-identifier">service</span> = <span class="ruby-constant">CreateMonster</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">form</span>)
-  <span class="ruby-ivar">@monster</span> = <span class="ruby-identifier">service</span>.<span class="ruby-identifier">call</span>
-
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">size</span>() <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@monster</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Monster was successfully created.&#39;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@monster</span> }
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-destroy" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">destroy</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>DELETE /monsters/1 DELETE /monsters/1.json</p>
-          
-          
-
-          
-          <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 62</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">destroy</span>
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">monsters_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Monster was successfully destroyed.&#39;</span> }
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-edit" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">edit</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>GET /monsters/1/edit</p>
-          
-          
-
-          
-          <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 22</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
       <div id="method-i-index" class="method-detail ">
         
         <div class="method-heading">
@@ -253,7 +129,7 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@monsters</span> = <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>).<span class="ruby-identifier">includes</span>(<span class="ruby-value">:monster_names</span>, <span class="ruby-value">:monster_class</span>, <span class="ruby-identifier">characteristic_monsters</span><span class="ruby-operator">:</span> [<span class="ruby-value">:characteristic</span>] ).<span class="ruby-identifier">page</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]
+  <span class="ruby-ivar">@monsters</span> = <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">filter</span>(<span class="ruby-identifier">params</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">:starts_with</span>)).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">sort_param</span>).<span class="ruby-identifier">includes</span>(<span class="ruby-value">:monster_names</span>, <span class="ruby-value">:monster_class</span>, <span class="ruby-identifier">characteristic_monsters</span><span class="ruby-operator">:</span> [<span class="ruby-value">:characteristic</span>] ).<span class="ruby-identifier">page</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -265,11 +141,11 @@
       </div>
 
     
-      <div id="method-i-new" class="method-detail ">
+      <div id="method-i-sortable" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">()</span>
+          <span class="method-name">sortable</span><span
+            class="method-args">(column, title = nil)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -278,92 +154,18 @@
 
         <div class="method-description">
           
-          <p>GET /monsters/new</p>
           
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@monster</span> = <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">build_out</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-show" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">show</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>GET /monsters/1 GET /monsters/1.json</p>
           
           
 
           
-          <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 12</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-update" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">update</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>PATCH/PUT /monsters/1 PATCH/PUT /monsters/1.json</p>
-          
-          
-
-          
-          <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 45</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
-  <span class="ruby-identifier">form</span> = <span class="ruby-constant">MonsterForm</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
-  <span class="ruby-identifier">service</span> = <span class="ruby-constant">UpdateMonster</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>], <span class="ruby-identifier">form</span>)
-  <span class="ruby-ivar">@monster</span> = <span class="ruby-identifier">service</span>.<span class="ruby-identifier">call</span>
-  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">size</span>() <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@monster</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Monster was successfully updated.&#39;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@monster</span> }
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@monster</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
+          <div class="method-source-code" id="sortable-source">
+            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sortable</span>(<span class="ruby-identifier">column</span>, <span class="ruby-identifier">title</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">title</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">titleize</span>
+  <span class="ruby-identifier">css_class</span> = <span class="ruby-identifier">column</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">sort_column</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;current #{sort_direction}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">direction</span> = <span class="ruby-identifier">column</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">sort_column</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">sort_direction</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;asc&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;desc&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;asc&quot;</span>
+  <span class="ruby-identifier">view_context</span>.<span class="ruby-identifier">link_to</span> <span class="ruby-identifier">title</span>, {<span class="ruby-value">:sort</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">column</span>, <span class="ruby-value">:direction</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">direction</span>}, {<span class="ruby-value">:class</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">css_class</span>}
 <span class="ruby-keyword">end</span></pre>
           </div>
           

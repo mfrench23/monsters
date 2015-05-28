@@ -17,7 +17,7 @@
 
 <ul>
 <% @master_trait.traits.each do |trait| %>
-  <li><%= link_to trait.monster.to_s, trait.monster %>
+  <li><%= link_to trait.creature.name.to_s, trait.creature %>
 <% end %>
 </ul>
 
