@@ -1,5 +1,6 @@
 class Characteristic < ActiveRecord::Base
   has_many  :characteristic_monsters, dependent: :destroy
+  has_many  :characteristic_lists, dependent: :destroy
 
   def to_s
     name

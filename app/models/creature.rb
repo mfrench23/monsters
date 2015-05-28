@@ -21,15 +21,6 @@ class Creature < ActiveRecord::Base
 
   validates :freeform_skill_list, absence: true
 
-  def initialize(params={})
-    super(params)
-    if ! characteristic_monsters.try(:any?)
-      Characteristic.find_each do |c|
-	characteristic_monsters.build(characteristic: c, score: c.base_value)
-      end
-    end
-  end
-
   def freeform_trait_list=(value)
     TraitList::FreeformTraitList.new(value).list.each do |trait|
       self.traits << trait

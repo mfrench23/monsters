@@ -1,7 +1,7 @@
   <div class="field">
     <span class="field-label"><%= header %></span>
     <fieldset id=<%= id %> class="expanding-fieldset-container">
-      <% if not freeform.to_s.empty? %>
+      <% if not freeform.blank? %>
 	<div class="field">
 	  <%= f.label freeform %>
 	  <%= f.text_area freeform %>

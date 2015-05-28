@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527211946) do
+ActiveRecord::Schema.define(version: 20150528161730) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 20150527211946) do
   end
 
   add_index "books", ["name"], name: "index_books_on_name", unique: true, using: :btree
+
+  create_table "characteristic_lists", force: :cascade do |t|
+    t.integer  "characteristic_id",    limit: 4
+    t.string   "monster_actable_type", limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  add_index "characteristic_lists", ["characteristic_id"], name: "index_characteristic_lists_on_characteristic_id", using: :btree
 
   create_table "characteristic_monsters", force: :cascade do |t|
     t.integer  "characteristic_id", limit: 4
@@ -215,6 +224,12 @@ ActiveRecord::Schema.define(version: 20150527211946) do
   add_index "skills", ["creature_id"], name: "fk_rails_e3b79040cb", using: :btree
   add_index "skills", ["master_skill_id"], name: "index_skills_on_master_skill_id", using: :btree
 
+  create_table "swarms", force: :cascade do |t|
+    t.text     "number_description", limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
   create_table "traits", force: :cascade do |t|
     t.integer  "level",           limit: 4
     t.datetime "created_at",                null: false
@@ -227,6 +242,7 @@ ActiveRecord::Schema.define(version: 20150527211946) do
   add_index "traits", ["master_trait_id"], name: "index_traits_on_master_trait_id", using: :btree
 
   add_foreign_key "attacks", "monsters"
+  add_foreign_key "characteristic_lists", "characteristics"
   add_foreign_key "characteristic_monsters", "characteristics"
   add_foreign_key "characteristic_monsters", "monsters"
   add_foreign_key "damage_resistances", "creatures"

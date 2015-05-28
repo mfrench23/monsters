@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # more complicated routing due to multiple table inheritance
   resources :monsters, :only => [:index]
   resources :creatures, :except => [:index]
+  resources :swarms, :except => [:index]
 
   # other resources
   resources :master_traits

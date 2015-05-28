@@ -1,8 +1,6 @@
 class MonstersController < ApplicationController
   helper_method :sortable
 
-  # GET /monsters
-  # GET /monsters.json
   def index
     @monsters = Monster.filter(params.slice(:starts_with)).order(sort_param).includes(:monster_names, :monster_class, characteristic_monsters: [:characteristic] ).page params[:page]
   end

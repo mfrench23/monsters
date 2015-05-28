@@ -1,0 +1,71 @@
+<%= form_for swarm, :html => { :multipart => true } do |f| %>
+  <% if swarm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(swarm.errors.count, "error") %> prohibited this monster from being saved:</h2>
+
+      <ul>
+      <% swarm.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <%= render 'expanding_fieldset', f: f,
+    id: "monster-names", collection: :monster_names,
+    partial: 'monster_name_fields', label: 'add alias', header: "Aliases",
+	header_list: [ :name, :notes ], freeform: nil  %>
+
+  <div class="field">
+    <%= f.label :monster_class_id %>
+    <%= f.collection_select :monster_class_id, MonsterClass.order(:name), :id, :name %>
+  </div>
+
+  <div class="threecolumblock">
+    <div class="threecol1">
+      <% charSet = [swarm.characteristic_monster("HT")]  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <% charSet = [swarm.characteristic_monster("HP")]  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+    </div>
+    <div class="threecol3">
+      <%= render 'expanding_fieldset', f: f,
+	id: "movement-rates", collection: :movement_rates,
+	partial: 'movement_rate_fields', label: 'add move', header: "Move",
+	header_list: [ :move_type_id, :rate, :enhanced_rate ], freeform: nil %>
+
+    </div>
+  </div>
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "attacks", collection: :attacks,
+    partial: 'attack_fields', label: 'add attack', header: "Attacks",
+	header_list: [ :name, :skill, :description ], freeform: nil  %>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_area :notes %>
+  </div>
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "page-references", collection: :page_references,
+    partial: 'page_reference_fields', label: 'add page reference', header: "Sources",
+	header_list: [ :book_id, :pages ], freeform: nil  %>
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "illustrations", collection: :illustrations,
+    partial: 'illustration_fields', label: 'add illustration', header: "Illustrations",
+	header_list: [ :image, :notes ], freeform: nil  %>
+
+  <div class="actions" style="clear: both;">
+    <%= f.submit %>
+  </div>
+<% end %>

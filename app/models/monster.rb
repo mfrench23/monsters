@@ -4,15 +4,15 @@ class Monster < ActiveRecord::Base
   actable # can be a "superclass" for MTI - gem active_record-acts_as
 
   has_many :page_references, dependent: :destroy
-  accepts_nested_attributes_for :page_references, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :page_references, allow_destroy: true, :reject_if => lambda { |x| x['book_id'].blank? && x['pages'].blank? }
   has_many :attacks, dependent: :destroy
-  accepts_nested_attributes_for :attacks, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :attacks, allow_destroy: true, :reject_if => lambda { |x| x['name'].blank? && x['skill'].blank? && x['description'].blank? }
   has_many  :movement_rates, dependent: :destroy
-  accepts_nested_attributes_for :movement_rates, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :movement_rates, allow_destroy: true, :reject_if => lambda { |x| x['rate'].blank? && x['move_type_id'].blank? }
   has_many  :monster_names, dependent: :destroy
-  accepts_nested_attributes_for :monster_names, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :monster_names, allow_destroy: true, :reject_if => lambda { |x| x['name'].blank? }
   has_many  :characteristic_monsters, dependent: :destroy
-  accepts_nested_attributes_for :characteristic_monsters, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :characteristic_monsters, allow_destroy: true, :reject_if => lambda { |x| x['characteristic_id'].blank? }
 
   has_many :characteristics, :through => :characteristic_monsters
 
@@ -26,14 +26,12 @@ class Monster < ActiveRecord::Base
 
   scope :starts_with, -> (name) { where("upper(name) like ?", "#{name}%")}
 
-  def initialize(params={})
-    super(params)
-    attacks.build unless attacks.try(:any?)
-    movement_rates.build unless movement_rates.try(:any?)
+  def characteristic_monster(characteristic_name)
+    characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.try(:first) || generate_characteristic_monster(characteristic_name)
   end
 
   def characteristic_score(characteristic_name)
-    self.characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.first.try { |x| x.characteristic.normalize(x.score) }
+    characteristic_monster(characteristic_name).try { |x| x.characteristic.normalize(x.score) }
   end
 
   def combat_effectiveness_rating
@@ -70,5 +68,13 @@ class Monster < ActiveRecord::Base
 
   def build_illustration
     Illustration.new
+  end
+
+  private
+
+  def generate_characteristic_monster(characteristic_name)
+    #ch = Characteristic.find_by(name: characteristic_name.to_s)
+    ch = CharacteristicList.characteristics_for(actable_type).select {|c| characteristic_name.to_s == c.name }.first
+    CharacteristicMonster.new(:characteristic => ch, :monster => self, :score => ch.base_value) unless ch.nil?
   end
 end

@@ -4,6 +4,6 @@ class Book < ActiveRecord::Base
   validates :name, presence: true
 
   def to_reference_s
-    abbreviation.to_s.empty? ? name : abbreviation
+    abbreviation.blank? ? name : abbreviation
   end
 end

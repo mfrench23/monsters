@@ -41,12 +41,12 @@ module Creature::SkillList
     def generate_skill(raw_txt, master_skill_name, characteristic, modifier_value, actual_value, specialization, tech_level, notes)
       master_skill = MasterSkill.find_by(name: master_skill_name)
       if ! master_skill.nil?
-	if (! characteristic.to_s.empty?) && (! modifier_value.to_s.empty?) && master_skill.characteristic.to_s == characteristic
+	if (! characteristic.blank?) && (! modifier_value.blank?) && master_skill.characteristic.to_s == characteristic
 	  @list << Skill.new(:master_skill => master_skill, :modifier => modifier_value,
 	                     :tech_level => tech_level,
 	                     :specialization => specialization, :notes => notes)
 	  raw_txt = nil
-	elsif (! actual_value.to_s.empty?)
+	elsif (! actual_value.blank?)
 	  @list << Skill.new(:master_skill => master_skill, :actual => actual_value,
 	                     :tech_level => tech_level,
 	                     :specialization => specialization, :notes => notes)

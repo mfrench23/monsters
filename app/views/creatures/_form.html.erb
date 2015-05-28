@@ -27,15 +27,31 @@
 
   <div class="threecolumblock">
     <div class="threecol1">
-      <% charSet = creature.characteristic_monsters.select { |x| x.characteristic.name =~ /ST|DX|IQ|HT|Dodge/ }  %>
+      <% charSet = [creature.characteristic_monster("ST")]  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <% charSet = [creature.characteristic_monster("DX")]  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <% charSet = [creature.characteristic_monster("IQ")]  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <% charSet = [creature.characteristic_monster("HT")]  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <% charSet = [creature.characteristic_monster("Dodge")]  %>
       <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
     </div>
     <div class="threecol2">
-      <% charSet = creature.characteristic_monsters.select { |x| x.characteristic.name =~ /HP|Will|Per|Fatigue|Block/ }  %>
+      <% charSet = [creature.characteristic_monster("HP")]  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <% charSet = [creature.characteristic_monster("Will")]  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <% charSet = [creature.characteristic_monster("Per")]  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <% charSet = [creature.characteristic_monster("Fatigue")]  %>
+      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+      <% charSet = [creature.characteristic_monster("Block")]  %>
       <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
     </div>
     <div class="threecol3">
-      <% charSet = creature.characteristic_monsters.select { |x| x.characteristic.name =~ /Speed/ }  %>
+      <% charSet = [creature.characteristic_monster("Speed")]  %>
       <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
 
       <%= render 'expanding_fieldset', f: f,
@@ -45,8 +61,8 @@
 
       <div class="threecolumblock">
         <div class="threecol1">
-	  <% charSet = creature.characteristic_monsters.select { |x| x.characteristic.name =~ /SM/ }  %>
-          <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+	  <% charSet = [creature.characteristic_monster("SM")]  %>
+	  <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
 	</div>
 	<div class="threecol2">
 	  <div class="field">
@@ -62,7 +78,7 @@
 	</div>
       </div>
         <%= render 'expanding_fieldset', f: f,
-	  id: "parry-scores", collection: :parry_scores,
+	  id: "/creatures/parry-scores", collection: :parry_scores,
 	  partial: 'parry_score_fields', label: 'add Parry', header: "Parry",
 	      header_list: [ :weapon, :parry ], freeform: nil  %>
     </div>
@@ -70,7 +86,7 @@
 
   <%= render 'expanding_fieldset', f: f,
     id: "damage-resistances", collection: :damage_resistances,
-    partial: 'damage_resistance_fields', label: 'add DR', header: "DR",
+    partial: '/creatures/damage_resistance_fields', label: 'add DR', header: "DR",
 	header_list: [ :location, :dr, :notes ], freeform: nil  %>
 
   <%= render 'expanding_fieldset', f: f,
@@ -80,13 +96,13 @@
 
   <%= render 'expanding_fieldset', f: f,
     id: "traits", collection: :traits,
-    partial: 'trait_fields', label: 'add trait', header: "Traits",
+    partial: '/creatures/trait_fields', label: 'add trait', header: "Traits",
 	header_list: [ :master_trait_id, :level ],
 	freeform: :freeform_trait_list %>
 
   <%= render 'expanding_fieldset', f: f,
     id: "skills", collection: :skills,
-    partial: 'skill_fields', label: 'add skill', header: "Skills",
+    partial: '/creatures/skill_fields', label: 'add skill', header: "Skills",
 	header_list: [ :master_skill_id, :specialization, :tech_level, :actual, :modifier, :notes ],
 	freeform: :freeform_skill_list  %>
 
@@ -119,7 +135,9 @@
     <%= f.text_field :parts_value %> per pound
   </div>
 
-  <% charSet = creature.characteristic_monsters.select { |x| x.characteristic.name =~ /OR|PR/ }  %>
+  <% charSet = [creature.characteristic_monster("OR")]  %>
+  <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+  <% charSet = [creature.characteristic_monster("PR")]  %>
   <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
 
   <div class="actions" style="clear: both;">

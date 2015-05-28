@@ -17,7 +17,7 @@
 	  <%= parry.weapon %> <%= parry.parry %> <br>
 	<% end %>
       <br>
-      <% if ! (monster.characteristic_score "Dodge").to_s.empty? %>
+      <% if ! (monster.characteristic_score "Dodge").blank? %>
 	<span class="field-label show">Block</span> <%= monster.characteristic_score "Block" %>
       <% end %>
     </div>
@@ -33,10 +33,10 @@
     <div>
       <span class="field-label show">SM</span> <%= monster.characteristic_score "SM" %>
       &nbsp;&nbsp;&nbsp;
-      <% unless monster.height.to_s.empty? %>
+      <% unless monster.height.blank? %>
 	Height <%= monster.height %>
       <% end %>
-      <% unless monster.weight.to_s.empty? %>
+      <% unless monster.weight.blank? %>
 	Weight <%= monster.weight %>
       <% end %>
     </div>

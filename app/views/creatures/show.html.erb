@@ -27,7 +27,7 @@
     </div>
   <% end %>
 
-  <% unless @creature.description.to_s.empty? %>
+  <% unless @creature.description.blank? %>
     <div>
       <span class="field-label show">Description</span>
       <%=simple_format @creature.description %>
@@ -48,7 +48,7 @@
 		<li class="attack-line">
 		  <span class="attack-label">
 		    <%= attack.name %>
-		    <% unless attack.skill.to_s.empty? %>
+		    <% if attack.skill? %>
 		      (<%= attack.skill %>)
 		    <% end %>
 		  </span>
@@ -78,7 +78,7 @@
       </div>
     <% end %>
 
-    <% unless @creature.gear.to_s.empty? %>
+    <% if @creature.gear? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Gear</div>
         <div class="trait">
@@ -87,7 +87,7 @@
       </div>
     <% end %>
 
-    <% unless @creature.notes.to_s.empty? %>
+    <% unless @creature.notes.blank? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Notes</div>
         <div class="trait">
@@ -107,7 +107,7 @@
       </div>
     <% end %>
 
-    <% unless @creature.parts_value.to_s.empty? %>
+    <% unless @creature.parts_value.blank? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Parts Value</div>
         <div class="trait">
@@ -116,7 +116,7 @@
       </div>
     <% end %>
 
-    <% unless (@creature.characteristic_score "OR").to_s.empty? && (@creature.characteristic_score "PR").to_s.empty? %>
+    <% unless (@creature.characteristic_score "OR").blank? && (@creature.characteristic_score "PR").blank? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Threat Ratings</div>
         <div class="trait">

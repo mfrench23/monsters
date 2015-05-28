@@ -6,6 +6,8 @@ class CreaturesController < ApplicationController
 
   def new
     @creature = Creature.new
+    @creature.movement_rates.build
+    @creature.attacks.build
   end
 
   def edit

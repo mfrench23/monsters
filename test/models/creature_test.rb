@@ -11,11 +11,11 @@ class CreatureTest < ActiveSupport::TestCase
       @one.freeform_trait_list = name
     end
     mt = MasterTrait.find_by(:name => name)
-    assert_equal false, mt.name.to_s.empty?
-    assert_equal true, mt.notes.to_s.empty?
+    assert_equal false, mt.name.blank?
+    assert_equal true, mt.notes.blank?
     trait = @one.traits.first
     assert_equal mt, trait.master_trait
-    assert_equal true, trait.level.to_s.empty?
+    assert_equal true, trait.level.blank?
   end
 
   test "freeform_trait_list adds to master traits - one trait with level and notes" do
@@ -24,7 +24,7 @@ class CreatureTest < ActiveSupport::TestCase
       @one.freeform_trait_list = name
     end
     mt = MasterTrait.find_by(:name => "Bogotrait")
-    assert_equal false, mt.name.to_s.empty?
+    assert_equal false, mt.name.blank?
     assert_equal "Disintegration", mt.notes
     trait = @one.traits.first
     assert_equal mt, trait.master_trait
@@ -61,5 +61,12 @@ class CreatureTest < ActiveSupport::TestCase
     assert_equal true, @one.validate
     @one.freeform_skill_list = "Stealth@DX+1; Acrobatics-12; Hiking 11; Animal Handling (Big Cats)-12"
     assert_equal true, @one.validate, @one.errors.messages
+  end
+
+  test "new creature starts with basic characteristics" do
+    m = Creature.new
+    assert_not_nil m.characteristic_monster("DX")
+    assert_nil m.characteristic_monster("Fake Characteristic")
+    assert_equal 10, m.characteristic_score("DX")
   end
 end

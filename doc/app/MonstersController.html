@@ -121,13 +121,13 @@
 
         <div class="method-description">
           
-          <p>GET /monsters GET /monsters.json</p>
+          
           
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@monsters</span> = <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">filter</span>(<span class="ruby-identifier">params</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">:starts_with</span>)).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">sort_param</span>).<span class="ruby-identifier">includes</span>(<span class="ruby-value">:monster_names</span>, <span class="ruby-value">:monster_class</span>, <span class="ruby-identifier">characteristic_monsters</span><span class="ruby-operator">:</span> [<span class="ruby-value">:characteristic</span>] ).<span class="ruby-identifier">page</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -160,7 +160,7 @@
 
           
           <div class="method-source-code" id="sortable-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">sortable</span>(<span class="ruby-identifier">column</span>, <span class="ruby-identifier">title</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">title</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">titleize</span>
   <span class="ruby-identifier">css_class</span> = <span class="ruby-identifier">column</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">sort_column</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;current #{sort_direction}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>

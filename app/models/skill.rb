@@ -19,7 +19,7 @@ class Skill < ActiveRecord::Base
       at_sym = nil
       eq_sym = "-"
     end
-    master_skill.name + spec_to_s + tl_to_s + at_sym.to_s + (actval.nil? ? "" : eq_sym.to_s + actval.to_s ) + (notes.to_s.empty? ? "" : " (#{notes})" )
+    master_skill.name + spec_to_s + tl_to_s + at_sym.to_s + (actval.nil? ? "" : eq_sym.to_s + actval.to_s ) + (notes.blank? ? "" : " (#{notes})" )
   end
 
   def actual
@@ -41,11 +41,11 @@ class Skill < ActiveRecord::Base
   end
 
   def spec_to_s
-    (specialization.to_s.empty? ? nil : " (" + specialization + ")").to_s
+    (specialization.blank? ? nil : " (" + specialization + ")").to_s
   end
 
   def tl_to_s
-    ( tech_level.to_s.empty? ? nil : "/TL#{tech_level}" ).to_s
+    ( tech_level.blank? ? nil : "/TL#{tech_level}" ).to_s
   end
 
   def validate_has_modifier_or_actual
