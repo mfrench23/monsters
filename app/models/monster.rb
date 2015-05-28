@@ -26,13 +26,10 @@ class Monster < ActiveRecord::Base
 
   scope :starts_with, -> (name) { where("upper(name) like ?", "#{name}%")}
 
-  def build_out
-    attacks.build
-    movement_rates.build
-    # TODO Only populate the appropriate list of characteristics
-    Characteristic.find_each do |c|
-      characteristic_monsters.build(characteristic: c, score: c.base_value)
-    end
+  def initialize(params={})
+    super(params)
+    attacks.build unless attacks.try(:any?)
+    movement_rates.build unless movement_rates.try(:any?)
   end
 
   def characteristic_score(characteristic_name)

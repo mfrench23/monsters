@@ -6,7 +6,6 @@ class CreaturesController < ApplicationController
 
   def new
     @creature = Creature.new
-    @creature.build_out
   end
 
   def edit
