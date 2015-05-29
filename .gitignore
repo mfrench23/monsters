@@ -18,3 +18,7 @@ coverage
 
 # Ignore any uploaded images
 /public/system/*
+
+# Ignore environment-specific config
+/config/database.yml
+/config/secrets.yml
