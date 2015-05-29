@@ -25,6 +25,10 @@
     <%= f.collection_select :monster_class_id, MonsterClass.order(:name), :id, :name %>
   </div>
 
+  <div class="field">
+    <%= f.label "Number of individuals" %>
+    <%= f.text_field :number_description %>
+  </div>
   <div class="threecolumblock">
     <div class="threecol1">
       <% charSet = [swarm.characteristic_monster("HT")]  %>

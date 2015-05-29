@@ -33,6 +33,12 @@
       <%=simple_format @swarm.description %>
     </div>
   <% end %>
+  <% unless @swarm.number_description? %>
+    <div>
+      <span class="field-label show">Number of individuals</span>
+      <%=simple_format @swarm.number_description %>
+    </div>
+  <% end %>
 
   <%= render 'show_stat_block', monster: @swarm %>
 
