@@ -78,8 +78,8 @@
 	</div>
       </div>
         <%= render 'expanding_fieldset', f: f,
-	  id: "/creatures/parry-scores", collection: :parry_scores,
-	  partial: 'parry_score_fields', label: 'add Parry', header: "Parry",
+	  id: "parry-scores", collection: :parry_scores,
+	  partial: '/creatures/parry_score_fields', label: 'add Parry', header: "Parry",
 	      header_list: [ :weapon, :parry ], freeform: nil  %>
     </div>
   </div>
