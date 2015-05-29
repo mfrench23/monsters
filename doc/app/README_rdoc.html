@@ -109,6 +109,21 @@ Rails, and MySQL installed.</p>
 
 <pre>$ git clone https://github.com/mfrench23/monsters.git</pre>
 
+<p>Go into monsters/config, and copy two sample files into their required
+location:</p>
+
+<pre class="ruby"><span class="ruby-identifier">cp</span> <span class="ruby-identifier">database</span>.<span class="ruby-identifier">yml</span>.<span class="ruby-identifier">sample</span> <span class="ruby-identifier">database</span>.<span class="ruby-identifier">yml</span>
+<span class="ruby-identifier">cp</span> <span class="ruby-identifier">secrets</span>.<span class="ruby-identifier">yml</span>.<span class="ruby-identifier">sample</span> <span class="ruby-identifier">secrets</span>.<span class="ruby-identifier">yml</span>
+</pre>
+
+<p>(These two files can contain sensitive information, like database passwords
+and the “magic number” that Rails uses to defend against cross-site
+scripting attacks. Rather than fret over the possibility of accidentally
+checking private information into a public repository, or the possibility
+that a refresh to  production might accidentally overwrite the
+production-specific configuration, I&#39;m just removing them both from the
+repository and adding them to the .gitignore file.)</p>
+
 <p>Next, you&#39;ll need to set up some environmental variables to tell the
 code about your db. Edit your .bashrc file, and add the following lines:</p>
 
