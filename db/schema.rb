@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150528161730) do
+ActiveRecord::Schema.define(version: 20150529212157) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "attacks", ["monster_id"], name: "index_attacks_on_monster_id", using: :btree
 
   create_table "books", force: :cascade do |t|
-    t.string   "name",         limit: 255
+    t.string   "name",         limit: 255, null: false
     t.string   "abbreviation", limit: 255
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "books", ["name"], name: "index_books_on_name", unique: true, using: :btree
 
   create_table "characteristic_lists", force: :cascade do |t|
-    t.integer  "characteristic_id",    limit: 4
-    t.string   "monster_actable_type", limit: 255
+    t.integer  "characteristic_id",    limit: 4,   null: false
+    t.string   "monster_actable_type", limit: 255, null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "characteristic_lists", ["characteristic_id"], name: "index_characteristic_lists_on_characteristic_id", using: :btree
 
   create_table "characteristic_monsters", force: :cascade do |t|
-    t.integer  "characteristic_id", limit: 4
-    t.integer  "monster_id",        limit: 4
+    t.integer  "characteristic_id", limit: 4,                         null: false
+    t.integer  "monster_id",        limit: 4,                         null: false
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.decimal  "score",                       precision: 6, scale: 2
@@ -56,11 +56,11 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "characteristic_monsters", ["monster_id"], name: "index_characteristic_monsters_on_monster_id", using: :btree
 
   create_table "characteristics", force: :cascade do |t|
-    t.string   "name",            limit: 255
+    t.string   "name",            limit: 255,                                       null: false
     t.integer  "sequence_number", limit: 4
     t.datetime "created_at",                                                        null: false
     t.datetime "updated_at",                                                        null: false
-    t.decimal  "step_size",                   precision: 4, scale: 2, default: 1.0
+    t.decimal  "step_size",                   precision: 4, scale: 2, default: 1.0, null: false
     t.decimal  "base_value",                  precision: 6, scale: 2
   end
 
@@ -78,11 +78,11 @@ ActiveRecord::Schema.define(version: 20150528161730) do
 
   create_table "damage_resistances", force: :cascade do |t|
     t.integer  "location_id", limit: 4
-    t.integer  "dr",          limit: 4
+    t.integer  "dr",          limit: 4,     null: false
     t.text     "notes",       limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "creature_id", limit: 4
+    t.integer  "creature_id", limit: 4,     null: false
   end
 
   add_index "damage_resistances", ["creature_id"], name: "fk_rails_4331246e6a", using: :btree
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "illustrations", ["illustratable_type", "illustratable_id"], name: "index_illustrations_on_illustratable_type_and_illustratable_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -111,11 +111,11 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "locations", ["name"], name: "index_locations_on_name", unique: true, using: :btree
 
   create_table "master_skills", force: :cascade do |t|
-    t.string   "name",                    limit: 255
+    t.string   "name",                    limit: 255,   null: false
     t.text     "notes",                   limit: 65535
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.integer  "characteristic_id",       limit: 4
+    t.integer  "characteristic_id",       limit: 4,     null: false
     t.boolean  "requires_specialization", limit: 1
     t.boolean  "requires_tech_level",     limit: 1
   end
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "master_skills", ["name"], name: "index_master_skills_on_name", using: :btree
 
   create_table "master_traits", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name",       limit: 255,   null: false
     t.text     "notes",      limit: 65535
     t.boolean  "is_feature", limit: 1
     t.datetime "created_at",               null: false
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "master_traits", ["name"], name: "index_master_traits_on_name", using: :btree
 
   create_table "monster_classes", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -142,8 +142,8 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "monster_classes", ["name"], name: "index_monster_classes_on_name", unique: true, using: :btree
 
   create_table "monster_names", force: :cascade do |t|
-    t.integer  "monster_id", limit: 4
-    t.string   "name",       limit: 255
+    t.integer  "monster_id", limit: 4,     null: false
+    t.string   "name",       limit: 255,   null: false
     t.text     "notes",      limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -157,8 +157,8 @@ ActiveRecord::Schema.define(version: 20150528161730) do
     t.text     "notes",            limit: 65535
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.integer  "monster_class_id", limit: 4
-    t.string   "name",             limit: 255
+    t.integer  "monster_class_id", limit: 4,     null: false
+    t.string   "name",             limit: 255,   null: false
     t.integer  "actable_id",       limit: 4
     t.string   "actable_type",     limit: 255
   end
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "monsters", ["name"], name: "index_monsters_on_name", using: :btree
 
   create_table "move_types", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "name",       limit: 255, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "move_types", ["name"], name: "index_move_types_on_name", unique: true, using: :btree
 
   create_table "movement_rates", force: :cascade do |t|
-    t.integer  "monster_id",    limit: 4
+    t.integer  "monster_id",    limit: 4, null: false
     t.integer  "rate",          limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(version: 20150528161730) do
 
   create_table "page_references", force: :cascade do |t|
     t.integer  "book_id",    limit: 4
-    t.integer  "monster_id", limit: 4
+    t.integer  "monster_id", limit: 4,   null: false
     t.string   "pages",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -199,26 +199,24 @@ ActiveRecord::Schema.define(version: 20150528161730) do
   add_index "page_references", ["monster_id"], name: "index_page_references_on_monster_id", using: :btree
 
   create_table "parry_scores", force: :cascade do |t|
-    t.string   "weapon",        limit: 255
-    t.integer  "parry",         limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "monster_id_id", limit: 4
-    t.integer  "creature_id",   limit: 4
+    t.string   "weapon",      limit: 255
+    t.integer  "parry",       limit: 4,   null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "creature_id", limit: 4,   null: false
   end
 
   add_index "parry_scores", ["creature_id"], name: "fk_rails_35c038380b", using: :btree
-  add_index "parry_scores", ["monster_id_id"], name: "index_parry_scores_on_monster_id_id", using: :btree
 
   create_table "skills", force: :cascade do |t|
-    t.integer  "modifier",        limit: 4
+    t.integer  "modifier",        limit: 4,     null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.integer  "master_skill_id", limit: 4
+    t.integer  "master_skill_id", limit: 4,     null: false
     t.string   "specialization",  limit: 255
     t.string   "tech_level",      limit: 255
     t.text     "notes",           limit: 65535
-    t.integer  "creature_id",     limit: 4
+    t.integer  "creature_id",     limit: 4,     null: false
   end
 
   add_index "skills", ["creature_id"], name: "fk_rails_e3b79040cb", using: :btree
@@ -234,8 +232,8 @@ ActiveRecord::Schema.define(version: 20150528161730) do
     t.integer  "level",           limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "master_trait_id", limit: 4
-    t.integer  "creature_id",     limit: 4
+    t.integer  "master_trait_id", limit: 4, null: false
+    t.integer  "creature_id",     limit: 4, null: false
   end
 
   add_index "traits", ["creature_id"], name: "fk_rails_f9ff4d72c5", using: :btree
