@@ -1,5 +1,5 @@
-    <div><span class="field-label show">HT</span> <%= monster.characteristic_score "HT" %></div>
-    <div><span class="field-label show">Hitpoints</span> <%= monster.characteristic_score "HP" %></div>
+    <div><span class="field-label show">HT</span> <%= show_stat(monster.characteristic_score "HT") %></div>
+    <div><span class="field-label show">Hitpoints</span> <%= show_stat(monster.characteristic_score "HP") %></div>
     <div>
       <span class="field-label show">Move</span>
       <% monster.movement_rates.each do |mv| %>

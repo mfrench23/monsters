@@ -1,29 +1,29 @@
 <div class="threecolumnblock">
   <div class="threecol1">
-    <div><span class="field-label show">ST</span> <%= monster.characteristic_score "ST" %></div>
-    <div><span class="field-label show">DX</span> <%= monster.characteristic_score "DX" %></div>
-    <div><span class="field-label show">IQ</span> <%= monster.characteristic_score "IQ" %></div>
-    <div><span class="field-label show">HT</span> <%= monster.characteristic_score "HT" %></div>
+    <div><span class="field-label show">ST</span> <%= show_stat(monster.characteristic_score "ST") %></div>
+    <div><span class="field-label show">DX</span> <%= show_stat(monster.characteristic_score "DX") %></div>
+    <div><span class="field-label show">IQ</span> <%= show_stat(monster.characteristic_score "IQ") %></div>
+    <div><span class="field-label show">HT</span> <%= show_stat(monster.characteristic_score "HT") %></div>
     <div><span class="field-label show">Dodge</span> <%= monster.characteristic_score "Dodge" %></div>
   </div>
   <div class="threecol2">
-    <div><span class="field-label show">Hitpoints</span> <%= monster.characteristic_score "HP" %></div>
-    <div><span class="field-label show">Will</span> <%= monster.characteristic_score "Will" %></div>
-    <div><span class="field-label show">Perception</span> <%= monster.characteristic_score "Per" %></div>
-    <div><span class="field-label show">Fatigue</span> <%= monster.characteristic_score "Fatigue" %></div>
+    <div><span class="field-label show">Hitpoints</span> <%= show_stat(monster.characteristic_score "HP") %></div>
+    <div><span class="field-label show">Will</span> <%= show_stat(monster.characteristic_score "Will") %></div>
+    <div><span class="field-label show">Perception</span> <%= show_stat(monster.characteristic_score "Per") %></div>
+    <div><span class="field-label show">Fatigue</span> <%= show_stat(monster.characteristic_score "Fatigue") %></div>
     <div>
       <span class="field-label show">Parry</span>
 	<% monster.parry_scores.each do |parry| %>
 	  <%= parry.weapon %> <%= parry.parry %> <br>
 	<% end %>
       <br>
-      <% if ! (monster.characteristic_score "Dodge").blank? %>
+      <% if ! (monster.characteristic_score "Block").blank? %>
 	<span class="field-label show">Block</span> <%= monster.characteristic_score "Block" %>
       <% end %>
     </div>
   </div>
   <div class="threecol3">
-    <div><span class="field-label show">Speed</span> <%= monster.characteristic_score "Speed" %></div>
+    <div><span class="field-label show">Speed</span> <%= show_stat(monster.characteristic_score "Speed") %></div>
     <div>
       <span class="field-label show">Move</span>
       <% monster.movement_rates.each do |mv| %>
@@ -31,7 +31,7 @@
       <% end %>
     </div>
     <div>
-      <span class="field-label show">SM</span> <%= monster.characteristic_score "SM" %>
+      <span class="field-label show">SM</span> <%= show_stat(monster.characteristic_score "SM") %>
       &nbsp;&nbsp;&nbsp;
       <% unless monster.height.blank? %>
 	Height <%= monster.height %>

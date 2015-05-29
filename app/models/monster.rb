@@ -73,7 +73,6 @@ class Monster < ActiveRecord::Base
   private
 
   def generate_characteristic_monster(characteristic_name)
-    #ch = Characteristic.find_by(name: characteristic_name.to_s)
     ch = CharacteristicList.characteristics_for(actable_type).select {|c| characteristic_name.to_s == c.name }.first
     CharacteristicMonster.new(:characteristic => ch, :monster => self, :score => ch.base_value) unless ch.nil?
   end
