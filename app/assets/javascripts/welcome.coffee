@@ -33,6 +33,14 @@ ready = ->
       plotShadow: false
     title: text: 'Monsters over time'
     tooltip: pointFormat: '{series.name}: <b>{point.y}</b> monsters'
+    xAxis:
+      title: text: 'Date'
+      type: 'datetime'
+      startOnTick: true
+      endOnTick: true
+    yAxis:
+      title: text: 'Count'
+      min: 0
     series: [ {
       type: 'line'
       name: 'Created'

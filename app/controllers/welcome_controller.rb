@@ -13,7 +13,8 @@ class WelcomeController < ApplicationController
 
   def date_series(date_field)
     Monster.group("date(#{date_field})").count.reduce([]) do |memo, (k, v)|
-      memo << [ k, v ]
+      # Date.to_time.to_i gives seconds since epoch, but Highchart expects milliseconds, so convert
+      memo << [ k.to_time.to_i * 1000, v ]
     end
   end
 end

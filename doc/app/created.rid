@@ -1,4 +1,4 @@
-Sat, 30 May 2015 10:26:47 -0700
+Sat, 30 May 2015 12:24:23 -0700
 README.rdoc	Fri, 29 May 2015 09:03:57 -0700
 app/controllers/application_controller.rb	Sat, 30 May 2015 07:36:05 -0700
 app/controllers/books_controller.rb	Mon, 27 Apr 2015 10:06:46 -0700
@@ -10,7 +10,7 @@ app/controllers/monster_classes_controller.rb	Mon, 27 Apr 2015 10:07:42 -0700
 app/controllers/monsters_controller.rb	Thu, 28 May 2015 22:15:07 -0700
 app/controllers/move_types_controller.rb	Mon, 27 Apr 2015 10:07:49 -0700
 app/controllers/swarms_controller.rb	Thu, 28 May 2015 14:26:50 -0700
-app/controllers/welcome_controller.rb	Sat, 30 May 2015 10:22:59 -0700
+app/controllers/welcome_controller.rb	Sat, 30 May 2015 12:23:34 -0700
 app/forms/creature_form.rb	Thu, 28 May 2015 22:15:07 -0700
 app/forms/swarm_form.rb	Fri, 29 May 2015 08:49:26 -0700
 app/helpers/application_helper.rb	Sat, 30 May 2015 07:33:58 -0700
