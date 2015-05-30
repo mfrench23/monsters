@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class ChartsController - Rails Application Documentation</title>
+<title>module CharacteristicsHelper - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -18,7 +18,7 @@
 
 
 
-<body id="top" role="document" class="class">
+<body id="top" role="document" class="module">
 <nav role="navigation">
   <div id="project-navigation">
     <div id="home-section" role="region" title="Quick navigation" class="nav-section">
@@ -54,14 +54,7 @@
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
-  <h3>Parent</h3>
-
-  
-  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
-  
-</div>
-
+    
     
     
     <!-- Method Quickref -->
@@ -70,9 +63,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-monsters_by_class">#monsters_by_class</a>
-    
-    <li ><a href="#method-i-monsters_by_creation_date">#monsters_by_creation_date</a>
+    <li ><a href="#method-i-show_stat">#show_stat</a>
     
   </ul>
 </div>
@@ -80,9 +71,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-ChartsController">
-  <h1 id="class-ChartsController" class="class">
-    class ChartsController
+<main role="main" aria-labelledby="module-CharacteristicsHelper">
+  <h1 id="module-CharacteristicsHelper" class="module">
+    module CharacteristicsHelper
   </h1>
 
   <section class="description">
@@ -108,11 +99,11 @@
        </header>
 
     
-      <div id="method-i-monsters_by_class" class="method-detail ">
+      <div id="method-i-show_stat" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">monsters_by_class</span><span
-            class="method-args">()</span>
+          <span class="method-name">show_stat</span><span
+            class="method-args">(val)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -126,43 +117,10 @@
           
 
           
-          <div class="method-source-code" id="monsters_by_class-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">monsters_by_class</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-string">&quot;inner join monster_classes on monster_classes.id = monsters.monster_class_id&quot;</span>).<span class="ruby-identifier">group</span>(<span class="ruby-string">&quot;monster_classes.name&quot;</span>).<span class="ruby-identifier">count</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-monsters_by_creation_date" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">monsters_by_creation_date</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="monsters_by_creation_date-source">
-            <pre><span class="ruby-comment"># File app/controllers/charts_controller.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">monsters_by_creation_date</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">group</span>(<span class="ruby-string">&quot;date(created_at)&quot;</span>).<span class="ruby-identifier">count</span>
+          <div class="method-source-code" id="show_stat-source">
+            <pre><span class="ruby-comment"># File app/helpers/characteristics_helper.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_stat</span>(<span class="ruby-identifier">val</span>)
+  <span class="ruby-identifier">val</span> <span class="ruby-operator">||</span> <span class="ruby-string">&#39;n/a&#39;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

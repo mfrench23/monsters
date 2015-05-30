@@ -70,6 +70,10 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-class_series">#class_series</a>
+    
+    <li ><a href="#method-i-date_series">#date_series</a>
+    
     <li ><a href="#method-i-index">#index</a>
     
   </ul>
@@ -106,6 +110,76 @@
        </header>
 
     
+      <div id="method-i-class_series" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">class_series</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="class_series-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">class_series</span>
+  <span class="ruby-constant">MonsterClass</span>.<span class="ruby-identifier">find_each</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">mc</span><span class="ruby-operator">|</span> <span class="ruby-identifier">mc</span>.<span class="ruby-identifier">monsters_count</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> }.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mc</span><span class="ruby-operator">|</span>
+    { <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mc</span>.<span class="ruby-identifier">name</span>, <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mc</span>.<span class="ruby-identifier">monsters_count</span>, <span class="ruby-value">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">monster_class_path</span>(<span class="ruby-identifier">mc</span>) }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-date_series" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">date_series</span><span
+            class="method-args">(date_field)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="date_series-source">
+            <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">date_series</span>(<span class="ruby-identifier">date_field</span>)
+  <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">group</span>(<span class="ruby-node">&quot;date(#{date_field})&quot;</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">reduce</span>([]) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">memo</span>, (<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>)<span class="ruby-operator">|</span>
+    <span class="ruby-identifier">memo</span> <span class="ruby-operator">&lt;&lt;</span> [ <span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span> ]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-index" class="method-detail ">
         
         <div class="method-heading">
@@ -127,6 +201,9 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-identifier">javascript_variables</span>({<span class="ruby-value">:countbyclassdata</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">class_series</span>})
+  <span class="ruby-identifier">javascript_variables</span>({<span class="ruby-value">:countbycreateddate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">date_series</span>(<span class="ruby-string">&quot;created_at&quot;</span>)})
+  <span class="ruby-identifier">javascript_variables</span>({<span class="ruby-value">:countbyupdateddate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">date_series</span>(<span class="ruby-string">&quot;updated_at&quot;</span>)})
 <span class="ruby-keyword">end</span></pre>
           </div>
           

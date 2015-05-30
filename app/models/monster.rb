@@ -16,7 +16,7 @@ class Monster < ActiveRecord::Base
 
   has_many :characteristics, :through => :characteristic_monsters
 
-  belongs_to :monster_class
+  belongs_to :monster_class, counter_cache: true
   delegate :name, to: :monster_class, prefix: true
 
   has_many :illustrations, :as => :illustratable

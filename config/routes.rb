@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  # JSON data for charts
-  get 'charts/monsters_by_class'
-  get 'charts/monsters_by_creation_date'
-
   # more complicated routing due to multiple table inheritance
   resources :monsters, :only => [:index]
   resources :creatures, :except => [:index]

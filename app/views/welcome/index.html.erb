@@ -4,8 +4,7 @@
   <div class="dashboard">
     <div class="dashboard-col">
       <div class="dashboard-item">
-	<h2>Count of monsters by class</h2>
-	<%= pie_chart charts_monsters_by_class_path %>
+	<div id="countbyclass-container"></div>
       </div>
       <div class="dashboard-item">
 	<%= render "top_N_characteristics", n: 5, characteristic: "ST" %>
@@ -28,8 +27,7 @@
     </div>
     <div class="dashboard-col">
       <div class="dashboard-item">
-	<h2>Monsters by date of creation</h2>
-	<%= line_chart charts_monsters_by_creation_date_path %>
+	<div id="countbydate-container"></div>
       </div>
       <div class="dashboard-item">
 	<%= render "top_N_characteristics", n: 5, characteristic: "DX" %>

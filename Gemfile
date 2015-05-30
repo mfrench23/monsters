@@ -45,9 +45,6 @@ gem 'kaminari'
 # Paperclip for handling uploaded images
 gem "paperclip", "~> 4.2"
 
-# Chartkick for charts
-gem "chartkick"
-
 # multiple table inheritance
 gem 'active_record-acts_as'
 

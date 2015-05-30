@@ -8,6 +8,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick" %>
     <%= csrf_meta_tags %>
+    <script>
+      <%= javascript_variables %>
+    </script>
   </head>
   <body>
     <main role="main">
