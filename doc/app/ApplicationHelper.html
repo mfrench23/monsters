@@ -161,15 +161,7 @@
   <span class="ruby-ivar">@javascript_variables</span> <span class="ruby-operator">||=</span> {}
   <span class="ruby-ivar">@javascript_variables</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">variables</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">variables</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@javascript_variables</span> <span class="ruby-operator">==</span> {}
-
-  <span class="ruby-identifier">output</span>  = <span class="ruby-string">&#39;&#39;</span>
-  <span class="ruby-identifier">padding</span> = <span class="ruby-ivar">@javascript_variables</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">group_by</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:size</span>).<span class="ruby-identifier">max</span>.<span class="ruby-identifier">first</span>
-
-  <span class="ruby-ivar">@javascript_variables</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">variable</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{variable.to_s.ljust(padding)} = #{value.to_json},\n          &quot;</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">raw</span> <span class="ruby-string">&quot;var &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">output</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">html_safe</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\,\Z/m</span>, <span class="ruby-string">&#39;;&#39;</span>)
+  <span class="ruby-identifier">output_javascript_variables</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

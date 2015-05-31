@@ -130,16 +130,8 @@ phrases</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">freeform_break</span>(<span class="ruby-identifier">value</span>)
   <span class="ruby-identifier">paren</span> = <span class="ruby-value">0</span>
   <span class="ruby-identifier">value</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;\n&quot;</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/./</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;(&quot;</span>
-      <span class="ruby-identifier">paren</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;)&quot;</span>
-      <span class="ruby-identifier">paren</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
-    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;;&quot;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;,&quot;</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">paren</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-        <span class="ruby-identifier">c</span> = <span class="ruby-string">&quot;\n&quot;</span>
-      <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">c</span>
+    <span class="ruby-identifier">paren</span> <span class="ruby-operator">+=</span> ( <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;(&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> ( <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;)&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-value">-1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span> ) ) <span class="ruby-comment"># count depth in nested parens</span>
+    (<span class="ruby-identifier">c</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/[;,]/</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">paren</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-operator">?</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">c</span> <span class="ruby-comment"># break on delimiters outside parenthetical phrases</span>
   <span class="ruby-keyword">end</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;\n&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>

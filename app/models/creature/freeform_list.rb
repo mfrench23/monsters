@@ -3,16 +3,8 @@ class Creature::FreeformList
   def freeform_break(value)
     paren = 0
     value.delete("\n").gsub(/./) do |c|
-      if c == "("
-	paren += 1
-      elsif c == ")"
-	paren -= 1
-      elsif c == ";" || c == ","
-	if paren == 0
-	  c = "\n"
-	end
-      end
-      c
+      paren += ( c == "(" ? 1 : ( c == ")" ? -1 : 0 ) ) # count depth in nested parens
+      (c =~ /[;,]/ && paren == 0) ? "\n" : c # break on delimiters outside parenthetical phrases
     end.split("\n")
   end
 end

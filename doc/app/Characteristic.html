@@ -131,11 +131,9 @@ etc.</p>
             <pre><span class="ruby-comment"># File app/models/characteristic.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">normalize</span>(<span class="ruby-identifier">number</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">number</span>.<span class="ruby-identifier">blank?</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">step_size</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">step_size</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">step_size</span>.<span class="ruby-identifier">to_i</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">number</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> (<span class="ruby-identifier">number</span><span class="ruby-operator">/</span><span class="ruby-identifier">step_size</span>).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">step_size</span>
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">step</span> = <span class="ruby-identifier">step_size</span> <span class="ruby-operator">||</span> <span class="ruby-value">1</span>
+  <span class="ruby-identifier">result</span> = (<span class="ruby-identifier">number</span><span class="ruby-operator">/</span><span class="ruby-identifier">step_size</span>).<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">step_size</span>
+  <span class="ruby-keyword">return</span> (<span class="ruby-identifier">step</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">step</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">result</span> )
 <span class="ruby-keyword">end</span></pre>
           </div>
           

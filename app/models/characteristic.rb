@@ -10,10 +10,8 @@ class Characteristic < ActiveRecord::Base
   ## integers, etc.
   def normalize(number)
     return nil if number.blank?
-    if step_size.nil? || step_size == step_size.to_i
-      return number.to_i
-    else
-      return (number/step_size).to_i * step_size
-    end
+    step = step_size || 1
+    result = (number/step_size).to_i * step_size
+    return (step == step.to_i ? result.to_i : result )
   end
 end
