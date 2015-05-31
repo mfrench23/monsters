@@ -9,24 +9,17 @@ module Creature::TraitList
 
     private
 
+    Regex_name = /(?<name>.*?)/
+    Regex_level = /( (?<level>[\d]+))?/
+    Regex_notes = /( \((?<notes>.*)\))?/
+    Regex_price = /( \[[\d]+\])?/
+
     # convert string patterns into Trait objects
     def string_to_trait(line)
-      sline = line.strip
-      if m = sline.match(/^(.*) \((.*)\) ([0-9]*)$/) then
-	name = m[1]
-	notes = m[2]
-	level = m[3]
-      elsif m = sline.match(/^(.*) ([0-9][0-9]*)$/) then
-	name = m[1]
-	level = m[2]
-      elsif m = sline.match(/^(.*) \((.*)\)$/) then
-	name = m[1]
-	notes = m[2]
-      else
-	name = sline
+      if m = line.strip.match(/^#{Regex_name}#{Regex_notes}#{Regex_level}#{Regex_price}$/) then
+        mt = MasterTrait.find_or_create_by(:name => m[:name], :notes => m[:notes])
+        Trait.new(:master_trait => mt, :level => m[:level])
       end
-      mt = MasterTrait.find_or_create_by(:name => name, :notes => notes)
-      Trait.new(:master_trait => mt, :level => level)
     end
   end
 end
