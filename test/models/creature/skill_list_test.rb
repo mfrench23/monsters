@@ -47,18 +47,18 @@ class SkillListTest < ActiveSupport::TestCase
   end
 
   test "cannot translate skills that don't exist in the master skill list" do
-    list = Creature::SkillList::FreeformSkillList.new("Ohno; Stealth@DX+1; Crapskill; Acrobatics-14")
+    list = Creature::SkillList::FreeformSkillList.new("Ohno; Axe/Mace@DX+1; Crapskill; Acrobatics-14")
     assert_equal 2, list.list.count
     assert_equal "Ohno; Crapskill", list.text
   end
   
   test "complex skill format" do
-    list = Creature::SkillList::FreeformSkillList.new("Brawling (E) DX+2 [4]-12; Psychology (Human) (H) IQ-1 [2]-9")
+    list = Creature::SkillList::FreeformSkillList.new("Brawling (E) DX [1]-10; Psychology (Human) (H) IQ-1 [2]-9")
     assert_equal "", list.text
     assert_equal 2, list.list.count
     skill = list.list.first
-    assert_equal 2, skill.modifier.to_i
-    assert_equal "Brawling @DX+2".to_s, skill.to_s
+    assert_equal 0, skill.modifier.to_i
+    assert_equal "Brawling @DX+0".to_s, skill.to_s
     skill = list.list.last
     assert_equal -1, skill.modifier.to_i
     assert_equal "Human", skill.specialization

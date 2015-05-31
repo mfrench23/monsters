@@ -16,11 +16,13 @@ module Creature::SkillList
       return txt, tech_level
     end
 
+    Regex_attribute = /(DX|IQ|HT|Will|Per)/
+
     def pull_characteristic_plus_modifier(txt)
       characteristic = modifier_value = nil;
-      txt.gsub!(/(DX|IQ|HT|Will|Per)[+-]\d+/) do |m|
-        characteristic = m.gsub(/[+-]\d/) { |x| "" }
-        modifier_value = m.gsub(/[^-\d]/) { |x| "" }
+      txt.gsub!(/#{Regex_attribute}([+-]\d+)?/) do |m|
+        characteristic = $1
+        modifier_value = ( $2.nil? ? "0" : ($2).tr("+"," ").strip )
         ""
       end
       return txt, characteristic, modifier_value

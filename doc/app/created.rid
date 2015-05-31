@@ -1,4 +1,4 @@
-Sat, 30 May 2015 22:16:52 -0700
+Sun, 31 May 2015 00:09:12 -0700
 README.rdoc	Fri, 29 May 2015 09:03:57 -0700
 app/controllers/application_controller.rb	Sat, 30 May 2015 07:36:05 -0700
 app/controllers/books_controller.rb	Mon, 27 Apr 2015 10:06:46 -0700
@@ -25,7 +25,7 @@ app/models/characteristic_monster.rb	Fri, 08 May 2015 14:48:00 -0700
 app/models/concerns/filterable.rb	Mon, 25 May 2015 15:18:34 -0700
 app/models/creature.rb	Thu, 28 May 2015 13:14:42 -0700
 app/models/creature/freeform_list.rb	Thu, 28 May 2015 22:15:07 -0700
-app/models/creature/skill_list.rb	Sat, 30 May 2015 22:15:30 -0700
+app/models/creature/skill_list.rb	Sun, 31 May 2015 00:07:58 -0700
 app/models/creature/trait_list.rb	Sat, 30 May 2015 19:06:56 -0700
 app/models/damage_resistance.rb	Wed, 27 May 2015 14:34:31 -0700
 app/models/illustration.rb	Sat, 16 May 2015 13:08:39 -0700
