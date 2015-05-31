@@ -10,31 +10,52 @@ module Creature::SkillList
 
     private
 
-    def translate_skill(raw_txt)
-      txt = raw_txt.strip
-      regex_specialization = /( \((?<specialization>[^)]*)\))?/
-      regex_notes = /( \((?<notes>[^)]*)\))?/
-      regex_tl = /(\/TL(?<tech_level>[\d]+))?/
-      regex_skill_name = /(?<skill_name>[\w\- ]+)#{regex_specialization}#{regex_tl}/
-      regex_characteristic_name = /(?<characteristic>[a-zA-Z]{2,})/
-      regex_modifier_value = /(?<modifier_value>[+-][\d]+)/
-      regex_actual_value = /(?<actual_value>[\d]+)/
-      sep = /([^\w]+)/
-      optional_notes = /#{sep}?#{regex_notes}/
-      if m = txt.match(/^#{regex_skill_name}#{sep}#{regex_characteristic_name} *#{regex_modifier_value}#{optional_notes}$/)
-	master_skill_name = m[:skill_name]
-	characteristic = m[:characteristic]
-	modifier_value = m[:modifier_value]
-	specialization = m[:specialization]
-	tech_level = m[:tech_level]
-	notes = m[:notes]
-      elsif m = txt.match(/^#{regex_skill_name}#{sep}#{regex_actual_value}#{optional_notes}$/)
-	master_skill_name = m[:skill_name]
-	actual_value = m[:actual_value]
-	specialization = m[:specialization]
-	tech_level = m[:tech_level]
-	notes = m[:notes]
+    def pull_tech_level(txt)
+      tech_level = nil;
+      txt.gsub!(/\/TL[\d]+/) { |m| tech_level = m[3..-1]; "" }
+      return txt, tech_level
+    end
+
+    def pull_characteristic_plus_modifier(txt)
+      characteristic = modifier_value = nil;
+      txt.gsub!(/(DX|IQ|HT|Will|Per)[+-]\d+/) do |m|
+        characteristic = m.gsub(/[+-]\d/) { |x| "" }
+        modifier_value = m.gsub(/[^-\d]/) { |x| "" }
+        ""
       end
+      return txt, characteristic, modifier_value
+    end
+
+    def pull_skill_difficulty(txt)
+      txt.gsub!(/ \((E|A|H|VH)\)/) { |m| "" }
+      return txt
+    end
+
+    def pull_skill_price(txt)
+      txt.gsub!(/ \[\d+\]/) { |m| "" }
+      return txt
+    end
+
+    Regex_skill_name = /(?<skill_name>.*?)( \((?<specialization>[^)]*)\))?/
+    Regex_actual_value = /(([^\w]+)(?<actual_value>[\d]+))?/
+    Regex_notes = /(\((?<notes>[^)]*)\))?/
+
+    def pull_remainder(txt)
+      master_skill_name = actual_value = specialization = notes = nil
+      if m = txt.match(/^#{Regex_skill_name}#{Regex_actual_value}([^\w]+)?#{Regex_notes}$/)
+        master_skill_name = m[:skill_name]
+        actual_value = m[:actual_value]
+        specialization = m[:specialization]
+        notes = m[:notes]
+        txt = ""
+      end
+      return txt, master_skill_name, actual_value, specialization, notes
+    end
+
+    def translate_skill(raw_txt)
+      txt, tech_level = pull_tech_level(raw_txt.strip)
+      txt, characteristic, modifier_value = pull_characteristic_plus_modifier(txt)
+      txt, master_skill_name, actual_value, specialization, notes = pull_remainder(pull_skill_price(pull_skill_difficulty(txt)))
       generate_skill(raw_txt, master_skill_name, characteristic, modifier_value, actual_value, specialization, tech_level, notes)
     end
 

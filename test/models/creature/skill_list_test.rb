@@ -52,6 +52,19 @@ class SkillListTest < ActiveSupport::TestCase
     assert_equal "Ohno; Crapskill", list.text
   end
   
+  test "complex skill format" do
+    list = Creature::SkillList::FreeformSkillList.new("Brawling (E) DX+2 [4]-12; Psychology (Human) (H) IQ-1 [2]-9")
+    assert_equal "", list.text
+    assert_equal 2, list.list.count
+    skill = list.list.first
+    assert_equal 2, skill.modifier.to_i
+    assert_equal "Brawling @DX+2".to_s, skill.to_s
+    skill = list.list.last
+    assert_equal -1, skill.modifier.to_i
+    assert_equal "Human", skill.specialization
+    assert_equal "Psychology", skill.master_skill.name
+  end
+
   def perform_freeform_test(text)
     list = Creature::SkillList::FreeformSkillList.new(text)
     assert_equal "", list.text
