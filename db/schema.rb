@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150530153416) do
+ActiveRecord::Schema.define(version: 20150601111608) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20150530153416) do
     t.integer  "creature_id", limit: 4,     null: false
   end
 
-  add_index "damage_resistances", ["creature_id"], name: "fk_rails_4331246e6a", using: :btree
+  add_index "damage_resistances", ["creature_id"], name: "fk_rails_9b36326d78", using: :btree
   add_index "damage_resistances", ["location_id"], name: "index_damage_resistances_on_location_id", using: :btree
 
   create_table "illustrations", force: :cascade do |t|
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 20150530153416) do
     t.string   "actable_type",     limit: 255
   end
 
-  add_index "monsters", ["actable_type", "actable_id"], name: "index_monsters_on_actable_type_and_actable_id", using: :btree
+  add_index "monsters", ["actable_type", "actable_id"], name: "index_monsters_on_actable_type_and_actable_id", unique: true, using: :btree
   add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree
   add_index "monsters", ["name"], name: "index_monsters_on_name", using: :btree
 
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(version: 20150530153416) do
     t.integer  "creature_id", limit: 4,   null: false
   end
 
-  add_index "parry_scores", ["creature_id"], name: "fk_rails_35c038380b", using: :btree
+  add_index "parry_scores", ["creature_id"], name: "fk_rails_7faaccd889", using: :btree
 
   create_table "skills", force: :cascade do |t|
     t.integer  "modifier",        limit: 4,     null: false
@@ -220,7 +220,7 @@ ActiveRecord::Schema.define(version: 20150530153416) do
     t.integer  "creature_id",     limit: 4,     null: false
   end
 
-  add_index "skills", ["creature_id"], name: "fk_rails_e3b79040cb", using: :btree
+  add_index "skills", ["creature_id"], name: "fk_rails_ab183a24b7", using: :btree
   add_index "skills", ["master_skill_id"], name: "index_skills_on_master_skill_id", using: :btree
 
   create_table "swarms", force: :cascade do |t|
@@ -237,7 +237,7 @@ ActiveRecord::Schema.define(version: 20150530153416) do
     t.integer  "creature_id",     limit: 4, null: false
   end
 
-  add_index "traits", ["creature_id"], name: "fk_rails_f9ff4d72c5", using: :btree
+  add_index "traits", ["creature_id"], name: "fk_rails_0f5f3543c1", using: :btree
   add_index "traits", ["master_trait_id"], name: "index_traits_on_master_trait_id", using: :btree
 
   add_foreign_key "attacks", "monsters"
