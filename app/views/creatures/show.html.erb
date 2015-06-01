@@ -21,16 +21,20 @@
   <% end %>
 
   <% unless @creature.monster_class_name.empty? %>
-    <div>
-      <span class="field-label show">Class</span>
-      <%= @creature.monster_class_name %>
+    <div style="display: table-row;">
+      <div class="field-label show trait">Class</div>
+      <div class="trait">
+        <%= @creature.monster_class_name %>
+      </div>
     </div>
   <% end %>
 
   <% unless @creature.description.blank? %>
-    <div>
-      <span class="field-label show">Description</span>
-      <%=simple_format @creature.description %>
+    <div style="display: table-row;">
+      <div class="field-label show trait">Description</div>
+      <div class="trait">
+        <%=simple_format @creature.description, {:class => "longtext"}, wrapper_tag: "div" %>
+      </div>
     </div>
   <% end %>
 
@@ -82,7 +86,7 @@
       <div style="display: table-row;">
         <div class="field-label show trait">Gear</div>
         <div class="trait">
-	  <%= @creature.gear %>
+	  <%= simple_format @creature.gear, {:class => "longtext"}, wrapper_tag: "div" %>
 	</div>
       </div>
     <% end %>
@@ -91,7 +95,7 @@
       <div style="display: table-row;">
         <div class="field-label show trait">Notes</div>
         <div class="trait">
-	  <%= @creature.notes %>
+	  <%= simple_format @creature.notes, {:class => "longtext"}, wrapper_tag: "div" %>
 	</div>
       </div>
     <% end %>
