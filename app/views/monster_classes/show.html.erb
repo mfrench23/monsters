@@ -5,11 +5,23 @@
   <%= @monster_class.name %>
 </p>
 
+<% includes_variants = false %>
 <ul>
   <% @monster_class.monsters.each do |monster| %>
-    <li> <%= link_to monster.name, monster.specific %>
+    <li>
+      <%= link_to monster.name, monster.specific %>
+      <% if ! monster.root? %>
+        <% includes_variants = true %>
+        *
+      <% end %>
+    </li>
   <% end %>
 </ul>
+<% if includes_variants %>
+  <p style="padding-left: 50px;">
+    * variant
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_monster_class_path(@monster_class) %> |
 <%= link_to 'Back', monster_classes_path %>
