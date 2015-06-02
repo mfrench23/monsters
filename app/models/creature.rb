@@ -4,6 +4,7 @@ class Creature < ActiveRecord::Base
   attr_accessor :freeform_trait_list
 
   before_save :convert_skills
+  before_validation :nil_blank_attributes
 
   has_many  :damage_resistances, dependent: :destroy
   accepts_nested_attributes_for :damage_resistances, allow_destroy: true, reject_if: :all_blank
@@ -47,6 +48,14 @@ class Creature < ActiveRecord::Base
 
   def freeform_skill_list
     @freeform_skill_list
+  end
+
+  private
+
+  def nil_blank_attributes
+    [:height, :weight, :gear, :parts_value_cents].each do |attr|
+      self[attr] = nil if self[attr].blank?
+    end
   end
 
   def convert_skills

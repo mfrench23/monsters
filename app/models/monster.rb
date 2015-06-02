@@ -1,6 +1,8 @@
 class Monster < ActiveRecord::Base
   include Filterable
 
+  before_validation :nil_blank_attributes
+
   actable # can be a "superclass" for MTI - gem active_record-acts_as
   has_ancestry # for determining which monsters are variants of others
 
@@ -85,6 +87,12 @@ class Monster < ActiveRecord::Base
   end
 
   private
+
+  def nil_blank_attributes
+    [:description, :notes, :ancestry].each do |attr|
+      self[attr] = nil if self[attr].blank?
+    end
+  end
 
   def generate_characteristic_monster(characteristic_name)
     ch = CharacteristicList.characteristics_for(actable_type).select {|c| characteristic_name.to_s == c.name }.first
