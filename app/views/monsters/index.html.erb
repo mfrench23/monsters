@@ -2,6 +2,8 @@
 
 <h1>Listing Monsters</h1>
 <h2><%= "with names starting with '#{params[:starts_with]}'" unless params[:starts_with].blank? %></h2>
+<% variant_on_page = @monsters.any? { |m| (! m.root? ) } %>
+<% alias_on_page = @monsters.any? { |m| m.monster_names.any? } %>
 
 <%= page_entries_info @monsters %>
 
@@ -9,9 +11,14 @@
   <thead>
     <tr>
       <th><%= sortable "name" %></th>
-      <th>Aliases</th>
+      <% if alias_on_page %>
+        <th>Aliases</th>
+      <% end %>
       <th>Class</th>
       <th>Description</th>
+      <% if variant_on_page %>
+        <th>Variant</th>
+      <% end %>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -20,9 +27,14 @@
     <% @monsters.each do |monster| %>
       <tr>
         <td><%= link_to monster.name, monster.specific %></td>
-	<td><%= monster.names_to_s %></td>
-	<td><%= monster.monster_class_name %></td>
+        <% if alias_on_page %>
+	  <td><%= monster.names_to_s %></td>
+	<% end %>
+	<td><%= link_to monster.monster_class_name, monster.monster_class %></td>
         <td><%= truncate monster.description, :length => 60, :separator => /\s/, :omission => "\u2026" %></td>
+        <% if variant_on_page %>
+          <td><%= monster.parent %></td>
+        <% end %>
         <td><%= link_to 'Edit', edit_polymorphic_path(monster.specific) %></td>
         <td><%= link_to 'Destroy', monster.specific, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
