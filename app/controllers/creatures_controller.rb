@@ -10,6 +10,11 @@ class CreaturesController < ApplicationController
     @creature.attacks.build
   end
 
+  def variant
+    @creature = Creature.find(params[:id]).deep_copy
+    render :new
+  end
+
   def edit
   end
 

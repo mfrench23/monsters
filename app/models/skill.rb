@@ -34,6 +34,11 @@ class Skill < ActiveRecord::Base
     self.modifier = self.modifier || calc_modifier(monster_score)
   end
 
+  def deep_copy
+    copy = dup
+    copy
+  end
+
   private
 
   def calc_modifier(monster_score)

@@ -1,0 +1,22 @@
+<% if m.monster_names.count > 0 %>
+  <div style="display: table-row;">
+    <div class="field-label show">Aliases</div>
+    <div class="trait"><%= m.names_to_s %></div>
+  </div>
+<% end %>
+
+<% unless m.monster_class_name.empty? %>
+  <div style="display: table-row;">
+    <div class="field-label show trait">Class</div>
+    <div class="trait"><%= m.monster_class_name %></div>
+  </div>
+<% end %>
+
+<% unless m.description.blank? %>
+  <div style="display: table-row;">
+    <div class="field-label show trait">Description</div>
+    <div class="trait">
+      <%=simple_format m.description, {:class => "longtext"}, wrapper_tag: "div" %>
+    </div>
+  </div>
+<% end %>

@@ -24,7 +24,7 @@ div.threecol3 {
 li.nested-fields {
   display: table-row;
 }
-li.nested-header {
+.nested-header {
   font-weight: bold;
 }
 .controls {
@@ -60,13 +60,25 @@ li.attack-line {
   padding-left: 30px;
   text-indent: -30px;
 }
-.illo {
+.sidebar {
   float: right; 
-  width: 300px; 
+  width: 300px;
+}
+.illo {
   min-height: 300px; 
   border: 1px solid #d4d4d4;
   text-align: center;
 }
 .longtext {
   padding-bottom: 0.5em;
+}
+
+// variant tree
+ul.variantlist {
+  text-align: left;
+  padding: 0;
+}
+li.variantlist {
+  list-style:none outside none;
+  font-size: 80%;
 }

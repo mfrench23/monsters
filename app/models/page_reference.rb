@@ -8,4 +8,9 @@ class PageReference < ActiveRecord::Base
     end
     ( book.nil? ? pg : book.to_reference_s + " #{pg}" ).strip
   end
+
+  def deep_copy
+    copy = dup
+    copy
+  end
 end

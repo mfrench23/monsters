@@ -76,6 +76,8 @@
     
     <li ><a href="#method-i-convert_actual_to_modifier">#convert_actual_to_modifier</a>
     
+    <li ><a href="#method-i-deep_copy">#deep_copy</a>
+    
     <li ><a href="#method-i-to_s">#to_s</a>
     
   </ul>
@@ -200,6 +202,40 @@
             <pre><span class="ruby-comment"># File app/models/skill.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_actual_to_modifier</span>(<span class="ruby-identifier">monster_score</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">modifier</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">modifier</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">calc_modifier</span>(<span class="ruby-identifier">monster_score</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-deep_copy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">deep_copy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="deep_copy-source">
+            <pre><span class="ruby-comment"># File app/models/skill.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
+  <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">copy</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

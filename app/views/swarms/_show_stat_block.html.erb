@@ -1,10 +1,16 @@
+<div class="threecolumnblock">
+  <div class="threecol1">
     <div><span class="field-label show">HT</span> <%= show_stat(monster.characteristic_score "HT") %></div>
     <div><span class="field-label show">Hitpoints</span> <%= show_stat(monster.characteristic_score "HP") %></div>
+  </div>
+  <div class="threecol3">
     <div>
       <span class="field-label show">Move</span>
       <% monster.movement_rates.each do |mv| %>
 	<%= mv.rate %><%= mv.enhanced_rate.nil? ? "" : "/" + mv.enhanced_rate.to_s %> (<%= mv.move_type_name %>)<br>
       <% end %>
     </div>
+  </div>
+</div>
 
   

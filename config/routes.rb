@@ -3,8 +3,16 @@ Rails.application.routes.draw do
 
   # more complicated routing due to multiple table inheritance
   resources :monsters, :only => [:index]
-  resources :creatures, :except => [:index]
-  resources :swarms, :except => [:index]
+  resources :creatures, :except => [:index] do
+    member do
+      get 'variant'
+    end
+  end
+  resources :swarms, :except => [:index] do
+    member do
+      get 'variant'
+    end
+  end
 
   # other resources
   resources :master_traits

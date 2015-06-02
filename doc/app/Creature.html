@@ -83,6 +83,8 @@
     
     <li ><a href="#method-i-convert_skills">#convert_skills</a>
     
+    <li ><a href="#method-i-deep_copy">#deep_copy</a>
+    
     <li ><a href="#method-i-freeform_skill_list">#freeform_skill_list</a>
     
     <li ><a href="#method-i-freeform_skill_list-3D">#freeform_skill_list=</a>
@@ -163,11 +165,50 @@
 
           
           <div class="method-source-code" id="convert_skills-source">
-            <pre><span class="ruby-comment"># File app/models/creature.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/models/creature.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_skills</span>
   <span class="ruby-identifier">skills</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">skill</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">skill</span>.<span class="ruby-identifier">convert_actual_to_modifier</span>(<span class="ruby-identifier">characteristic_score</span>(<span class="ruby-identifier">skill</span>.<span class="ruby-identifier">characteristic</span>))
   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-deep_copy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">deep_copy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="deep_copy-source">
+            <pre><span class="ruby-comment"># File app/models/creature.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
+  <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">monster</span> = <span class="ruby-identifier">monster</span>.<span class="ruby-identifier">deep_copy</span>
+  <span class="ruby-identifier">damage_resistances</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dr</span><span class="ruby-operator">|</span> <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">damage_resistances</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dr</span>.<span class="ruby-identifier">deep_copy</span> }
+  <span class="ruby-identifier">skills</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sk</span><span class="ruby-operator">|</span> <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">skills</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sk</span>.<span class="ruby-identifier">deep_copy</span> }
+  <span class="ruby-identifier">traits</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">tr</span><span class="ruby-operator">|</span> <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">traits</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tr</span>.<span class="ruby-identifier">deep_copy</span> }
+  <span class="ruby-identifier">parry_scores</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">parry_scores</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">deep_copy</span> }
+  <span class="ruby-identifier">copy</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -198,7 +239,7 @@
 
           
           <div class="method-source-code" id="freeform_skill_list-source">
-            <pre><span class="ruby-comment"># File app/models/creature.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/models/creature.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">freeform_skill_list</span>
   <span class="ruby-ivar">@freeform_skill_list</span>
 <span class="ruby-keyword">end</span></pre>
@@ -231,7 +272,7 @@
 
           
           <div class="method-source-code" id="freeform_skill_list-3D-source">
-            <pre><span class="ruby-comment"># File app/models/creature.rb, line 30</span>
+            <pre><span class="ruby-comment"># File app/models/creature.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">freeform_skill_list=</span>(<span class="ruby-identifier">value</span>)
   <span class="ruby-identifier">sl</span> = <span class="ruby-constant">SkillList</span><span class="ruby-operator">::</span><span class="ruby-constant">FreeformSkillList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>)
   <span class="ruby-identifier">sl</span>.<span class="ruby-identifier">list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">skill</span><span class="ruby-operator">|</span>
@@ -268,7 +309,7 @@
 
           
           <div class="method-source-code" id="freeform_trait_list-3D-source">
-            <pre><span class="ruby-comment"># File app/models/creature.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/models/creature.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">freeform_trait_list=</span>(<span class="ruby-identifier">value</span>)
   <span class="ruby-constant">TraitList</span><span class="ruby-operator">::</span><span class="ruby-constant">FreeformTraitList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">trait</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">traits</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">trait</span>

@@ -39,6 +39,11 @@ class SwarmsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get variant page" do
+    get :variant, id: @swarm
+    assert_response :success
+  end
+
   test "should update swarm" do
     patch :update, id: @swarm, swarm: { description: "Updated description" }
     assert_redirected_to swarm_path(assigns(:swarm))

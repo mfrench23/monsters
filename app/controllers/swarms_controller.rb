@@ -10,6 +10,11 @@ class SwarmsController < ApplicationController
     @swarm.attacks.build
   end
 
+  def variant
+    @swarm = Swarm.find(params[:id]).deep_copy
+    render :new
+  end
+
   def edit
   end
 

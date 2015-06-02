@@ -2,6 +2,7 @@ class Monster < ActiveRecord::Base
   include Filterable
 
   actable # can be a "superclass" for MTI - gem active_record-acts_as
+  has_ancestry # for determining which monsters are variants of others
 
   has_many :page_references, dependent: :destroy
   accepts_nested_attributes_for :page_references, allow_destroy: true, :reject_if => lambda { |x| x['book_id'].blank? && x['pages'].blank? }
@@ -47,6 +48,19 @@ class Monster < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def deep_copy
+    copy = dup
+    page_references.each { |pg| copy.page_references << pg.deep_copy }
+    attacks.each { |a| copy.attacks << a.deep_copy }
+    movement_rates.each { |mr| copy.movement_rates << mr.deep_copy }
+    # monster names don't get copied
+    characteristic_monsters.each { |cm| copy.characteristic_monsters << cm.deep_copy }
+    illustrations.each { |illo| copy.illustrations << illo.deep_copy }
+    copy.name = "Copy of #{name}"
+    copy.parent = self
+    copy
   end
 
   # required because cocoon uses reflect_on_association, which isn't fooled by actable

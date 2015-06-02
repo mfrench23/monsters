@@ -69,4 +69,40 @@ class CreatureTest < ActiveSupport::TestCase
     assert_nil m.characteristic_monster("Fake Characteristic")
     assert_equal 10, m.characteristic_score("DX")
   end
+
+  test "can deep_copy" do
+    # set up original
+    @one.freeform_skill_list="Brawling@DX+1; Stealth@DX+0"
+    @one.freeform_trait_list="Combat Reflexes"
+    @one.damage_resistances << DamageResistance.new(dr: 2, location: Location.first)
+    @one.parry_scores << ParryScore.new(weapon: "Brawling", parry: 11)
+    @one.page_references << PageReference.new(book: Book.first, pages: "37-38")
+    @one.attacks << Attack.new(description: "3d cr")
+    @one.movement_rates << MovementRate.new(move_type: MoveType.first, rate: 3)
+    assert_equal true, @one.save
+    assert_equal 10, @one.characteristic_monsters.first.score
+    assert_equal "Brawling", @one.skills.first.master_skill.name
+
+    # create the copy and modify it
+    copy = @one.deep_copy
+    assert_equal "DX", copy.characteristic_monsters.first.characteristic.to_s
+    copy.characteristic_monsters.first.score = 20
+    assert_equal 20, (copy.characteristic_score "DX")
+    copy.parry_scores.first.weapon = "Kung Fu"
+    copy.traits.first.level = 2
+    assert_no_difference('MasterSkill.count') do
+      copy.skills.first.modifier = 2
+      assert_equal "Brawling @DX+2=12", copy.skills.first.to_s
+      assert_equal true, copy.save
+    end
+    assert_equal "Brawling", copy.skills.first.master_skill.name
+    assert_equal @one, copy.parent.specific
+
+    # load the original, make sure changes to copy didn't copy back to it
+    one_loaded = Creature.find(@one.id)
+    assert_equal 10, (one_loaded.characteristic_score "DX")
+    assert_equal "Brawling @DX+1=11", one_loaded.skills.first.to_s
+    assert_equal "Brawling", one_loaded.parry_scores.first.weapon
+    assert_nil one_loaded.traits.first.level
+  end
 end

@@ -21,6 +21,16 @@ class Creature < ActiveRecord::Base
 
   validates :freeform_skill_list, absence: true
 
+  def deep_copy
+    copy = dup
+    copy.monster = monster.deep_copy
+    damage_resistances.each { |dr| copy.damage_resistances << dr.deep_copy }
+    skills.each { |sk| copy.skills << sk.deep_copy }
+    traits.each { |tr| copy.traits << tr.deep_copy }
+    parry_scores.each { |p| copy.parry_scores << p.deep_copy }
+    copy
+  end
+
   def freeform_trait_list=(value)
     TraitList::FreeformTraitList.new(value).list.each do |trait|
       self.traits << trait

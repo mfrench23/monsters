@@ -1,68 +1,17 @@
 <p id="notice"><%= notice %></p>
-<% if @creature.illustrations.any? %>
-  <div class="illo">
-    <% @creature.illustrations.each do |illustration| %>
-      <%= image_tag illustration.image.url(:medium) %>
-      <%= illustration.notes.to_s %>
-    <% end %>
-  </div>
-<% end %>
+<%= render 'show_monster_illustration', m: @creature %>
 
 <h1>
   <%= @creature.name %>
 </h1>
 
 <div>
-  <% if @creature.monster_names.count > 0 %>
-    <div>
-      <span class="field-label show">Aliases</span>
-      <%= @creature.names_to_s %>
-    </div>
-  <% end %>
-
-  <% unless @creature.monster_class_name.empty? %>
-    <div style="display: table-row;">
-      <div class="field-label show trait">Class</div>
-      <div class="trait">
-        <%= @creature.monster_class_name %>
-      </div>
-    </div>
-  <% end %>
-
-  <% unless @creature.description.blank? %>
-    <div style="display: table-row;">
-      <div class="field-label show trait">Description</div>
-      <div class="trait">
-        <%=simple_format @creature.description, {:class => "longtext"}, wrapper_tag: "div" %>
-      </div>
-    </div>
-  <% end %>
+  <%= render 'monster_prestatblock_header', m: @creature %>
 
   <%= render 'show_stat_block', monster: @creature %>
 
   <div style="display: table;">
-    <div style="display: table-row;">
-      <div class="field-label show trait">Attacks</div>
-	<% if not @creature.attacks.any? %>
-	  <div class="trait">None</div>
-	<% else %>
-	  <div class="trait">
-	    <ul class="vertical-list">
-	      <% @creature.attacks.each do |attack| %>
-		<li class="attack-line">
-		  <span class="attack-label">
-		    <%= attack.name %>
-		    <% if attack.skill? %>
-		      (<%= attack.skill %>)
-		    <% end %>
-		  </span>
-		  <span class="attack-description"><%= attack.description %></span>
-		</li>
-	      <% end %>
-	    </ul>
-	  </div>
-	<% end %>
-    </div>
+    <%= render 'attack_show', m: @creature %>
 
     <% if @creature.traits.any? %>
       <div style="display: table-row;">
@@ -91,25 +40,7 @@
       </div>
     <% end %>
 
-    <% unless @creature.notes.blank? %>
-      <div style="display: table-row;">
-        <div class="field-label show trait">Notes</div>
-        <div class="trait">
-	  <%= simple_format @creature.notes, {:class => "longtext"}, wrapper_tag: "div" %>
-	</div>
-      </div>
-    <% end %>
-
-    <% if @creature.page_references.any? %>
-      <div style="display: table-row;">
-        <div class="field-label show trait">Sources</div>
-        <div class="trait">
-	  <% @creature.page_references.each do |pg| %>
-	    <%= pg.to_s %> <br>
-	  <% end %>
-	</div>
-      </div>
-    <% end %>
+    <%= render 'notes_and_sources_show', m: @creature %>
 
     <% unless @creature.parts_value.blank? %>
       <div style="display: table-row;">
@@ -120,16 +51,7 @@
       </div>
     <% end %>
 
-    <% unless (@creature.characteristic_score "OR").blank? && (@creature.characteristic_score "PR").blank? %>
-      <div style="display: table-row;">
-        <div class="field-label show trait">Threat Ratings</div>
-        <div class="trait">
-	  <div>Offensive Rating: <%= @creature.characteristic_score "OR" %></div>
-	  <div>Protective Rating: <%= @creature.characteristic_score "PR" %></div>
-	  <div>Combat Effectiveness Rating: <%= @creature.combat_effectiveness_rating %></div>
-	</div>
-      </div>
-    <% end %>
+    <%= render 'combat_ratings_show', m: @creature %>
 
   </div>
 </div>
@@ -137,4 +59,5 @@
 <br>
 
 <%= link_to 'Edit', edit_polymorphic_path(@creature) %> |
+<%= link_to 'Create variant', variant_creature_path(@creature) %> |
 <%= link_to 'Index', monsters_path %>

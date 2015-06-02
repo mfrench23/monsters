@@ -82,6 +82,8 @@
     
     <li ><a href="#method-i-update">#update</a>
     
+    <li ><a href="#method-i-variant">#variant</a>
+    
   </ul>
 </div>
 
@@ -135,7 +137,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">form</span> = <span class="ruby-constant">CreatureForm</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-ivar">@creature</span> = <span class="ruby-constant">Creature</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">form</span>.<span class="ruby-identifier">params</span>)
@@ -180,7 +182,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@creature</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -217,7 +219,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -316,7 +318,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">form</span> = <span class="ruby-constant">CreatureForm</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-ivar">@creature</span> = <span class="ruby-constant">Creature</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -330,6 +332,40 @@
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@creature</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-variant" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">variant</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="variant-source">
+            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">variant</span>
+  <span class="ruby-ivar">@creature</span> = <span class="ruby-constant">Creature</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">deep_copy</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

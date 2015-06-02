@@ -1,0 +1,22 @@
+<div style="display: table-row;">
+  <div class="field-label show trait">Attacks</div>
+    <% if not m.attacks.any? %>
+      <div class="trait">None</div>
+    <% else %>
+      <div class="trait">
+        <ul class="vertical-list">
+          <% m.attacks.each do |attack| %>
+            <li class="attack-line">
+              <span class="attack-label">
+                <%= attack.name %>
+                <% if attack.skill? %>
+                  (<%= attack.skill %>)
+                <% end %>
+              </span>
+              <span class="attack-description"><%= attack.description %></span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+</div>

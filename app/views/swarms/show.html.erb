@@ -1,101 +1,27 @@
 <p id="notice"><%= notice %></p>
-<% if @swarm.illustrations.any? %>
-  <div class="illo">
-    <% @swarm.illustrations.each do |illustration| %>
-      <%= image_tag illustration.image.url(:medium) %>
-      <%= illustration.notes.to_s %>
-    <% end %>
-  </div>
-<% end %>
+<%= render 'show_monster_illustration', m: @swarm %>
 
 <h1>
   <%= @swarm.name %>
 </h1>
 
 <div>
-  <% if @swarm.monster_names.count > 0 %>
-    <div>
-      <span class="field-label show">Aliases</span>
-      <%= @swarm.names_to_s %>
-    </div>
-  <% end %>
-
-  <% unless @swarm.monster_class_name.empty? %>
-    <div>
-      <span class="field-label show">Class</span>
-      <%= @swarm.monster_class_name %>
-    </div>
-  <% end %>
-
-  <% unless @swarm.description.blank? %>
-    <div>
-      <span class="field-label show">Description</span>
-      <%=simple_format @swarm.description %>
-    </div>
-  <% end %>
+  <%= render 'monster_prestatblock_header', m: @swarm %>
   <% if @swarm.number_description? %>
-    <div>
-      <span class="field-label show">Number of individuals</span>
-      <%=simple_format @swarm.number_description %>
+    <div style="display: table-row;">
+      <div class="field-label show">Number of individuals</div>
+      <div class="trait"><%=simple_format @swarm.number_description, {:class => "longtext"}, wrapper_tag: "div" %></div>
     </div>
   <% end %>
 
   <%= render 'show_stat_block', monster: @swarm %>
 
   <div style="display: table;">
-    <div style="display: table-row;">
-      <div class="field-label show trait">Attacks</div>
-	<% if not @swarm.attacks.any? %>
-	  <div class="trait">None</div>
-	<% else %>
-	  <div class="trait">
-	    <ul class="vertical-list">
-	      <% @swarm.attacks.each do |attack| %>
-		<li class="attack-line">
-		  <span class="attack-label">
-		    <%= attack.name %>
-		    <% if attack.skill? %>
-		      (<%= attack.skill %>)
-		    <% end %>
-		  </span>
-		  <span class="attack-description"><%= attack.description %></span>
-		</li>
-	      <% end %>
-	    </ul>
-	  </div>
-	<% end %>
-    </div>
+    <%= render 'attack_show', m: @swarm %>
 
-    <% unless @swarm.notes.blank? %>
-      <div style="display: table-row;">
-        <div class="field-label show trait">Notes</div>
-        <div class="trait">
-	  <%= @swarm.notes %>
-	</div>
-      </div>
-    <% end %>
+    <%= render 'notes_and_sources_show', m: @swarm %>
 
-    <% if @swarm.page_references.any? %>
-      <div style="display: table-row;">
-        <div class="field-label show trait">Sources</div>
-        <div class="trait">
-	  <% @swarm.page_references.each do |pg| %>
-	    <%= pg.to_s %> <br>
-	  <% end %>
-	</div>
-      </div>
-    <% end %>
-
-    <% unless (@swarm.characteristic_score "OR").blank? && (@swarm.characteristic_score "PR").blank? %>
-      <div style="display: table-row;">
-        <div class="field-label show trait">Threat Ratings</div>
-        <div class="trait">
-	  <div>Offensive Rating: <%= @swarm.characteristic_score "OR" %></div>
-	  <div>Protective Rating: <%= @swarm.characteristic_score "PR" %></div>
-	  <div>Combat Effectiveness Rating: <%= @swarm.combat_effectiveness_rating %></div>
-	</div>
-      </div>
-    <% end %>
+    <%= render 'combat_ratings_show', m: @swarm %>
 
   </div>
 </div>
@@ -103,4 +29,5 @@
 <br>
 
 <%= link_to 'Edit', edit_polymorphic_path(@swarm) %> |
+<%= link_to 'Create variant', variant_swarm_path(@swarm) %> |
 <%= link_to 'Index', monsters_path %>

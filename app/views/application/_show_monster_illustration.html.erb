@@ -1,0 +1,14 @@
+<div class="sidebar">
+  <% if m.illustrations.any? %>
+    <div class="illo">
+      <% m.illustrations.each do |illustration| %>
+        <%= image_tag illustration.image.url(:medium) %>
+        <%= illustration.notes.to_s %>
+      <% end %>
+    </div>
+  <% end %>
+  <% if !(m.root? && m.is_childless?) %>
+    <div class="nested-header variantlist" style="padding-top: 50px;">Monster Variants</div>
+    <%= ancestor_tree(m) %>
+  <% end %>
+</div>

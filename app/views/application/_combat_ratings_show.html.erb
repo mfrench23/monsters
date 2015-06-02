@@ -1,0 +1,10 @@
+<% unless (m.characteristic_score "OR").blank? && (m.characteristic_score "PR").blank? %>
+  <div style="display: table-row;">
+    <div class="field-label show trait">Threat Ratings</div>
+    <div class="trait">
+      <div>Offensive Rating: <%= m.characteristic_score "OR" %></div>
+      <div>Protective Rating: <%= m.characteristic_score "PR" %></div>
+      <div>Combat Effectiveness Rating: <%= m.combat_effectiveness_rating %></div>
+    </div>
+  </div>
+<% end %>

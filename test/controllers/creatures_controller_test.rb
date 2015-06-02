@@ -34,6 +34,11 @@ class CreaturesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get variant page" do
+    get :variant, id: @creature
+    assert_response :success
+  end
+
   test "should get edit" do
     get :edit, id: @creature
     assert_response :success

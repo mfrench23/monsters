@@ -14,6 +14,7 @@ class SwarmForm
         :monster_class_id,
 	:parts_value,
 	:number_description,
+        :ancestry,
 	illustrations_attributes: [:id, :image, :notes, :_destroy],
         monster_names_attributes: [:id, :name, :description, :_destroy],
         attacks_attributes: [:id, :name, :skill, :description, :_destroy],

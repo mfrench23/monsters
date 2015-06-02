@@ -51,6 +51,9 @@ gem 'active_record-acts_as'
 
 gem "money-rails"
 
+# ancestry for hierarchical relationships
+gem 'ancestry'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
