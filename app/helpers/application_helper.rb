@@ -26,7 +26,7 @@ module ApplicationHelper
   end
 
   def child_tree(monster)
-    child_entries = monster.children.reduce("".html_safe) do |memo, child|
+    child_entries = monster.children.sort { |x,y| x.name <=> y.name }.reduce("".html_safe) do |memo, child|
       memo += content_tag(:li, format_show_link(child) + " (descendant)".html_safe, class: "variantlist" )
     end
     content_tag( :ul, child_entries )
