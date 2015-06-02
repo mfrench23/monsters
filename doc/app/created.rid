@@ -1,4 +1,4 @@
-Tue, 02 Jun 2015 04:52:03 -0700
+Tue, 02 Jun 2015 08:13:58 -0700
 README.rdoc	Fri, 29 May 2015 09:03:57 -0700
 app/controllers/application_controller.rb	Sat, 30 May 2015 07:36:05 -0700
 app/controllers/books_controller.rb	Mon, 27 Apr 2015 10:06:46 -0700
@@ -11,19 +11,21 @@ app/controllers/monsters_controller.rb	Thu, 28 May 2015 22:15:07 -0700
 app/controllers/move_types_controller.rb	Mon, 27 Apr 2015 10:07:49 -0700
 app/controllers/swarms_controller.rb	Mon, 01 Jun 2015 06:37:25 -0700
 app/controllers/welcome_controller.rb	Sat, 30 May 2015 12:23:34 -0700
-app/forms/creature_form.rb	Mon, 01 Jun 2015 19:55:26 -0700
-app/forms/swarm_form.rb	Mon, 01 Jun 2015 19:55:21 -0700
-app/helpers/application_helper.rb	Tue, 02 Jun 2015 04:50:30 -0700
+app/forms/creature_form.rb	Tue, 02 Jun 2015 06:11:14 -0700
+app/forms/swarm_form.rb	Tue, 02 Jun 2015 06:11:20 -0700
+app/helpers/ancestor_tree_helper.rb	Tue, 02 Jun 2015 07:45:30 -0700
 app/helpers/characteristics_helper.rb	Fri, 29 May 2015 15:23:32 -0700
 app/helpers/damage_resistances_helper.rb	Thu, 28 May 2015 14:58:46 -0700
+app/helpers/javascript_variables_helper.rb	Tue, 02 Jun 2015 07:47:00 -0700
 app/helpers/monster_form_builder.rb	Fri, 22 May 2015 13:26:27 -0700
+app/helpers/top_nav_helper.rb	Tue, 02 Jun 2015 07:48:07 -0700
 app/models/attack.rb	Mon, 01 Jun 2015 06:07:13 -0700
 app/models/book.rb	Thu, 28 May 2015 14:58:46 -0700
 app/models/characteristic.rb	Sun, 31 May 2015 03:14:56 -0700
 app/models/characteristic_list.rb	Thu, 28 May 2015 12:09:46 -0700
 app/models/characteristic_monster.rb	Mon, 01 Jun 2015 05:11:30 -0700
 app/models/concerns/filterable.rb	Mon, 25 May 2015 15:18:34 -0700
-app/models/creature.rb	Mon, 01 Jun 2015 05:10:58 -0700
+app/models/creature.rb	Tue, 02 Jun 2015 06:21:01 -0700
 app/models/creature/freeform_list.rb	Sun, 31 May 2015 02:52:45 -0700
 app/models/creature/skill_list.rb	Sun, 31 May 2015 00:07:58 -0700
 app/models/creature/trait_list.rb	Sat, 30 May 2015 19:06:56 -0700
@@ -32,7 +34,7 @@ app/models/illustration.rb	Sat, 16 May 2015 13:08:39 -0700
 app/models/location.rb	Fri, 10 Apr 2015 11:26:41 -0700
 app/models/master_skill.rb	Thu, 23 Apr 2015 04:53:06 -0700
 app/models/master_trait.rb	Mon, 27 Apr 2015 09:55:10 -0700
-app/models/monster.rb	Mon, 01 Jun 2015 19:21:43 -0700
+app/models/monster.rb	Tue, 02 Jun 2015 06:18:58 -0700
 app/models/monster_class.rb	Fri, 10 Apr 2015 11:26:41 -0700
 app/models/monster_name.rb	Fri, 10 Apr 2015 11:26:41 -0700
 app/models/move_type.rb	Tue, 21 Apr 2015 12:53:02 -0700
@@ -41,5 +43,5 @@ app/models/page_reference.rb	Mon, 01 Jun 2015 06:06:52 -0700
 app/models/parry_score.rb	Mon, 01 Jun 2015 05:59:54 -0700
 app/models/skill.rb	Mon, 01 Jun 2015 05:13:56 -0700
 app/models/skill/modifier.rb	Thu, 28 May 2015 14:58:46 -0700
-app/models/swarm.rb	Mon, 01 Jun 2015 05:02:35 -0700
+app/models/swarm.rb	Tue, 02 Jun 2015 06:22:25 -0700
 app/models/trait.rb	Mon, 01 Jun 2015 05:59:36 -0700
