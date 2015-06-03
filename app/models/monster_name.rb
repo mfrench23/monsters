@@ -1,6 +1,6 @@
 class MonsterName < ActiveRecord::Base
   validates :name, presence: true
-  belongs_to :monster
+  belongs_to :monster, touch: true
 
 
   def <=>(other)

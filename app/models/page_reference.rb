@@ -1,6 +1,6 @@
 class PageReference < ActiveRecord::Base
   belongs_to :book
-  belongs_to :monster
+  belongs_to :monster, touch: true
 
   def to_s
     if not pages.nil?

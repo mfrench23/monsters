@@ -1,5 +1,5 @@
 class DamageResistance < ActiveRecord::Base
-  belongs_to :creature
+  belongs_to :creature, touch: true
   belongs_to :location
 
   def deep_copy

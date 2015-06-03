@@ -3,7 +3,7 @@ class Monster < ActiveRecord::Base
 
   before_validation :nil_blank_attributes
 
-  actable # can be a "superclass" for MTI - gem active_record-acts_as
+  actable touch: true # can be a "superclass" for MTI - gem active_record-acts_as - and gets updated_at along with its child
   has_ancestry # for determining which monsters are variants of others
 
   has_many :page_references, dependent: :destroy

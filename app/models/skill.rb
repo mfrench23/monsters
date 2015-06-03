@@ -1,5 +1,5 @@
 class Skill < ActiveRecord::Base
-  belongs_to :creature
+  belongs_to :creature, touch: true
   belongs_to :master_skill
 
   has_one :characteristic, :through => :master_skill
