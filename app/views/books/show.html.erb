@@ -10,5 +10,7 @@
   <%= @book.abbreviation %>
 </p>
 
+<%= render 'simple_monster_list', monsters: @book.monsters %>
+
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

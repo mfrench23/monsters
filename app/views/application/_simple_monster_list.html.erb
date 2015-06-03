@@ -1,0 +1,17 @@
+<% includes_variants = false %>
+<ul>
+  <% monsters.each do |monster| %>
+    <li>
+      <%= link_to monster.name, monster.specific %>
+      <% if ! monster.root? %>
+        <% includes_variants = true %>
+        *
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<% if includes_variants %>
+  <p style="padding-left: 50px;">
+    * variant
+  </p>
+<% end %>

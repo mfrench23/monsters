@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
   has_many :page_references, dependent: :destroy
+  has_many :monsters, through: :page_references
 
   validates :name, presence: true
 
