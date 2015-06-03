@@ -42,12 +42,12 @@ ready = ->
       title: text: 'Count'
       min: 0
     series: [ {
-      type: 'line'
+      type: 'spline'
       name: 'Created'
       data: countbycreateddate
     },
     {
-      type: 'line'
+      type: 'spline'
       name: 'Modified'
       data: countbyupdateddate
     }]
