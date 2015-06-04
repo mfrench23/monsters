@@ -1,6 +1,6 @@
 <% includes_variants = false %>
 <ul>
-  <% monsters.each do |monster| %>
+  <% monsters.sort { |x,y| x.name.upcase <=> y.name.upcase }.each do |monster| %>
     <li>
       <%= link_to monster.name, monster.specific %>
       <% if ! monster.root? %>
