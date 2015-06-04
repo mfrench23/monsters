@@ -4,6 +4,10 @@ class MasterSkill < ActiveRecord::Base
 
   validates :name, :characteristic, presence: true
 
+  def to_s
+    "#{name} (#{characteristic})"
+  end
+
   private
 
   def nil_blank_attributes

@@ -1,6 +1,6 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.collection_select :master_trait_id, MasterTrait.order(:name), :id, :name %>
+    <%= f.collection_select :master_trait_id, MasterTrait.order(:name), :id, :to_s %>
   </div>
   <div class="controls">
     <%= f.number_field :level %>
