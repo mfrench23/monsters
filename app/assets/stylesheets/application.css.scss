@@ -169,3 +169,11 @@ div.dashboard-item {
   margin-right: auto;
 }
 
+// more graceful links
+a.quiet {
+  text-decoration: none;
+}
+.quiet a:hover
+{
+  background-color: #d0d0ff;
+}

@@ -8,7 +8,7 @@
 <% unless m.monster_class_name.empty? %>
   <div style="display: table-row;">
     <div class="field-label show trait">Class</div>
-    <div class="trait"><%= link_to m.monster_class_name, m.monster_class %></div>
+    <div class="trait"><%= link_to m.monster_class_name, m.monster_class, class: "quiet" %></div>
   </div>
 <% end %>
 

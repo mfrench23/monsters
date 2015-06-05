@@ -17,7 +17,12 @@
       <div style="display: table-row;">
         <div class="field-label show trait">Traits</div>
         <div class="trait">
-	  <%= @creature.traits.collect { |x| x.to_s }.sort().join('; ') %>
+          <% all = @creature.traits.count %>
+	  <% @creature.traits.sort.each_with_index do |trait, i| %>
+            <%= link_to trait.master_trait.to_s, trait.master_trait, class: "quiet" -%>
+            <%= trait.level.blank? ? "" : " #{trait.level}" -%>
+            <%= (i < (all-1) ? "; " : "") -%>
+	  <% end %>
 	</div>
       </div>
     <% end %>

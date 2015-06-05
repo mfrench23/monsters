@@ -12,7 +12,7 @@
     <div class="field-label show trait">Sources</div>
     <div class="trait">
       <% m.page_references.each do |pg| %>
-        <%= link_to pg.to_s, pg.book %> <br>
+        <%= link_to pg.to_s, pg.book, class: "quiet" %> <br>
       <% end %>
     </div>
   </div>

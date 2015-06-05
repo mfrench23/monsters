@@ -4,10 +4,6 @@ class Trait < ActiveRecord::Base
 
   validates :master_trait, presence: true
 
-  def to_s
-    (master_trait.to_s + " " + level.to_s).strip
-  end
-
   def deep_copy
     copy = dup
     copy
