@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   end
 
   # other resources
-  resources :master_traits
+  resources :master_traits do
+    member do
+      get 'merge_into'
+    end
+    post 'merge_into'
+  end
   resources :master_skills
   resources :monster_classes
   resources :books

@@ -72,8 +72,6 @@
     
     <li ><a href="#method-i-deep_copy">#deep_copy</a>
     
-    <li ><a href="#method-i-to_s">#to_s</a>
-    
   </ul>
 </div>
 
@@ -127,43 +125,10 @@
 
           
           <div class="method-source-code" id="deep_copy-source">
-            <pre><span class="ruby-comment"># File app/models/trait.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/models/trait.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
   <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
   <span class="ruby-identifier">copy</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-to_s" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">to_s</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/trait.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  (<span class="ruby-identifier">master_trait</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">level</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">strip</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

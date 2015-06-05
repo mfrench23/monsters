@@ -42,6 +42,20 @@ class MasterTraitsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get merge" do
+    get :merge_into, id: @master_trait
+    assert_response :success
+  end
+
+  test "should merge duplicate into master_trait" do
+    dupe = FactoryGirl.create(:master_trait, name: 'Copy of ' + @master_trait.name)
+    assert_difference('MasterTrait.count', -1) do
+      post :merge_into, { merge_into_trait_id: @master_trait.id, id: dupe.id }
+    end
+
+    assert_redirected_to master_trait_path(@master_trait)
+  end
+
   test "should update master_trait" do
     patch :update, id: @master_trait, master_trait: { is_feature: @master_trait.is_feature, name: @master_trait.name, notes: @master_trait.notes }
     assert_redirected_to master_trait_path(assigns(:master_trait))

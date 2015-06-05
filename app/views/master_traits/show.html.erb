@@ -1,25 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @master_trait.name %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= @master_trait.notes %>
-</p>
-
-<p>
-  <strong>Is feature:</strong>
-  <%= @master_trait.is_feature %>
-</p>
-
-<ul>
-<% @master_trait.traits.each do |trait| %>
-  <li><%= link_to trait.creature.name.to_s, trait.creature %>
-<% end %>
-</ul>
+<%= render 'show', master_trait: @master_trait %>
 
 <%= link_to 'Edit', edit_master_trait_path(@master_trait) %> |
-<%= link_to 'Back', master_traits_path %>
+<%= link_to 'Index', master_traits_path %>

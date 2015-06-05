@@ -70,6 +70,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-merge">#merge</a>
+    
     <li ><a href="#method-i-to_s">#to_s</a>
     
   </ul>
@@ -106,6 +108,41 @@
        </header>
 
     
+      <div id="method-i-merge" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">merge</span><span
+            class="method-args">(dupe)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given another <a href="MasterTrait.html">MasterTrait</a>, take over the
+traits it is responsible for, and delete it.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="merge-source">
+            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">merge</span>(<span class="ruby-identifier">dupe</span>)
+  <span class="ruby-identifier">dupe</span>.<span class="ruby-identifier">traits</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">master_trait_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">dupe</span>.<span class="ruby-identifier">destroy</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-to_s" class="method-detail ">
         
         <div class="method-heading">
@@ -125,7 +162,7 @@
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   (<span class="ruby-identifier">is_feature</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;Feature: &quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">notes</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot; (&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">notes</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;)&quot;</span>)
 <span class="ruby-keyword">end</span></pre>

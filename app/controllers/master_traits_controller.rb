@@ -1,5 +1,5 @@
 class MasterTraitsController < ApplicationController
-  before_action :set_master_trait, only: [:show, :edit, :update, :destroy]
+  before_action :set_master_trait, only: [:show, :edit, :merge_into, :update, :destroy]
 
   # GET /master_traits
   # GET /master_traits.json
@@ -19,6 +19,17 @@ class MasterTraitsController < ApplicationController
 
   # GET /master_traits/1/edit
   def edit
+  end
+
+  def merge_into
+    if params[:merge_into_trait_id]
+      into = MasterTrait.find(params[:merge_into_trait_id])
+      if into.merge(@master_trait)
+        redirect_to into, notice: 'Master traits were successfully merged.'
+      else
+        render :merge_into
+      end
+    end
   end
 
   # POST /master_traits

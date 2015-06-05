@@ -78,6 +78,8 @@
     
     <li ><a href="#method-i-index">#index</a>
     
+    <li ><a href="#method-i-merge_into">#merge_into</a>
+    
     <li ><a href="#method-i-new">#new</a>
     
     <li ><a href="#method-i-show">#show</a>
@@ -137,7 +139,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@master_trait</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">master_trait_params</span>)
 
@@ -180,7 +182,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 56</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@master_trait</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -252,6 +254,46 @@
             <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@master_traits</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>, <span class="ruby-value">:notes</span>).<span class="ruby-identifier">page</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-merge_into" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">merge_into</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /master_traits/1/merge_into</p>
+          
+          
+
+          
+          <div class="method-source-code" id="merge_into-source">
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">merge_into</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:merge_into_trait_id</span>]
+    <span class="ruby-identifier">into</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:merge_into_trait_id</span>])
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">into</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@master_trait</span>)
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">into</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Master traits were successfully merged.&#39;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-value">:merge_into</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -347,7 +389,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@master_trait</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">master_trait_params</span>)

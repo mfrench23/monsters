@@ -7,6 +7,12 @@ class MasterTrait < ActiveRecord::Base
     (is_feature ? "Feature: " : "") + name + (notes.nil? ? "" : " (" + notes + ")")
   end
 
+  # Given another MasterTrait, take over the traits it is responsible for, and delete it.
+  def merge(dupe)
+    dupe.traits.update_all(master_trait_id: self.id)
+    dupe.destroy
+  end
+
   private
 
   def nil_blank_attributes
