@@ -2,7 +2,7 @@ class MonstersController < ApplicationController
   helper_method :sortable
 
   def index
-    @monsters = Monster.filter(params.slice(:starts_with)).order(sort_param).includes(:monster_names, :monster_class, characteristic_monsters: [:characteristic] ).page params[:page]
+    @monsters = Monster.filter(params.slice(:starts_with, :created_on, :updated_on)).order(sort_param).includes(:monster_names, :monster_class, characteristic_monsters: [:characteristic] ).page params[:page]
   end
 
   def sortable(column, title = nil)

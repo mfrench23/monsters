@@ -2,6 +2,8 @@
 
 <h1>Listing Monsters</h1>
 <h2><%= "with names starting with '#{params[:starts_with]}'" unless params[:starts_with].blank? %></h2>
+<h2><%= "created on '#{params[:created_on]}'" unless params[:created_on].blank? %></h2>
+<h2><%= "updated on '#{params[:updated_on]}'" unless params[:updated_on].blank? %></h2>
 <% variant_on_page = @monsters.any? { |m| (! m.root? ) } %>
 <% alias_on_page = @monsters.any? { |m| m.monster_names.any? } %>
 

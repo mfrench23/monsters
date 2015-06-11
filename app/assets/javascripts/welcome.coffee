@@ -42,11 +42,19 @@ ready = ->
       title: text: 'Count'
       min: 0
     series: [ {
+      point: events: click: ->
+        location.href = @url
+        e.preventDefault()
+        return
       type: 'spline'
       name: 'Created'
       data: countbycreateddate
     },
     {
+      point: events: click: ->
+        location.href = @url
+        e.preventDefault()
+        return
       type: 'spline'
       name: 'Modified'
       data: countbyupdateddate
