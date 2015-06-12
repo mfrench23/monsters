@@ -1,4 +1,4 @@
-class ParryScore < ActiveRecord::Base
+class ParryScore < AbstractEntity
   belongs_to :creature, touch: true
   validates :parry, presence: true
 

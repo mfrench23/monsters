@@ -1,4 +1,4 @@
-class Creature < ActiveRecord::Base
+class Creature < AbstractEntity
   include TraitList
 
   attr_accessor :freeform_trait_list

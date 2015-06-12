@@ -1,4 +1,4 @@
-class Swarm < ActiveRecord::Base
+class Swarm < AbstractEntity
   acts_as :monster
   before_validation :nil_blank_attributes
 

@@ -2,7 +2,9 @@ require 'test_helper'
 
 class CreaturesControllerTest < ActionController::TestCase
   setup do
-    @creature = FactoryGirl.create(:creature)
+    @creature = FactoryGirl.build(:creature)
+    @creature.monster_names << FactoryGirl.build(:monster_name)
+    @creature.save
   end
 
   test "should get new" do

@@ -1,4 +1,4 @@
-class Skill < ActiveRecord::Base
+class Skill < AbstractEntity
   belongs_to :creature, touch: true
   belongs_to :master_skill
 

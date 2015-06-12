@@ -1,4 +1,4 @@
-class MasterTrait < ActiveRecord::Base
+class MasterTrait < AbstractEntity
   has_many :traits
   validates :name, presence: true
   before_validation :nil_blank_attributes

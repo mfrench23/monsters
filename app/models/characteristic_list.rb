@@ -1,4 +1,4 @@
-class CharacteristicList < ActiveRecord::Base
+class CharacteristicList < AbstractEntity
   belongs_to :characteristic
 
   def readonly?

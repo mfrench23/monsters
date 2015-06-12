@@ -1,4 +1,4 @@
-class Illustration < ActiveRecord::Base
+class Illustration < AbstractEntity
   belongs_to :illustratable, :polymorphic => true
 
   has_attached_file :image,

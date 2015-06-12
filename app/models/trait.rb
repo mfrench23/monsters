@@ -1,4 +1,4 @@
-class Trait < ActiveRecord::Base
+class Trait < AbstractEntity
   belongs_to :creature, touch: true
   belongs_to :master_trait
 

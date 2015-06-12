@@ -1,4 +1,4 @@
-class Monster < ActiveRecord::Base
+class Monster < AbstractEntity
   include Filterable
 
   before_validation :nil_blank_attributes
@@ -28,8 +28,6 @@ class Monster < ActiveRecord::Base
   validates :name, :monster_class_id, presence: true
 
   scope :starts_with, -> (name) { where("upper(name) like ?", "#{name}%")}
-  scope :created_on, -> (date) { where("date(created_at) = ?", "#{date}")}
-  scope :updated_on, -> (date) { where("date(updated_at) = ?", "#{date}")}
 
   def characteristic_monster(characteristic_name)
     characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.try(:first) || generate_characteristic_monster(characteristic_name)
@@ -43,11 +41,6 @@ class Monster < ActiveRecord::Base
     offensive_rating = characteristic_score "OR"
     protective_rating = characteristic_score "PR"
     offensive_rating.nil? || protective_rating.nil? ? nil : offensive_rating.to_i + protective_rating.to_i
-  end
-
-  # All the monster's aliases, in a semicolon-delimited list.
-  def names_to_s
-    monster_names.sort.collect { |x| x.name }.join('; ')
   end
 
   def to_s

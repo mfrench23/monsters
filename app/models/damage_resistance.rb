@@ -1,4 +1,4 @@
-class DamageResistance < ActiveRecord::Base
+class DamageResistance < AbstractEntity
   belongs_to :creature, touch: true
   belongs_to :location
 

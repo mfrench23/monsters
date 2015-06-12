@@ -1,4 +1,4 @@
-class MasterSkill < ActiveRecord::Base
+class MasterSkill < AbstractEntity
   belongs_to :characteristic
   before_validation :nil_blank_attributes
 

@@ -1,4 +1,4 @@
-class PageReference < ActiveRecord::Base
+class PageReference < AbstractEntity
   belongs_to :book
   belongs_to :monster, touch: true
 

@@ -15,15 +15,6 @@ class MonsterTest < ActiveSupport::TestCase
     assert_equal true, testval
   end
 
-  test "names_to_s" do
-    @one.monster_names << FactoryGirl.build(:monster_name, name: "Don")
-    assert_equal @one.names_to_s, "Don"
-    @one.monster_names << FactoryGirl.build(:monster_name)
-    assert_equal @one.names_to_s, "Bob; Don"
-    @one.monster_names << FactoryGirl.build(:monster_name, name: "Celine")
-    assert_equal @one.names_to_s, "Bob; Celine; Don"
-  end
-  
   test "to_s" do
     assert_equal @one.to_s, "Tim the Test Monster"
   end

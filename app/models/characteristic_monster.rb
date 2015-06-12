@@ -1,4 +1,4 @@
-class CharacteristicMonster < ActiveRecord::Base
+class CharacteristicMonster < AbstractEntity
   belongs_to :characteristic
   belongs_to :monster, touch: true
 
