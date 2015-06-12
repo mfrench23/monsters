@@ -4,10 +4,10 @@
 <h2><%= "with names starting with '#{params[:starts_with]}'" unless params[:starts_with].blank? %></h2>
 <h2><%= "created on '#{params[:created_on]}'" unless params[:created_on].blank? %></h2>
 <h2><%= "updated on '#{params[:updated_on]}'" unless params[:updated_on].blank? %></h2>
-<% variant_on_page = @monsters.any? { |m| (! m.root? ) } %>
-<% alias_on_page = @monsters.any? { |m| m.monster_names.any? } %>
+<% variant_on_page = monsters.any? { |m| (! m.root? ) } %>
+<% alias_on_page = monsters.any? { |m| m.monster_names.any? } %>
 
-<%= page_entries_info @monsters %>
+<%= page_entries_info monsters %>
 
 <table>
   <thead>
@@ -26,7 +26,7 @@
   </thead>
 
   <tbody>
-    <% @monsters.each do |monster| %>
+    <% monsters.each do |monster| %>
       <tr>
         <td><%= link_to monster.name, monster.specific %></td>
         <% if alias_on_page %>
@@ -52,5 +52,5 @@ Filter by first letter of name:
   <span style="padding-right: 5px;"><%= link_to "(All)", monsters_path %></span>
 <br>
 
-<%= paginate @monsters %>
+<%= paginate monsters %>
 <%= link_to 'New Creature', new_creature_path %>

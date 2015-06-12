@@ -8,8 +8,8 @@ class BooksControllerTest < ActionController::TestCase
 
   test "should get index" do
     get :index
-    assert_response :success
-    assert_not_nil assigns(:books)
+    assert_response :ok
+    assert_select "table tbody tr" # expect at least one row in the body of the table
   end
 
   test "should get new" do
@@ -22,7 +22,10 @@ class BooksControllerTest < ActionController::TestCase
       post :create, book: { abbreviation: @unsaved_book.abbreviation, name: @unsaved_book.name }
     end
 
-    assert_redirected_to book_path(assigns(:book))
+    assert_response :found
+    creature = Book.where(:name => @unsaved_book.name ).order("created_at desc").first
+    assert_not_nil creature
+    assert_redirected_to creature
   end
 
 
@@ -46,7 +49,7 @@ class BooksControllerTest < ActionController::TestCase
 
   test "should update book" do
     patch :update, id: @book, book: { abbreviation: @book.abbreviation, name: @book.name }
-    assert_redirected_to book_path(assigns(:book))
+    assert_redirected_to @book
   end
 
   test "should fail to update book" do

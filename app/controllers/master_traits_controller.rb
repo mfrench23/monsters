@@ -1,49 +1,54 @@
 class MasterTraitsController < ApplicationController
-  before_action :set_master_trait, only: [:show, :edit, :merge_into, :update, :destroy]
-
   # GET /master_traits
   # GET /master_traits.json
   def index
-    @master_traits = MasterTrait.order(:name, :notes).page params[:page]
+    render locals: {
+      master_traits: MasterTrait.order(:name, :notes).page( params[:page] )
+    }
   end
 
   # GET /master_traits/1
   # GET /master_traits/1.json
   def show
+    render locals: { master_trait: set_master_trait }
   end
 
   # GET /master_traits/new
   def new
-    @master_trait = MasterTrait.new
+    master_trait = MasterTrait.new
+    render locals: { master_trait: master_trait }
   end
 
   # GET /master_traits/1/edit
   def edit
+    render locals: { master_trait: set_master_trait }
   end
 
   def merge_into
     if params[:merge_into_trait_id]
       into = MasterTrait.find(params[:merge_into_trait_id])
-      if into.merge(@master_trait)
+      if into.merge(set_master_trait)
         redirect_to into, notice: 'Master traits were successfully merged.'
       else
-        render :merge_into
+        render :merge_into, locals: {master_trait: set_master_trait}
       end
+    else
+      render :merge_into, locals: {master_trait: set_master_trait}
     end
   end
 
   # POST /master_traits
   # POST /master_traits.json
   def create
-    @master_trait = MasterTrait.new(master_trait_params)
+    master_trait = MasterTrait.new(master_trait_params)
 
     respond_to do |format|
-      if @master_trait.save
-        format.html { redirect_to @master_trait, notice: 'Master trait was successfully created.' }
-        format.json { render :show, status: :created, location: @master_trait }
+      if master_trait.save
+        format.html { redirect_to master_trait, notice: 'Master trait was successfully created.' }
+        format.json { render :show, status: :created, location: master_trait }
       else
-        format.html { render :new }
-        format.json { render json: @master_trait.errors, status: :unprocessable_entity }
+        format.html { render :new, locals: {master_trait: master_trait} }
+        format.json { render json: master_trait.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -51,13 +56,14 @@ class MasterTraitsController < ApplicationController
   # PATCH/PUT /master_traits/1
   # PATCH/PUT /master_traits/1.json
   def update
+    master_trait = set_master_trait
     respond_to do |format|
-      if @master_trait.update(master_trait_params)
-        format.html { redirect_to @master_trait, notice: 'Master trait was successfully updated.' }
-        format.json { render :show, status: :ok, location: @master_trait }
+      if master_trait.update(master_trait_params)
+        format.html { redirect_to master_trait, notice: 'Master trait was successfully updated.' }
+        format.json { render :show, status: :ok, location: master_trait }
       else
-        format.html { render :edit }
-        format.json { render json: @master_trait.errors, status: :unprocessable_entity }
+        format.html { render :edit, locals: {master_trait: master_trait} }
+        format.json { render json: master_trait.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,7 +71,7 @@ class MasterTraitsController < ApplicationController
   # DELETE /master_traits/1
   # DELETE /master_traits/1.json
   def destroy
-    @master_trait.destroy
+    set_master_trait.destroy
     respond_to do |format|
       format.html { redirect_to master_traits_url, notice: 'Master trait was successfully destroyed.' }
       format.json { head :no_content }
@@ -75,7 +81,7 @@ class MasterTraitsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_master_trait
-      @master_trait = MasterTrait.find(params[:id])
+      MasterTrait.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

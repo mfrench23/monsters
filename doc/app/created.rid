@@ -1,16 +1,16 @@
-Fri, 05 Jun 2015 02:42:47 -0700
+Fri, 12 Jun 2015 11:01:09 -0700
 README.rdoc	Fri, 29 May 2015 09:03:57 -0700
 app/controllers/application_controller.rb	Sat, 30 May 2015 07:36:05 -0700
-app/controllers/books_controller.rb	Mon, 27 Apr 2015 10:06:46 -0700
-app/controllers/creatures_controller.rb	Mon, 01 Jun 2015 06:40:38 -0700
-app/controllers/locations_controller.rb	Mon, 27 Apr 2015 10:07:30 -0700
-app/controllers/master_skills_controller.rb	Fri, 22 May 2015 13:42:34 -0700
-app/controllers/master_traits_controller.rb	Fri, 05 Jun 2015 02:37:08 -0700
-app/controllers/monster_classes_controller.rb	Mon, 27 Apr 2015 10:07:42 -0700
-app/controllers/monsters_controller.rb	Thu, 28 May 2015 22:15:07 -0700
-app/controllers/move_types_controller.rb	Mon, 27 Apr 2015 10:07:49 -0700
-app/controllers/swarms_controller.rb	Mon, 01 Jun 2015 06:37:25 -0700
-app/controllers/welcome_controller.rb	Sat, 30 May 2015 12:23:34 -0700
+app/controllers/books_controller.rb	Fri, 12 Jun 2015 10:58:41 -0700
+app/controllers/creatures_controller.rb	Fri, 12 Jun 2015 10:52:38 -0700
+app/controllers/locations_controller.rb	Fri, 12 Jun 2015 10:46:06 -0700
+app/controllers/master_skills_controller.rb	Fri, 12 Jun 2015 10:39:37 -0700
+app/controllers/master_traits_controller.rb	Fri, 12 Jun 2015 10:28:16 -0700
+app/controllers/monster_classes_controller.rb	Fri, 12 Jun 2015 10:14:52 -0700
+app/controllers/monsters_controller.rb	Thu, 11 Jun 2015 16:23:09 -0700
+app/controllers/move_types_controller.rb	Fri, 12 Jun 2015 10:07:15 -0700
+app/controllers/swarms_controller.rb	Fri, 12 Jun 2015 09:41:40 -0700
+app/controllers/welcome_controller.rb	Thu, 11 Jun 2015 14:33:00 -0700
 app/forms/creature_form.rb	Tue, 02 Jun 2015 06:11:14 -0700
 app/forms/swarm_form.rb	Tue, 02 Jun 2015 06:11:20 -0700
 app/helpers/ancestor_tree_helper.rb	Wed, 03 Jun 2015 20:18:35 -0700
@@ -34,7 +34,7 @@ app/models/illustration.rb	Sat, 16 May 2015 13:08:39 -0700
 app/models/location.rb	Fri, 10 Apr 2015 11:26:41 -0700
 app/models/master_skill.rb	Thu, 04 Jun 2015 15:50:42 -0700
 app/models/master_trait.rb	Fri, 05 Jun 2015 02:32:04 -0700
-app/models/monster.rb	Wed, 03 Jun 2015 07:13:24 -0700
+app/models/monster.rb	Thu, 11 Jun 2015 14:30:49 -0700
 app/models/monster_class.rb	Fri, 10 Apr 2015 11:26:41 -0700
 app/models/monster_name.rb	Wed, 03 Jun 2015 03:30:25 -0700
 app/models/move_type.rb	Tue, 21 Apr 2015 12:53:02 -0700

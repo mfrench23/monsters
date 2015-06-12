@@ -11,14 +11,18 @@ class CreaturesControllerTest < ActionController::TestCase
   end
 
   test "should create creature" do
+    name = @creature.name + " Creation!"
     assert_difference(['Monster.count', 'Creature.count']) do
       post :create, creature: { description: @creature.description, height: @creature.height, 
-                               monster_class_id: @creature.monster_class_id, name: @creature.name, 
+                               monster_class_id: @creature.monster_class_id, name: name, 
                                notes: @creature.notes, weight: @creature.weight,
                                characteristic_monsters: @creature.characteristic_monsters }
     end
 
-    assert_redirected_to creature_path(assigns(:creature))
+    assert_response :found
+    creature = Creature.where(:name => name ).order("monsters.created_at desc").first
+    assert_not_nil creature
+    assert_redirected_to creature
   end
 
   test "should fail to create creature" do
@@ -46,7 +50,7 @@ class CreaturesControllerTest < ActionController::TestCase
 
   test "should update creature" do
     patch :update, id: @creature, creature: { description: "Updated description" }
-    assert_redirected_to creature_path(assigns(:creature))
+    assert_redirected_to @creature
   end
 
   test "should fail to update creature" do

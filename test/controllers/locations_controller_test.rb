@@ -7,8 +7,8 @@ class LocationsControllerTest < ActionController::TestCase
 
   test "should get index" do
     get :index
-    assert_response :success
-    assert_not_nil assigns(:locations)
+    assert_response :ok
+    assert_select "table tbody tr", 15 # 15 locations in seed data
   end
 
   test "should get new" do
@@ -17,11 +17,15 @@ class LocationsControllerTest < ActionController::TestCase
   end
 
   test "should create location" do
+    name = "Cockles of the heart"
     assert_difference('Location.count') do
-      post :create, location: { name: "Cockles of the heart" }
+      post :create, location: { name: name }
     end
 
-    assert_redirected_to location_path(assigns(:location))
+    assert_response :found
+    location = Location.where(:name => name ).order("created_at desc").first
+    assert_not_nil location
+    assert_redirected_to location
   end
 
   test "should fail to create location" do
@@ -44,7 +48,7 @@ class LocationsControllerTest < ActionController::TestCase
 
   test "should update location" do
     patch :update, id: @location, location: { name: @location.name }
-    assert_redirected_to location_path(assigns(:location))
+    assert_redirected_to @location
   end
 
   test "should fail to update location" do

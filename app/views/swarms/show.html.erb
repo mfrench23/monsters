@@ -1,33 +1,33 @@
 <p id="notice"><%= notice %></p>
-<%= render 'show_monster_sidebar_right', m: @swarm %>
+<%= render 'show_monster_sidebar_right', m: swarm %>
 
 <h1>
-  <%= @swarm.name %>
+  <%= swarm.name %>
 </h1>
 
 <div>
-  <%= render 'monster_prestatblock_header', m: @swarm %>
-  <% if @swarm.number_description? %>
+  <%= render 'monster_prestatblock_header', m: swarm %>
+  <% if swarm.number_description? %>
     <div style="display: table-row;">
       <div class="field-label show">Number of individuals</div>
-      <div class="trait"><%=simple_format @swarm.number_description, {:class => "longtext"}, wrapper_tag: "div" %></div>
+      <div class="trait"><%=simple_format swarm.number_description, {:class => "longtext"}, wrapper_tag: "div" %></div>
     </div>
   <% end %>
 
-  <%= render 'show_stat_block', monster: @swarm %>
+  <%= render 'show_stat_block', monster: swarm %>
 
   <div style="display: table;">
-    <%= render 'attack_show', m: @swarm %>
+    <%= render 'attack_show', m: swarm %>
 
-    <%= render 'notes_and_sources_show', m: @swarm %>
+    <%= render 'notes_and_sources_show', m: swarm %>
 
-    <%= render 'combat_ratings_show', m: @swarm %>
+    <%= render 'combat_ratings_show', m: swarm %>
 
   </div>
 </div>
 
 <br>
 
-<%= link_to 'Edit', edit_polymorphic_path(@swarm) %> |
-<%= link_to 'Create variant', variant_swarm_path(@swarm) %> |
+<%= link_to 'Edit', edit_polymorphic_path(swarm) %> |
+<%= link_to 'Create variant', variant_swarm_path(swarm) %> |
 <%= link_to 'Index', monsters_path %>

@@ -139,17 +139,17 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 38</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-ivar">@master_trait</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">master_trait_params</span>)
+  <span class="ruby-identifier">master_trait</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">master_trait_params</span>)
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@master_trait</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@master_trait</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Master trait was successfully created.&#39;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@master_trait</span> }
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">master_trait</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">master_trait</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Master trait was successfully created.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-identifier">master_trait</span> }
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@master_trait</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">master_trait</span><span class="ruby-operator">:</span> <span class="ruby-identifier">master_trait</span>} }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">master_trait</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -182,9 +182,9 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 68</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-ivar">@master_trait</span>.<span class="ruby-identifier">destroy</span>
+  <span class="ruby-identifier">set_master_trait</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">master_traits_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Master trait was successfully destroyed.&#39;</span> }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
@@ -219,8 +219,9 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">master_trait</span><span class="ruby-operator">:</span> <span class="ruby-identifier">set_master_trait</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -251,9 +252,11 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@master_traits</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>, <span class="ruby-value">:notes</span>).<span class="ruby-identifier">page</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {
+    <span class="ruby-identifier">master_traits</span><span class="ruby-operator">:</span> <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>, <span class="ruby-value">:notes</span>).<span class="ruby-identifier">page</span>( <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>] )
+  }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -278,21 +281,23 @@
 
         <div class="method-description">
           
-          <p>GET /master_traits/1/merge_into</p>
+          
           
           
 
           
           <div class="method-source-code" id="merge_into-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">merge_into</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:merge_into_trait_id</span>]
     <span class="ruby-identifier">into</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:merge_into_trait_id</span>])
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">into</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@master_trait</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">into</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">set_master_trait</span>)
       <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">into</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Master traits were successfully merged.&#39;</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">render</span> <span class="ruby-value">:merge_into</span>
+      <span class="ruby-identifier">render</span> <span class="ruby-value">:merge_into</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">master_trait</span><span class="ruby-operator">:</span> <span class="ruby-identifier">set_master_trait</span>}
     <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:merge_into</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">master_trait</span><span class="ruby-operator">:</span> <span class="ruby-identifier">set_master_trait</span>}
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -324,9 +329,10 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@master_trait</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">master_trait</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">master_trait</span><span class="ruby-operator">:</span> <span class="ruby-identifier">master_trait</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -359,6 +365,7 @@
           <div class="method-source-code" id="show-source">
             <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">master_trait</span><span class="ruby-operator">:</span> <span class="ruby-identifier">set_master_trait</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -389,15 +396,16 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-identifier">master_trait</span> = <span class="ruby-identifier">set_master_trait</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@master_trait</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">master_trait_params</span>)
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@master_trait</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Master trait was successfully updated.&#39;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@master_trait</span> }
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">master_trait</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">master_trait_params</span>)
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">master_trait</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Master trait was successfully updated.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-identifier">master_trait</span> }
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@master_trait</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">master_trait</span><span class="ruby-operator">:</span> <span class="ruby-identifier">master_trait</span>} }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">master_trait</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>

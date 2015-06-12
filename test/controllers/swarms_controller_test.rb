@@ -11,14 +11,18 @@ class SwarmsControllerTest < ActionController::TestCase
   end
 
   test "should create swarm" do
+    name = "A Highly Unlikely Swarm Name"
     assert_difference(['Monster.count', 'Swarm.count']) do
       post :create, swarm: { description: @swarm.description,
-                               monster_class_id: @swarm.monster_class_id, name: @swarm.name, 
+                               monster_class_id: @swarm.monster_class_id, name: name, 
                                notes: @swarm.notes, 
                                characteristic_monsters: @swarm.characteristic_monsters }
     end
 
-    assert_redirected_to swarm_path(assigns(:swarm))
+    assert_response :found # not :created, since we're being redirected to "show"
+    swarm = Swarm.where(:name => name ).order("monsters.created_at desc").first
+    assert_not_nil swarm
+    assert_redirected_to swarm
   end
 
   test "should fail to create swarm" do
@@ -46,7 +50,7 @@ class SwarmsControllerTest < ActionController::TestCase
 
   test "should update swarm" do
     patch :update, id: @swarm, swarm: { description: "Updated description" }
-    assert_redirected_to swarm_path(assigns(:swarm))
+    assert_redirected_to @swarm
   end
 
   test "should fail to update swarm" do

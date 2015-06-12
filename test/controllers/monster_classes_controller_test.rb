@@ -7,8 +7,8 @@ class MonsterClassesControllerTest < ActionController::TestCase
 
   test "should get index" do
     get :index
-    assert_response :success
-    assert_not_nil assigns(:monster_classes)
+    assert_response :ok
+    assert_select "table tbody tr" # expect at least one row in the body of the table
   end
 
   test "should get new" do
@@ -17,11 +17,15 @@ class MonsterClassesControllerTest < ActionController::TestCase
   end
 
   test "should create monster_class" do
+    name = "Animal, Stuffy"
     assert_difference('MonsterClass.count') do
-      post :create, monster_class: { name: "Animal, Stuffy" }
+      post :create, monster_class: { name: name }
     end
 
-    assert_redirected_to monster_class_path(assigns(:monster_class))
+    assert_response :found
+    monster_class = MonsterClass.where(:name => name ).order("created_at desc").first
+    assert_not_nil monster_class
+    assert_redirected_to monster_class
   end
 
   test "should fail to create monster_class" do
@@ -43,8 +47,8 @@ class MonsterClassesControllerTest < ActionController::TestCase
   end
 
   test "should update monster_class" do
-    patch :update, id: @monster_class, monster_class: { name: @monster_class.name }
-    assert_redirected_to monster_class_path(assigns(:monster_class))
+    patch :update, id: @monster_class, monster_class: { name: @monster_class.name + " Part 2" }
+    assert_redirected_to @monster_class
   end
 
   test "should fail to update monster_class" do

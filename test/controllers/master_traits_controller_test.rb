@@ -7,8 +7,8 @@ class MasterTraitsControllerTest < ActionController::TestCase
 
   test "should get index" do
     get :index
-    assert_response :success
-    assert_not_nil assigns(:master_traits)
+    assert_response :ok
+    assert_select "table tbody tr" # expect at least one row in the body of the table
   end
 
   test "should get new" do
@@ -17,11 +17,15 @@ class MasterTraitsControllerTest < ActionController::TestCase
   end
 
   test "should create master_trait" do
+    name = "Very Unlikely Name For A Trait, Don't You Think?"
     assert_difference('MasterTrait.count') do
-      post :create, master_trait: { is_feature: @master_trait.is_feature, name: @master_trait.name, notes: @master_trait.notes }
+      post :create, master_trait: { is_feature: @master_trait.is_feature, name: name, notes: @master_trait.notes }
     end
 
-    assert_redirected_to master_trait_path(assigns(:master_trait))
+    assert_response :found
+    master_trait = MasterTrait.where(:name => name ).order("created_at desc").first
+    assert_not_nil master_trait
+    assert_redirected_to master_trait
   end
 
   test "should fail to create master_trait" do
@@ -53,12 +57,12 @@ class MasterTraitsControllerTest < ActionController::TestCase
       post :merge_into, { merge_into_trait_id: @master_trait.id, id: dupe.id }
     end
 
-    assert_redirected_to master_trait_path(@master_trait)
+    assert_redirected_to @master_trait
   end
 
   test "should update master_trait" do
-    patch :update, id: @master_trait, master_trait: { is_feature: @master_trait.is_feature, name: @master_trait.name, notes: @master_trait.notes }
-    assert_redirected_to master_trait_path(assigns(:master_trait))
+    patch :update, id: @master_trait, master_trait: { is_feature: @master_trait.is_feature, name: @master_trait.name, notes: @master_trait.notes.to_s + " Additional notes." }
+    assert_redirected_to @master_trait
   end
 
   test "should fail to update master_trait" do

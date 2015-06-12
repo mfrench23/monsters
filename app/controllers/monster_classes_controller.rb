@@ -1,38 +1,41 @@
 class MonsterClassesController < ApplicationController
-  before_action :set_monster_class, only: [:show, :edit, :update, :destroy]
-
   # GET /monster_classes
   # GET /monster_classes.json
   def index
-    @monster_classes = MonsterClass.order(:name).page params[:page]
+    render locals: {
+      monster_classes: MonsterClass.order(:name).page( params[:page] )
+    }
   end
 
   # GET /monster_classes/1
   # GET /monster_classes/1.json
   def show
+    render locals: { monster_class: set_monster_class }
   end
 
   # GET /monster_classes/new
   def new
-    @monster_class = MonsterClass.new
+    monster_class = MonsterClass.new
+    render locals: { monster_class: monster_class }
   end
 
   # GET /monster_classes/1/edit
   def edit
+    render locals: { monster_class: set_monster_class }
   end
 
   # POST /monster_classes
   # POST /monster_classes.json
   def create
-    @monster_class = MonsterClass.new(monster_class_params)
+    monster_class = MonsterClass.new(monster_class_params)
 
     respond_to do |format|
-      if @monster_class.save
-        format.html { redirect_to @monster_class, notice: 'Monster class was successfully created.' }
-        format.json { render :show, status: :created, location: @monster_class }
+      if monster_class.save
+        format.html { redirect_to monster_class, notice: 'Monster class was successfully created.' }
+        format.json { render :show, status: :created, location: monster_class }
       else
-        format.html { render :new }
-        format.json { render json: @monster_class.errors, status: :unprocessable_entity }
+        format.html { render :new, locals: {monster_class: monster_class} }
+        format.json { render json: monster_class.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,13 +43,14 @@ class MonsterClassesController < ApplicationController
   # PATCH/PUT /monster_classes/1
   # PATCH/PUT /monster_classes/1.json
   def update
+    monster_class = set_monster_class
     respond_to do |format|
-      if @monster_class.update(monster_class_params)
-        format.html { redirect_to @monster_class, notice: 'Monster class was successfully updated.' }
-        format.json { render :show, status: :ok, location: @monster_class }
+      if monster_class.update(monster_class_params)
+        format.html { redirect_to monster_class, notice: 'Monster class was successfully updated.' }
+        format.json { render :show, status: :ok, location: monster_class }
       else
-        format.html { render :edit }
-        format.json { render json: @monster_class.errors, status: :unprocessable_entity }
+        format.html { render :edit, locals: {monster_class: monster_class} }
+        format.json { render json: monster_class.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +58,7 @@ class MonsterClassesController < ApplicationController
   # DELETE /monster_classes/1
   # DELETE /monster_classes/1.json
   def destroy
-    @monster_class.destroy
+    set_monster_class.destroy
     respond_to do |format|
       format.html { redirect_to monster_classes_url, notice: 'Monster class was successfully destroyed.' }
       format.json { head :no_content }
@@ -62,9 +66,8 @@ class MonsterClassesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_monster_class
-      @monster_class = MonsterClass.find(params[:id])
+      MonsterClass.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -7,8 +7,8 @@ class MasterSkillsControllerTest < ActionController::TestCase
 
   test "should get index" do
     get :index
-    assert_response :success
-    assert_not_nil assigns(:master_skills)
+    assert_response :ok
+    assert_select "table tbody tr" # expect at least one row in the body of the table
   end
 
   test "should get new" do
@@ -17,11 +17,15 @@ class MasterSkillsControllerTest < ActionController::TestCase
   end
 
   test "should create master_skill" do
+    name = "A Skill In Being An Unlikely Skill Name"
     assert_difference('MasterSkill.count') do
-      post :create, master_skill: { characteristic_id: @master_skill.characteristic_id, name: @master_skill.name, notes: @master_skill.notes }
+      post :create, master_skill: { characteristic_id: @master_skill.characteristic_id, name: name, notes: @master_skill.notes }
     end
 
-    assert_redirected_to master_skill_path(assigns(:master_skill))
+    assert_response :found
+    master_skill = MasterSkill.where(:name => name ).order("created_at desc").first
+    assert_not_nil master_skill
+    assert_redirected_to master_skill
   end
 
   test "should fail to create master_skill" do
@@ -44,7 +48,7 @@ class MasterSkillsControllerTest < ActionController::TestCase
 
   test "should update master_skill" do
     patch :update, id: @master_skill, master_skill: { characteristic_id: @master_skill.characteristic_id, name: @master_skill.name, notes: @master_skill.notes }
-    assert_redirected_to master_skill_path(assigns(:master_skill))
+    assert_redirected_to @master_skill
   end
 
   test "should fail to update master_skill" do

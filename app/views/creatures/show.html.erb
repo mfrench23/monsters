@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
-<%= render 'show_monster_sidebar_right', m: @creature %>
+<%= render 'show_monster_sidebar_right', m: creature %>
 
 <h1>
-  <%= @creature.name %>
+  <%= creature.name %>
 </h1>
 
 <div>
-  <%= render 'monster_prestatblock_header', m: @creature %>
+  <%= render 'monster_prestatblock_header', m: creature %>
 
-  <%= render 'show_stat_block', monster: @creature %>
+  <%= render 'show_stat_block', monster: creature %>
 
   <div style="display: table;">
-    <%= render 'attack_show', m: @creature %>
+    <%= render 'attack_show', m: creature %>
 
-    <% if @creature.traits.any? %>
+    <% if creature.traits.any? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Traits</div>
         <div class="trait">
-          <% all = @creature.traits.count %>
-	  <% @creature.traits.sort.each_with_index do |trait, i| %>
+          <% all = creature.traits.count %>
+	  <% creature.traits.sort.each_with_index do |trait, i| %>
             <%= link_to trait.master_trait.to_s, trait.master_trait, class: "quiet" -%>
             <%= trait.level.blank? ? "" : " #{trait.level}" -%>
             <%= (i < (all-1) ? "; " : "") -%>
@@ -27,42 +27,42 @@
       </div>
     <% end %>
 
-    <% if @creature.skills.any? %>
+    <% if creature.skills.any? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Skills</div>
         <div class="trait">
-	  <%= @creature.skills.collect { |x| x.to_s }.sort().join('; ') %>
+	  <%= creature.skills.collect { |x| x.to_s }.sort().join('; ') %>
 	</div>
       </div>
     <% end %>
 
-    <% if @creature.gear? %>
+    <% if creature.gear? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Gear</div>
         <div class="trait">
-	  <%= simple_format @creature.gear, {:class => "longtext"}, wrapper_tag: "div" %>
+	  <%= simple_format creature.gear, {:class => "longtext"}, wrapper_tag: "div" %>
 	</div>
       </div>
     <% end %>
 
-    <%= render 'notes_and_sources_show', m: @creature %>
+    <%= render 'notes_and_sources_show', m: creature %>
 
-    <% unless @creature.parts_value.blank? %>
+    <% unless creature.parts_value.blank? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Parts Value</div>
         <div class="trait">
-	  <%= money_without_cents_and_with_symbol @creature.parts_value %>/lb.
+	  <%= money_without_cents_and_with_symbol creature.parts_value %>/lb.
 	</div>
       </div>
     <% end %>
 
-    <%= render 'combat_ratings_show', m: @creature %>
+    <%= render 'combat_ratings_show', m: creature %>
 
   </div>
 </div>
 
 <br>
 
-<%= link_to 'Edit', edit_polymorphic_path(@creature) %> |
-<%= link_to 'Create variant', variant_creature_path(@creature) %> |
+<%= link_to 'Edit', edit_polymorphic_path(creature) %> |
+<%= link_to 'Create variant', variant_creature_path(creature) %> |
 <%= link_to 'Index', monsters_path %>

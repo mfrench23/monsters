@@ -1,56 +1,57 @@
 class CreaturesController < ApplicationController
-  before_action :set_monster, only: [:show, :edit, :update, :destroy]
-
   def show
+    render locals: { creature: set_creature }
   end
 
   def new
-    @creature = Creature.new
-    @creature.movement_rates.build
-    @creature.attacks.build
+    creature = Creature.new
+    creature.movement_rates.build
+    creature.attacks.build
+    render locals: { creature: creature }
   end
 
   def variant
-    @creature = Creature.find(params[:id]).deep_copy
-    render :new
+    creature = Creature.find(params[:id]).deep_copy
+    render :new, locals: { creature: creature }
   end
 
   def edit
+    render locals: { creature: set_creature }
   end
 
   def create
     form = CreatureForm.new(params)
-    @creature = Creature.new(form.params)
-    @creature.save
+    creature = Creature.new(form.params)
+    creature.save
 
     respond_to do |format|
-      if @creature.errors.size() == 0
-	format.html { redirect_to @creature, notice: 'Monster was successfully created.' }
-	format.json { render :show, status: :created, location: @creature }
+      if creature.errors.size() == 0
+	format.html { redirect_to creature, notice: 'Monster was successfully created.' }
+	format.json { render :show, status: :created, location: creature }
       else
-	format.html { render :new }
-	format.json { render json: @creature.errors, status: :unprocessable_entity }
+	format.html { render :new, locals: {creature: creature} }
+	format.json { render json: creature.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def update
     form = CreatureForm.new(params)
-    @creature = Creature.find(params[:id])
-    @creature.update(form.params)
+    creature = set_creature
+    creature.update(form.params)
     respond_to do |format|
-      if @creature.errors.size() == 0
-	format.html { redirect_to @creature, notice: 'Monster was successfully updated.' }
-	format.json { render :show, status: :ok, location: @creature }
+      if creature.errors.size() == 0
+	format.html { redirect_to creature, notice: 'Monster was successfully updated.' }
+	format.json { render :show, status: :ok, location: creature }
       else
-	format.html { render :edit }
-	format.json { render json: @creature.errors, status: :unprocessable_entity }
+	format.html { render :edit, locals: {creature: creature} }
+	format.json { render json: creature.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @creature.destroy
+    set_creature.destroy
     respond_to do |format|
       format.html { redirect_to monsters_url, notice: 'Monster was successfully destroyed.' }
       format.json { head :no_content }
@@ -59,7 +60,7 @@ class CreaturesController < ApplicationController
 
   private
 
-  def set_monster
-    @creature = Creature.includes(monster: [:monster_names, :monster_class, characteristic_monsters: [:characteristic]] ).find(params[:id])
+  def set_creature
+    Creature.includes(monster: [:monster_names, :monster_class, characteristic_monsters: [:characteristic]] ).find(params[:id])
   end
 end

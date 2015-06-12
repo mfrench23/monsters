@@ -1,1 +1,1 @@
-json.extract! @creature, :id, :strength, :dexterity, :intelligence, :health, :hitPoints, :will, :perception, :fatigue, :speed, :sizeModifier, :height, :weight, :gear, :description, :notes, :dodge, :block, :created_at, :updated_at
+json.extract! creature, :id, :strength, :dexterity, :intelligence, :health, :hitPoints, :will, :perception, :fatigue, :speed, :sizeModifier, :height, :weight, :gear, :description, :notes, :dodge, :block, :created_at, :updated_at

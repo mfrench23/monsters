@@ -2,10 +2,10 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @monster_class.name %>
+  <%= monster_class.name %>
 </p>
 
-<%= render 'simple_monster_list', monsters: @monster_class.monsters %>
+<%= render 'simple_monster_list', monsters: monster_class.monsters %>
 
-<%= link_to 'Edit', edit_monster_class_path(@monster_class) %> |
+<%= link_to 'Edit', edit_monster_class_path(monster_class) %> |
 <%= link_to 'Back', monster_classes_path %>

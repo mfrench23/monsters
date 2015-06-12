@@ -2,28 +2,28 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @master_skill.name %>
+  <%= master_skill.name %>
 </p>
 
 <p>
   <strong>Basestat:</strong>
-  <%= @master_skill.characteristic.to_s %>
+  <%= master_skill.characteristic.to_s %>
 </p>
 
 <p>
   <strong>Notes:</strong>
-  <%= @master_skill.notes %>
+  <%= master_skill.notes %>
 </p>
 
 <p>
   <strong>Requires specialization:</strong>
-  <%= @master_skill.requires_specialization %>
+  <%= master_skill.requires_specialization %>
 </p>
 
 <p>
   <strong>Requires TL:</strong>
-  <%= @master_skill.requires_tech_level %>
+  <%= master_skill.requires_tech_level %>
 </p>
 
-<%= link_to 'Edit', edit_master_skill_path(@master_skill) %> |
+<%= link_to 'Edit', edit_master_skill_path(master_skill) %> |
 <%= link_to 'Back', master_skills_path %>

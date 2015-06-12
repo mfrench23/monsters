@@ -2,21 +2,20 @@
 
 <h1>Listing Move Types</h1>
 
-<%= page_entries_info @move_types %>
+<%= page_entries_info move_types %>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @move_types.each do |move_type| %>
+    <% move_types.each do |move_type| %>
       <tr>
-        <td><%= move_type.name %></td>
-        <td><%= link_to 'Show', move_type %></td>
+        <td><%= link_to move_type.name, move_type %></td>
         <td><%= link_to 'Edit', edit_move_type_path(move_type) %></td>
         <td><%= link_to 'Destroy', move_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -26,5 +25,5 @@
 
 <br>
 
-<%= paginate @move_types %>
+<%= paginate move_types %>
 <%= link_to 'New Move type', new_move_type_path %>

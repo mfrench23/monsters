@@ -2,7 +2,7 @@
 
 <h1>Master Skills</h1>
 
-<%= page_entries_info @master_skills %>
+<%= page_entries_info master_skills %>
 
 <table>
   <thead>
@@ -12,19 +12,18 @@
       <th>Requires TL</th>
       <th>Basestat</th>
       <th>Notes</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @master_skills.each do |master_skill| %>
+    <% master_skills.each do |master_skill| %>
       <tr>
-        <td><%= master_skill.name %></td>
+        <td><%= link_to master_skill.name, master_skill %></td>
         <td><%= master_skill.requires_specialization %></td>
         <td><%= master_skill.requires_tech_level %></td>
         <td><%= master_skill.characteristic.to_s %></td>
         <td><%= master_skill.notes %></td>
-        <td><%= link_to 'Show', master_skill %></td>
         <td><%= link_to 'Edit', edit_master_skill_path(master_skill) %></td>
         <td><%= link_to 'Destroy', master_skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -34,5 +33,5 @@
 
 <br>
 
-<%= paginate @master_skills %>
+<%= paginate master_skills %>
 <%= link_to 'New Master skill', new_master_skill_path %>

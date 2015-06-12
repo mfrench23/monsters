@@ -149,7 +149,7 @@
         
         <div class="method-heading">
           <span class="method-name">date_series</span><span
-            class="method-args">(date_field)</span>
+            class="method-args">(date_field, scope)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -165,10 +165,10 @@
           
           <div class="method-source-code" id="date_series-source">
             <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 14</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">date_series</span>(<span class="ruby-identifier">date_field</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">date_series</span>(<span class="ruby-identifier">date_field</span>, <span class="ruby-identifier">scope</span>)
   <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">group</span>(<span class="ruby-node">&quot;date(#{date_field})&quot;</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">reduce</span>([]) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">memo</span>, (<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>)<span class="ruby-operator">|</span>
     <span class="ruby-comment"># Date.to_time.to_i gives seconds since epoch, but Highchart expects milliseconds, so convert</span>
-    <span class="ruby-identifier">memo</span> <span class="ruby-operator">&lt;&lt;</span> [ <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_time</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-value">1000</span>, <span class="ruby-identifier">v</span> ]
+    <span class="ruby-identifier">memo</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-value">:x</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_time</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-value">1000</span>, <span class="ruby-value">:y</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">v</span>, <span class="ruby-value">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">monsters_path</span>(<span class="ruby-identifier">scope</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">k</span>) }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -203,8 +203,8 @@
             <pre><span class="ruby-comment"># File app/controllers/welcome_controller.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">javascript_variables</span>({<span class="ruby-value">:countbyclassdata</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">class_series</span>})
-  <span class="ruby-identifier">javascript_variables</span>({<span class="ruby-value">:countbycreateddate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">date_series</span>(<span class="ruby-string">&quot;created_at&quot;</span>)})
-  <span class="ruby-identifier">javascript_variables</span>({<span class="ruby-value">:countbyupdateddate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">date_series</span>(<span class="ruby-string">&quot;updated_at&quot;</span>)})
+  <span class="ruby-identifier">javascript_variables</span>({<span class="ruby-value">:countbycreateddate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">date_series</span>(<span class="ruby-string">&quot;created_at&quot;</span>, <span class="ruby-value">:created_on</span>)})
+  <span class="ruby-identifier">javascript_variables</span>({<span class="ruby-value">:countbyupdateddate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">date_series</span>(<span class="ruby-string">&quot;updated_at&quot;</span>, <span class="ruby-value">:updated_on</span>)})
 <span class="ruby-keyword">end</span></pre>
           </div>
           

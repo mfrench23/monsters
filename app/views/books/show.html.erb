@@ -2,15 +2,15 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @book.name %>
+  <%= book.name %>
 </p>
 
 <p>
   <strong>Abbreviation:</strong>
-  <%= @book.abbreviation %>
+  <%= book.abbreviation %>
 </p>
 
-<%= render 'simple_monster_list', monsters: @book.monsters %>
+<%= render 'simple_monster_list', monsters: book.monsters %>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<%= link_to 'Edit', edit_book_path(book) %> |
+<%= link_to 'Index', books_path %>
