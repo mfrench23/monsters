@@ -61,6 +61,6 @@ class SwarmsController < ApplicationController
   private
 
   def set_monster
-    Swarm.includes(monster: [:monster_names, :monster_class, characteristic_monsters: [:characteristic]] ).find(params[:id])
+    Swarm.find(params[:id])
   end
 end

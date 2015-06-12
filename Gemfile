@@ -54,6 +54,9 @@ gem "money-rails"
 # ancestry for hierarchical relationships
 gem 'ancestry'
 
+# Automatic eager loading
+gem 'goldiloader'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

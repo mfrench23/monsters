@@ -3,7 +3,7 @@ class MonstersController < ApplicationController
 
   def index
     render locals: {
-      monsters: Monster.filter(params.slice(:starts_with, :created_on, :updated_on)).order(sort_param).includes(:monster_names, :monster_class, characteristic_monsters: [:characteristic] ).page(params[:page])
+      monsters: Monster.filter(params.slice(:starts_with, :created_on, :updated_on)).includes(:monster_names).order(sort_param).page(params[:page])
     }
   end
 

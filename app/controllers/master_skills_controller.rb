@@ -3,7 +3,7 @@ class MasterSkillsController < ApplicationController
   # GET /master_skills.json
   def index
     render locals: {
-      master_skills: MasterSkill.order(:name).includes(:characteristic).page( params[:page] )
+      master_skills: MasterSkill.order(:name).page( params[:page] )
     }
   end
 
@@ -66,7 +66,7 @@ class MasterSkillsController < ApplicationController
 
   private
     def set_master_skill
-      MasterSkill.includes(:characteristic).find(params[:id])
+      MasterSkill.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

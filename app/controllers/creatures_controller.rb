@@ -61,6 +61,6 @@ class CreaturesController < ApplicationController
   private
 
   def set_creature
-    Creature.includes(monster: [:monster_names, :monster_class, characteristic_monsters: [:characteristic]] ).find(params[:id])
+    Creature.find(params[:id])
   end
 end
