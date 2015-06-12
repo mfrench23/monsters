@@ -9,9 +9,9 @@ class MonsterTest < ActiveSupport::TestCase
     fakename = "Obviously Fake Monster Name"
     one = FactoryGirl.create(:monster, name: fakename)
     testval = false;
-    Monster.filter(:starts_with => "A").map { |m| if fakename == m.name then testval = true end }
+    Monster.filter(:starting_with => "A").map { |m| if fakename == m.name then testval = true end }
     assert_equal false, testval
-    Monster.filter(:starts_with => "O").map { |m| if fakename == m.name then testval = true end }
+    Monster.filter(:starting_with => "O").map { |m| if fakename == m.name then testval = true end }
     assert_equal true, testval
   end
 

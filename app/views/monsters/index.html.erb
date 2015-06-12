@@ -1,9 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Monsters</h1>
-<h2><%= "with names starting with '#{params[:starts_with]}'" unless params[:starts_with].blank? %></h2>
-<h2><%= "created on '#{params[:created_on]}'" unless params[:created_on].blank? %></h2>
-<h2><%= "updated on '#{params[:updated_on]}'" unless params[:updated_on].blank? %></h2>
+<h2>
+  <% filter_params.each do |filter| %>
+    <%= "#{filter[0].titleize.downcase}" %>
+    <% if filter_params.count > 1 %>
+      <%= link_to "'#{filter[1]}'", monsters_path(filter[0] => filter[1]), :class => "quiet" %>
+    <% else %>
+      <%= "'#{filter[1]}'" %>
+    <% end %>
+  <% end %>
+</h2>
 <% variant_on_page = monsters.any? { |m| (! m.root? ) } %>
 <% alias_on_page = monsters.any? { |m| m.monster_names.any? } %>
 
@@ -12,14 +19,14 @@
 <table>
   <thead>
     <tr>
-      <th><%= sortable "name" %></th>
+      <th><%= sortable "monsters.name", "Name" %></th>
       <% if alias_on_page %>
         <th>Aliases</th>
       <% end %>
-      <th>Class</th>
+      <th><%= sortable "monster_classes.name", "Class" %></th>
       <th>Description</th>
       <% if variant_on_page %>
-        <th>Variant</th>
+        <th>Variant of</th>
       <% end %>
       <th colspan="2"></th>
     </tr>
@@ -28,14 +35,18 @@
   <tbody>
     <% monsters.each do |monster| %>
       <tr>
-        <td><%= link_to monster.name, monster.specific %></td>
+        <td><%= link_to monster.name, monster.specific, :class => "quiet" %></td>
         <% if alias_on_page %>
 	  <td><%= monster_alias_list monster %></td>
 	<% end %>
-	<td><%= link_to monster.monster_class_name, monster.monster_class %></td>
+	<td><%= link_to monster.monster_class_name, monster.monster_class, :class => "quiet" %></td>
         <td><%= truncate monster.description, :length => 60, :separator => /\s/, :omission => "\u2026" %></td>
         <% if variant_on_page %>
-          <td><%= monster.parent %></td>
+          <td>
+            <% if ! monster.root? %>
+              <%= link_to monster.parent.name, monster.parent.specific, :class => "quiet" %>
+            <% end %>
+          </td>
         <% end %>
         <td><%= link_to 'Edit', edit_polymorphic_path(monster.specific) %></td>
         <td><%= link_to 'Destroy', monster.specific, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -45,12 +56,13 @@
 </table>
 
 <br>
-Filter by first letter of name:
-<% Monster.group("substr(upper(name), 1,1)").count.map do |starting_character, count| %>
-  <span style="padding-right: 5px;"><%= link_to "#{starting_character}", monsters_path(:starts_with => "#{starting_character}") %></span>
+<% unless params[:starting_with ] %>
+  Filter by first letter of name:
+  <% starts_with_tags.each do |starting_character| %>
+    <span style="padding-right: 5px;"><%= link_to "#{starting_character}", monsters_path(filter_params.merge(:starting_with => "#{starting_character}")) %></span>
+  <% end %>
+  <br>
 <% end %>
-  <span style="padding-right: 5px;"><%= link_to "(All)", monsters_path %></span>
-<br>
 
 <%= paginate monsters %>
-<%= link_to 'New Creature', new_creature_path %>
+

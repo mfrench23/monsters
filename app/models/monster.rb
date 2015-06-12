@@ -27,7 +27,9 @@ class Monster < AbstractEntity
 
   validates :name, :monster_class_id, presence: true
 
-  scope :starts_with, -> (name) { where("upper(name) like ?", "#{name}%")}
+  scope :starting_with, -> (name) { where("upper(monsters.name) like ?", "#{name}%")}
+  scope :created_on, -> (date) { where("date(monsters.created_at) = ?", "#{date}")}
+  scope :updated_on, -> (date) { where("date(monsters.updated_at) = ?", "#{date}")}
 
   def characteristic_monster(characteristic_name)
     characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.try(:first) || generate_characteristic_monster(characteristic_name)
