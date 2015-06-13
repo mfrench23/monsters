@@ -3,7 +3,7 @@ class MasterSkillsController < ApplicationController
   # GET /master_skills.json
   def index
     render locals: {
-      master_skills: MasterSkill.order(:name).page( params[:page] )
+      master_skills: MasterSkill.includes(:characteristic).order(view_context.sort_param(MasterSkill, params[:sort], params[:direction])).page( params[:page] )
     }
   end
 

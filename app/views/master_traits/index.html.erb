@@ -7,7 +7,7 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th><%= sortable "master_traits.name, master_traits.notes", MasterTrait, params, "Name" %></th>
       <th>Notes</th>
       <th>Is feature</th>
       <th># of monsters possessing</th>

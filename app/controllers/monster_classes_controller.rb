@@ -3,7 +3,7 @@ class MonsterClassesController < ApplicationController
   # GET /monster_classes.json
   def index
     render locals: {
-      monster_classes: MonsterClass.order(:name).page( params[:page] )
+      monster_classes: MonsterClass.order(view_context.sort_param(MonsterClass, params[:sort], params[:direction])).page( params[:page] )
     }
   end
 

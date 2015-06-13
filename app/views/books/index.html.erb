@@ -7,8 +7,8 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Abbreviation</th>
+      <th><%= sortable "books.name", Book, params, "Name" %></th>
+      <th><%= sortable "books.abbreviation", Book, params, "Abbreviation" %></th>
       <th colspan="2"></th>
     </tr>
   </thead>

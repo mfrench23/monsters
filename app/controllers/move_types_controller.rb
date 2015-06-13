@@ -3,7 +3,7 @@ class MoveTypesController < ApplicationController
   # GET /move_types.json
   def index
     render locals: {
-      move_types: MoveType.order(:name).page( params[:page] )
+      move_types: MoveType.order(view_context.sort_param(MoveType, params[:sort], params[:direction])).page( params[:page] )
     }
   end
 

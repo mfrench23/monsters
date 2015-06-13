@@ -140,16 +140,14 @@ input[type="number"] {
 }
 
 // SORTABLE TABLE COLUMNS
-.pretty th .current {
-  padding-right: 12px;
-  background-repeat: no-repeat;
-  background-position: right center;
+th .current {
+  font-size: 120%;
 }
 
-.pretty th .asc {
+th .asc {
 }
 
-.pretty th .desc {
+th .desc {
 }
 
 // dashboard

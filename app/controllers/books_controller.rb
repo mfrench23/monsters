@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     render locals: {
-      books: Book.order(:name).page( params[:page] )
+      books: Book.order(view_context.sort_param(Book, params[:sort], params[:direction])).page( params[:page] )
     }
   end
 

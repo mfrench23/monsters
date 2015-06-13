@@ -19,11 +19,11 @@
 <table>
   <thead>
     <tr>
-      <th><%= sortable "monsters.name", "Name" %></th>
+      <th><%= sortable "monsters.name", Monster, params, "Name" %></th>
       <% if alias_on_page %>
         <th>Aliases</th>
       <% end %>
-      <th><%= sortable "monster_classes.name", "Class" %></th>
+      <th><%= sortable "monster_classes.name", Monster, params, "Class" %></th>
       <th>Description</th>
       <% if variant_on_page %>
         <th>Variant of</th>

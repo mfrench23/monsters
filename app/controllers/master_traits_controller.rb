@@ -2,8 +2,9 @@ class MasterTraitsController < ApplicationController
   # GET /master_traits
   # GET /master_traits.json
   def index
+    params[:sort] ||= "master_traits.name, master_traits.notes"
     render locals: {
-      master_traits: MasterTrait.order(:name, :notes).page( params[:page] )
+      master_traits: MasterTrait.order(view_context.sort_param(MasterTrait, params[:sort], params[:direction])).page( params[:page] )
     }
   end
 

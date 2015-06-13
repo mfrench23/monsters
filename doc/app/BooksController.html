@@ -253,7 +253,7 @@
             <pre><span class="ruby-comment"># File app/controllers/books_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {
-    <span class="ruby-identifier">books</span><span class="ruby-operator">:</span> <span class="ruby-constant">Book</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>).<span class="ruby-identifier">page</span>( <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>] )
+    <span class="ruby-identifier">books</span><span class="ruby-operator">:</span> <span class="ruby-constant">Book</span>.<span class="ruby-identifier">order</span>(<span class="ruby-identifier">view_context</span>.<span class="ruby-identifier">sort_param</span>(<span class="ruby-constant">Book</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:sort</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:direction</span>])).<span class="ruby-identifier">page</span>( <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>] )
   }
 <span class="ruby-keyword">end</span></pre>
           </div>

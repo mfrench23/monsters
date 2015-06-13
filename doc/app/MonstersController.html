@@ -72,8 +72,6 @@
     
     <li ><a href="#method-i-index">#index</a>
     
-    <li ><a href="#method-i-sortable">#sortable</a>
-    
   </ul>
 </div>
 
@@ -127,47 +125,13 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 2</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {
-    <span class="ruby-identifier">monsters</span><span class="ruby-operator">:</span> <span class="ruby-constant">Monster</span>.<span class="ruby-identifier">filter</span>(<span class="ruby-identifier">params</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">:starts_with</span>, <span class="ruby-value">:created_on</span>, <span class="ruby-value">:updated_on</span>)).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">sort_param</span>).<span class="ruby-identifier">includes</span>(<span class="ruby-value">:monster_names</span>, <span class="ruby-value">:monster_class</span>, <span class="ruby-identifier">characteristic_monsters</span><span class="ruby-operator">:</span> [<span class="ruby-value">:characteristic</span>] ).<span class="ruby-identifier">page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>])
+    <span class="ruby-identifier">monsters</span><span class="ruby-operator">:</span> <span class="ruby-identifier">filtered_results</span>(<span class="ruby-identifier">params</span>).<span class="ruby-identifier">includes</span>(<span class="ruby-value">:monster_names</span>, <span class="ruby-value">:monster_class</span>).<span class="ruby-identifier">order</span>(<span class="ruby-identifier">view_context</span>.<span class="ruby-identifier">sort_param</span>(<span class="ruby-constant">Monster</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:sort</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:direction</span>])).<span class="ruby-identifier">page</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>]),
+    <span class="ruby-identifier">filter_params</span><span class="ruby-operator">:</span> <span class="ruby-identifier">filter_params</span>(<span class="ruby-identifier">params</span>),
+    <span class="ruby-identifier">starts_with_tags</span><span class="ruby-operator">:</span> <span class="ruby-identifier">filtered_results</span>(<span class="ruby-identifier">params</span>).<span class="ruby-identifier">group</span>(<span class="ruby-string">&quot;substr(upper(name), 1,1)&quot;</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span>
   }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-sortable" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">sortable</span><span
-            class="method-args">(column, title = nil)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="sortable-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">sortable</span>(<span class="ruby-identifier">column</span>, <span class="ruby-identifier">title</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">title</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">titleize</span>
-  <span class="ruby-identifier">css_class</span> = <span class="ruby-identifier">column</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">sort_column</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;current #{sort_direction}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
-  <span class="ruby-identifier">direction</span> = <span class="ruby-identifier">column</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">sort_column</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">sort_direction</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;asc&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;desc&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;asc&quot;</span>
-  <span class="ruby-identifier">view_context</span>.<span class="ruby-identifier">link_to</span> <span class="ruby-identifier">title</span>, {<span class="ruby-value">:sort</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">column</span>, <span class="ruby-value">:direction</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">direction</span>}, {<span class="ruby-value">:class</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">css_class</span>}
 <span class="ruby-keyword">end</span></pre>
           </div>
           

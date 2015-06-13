@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
   # GET /locations.json
   def index
     render locals: {
-      locations: Location.order(:name).page( params[:page] )
+      locations: Location.order(view_context.sort_param(Location, params[:sort], params[:direction])).page( params[:page] )
     }
   end
 

@@ -139,7 +139,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">master_trait</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">master_trait_params</span>)
 
@@ -182,7 +182,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 73</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">set_master_trait</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -219,7 +219,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">master_trait</span><span class="ruby-operator">:</span> <span class="ruby-identifier">set_master_trait</span> }
 <span class="ruby-keyword">end</span></pre>
@@ -254,8 +254,9 @@
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-identifier">params</span>[<span class="ruby-value">:sort</span>] <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;master_traits.name, master_traits.notes&quot;</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {
-    <span class="ruby-identifier">master_traits</span><span class="ruby-operator">:</span> <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>, <span class="ruby-value">:notes</span>).<span class="ruby-identifier">page</span>( <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>] )
+    <span class="ruby-identifier">master_traits</span><span class="ruby-operator">:</span> <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">order</span>(<span class="ruby-identifier">view_context</span>.<span class="ruby-identifier">sort_param</span>(<span class="ruby-constant">MasterTrait</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:sort</span>], <span class="ruby-identifier">params</span>[<span class="ruby-value">:direction</span>])).<span class="ruby-identifier">page</span>( <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>] )
   }
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -287,7 +288,7 @@
 
           
           <div class="method-source-code" id="merge_into-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">merge_into</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:merge_into_trait_id</span>]
     <span class="ruby-identifier">into</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:merge_into_trait_id</span>])
@@ -329,7 +330,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-identifier">master_trait</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">master_trait</span><span class="ruby-operator">:</span> <span class="ruby-identifier">master_trait</span> }
@@ -363,7 +364,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">master_trait</span><span class="ruby-operator">:</span> <span class="ruby-identifier">set_master_trait</span> }
 <span class="ruby-keyword">end</span></pre>
@@ -396,7 +397,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">master_trait</span> = <span class="ruby-identifier">set_master_trait</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
