@@ -25,10 +25,11 @@ class CreatureTest < ActiveSupport::TestCase
     end
     mt = MasterTrait.find_by(:name => "Bogotrait")
     assert_equal false, mt.name.blank?
-    assert_equal "Disintegration", mt.notes
+    assert_nil mt.notes
     trait = @one.traits.first
     assert_equal mt, trait.master_trait
     assert_equal "3", trait.level.to_s
+    assert_equal "Disintegration", trait.notes
   end
 
   test "freeform_trait_list adds to master traits - 2 traits, one complex" do

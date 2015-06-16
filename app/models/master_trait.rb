@@ -3,10 +3,6 @@ class MasterTrait < AbstractEntity
   validates :name, presence: true
   before_validation :nil_blank_attributes
 
-  def to_s
-    (is_feature ? "Feature: " : "") + name + (notes.nil? ? "" : " (" + notes + ")")
-  end
-
   # Given another MasterTrait, take over the traits it is responsible for, and delete it.
   def merge(dupe)
     dupe.traits.update_all(master_trait_id: self.id)

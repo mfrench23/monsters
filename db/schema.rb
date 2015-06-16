@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602021706) do
+ActiveRecord::Schema.define(version: 20150616191128) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -233,10 +233,11 @@ ActiveRecord::Schema.define(version: 20150602021706) do
 
   create_table "traits", force: :cascade do |t|
     t.integer  "level",           limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.integer  "master_trait_id", limit: 4, null: false
-    t.integer  "creature_id",     limit: 4, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "master_trait_id", limit: 4,     null: false
+    t.integer  "creature_id",     limit: 4,     null: false
+    t.text     "notes",           limit: 65535
   end
 
   add_index "traits", ["creature_id"], name: "fk_rails_0f5f3543c1", using: :btree

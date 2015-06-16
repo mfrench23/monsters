@@ -98,7 +98,7 @@
   <%= render 'expanding_fieldset', f: f,
     id: "traits", collection: :traits,
     partial: '/creatures/trait_fields', label: 'add trait', header: "Traits",
-	header_list: [ :master_trait_id, :level ],
+	header_list: [ :master_trait_id, :notes, :level ],
 	freeform: :freeform_trait_list %>
 
   <%= render 'expanding_fieldset', f: f,

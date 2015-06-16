@@ -4,6 +4,8 @@ class Trait < AbstractEntity
 
   validates :master_trait, presence: true
 
+  delegate :name, to: :master_trait, prefix: true
+
   def deep_copy
     copy = dup
     copy

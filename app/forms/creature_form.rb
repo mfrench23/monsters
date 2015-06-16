@@ -24,7 +24,7 @@ class CreatureForm
       page_references_attributes: [:id, :book_id, :pages, :_destroy],
       parry_scores_attributes: [:id, :weapon, :parry, :_destroy],
       skills_attributes: [:id, :master_skill_id, :modifier, :actual, :specialization, :tech_level, :notes, :_destroy],
-      traits_attributes: [:id, :master_trait_id, :level, :_destroy],
+      traits_attributes: [:id, :master_trait_id, :level, :notes, :_destroy],
       characteristic_monsters_attributes: [:id, :characteristic_id, :score] )
   end
 end

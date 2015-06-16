@@ -3,18 +3,13 @@
   <%= master_trait.name %>
 </p>
 
-<p>
-  <strong>Notes:</strong>
-  <%= master_trait.notes %>
-</p>
-
-<p>
-  <strong>Is feature:</strong>
-  <%= master_trait.is_feature %>
-</p>
-
 <ul>
 <% master_trait.traits.each do |trait| %>
-  <li><%= link_to trait.creature.name.to_s, trait.creature %>
+  <li>
+    <%= link_to trait.creature.name.to_s, trait.creature, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
+    <% unless (trait.level.blank? && trait.notes.blank?) %>
+      <%= render "creatures/show_trait", trait: trait -%>
+    <% end %>
+  </li>
 <% end %>
 </ul>

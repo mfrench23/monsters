@@ -9,7 +9,7 @@
     </div>
     <div style="display: table-cell; border: 1px solid black; padding: 3px; width: 40%">
       into...
-      <%= select_tag(:merge_into_trait_id, options_from_collection_for_select(MasterTrait.order(:name), :id, :to_s) ) %>
+      <%= select_tag(:merge_into_trait_id, options_from_collection_for_select(MasterTrait.order(:name), :id, :name) ) %>
     </div>
   </div>
   <div>

@@ -5,13 +5,18 @@ class TraitListTest < ActiveSupport::TestCase
   end
 
   test "converts items delimited by commas" do
-    traits = Creature::TraitList::FreeformTraitList.new("Fearlessness 3 [15], Combat Reflexes [15]").list
-    assert_equal 2, traits.count
-    trait = traits.first
-    assert_equal 3, trait.level
-    assert_equal "Fearlessness", trait.master_trait.name
-    trait = traits.last
-    assert_nil trait.level
-    assert_equal "Combat Reflexes", trait.master_trait.name
+    a = "Fearlessness 3 [15], Combat Reflexes [15]"
+    b = "Fearlessness (Magical, -10%) 3 [15], Combat Reflexes [15]"
+    c = "Fearlessness 3 (Magical, -10%) [15], Combat Reflexes."
+    [a, b, c].each do |variation|
+      traits = Creature::TraitList::FreeformTraitList.new(variation).list
+      trait = traits.first # expecting alphabetical order
+      assert_equal "Combat Reflexes", trait.master_trait.name, variation
+      assert_nil trait.level, variation
+      trait = traits.last
+      assert_equal "Fearlessness", trait.master_trait.name, variation
+      assert_equal traits.count, 2, variation
+      assert_equal trait.level, 3, variation
+    end
   end
 end
