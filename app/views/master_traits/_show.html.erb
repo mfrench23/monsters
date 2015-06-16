@@ -4,9 +4,9 @@
 </p>
 
 <ul>
-<% master_trait.traits.each do |trait| %>
+<% master_trait.traits.includes(:monster).order("monsters.name").each do |trait| %>
   <li>
-    <%= link_to trait.creature.name.to_s, trait.creature, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
+    <%= link_to trait.monster_name, trait.creature, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
     <% unless (trait.level.blank? && trait.notes.blank?) %>
       <%= render "creatures/show_trait", trait: trait -%>
     <% end %>
