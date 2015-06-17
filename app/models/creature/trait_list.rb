@@ -12,9 +12,9 @@ module Creature::TraitList
 
     Regex_name = /(?<name>[^(]*?)/
     Regex_level = /( (?<level>[\d]+))/
-    Regex_optional_level = /( (?<level>[\d]+))?/
+    Regex_optional_level = /(#{Regex_level})?/
     Regex_notes = /( \((?<notes>.*)\))?/
-    Regex_price = /( \[[\d]+\])?/
+    Regex_price = /( \[[-\d]+\])?/
 
     Regex_order1 = /^#{Regex_name}#{Regex_level}#{Regex_notes}#{Regex_price}$/
     Regex_order2 = /^#{Regex_name}#{Regex_notes}#{Regex_optional_level}#{Regex_price}$/
