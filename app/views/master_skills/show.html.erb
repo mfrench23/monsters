@@ -25,5 +25,17 @@
   <%= master_skill.requires_tech_level %>
 </p>
 
+
+<% if master_skill.skills.any? %>
+  <strong>Possessed by...</strong>
+  <ul>
+  <% master_skill.skills.includes(:monster).order("monsters.name").each do |skill| %>
+    <li>
+      <%= link_to skill.monster_name, skill.creature, :class => "quiet" %>: <%= skill.to_s %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
 <%= link_to 'Edit', edit_master_skill_path(master_skill) %> |
 <%= link_to 'Back', master_skills_path %>

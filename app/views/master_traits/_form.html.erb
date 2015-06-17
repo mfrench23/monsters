@@ -19,10 +19,13 @@
     <%= f.label :notes %>
     <%= f.text_area :notes %>
   </div>
-  <div class="field">
-    <%= f.label :is_feature %>
-    <%= f.check_box :is_feature %>
-  </div>
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "traits", collection: :traits,
+    partial: '/master_traits/trait_fields', label: nil, header: "Traits",
+        header_list: [ :monster, :notes, :level ],
+        freeform: nil %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

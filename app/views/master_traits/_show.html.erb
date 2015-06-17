@@ -3,13 +3,23 @@
   <%= master_trait.name %>
 </p>
 
-<ul>
-<% master_trait.traits.includes(:monster).order("monsters.name").each do |trait| %>
-  <li>
-    <%= link_to trait.monster_name, trait.creature, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
-    <% unless (trait.level.blank? && trait.notes.blank?) %>
-      <%= render "creatures/show_trait", trait: trait -%>
-    <% end %>
-  </li>
+<% if master_trait.notes.present? %>
+  <p>
+    <strong>Notes:</strong>
+    <%= master_trait.notes %>
+  </p>
 <% end %>
-</ul>
+
+<% if master_trait.traits.any? %>
+  <strong>Possessed by...</strong>
+  <ul>
+  <% master_trait.traits.includes(:monster).order("monsters.name").each do |trait| %>
+    <li>
+      <%= link_to trait.monster_name, trait.creature, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
+      <% unless (trait.level.blank? && trait.notes.blank?) %>
+        <%= render "creatures/show_trait", trait: trait -%>
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>

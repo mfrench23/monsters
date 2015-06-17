@@ -8,6 +8,7 @@ class Trait < AbstractEntity
 
   delegate :name, to: :monster, prefix: true
   delegate :name, to: :master_trait, prefix: true
+  delegate :notes, to: :master_trait, prefix: true
 
   def deep_copy
     copy = dup

@@ -1,5 +1,7 @@
 class MasterTrait < AbstractEntity
   has_many :traits
+  accepts_nested_attributes_for :traits, allow_destroy: true, reject_if: :all_blank
+
   validates :name, presence: true
   before_validation :nil_blank_attributes
 

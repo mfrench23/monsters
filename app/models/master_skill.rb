@@ -1,6 +1,7 @@
 class MasterSkill < AbstractEntity
   belongs_to :characteristic
   before_validation :nil_blank_attributes
+  has_many :skills
 
   validates :name, :characteristic, presence: true
 

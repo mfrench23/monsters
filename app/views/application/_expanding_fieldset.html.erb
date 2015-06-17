@@ -19,9 +19,11 @@
 	  <%= render partial, f: x %>
 	<% end %>
       </ul>
-      <%= link_to_add_association label, f, collection,
-	'data-association-insertion-method' => "append",
-	'data-association-insertion-node' => "#" + id + " ul"
-      %>
+      <% if label.present? %>
+        <%= link_to_add_association label, f, collection,
+          'data-association-insertion-method' => "append",
+          'data-association-insertion-node' => "#" + id + " ul"
+        %>
+      <% end %>
     </fieldset>
   </div>

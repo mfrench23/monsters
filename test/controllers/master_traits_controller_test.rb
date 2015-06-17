@@ -19,7 +19,7 @@ class MasterTraitsControllerTest < ActionController::TestCase
   test "should create master_trait" do
     name = "Very Unlikely Name For A Trait, Don't You Think?"
     assert_difference('MasterTrait.count') do
-      post :create, master_trait: { is_feature: @master_trait.is_feature, name: name, notes: @master_trait.notes }
+      post :create, master_trait: { name: name, notes: @master_trait.notes }
     end
 
     assert_response :found
@@ -30,7 +30,7 @@ class MasterTraitsControllerTest < ActionController::TestCase
 
   test "should fail to create master_trait" do
     assert_no_difference('MasterTrait.count') do
-      post :create, master_trait: { is_feature: @master_trait.is_feature, name: nil, notes: @master_trait.notes }
+      post :create, master_trait: { name: nil, notes: @master_trait.notes }
     end
 
     assert_response :success
@@ -61,7 +61,7 @@ class MasterTraitsControllerTest < ActionController::TestCase
   end
 
   test "should update master_trait" do
-    patch :update, id: @master_trait, master_trait: { is_feature: @master_trait.is_feature, name: @master_trait.name, notes: @master_trait.notes.to_s + " Additional notes." }
+    patch :update, id: @master_trait, master_trait: { name: @master_trait.name, notes: @master_trait.notes.to_s + " Additional notes." }
     assert_redirected_to @master_trait
   end
 

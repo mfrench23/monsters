@@ -1,0 +1,14 @@
+<li class="control-group nested-fields">
+  <div class="controls" style="text-align: left;">
+    <%= f.label f.object.monster_name %>
+  </div>
+  <div class="controls">
+    <%= f.text_area :notes %>
+  </div>
+  <div class="controls">
+    <%= f.number_field :level %>
+  </div>
+  <div class="controls">
+    <%= link_to_remove_association "remove", f %>
+  </div>
+</li>

@@ -24,11 +24,13 @@
       </div>
     <% end %>
 
-    <% if creature.skills.any? %>
+    <% if (all = creature.skills.count) > 0 %>
       <div style="display: table-row;">
         <div class="field-label show trait">Skills</div>
         <div class="trait">
-	  <%= creature.skills.collect { |x| x.to_s }.sort().join('; ') %>
+          <% creature.skills.includes(:master_skill).order("master_skills.name").each_with_index do |skill, i| %>
+            <%= render "show_skill", skill: skill %><%= (i < (all-1) ? "; " : "") -%>
+          <% end %>
 	</div>
       </div>
     <% end %>

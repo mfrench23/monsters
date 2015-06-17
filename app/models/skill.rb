@@ -3,10 +3,14 @@ class Skill < AbstractEntity
   belongs_to :master_skill
 
   has_one :characteristic, :through => :master_skill
+  has_one :monster, :through => :creature
 
   validates :master_skill, presence: true
   validate :validate_has_modifier_or_actual
   validate :validate_has_required
+
+  delegate :notes, to: :master_skill, prefix: true
+  delegate :name, to: :monster, prefix: true
 
   def to_s
     if(modifier)
