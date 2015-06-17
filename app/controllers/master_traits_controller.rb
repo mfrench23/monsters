@@ -26,9 +26,12 @@ class MasterTraitsController < ApplicationController
   end
 
   def merge_into
-    def show_merge_into
+    def show_merge_into(notice=nil)
       mt = set_master_trait
-      render :merge_into, locals: {:master_trait => mt, :selection_list => MasterTrait.where("id != '#{mt.id}'").order(:name) }
+      render :merge_into, locals: {
+        :master_trait => mt,
+        :selection_list => MasterTrait.where("id != '#{mt.id}'").order(:name)
+      }, notice: notice
     end
 
     if params[:merge_into_trait_id]
@@ -36,7 +39,7 @@ class MasterTraitsController < ApplicationController
       if into.merge(set_master_trait)
         redirect_to into, notice: 'Master traits were successfully merged.'
       else
-        show_merge_into
+        show_merge_into 'Unable to merge'
       end
     else
       show_merge_into
