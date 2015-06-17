@@ -39,7 +39,7 @@ class MasterTraitsController < ApplicationController
       if into.merge(set_master_trait)
         redirect_to into, notice: 'Master traits were successfully merged.'
       else
-        show_merge_into 'Unable to merge'
+        show_merge_into 'Unable to merge.'
       end
     else
       show_merge_into
