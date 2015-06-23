@@ -25,12 +25,26 @@
   </ul>
 <% end %>
 
-<% if master_trait.traits.any? %>
+<% if master_trait.traits.creature_owned.any? %>
   <strong>Possessed by...</strong>
   <ul>
-  <% master_trait.traits.includes(:monster).order("monsters.name").each do |trait| %>
+  <% master_trait.traits.creature_owned.joins("inner join creatures on traits.trait_owner_id = creatures.id inner join monsters on creatures.id = monsters.actable_id and monsters.actable_type = 'Creature'").order("monsters.name").each do |trait| %>
     <li>
-      <%= link_to trait.monster_name, trait.creature, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
+      <%= link_to trait.trait_owner.name, trait.trait_owner, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
+      <% unless (trait.level.blank? && trait.notes.blank?) %>
+        <%= render "show_trait", trait: trait -%>
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
+<% if master_trait.traits.meta_trait_owned.any? %>
+  <strong>Included in...</strong>
+  <ul>
+  <% master_trait.traits.meta_trait_owned.joins("inner join master_traits on traits.trait_owner_id = master_traits.id").order("master_traits.name").each do |trait| %>
+    <li>
+      <%= link_to trait.trait_owner.name, trait.trait_owner, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
       <% unless (trait.level.blank? && trait.notes.blank?) %>
         <%= render "show_trait", trait: trait -%>
       <% end %>

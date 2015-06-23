@@ -2,7 +2,7 @@ class MasterTrait < AbstractEntity
   has_many :traits
   accepts_nested_attributes_for :traits, allow_destroy: true, :reject_if => lambda { |x| x['creature'].blank? }
 
-  has_many :traits_in_meta_trait, :class_name => 'Trait', :foreign_key => "meta_trait_id"
+  has_many :traits_in_meta_trait, as: :trait_owner, :class_name => 'Trait'
   accepts_nested_attributes_for :traits_in_meta_trait, allow_destroy: true, :reject_if => lambda { |x| x['master_trait_id'].blank? }
 
   validates :name, presence: true

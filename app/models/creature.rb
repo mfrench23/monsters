@@ -10,7 +10,7 @@ class Creature < AbstractEntity
   accepts_nested_attributes_for :damage_resistances, allow_destroy: true, reject_if: :all_blank
   has_many :skills, dependent: :destroy
   accepts_nested_attributes_for :skills, allow_destroy: true, reject_if: :all_blank
-  has_many :traits, dependent: :destroy
+  has_many :traits, as: :trait_owner, dependent: :destroy
   accepts_nested_attributes_for :traits, allow_destroy: true, reject_if: :all_blank
   has_many  :parry_scores, dependent: :destroy
   accepts_nested_attributes_for :parry_scores, allow_destroy: true, reject_if: :all_blank
