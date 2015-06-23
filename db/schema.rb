@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617170436) do
+ActiveRecord::Schema.define(version: 20150619220728) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -235,12 +235,14 @@ ActiveRecord::Schema.define(version: 20150617170436) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "master_trait_id", limit: 4,     null: false
-    t.integer  "creature_id",     limit: 4,     null: false
+    t.integer  "creature_id",     limit: 4
     t.text     "notes",           limit: 65535
+    t.integer  "meta_trait_id",   limit: 4
   end
 
   add_index "traits", ["creature_id"], name: "fk_rails_0f5f3543c1", using: :btree
   add_index "traits", ["master_trait_id"], name: "index_traits_on_master_trait_id", using: :btree
+  add_index "traits", ["meta_trait_id"], name: "index_traits_on_meta_trait_id", using: :btree
 
   add_foreign_key "attacks", "monsters"
   add_foreign_key "characteristic_lists", "characteristics"
@@ -261,4 +263,5 @@ ActiveRecord::Schema.define(version: 20150617170436) do
   add_foreign_key "skills", "master_skills"
   add_foreign_key "traits", "creatures"
   add_foreign_key "traits", "master_traits"
+  add_foreign_key "traits", "master_traits", column: "meta_trait_id"
 end

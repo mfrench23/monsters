@@ -13,13 +13,11 @@
   <div style="display: table;">
     <%= render 'attack_show', m: creature %>
 
-    <% if (all = creature.traits.count) > 0 %>
+    <% if creature.traits.any? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Traits</div>
         <div class="trait">
-	  <% creature.traits.includes(:master_trait).order("master_traits.name").each_with_index do |trait, i| %>
-            <%= render "show_trait", trait: trait %><%= (i < (all-1) ? "; " : "") -%>
-	  <% end %>
+          <%= render "show_inline_trait_list", list: creature.traits %>
 	</div>
       </div>
     <% end %>

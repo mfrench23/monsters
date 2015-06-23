@@ -21,6 +21,12 @@
   </div>
 
   <%= render 'expanding_fieldset', f: f,
+    id: "traits_in_meta_trait", collection: :traits_in_meta_trait,
+    partial: '/master_traits/traits_in_meta_trait_fields', label: "add member", header: "Meta-Trait Members",
+        header_list: [ :master_trait, :notes, :level ],
+        freeform: nil %>
+
+  <%= render 'expanding_fieldset', f: f,
     id: "traits", collection: :traits,
     partial: '/master_traits/trait_fields', label: nil, header: "Traits",
         header_list: [ :monster, :notes, :level ],
