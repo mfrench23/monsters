@@ -18,8 +18,16 @@
     <% master_traits.each do |master_trait| %>
       <tr>
         <td><%= link_to master_trait.name, master_trait %></td>
-        <td class="count"><%= master_trait.traits.count %></td>
-        <td class="count"><%= master_trait.meta_trait? ? "Y" : "N" %></td>
+        <td class="count">
+          <span title="<%= master_trait.traits.creature_possessed.map{ |t| t.creature.name }.sort.join("; ") %>">
+            <%= master_trait.traits.creature_possessed.count %>
+          </span>
+        </td>
+        <td class="count">
+          <span title="<%= master_trait.traits_in_meta_trait.map{ |t| t.master_trait_name }.join(", ") %>">
+            <%= master_trait.meta_trait? ? "Y" : "N" %>
+          </span>
+        </td>
         <td><%= link_to 'Edit', edit_master_trait_path(master_trait) %></td>
         <td><%= link_to 'Destroy', master_trait, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Merge into...', merge_into_master_trait_path(master_trait) %></td>

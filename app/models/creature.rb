@@ -12,8 +12,10 @@ class Creature < AbstractEntity
   accepts_nested_attributes_for :skills, allow_destroy: true, reject_if: :all_blank
   has_many :traits, as: :trait_owner, dependent: :destroy
   accepts_nested_attributes_for :traits, allow_destroy: true, reject_if: :all_blank
-  has_many  :parry_scores, dependent: :destroy
+  has_many :parry_scores, dependent: :destroy
   accepts_nested_attributes_for :parry_scores, allow_destroy: true, reject_if: :all_blank
+
+  has_many :flattened_traits, -> { order_by_master_trait }, :dependent => :destroy, :class_name => "Trait"
 
   acts_as :monster
 

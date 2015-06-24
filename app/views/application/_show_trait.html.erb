@@ -1,17 +1,2 @@
-<% include_details ||= false -%>
-<%= link_to trait.master_trait_name, trait.master_trait, :class => "quiet", :title => trait.master_trait_notes -%>
-<%= " (#{trait.notes})" unless trait.notes.blank? -%>
-<%= trait.level.blank? ? "" : " #{trait.level}" -%>
-<% if (include_details && trait.master_trait.traits_in_meta_trait.any?) %>
-  <span>
-    <span>
-      <a id="traitplus<%= trait.id %>" name="<%= trait.id %>" class="quiet toggle-link" href="#">expand</a>
-    </span>
-    <span style="display: none;">
-      <a id="traitminus<%= trait.id %>" name="<%= trait.id %>" class="quiet toggle-link" href="#">hide</a>
-    </span>
-    <span style="display: none;" class="concealed-detail">
-      <%= render "show_inline_trait_list", list: trait.master_trait.traits_in_meta_trait %>
-    </span>
-  </span>
-<% end -%>
+<%= render "show_base_trait", trait: trait -%>
+<%= render "show_meta_trait_extensions", :meta_id => trait.class.to_s + trait.id.to_s, :granted_traits => trait.master_trait.traits_in_meta_trait -%>

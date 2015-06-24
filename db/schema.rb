@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623063812) do
+ActiveRecord::Schema.define(version: 20150623094025) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -238,8 +238,12 @@ ActiveRecord::Schema.define(version: 20150623063812) do
     t.text     "notes",            limit: 65535
     t.integer  "trait_owner_id",   limit: 4,     null: false
     t.string   "trait_owner_type", limit: 255,   null: false
+    t.string   "ancestry",         limit: 255
+    t.integer  "creature_id",      limit: 4
   end
 
+  add_index "traits", ["ancestry"], name: "index_traits_on_ancestry", using: :btree
+  add_index "traits", ["creature_id"], name: "index_traits_on_creature_id", using: :btree
   add_index "traits", ["master_trait_id"], name: "index_traits_on_master_trait_id", using: :btree
   add_index "traits", ["trait_owner_id", "trait_owner_type"], name: "index_traits_on_trait_owner_id_and_trait_owner_type", using: :btree
 
@@ -260,5 +264,6 @@ ActiveRecord::Schema.define(version: 20150623063812) do
   add_foreign_key "parry_scores", "creatures"
   add_foreign_key "skills", "creatures"
   add_foreign_key "skills", "master_skills"
+  add_foreign_key "traits", "creatures"
   add_foreign_key "traits", "master_traits"
 end

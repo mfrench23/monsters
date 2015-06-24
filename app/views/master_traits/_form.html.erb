@@ -21,13 +21,13 @@
   </div>
 
   <%= render 'expanding_fieldset', f: f,
-    id: "traits_in_meta_trait", collection: :traits_in_meta_trait,
+    id: "traits_in_meta_trait", collection: :traits_in_meta_trait, list_array: master_trait.traits_in_meta_trait.order_by_master_trait,
     partial: '/master_traits/traits_in_meta_trait_fields', label: "add member", header: "Meta-Trait Members",
         header_list: [ :master_trait, :notes, :level ],
         freeform: nil %>
 
   <%= render 'expanding_fieldset', f: f,
-    id: "traits", collection: :traits,
+    id: "traits", collection: :traits, list_array: master_trait.traits.creature_owned.order_by_creature,
     partial: '/master_traits/trait_fields', label: nil, header: "Traits",
         header_list: [ :monster, :notes, :level ],
         freeform: nil %>

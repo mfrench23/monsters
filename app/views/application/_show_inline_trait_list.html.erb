@@ -1,4 +1,4 @@
 <% all = list.count %>
-<% list.includes(:master_trait).order("master_traits.name").each_with_index do |trait, i| -%>
-<%= render "show_trait", trait: trait, include_details: true %><%= (i < (all-1) ? "; " : "") -%>
+<% list.order_by_master_trait.each_with_index do |trait, i| -%>
+<%= render "show_trait", trait: trait %><%= (i < (all-1) ? "; " : "") -%>
 <% end -%>
