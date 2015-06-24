@@ -29,7 +29,7 @@
 <% if master_skill.skills.any? %>
   <strong>Possessed by...</strong>
   <ul>
-  <% master_skill.skills.includes(:monster).order("monsters.name").each do |skill| %>
+  <% master_skill.skills.order_by_monster_name.each do |skill| %>
     <li>
       <%= link_to skill.monster_name, skill.creature, :class => "quiet" %>: <%= skill.to_s %>
     </li>

@@ -12,6 +12,8 @@ class Skill < AbstractEntity
   delegate :notes, to: :master_skill, prefix: true
   delegate :name, to: :monster, prefix: true
 
+  scope :order_by_monster_name, -> { includes(:monster).order("monsters.name") }
+
   def to_s
     if(modifier)
       mod = Modifier.new(modifier)
