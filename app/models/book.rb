@@ -4,6 +4,8 @@ class Book < AbstractEntity
 
   validates :name, presence: true
 
+  scope :order_by_name, -> { order(:name) }
+
   def to_reference_s
     abbreviation.blank? ? name : abbreviation
   end

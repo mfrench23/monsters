@@ -1,6 +1,6 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.collection_select :location_id, Location.order(:name), :id, :name, include_blank: true %>
+    <%= f.collection_select :location_id, Location.order_by_name, :id, :name, include_blank: true %>
   </div>
 
   <div class="controls">

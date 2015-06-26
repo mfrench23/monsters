@@ -1,6 +1,6 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.collection_select :move_type_id, MoveType.order(:name), :id, :name, include_blank: true %>
+    <%= f.collection_select :move_type_id, MoveType.order_by_name, :id, :name, include_blank: true %>
   </div>
   <div class="controls">
     <%= f.number_field :rate %>

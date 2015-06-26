@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= f.label :monster_class_id %>
-    <%= f.collection_select :monster_class_id, MonsterClass.order(:name), :id, :name %>
+    <%= f.collection_select :monster_class_id, MonsterClass.order_by_name, :id, :name %>
   </div>
 
   <div class="field">

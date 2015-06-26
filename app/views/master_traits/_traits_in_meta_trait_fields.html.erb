@@ -1,6 +1,6 @@
 <li class="control-group nested-fields">
   <div class="controls" style="text-align: left;">
-    <%= f.collection_select :master_trait_id, MasterTrait.order(:name), :id, :name %>
+    <%= f.collection_select :master_trait_id, MasterTrait.order_by_name, :id, :name %>
   </div>
   <div class="controls">
     <%= f.text_area :notes %>

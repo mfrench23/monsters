@@ -9,6 +9,8 @@ class MasterTrait < AbstractEntity
   before_validation :nil_blank_attributes
   after_save :update_granted_traits
 
+  scope :order_by_name, -> { order(:name) }
+
   # Given another MasterTrait, take over the traits it is responsible for, and delete it.
   def merge(dupe)
     dupe.traits.update_all(master_trait_id: self.id)

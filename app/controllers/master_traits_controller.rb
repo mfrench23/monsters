@@ -30,7 +30,7 @@ class MasterTraitsController < ApplicationController
       mt = set_master_trait
       render :merge_into, locals: {
         :master_trait => mt,
-        :selection_list => MasterTrait.where("id != '#{mt.id}'").order(:name)
+        :selection_list => MasterTrait.where("id != '#{mt.id}'").order_by_name
       }, notice: notice
     end
 

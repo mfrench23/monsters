@@ -26,7 +26,7 @@
       <div style="display: table-row;">
         <div class="field-label show trait">Skills</div>
         <div class="trait">
-          <% creature.skills.includes(:master_skill).order("master_skills.name").each_with_index do |skill, i| %>
+          <% creature.skills.order_by_master_skill.each_with_index do |skill, i| %>
             <%= render "show_skill", skill: skill %><%= (i < (all-1) ? "; " : "") -%>
           <% end %>
 	</div>
