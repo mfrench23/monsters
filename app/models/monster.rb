@@ -16,7 +16,10 @@ class Monster < AbstractEntity
   accepts_nested_attributes_for :monster_names, allow_destroy: true, :reject_if => lambda { |x| x['name'].blank? }
   has_many  :characteristic_monsters, dependent: :destroy
   accepts_nested_attributes_for :characteristic_monsters, allow_destroy: true, :reject_if => lambda { |x| x['characteristic_id'].blank? }
+  has_many :campaign_monsters, dependent: :destroy, inverse_of: :monster
+  accepts_nested_attributes_for :campaign_monsters, allow_destroy: true, :reject_if => lambda { |x| x['campaign_id'].blank? }
 
+  has_many :monsters, :through => :campaign_monsters
   has_many :characteristics, :through => :characteristic_monsters
 
   belongs_to :monster_class, counter_cache: true
@@ -30,6 +33,9 @@ class Monster < AbstractEntity
   scope :starting_with, -> (name) { where("upper(monsters.name) like ?", "#{name}%")}
   scope :created_on, -> (date) { where("date(monsters.created_at) = ?", "#{date}")}
   scope :updated_on, -> (date) { where("date(monsters.updated_at) = ?", "#{date}")}
+  scope :in_campaign, -> (campaign_id) { where("0 < (select count(*) from campaign_monsters where campaign_monsters.monster_id = monsters.id and campaign_monsters.campaign_id = ?)", "#{campaign_id}") }
+
+  scope :order_by_name, -> { order(:name) }
 
   def characteristic_monster(characteristic_name)
     characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.try(:first) || generate_characteristic_monster(characteristic_name)
@@ -56,6 +62,7 @@ class Monster < AbstractEntity
     movement_rates.each { |mr| copy.movement_rates << mr.deep_copy }
     # monster names don't get copied
     characteristic_monsters.each { |cm| copy.characteristic_monsters << cm.deep_copy }
+    campaign_monsters.each { |cm| copy.campaign_monsters << cm.deep_copy }
     illustrations.each { |illo| copy.illustrations << illo.deep_copy }
     copy.name = "Copy of #{name}"
     copy.parent = self
@@ -81,6 +88,10 @@ class Monster < AbstractEntity
 
   def build_illustration
     Illustration.new
+  end
+
+  def build_campaign_monster
+    CampaignMonster.new
   end
 
   private

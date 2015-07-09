@@ -1,0 +1,8 @@
+<li class="control-group nested-fields">
+  <div class="controls">
+    <%= f.collection_select :campaign_id, Campaign.order_by_name, :id, :name %>
+  </div>
+  <div class="controls">
+    <%= link_to_remove_association "remove", f %>
+  </div>
+</li>

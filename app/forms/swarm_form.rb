@@ -16,6 +16,7 @@ class SwarmForm
       :number_description,
       :ancestry,
       illustrations_attributes: [:id, :image, :notes, :_destroy],
+      campaign_monsters_attributes: [:id, :campaign_id, :_destroy],
       monster_names_attributes: [:id, :name, :description, :_destroy],
       attacks_attributes: [:id, :name, :skill, :description, :_destroy],
       movement_rates_attributes: [:id, :move_type_id, :rate, :enhanced_rate, :_destroy],

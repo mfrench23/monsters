@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   # other resources
+  resources :campaigns
   resources :master_traits do
     member do
       get 'merge_into'

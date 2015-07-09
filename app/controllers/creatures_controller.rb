@@ -7,16 +7,16 @@ class CreaturesController < ApplicationController
     creature = Creature.new
     creature.movement_rates.build
     creature.attacks.build
-    render locals: { creature: creature }
+    render locals: { creature: creature, campaigns: all_campaigns }
   end
 
   def variant
-    creature = Creature.find(params[:id]).deep_copy
-    render :new, locals: { creature: creature }
+    creature = set_creature.deep_copy
+    render :new, locals: { creature: creature, campaigns: all_campaigns }
   end
 
   def edit
-    render locals: { creature: set_creature }
+    render locals: { creature: set_creature, campaigns: all_campaigns }
   end
 
   def create
@@ -29,7 +29,7 @@ class CreaturesController < ApplicationController
 	format.html { redirect_to creature, notice: 'Monster was successfully created.' }
 	format.json { render :show, status: :created, location: creature }
       else
-	format.html { render :new, locals: {creature: creature} }
+	format.html { render :new, locals: {creature: creature, campaigns: all_campaigns} }
 	format.json { render json: creature.errors, status: :unprocessable_entity }
       end
     end
@@ -44,7 +44,7 @@ class CreaturesController < ApplicationController
 	format.html { redirect_to creature, notice: 'Monster was successfully updated.' }
 	format.json { render :show, status: :ok, location: creature }
       else
-	format.html { render :edit, locals: {creature: creature} }
+	format.html { render :edit, locals: {creature: creature, campaigns: all_campaigns} }
 	format.json { render json: creature.errors, status: :unprocessable_entity }
       end
     end

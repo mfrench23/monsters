@@ -7,8 +7,16 @@
       <% end %>
     </div>
   <% end %>
+  <% if m.campaign_monsters.any? %>
+    <div class="nested-header rightsidebar" style="padding-top: 20px;">Campaigns</div>
+    <ul class="rightsidebar">
+      <% m.campaign_monsters.each do |cm| %>
+        <li class="rightsidebar"><%= link_to cm.campaign_name, cm.campaign -%></li>
+      <% end %>
+    </ul>
+  <% end %>
   <% if !(m.root? && m.is_childless?) %>
-    <div class="nested-header variantlist" style="padding-top: 50px;">Monster Variants</div>
+    <div class="nested-header rightsidebar" style="padding-top: 20px;">Monster Variants</div>
     <%= ancestor_tree(m) %>
   <% end %>
 </div>

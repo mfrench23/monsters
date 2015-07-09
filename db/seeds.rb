@@ -26,6 +26,8 @@ Location.find_or_create_by(name: 'left foot')
 Location.find_or_create_by(name: 'neck')
 Location.find_or_create_by(name: 'vitals')
 
+campaign = Campaign.find_or_create_by(name: "Default Campaign")
+
 MonsterClass.find_or_create_by(name: 'Animal')
 MonsterClass.find_or_create_by(name: 'Animal, Dire')
 MonsterClass.find_or_create_by(name: 'Animal, Giant')

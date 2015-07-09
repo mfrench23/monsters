@@ -23,9 +23,9 @@ td.count {
   text-align: center;
 }
 footer.gurps {
-  border: 1px solid #d4d4d4;
-  background-image: linear-gradient(to bottom, white, #f2f2f2);
-  background-color: #f9f9f9;
+  border: 1px solid grey;
+  background-image: linear-gradient(to bottom, white, lightgray);
+  background-color: whitesmoke;
   -webkit-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
@@ -46,6 +46,12 @@ input[type="number"] {
   width: 60px;
 }
 
+tr.tr0 {
+  background-color: whitesmoke;
+}
+.tr1 tr {
+}
+
 .field-label {
   clear: both;
   float: left;
@@ -57,11 +63,20 @@ input[type="number"] {
   font-weight: bold;
 }
 
+.filter-label {
+  clear: both;
+  float: left;
+  width: 150px;
+  max-width: 200px;
+  padding-right: 10px;
+  font-weight: bold;
+}
+
 // TOP NAVIGATION MENU
 .nav
 {
   width: 100%;
-  background-color: #f9f9f9;
+  background-color: whitesmoke;
   float: left;
 }
 .nav,
@@ -102,8 +117,8 @@ input[type="number"] {
 {
   list-style-type: none;
   float: left;
-  color: #000033;
-  background-color: #f9f9f9;
+  color: inherit;
+  background-color: whitesmoke;
   position: relative;
   padding: 10px 15px 10px;
 }
@@ -113,14 +128,14 @@ input[type="number"] {
 }
 .nav a
 {
-  color: #000033;
+  color: inherit;
   display:block;
   width: 100%;
   text-decoration: none;
 }
 .nav a:hover
 {
-  background-color: #d0d0ff;
+  background-color: lightsteelblue;
 }
 .nav > li
 {
@@ -132,7 +147,7 @@ input[type="number"] {
 }
 .nav li:hover
 {
-  background-color: #d0d0ff;
+  background-color: lightsteelblue;
 }
 
 // SORTABLE TABLE COLUMNS
@@ -164,8 +179,27 @@ div.dashboard-item {
 // more graceful links
 a.quiet {
   text-decoration: none;
+  color: inherit;
 }
-.quiet a:hover
-{
-  background-color: #d0d0ff;
+a.quiet:hover {
+  background-color: darkblue;
+  color: white;
+  text-decoration: underline;
+}
+a.quiet:active {
+  background-color: red;
+  color: white;
+  text-decoration: underline;
+}
+
+.fixed-table {
+  table-layout: fixed;
+  width: 95%;
+  white-space: nowrap;
+}
+
+.fixed-table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -73,12 +73,12 @@ li.attack-line {
   padding-bottom: 0.5em;
 }
 
-// variant tree
-ul.variantlist {
+// lists in right-hand sidebar
+ul.rightsidebar {
   text-align: left;
   padding: 0;
 }
-li.variantlist {
+li.rightsidebar {
   list-style:none outside none;
   font-size: 80%;
 }
@@ -87,7 +87,7 @@ li.variantlist {
 .concealed-detail {
   border: 1px dashed black; 
   margin-left: 0.5em;
-  background-color: #f9f9f9;
+  background-color: whitesmoke;
 }
 .toggle-link {
   border: 1px solid black;

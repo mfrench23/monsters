@@ -7,4 +7,10 @@ class ApplicationController < ActionController::Base
     @javascript_variables ||= {}
     @javascript_variables.merge!(variables)
   end
+
+  private
+
+  def all_campaigns
+    Campaign.all
+  end
 end

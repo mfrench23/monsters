@@ -23,9 +23,9 @@ class BooksControllerTest < ActionController::TestCase
     end
 
     assert_response :found
-    creature = Book.where(:name => @unsaved_book.name ).order("created_at desc").first
-    assert_not_nil creature
-    assert_redirected_to creature
+    book = Book.where(:name => @unsaved_book.name ).order("created_at desc").first
+    assert_not_nil book
+    assert_redirected_to book
   end
 
 

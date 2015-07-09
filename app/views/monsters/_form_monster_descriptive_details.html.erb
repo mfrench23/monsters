@@ -1,0 +1,18 @@
+<div class="field">
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+</div>
+<div class="field">
+  <%= f.label :notes %>
+  <%= f.text_area :notes %>
+</div>
+
+<%= render 'expanding_fieldset', f: f,
+  id: "page-references", collection: :page_references,
+  partial: 'page_reference_fields', label: 'add page reference', header: "Sources",
+      header_list: [ :book_id, :pages ], freeform: nil  %>
+
+<%= render 'expanding_fieldset', f: f,
+  id: "illustrations", collection: :illustrations,
+  partial: 'illustration_fields', label: 'add illustration', header: "Illustrations",
+      header_list: [ :image, :notes ], freeform: nil  %>

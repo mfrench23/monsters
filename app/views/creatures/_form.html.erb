@@ -10,21 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <%= f.hidden_field :ancestry %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <%= render 'expanding_fieldset', f: f,
-    id: "monster-names", collection: :monster_names,
-    partial: 'monster_name_fields', label: 'add alias', header: "Aliases",
-	header_list: [ :name, :notes ], freeform: nil  %>
-
-  <div class="field">
-    <%= f.label :monster_class_id %>
-    <%= f.collection_select :monster_class_id, MonsterClass.order_by_name, :id, :name %>
-  </div>
+  <%= render "monsters/form_name_and_class", f: f %>
 
   <div class="threecolumblock">
     <div class="threecol1">
@@ -90,10 +76,7 @@
     partial: '/creatures/damage_resistance_fields', label: 'add DR', header: "DR",
 	header_list: [ :location, :dr, :notes ], freeform: nil  %>
 
-  <%= render 'expanding_fieldset', f: f,
-    id: "attacks", collection: :attacks,
-    partial: 'attack_fields', label: 'add attack', header: "Attacks",
-	header_list: [ :name, :skill, :description ], freeform: nil  %>
+  <%= render 'monsters/form_attacks', f: f %>
 
   <%= render 'expanding_fieldset', f: f,
     id: "traits", collection: :traits,
@@ -112,24 +95,7 @@
     <%= f.text_area :gear %>
   </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :notes %>
-    <%= f.text_area :notes %>
-  </div>
-
-  <%= render 'expanding_fieldset', f: f,
-    id: "page-references", collection: :page_references,
-    partial: 'page_reference_fields', label: 'add page reference', header: "Sources",
-	header_list: [ :book_id, :pages ], freeform: nil  %>
-
-  <%= render 'expanding_fieldset', f: f,
-    id: "illustrations", collection: :illustrations,
-    partial: 'illustration_fields', label: 'add illustration', header: "Illustrations",
-	header_list: [ :image, :notes ], freeform: nil  %>
+  <%= render 'monsters/form_monster_descriptive_details', f: f -%>
 
   <div class="field">
     <%= f.label :parts_value %>
@@ -140,6 +106,8 @@
   <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
   <% charSet = [creature.characteristic_monster("PR")]  %>
   <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
+
+  <%= render 'monsters/form_campaign_chooser', f: f, campaigns: campaigns, monster: creature %>
 
   <div class="actions" style="clear: both;">
     <%= f.submit %>

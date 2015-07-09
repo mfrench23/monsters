@@ -7,16 +7,16 @@ class SwarmsController < ApplicationController
     sw = Swarm.new
     sw.movement_rates.build
     sw.attacks.build
-    render locals: { swarm: sw }
+    render locals: { swarm: sw, campaigns: all_campaigns }
   end
 
   def variant
     swarm = Swarm.find(params[:id]).deep_copy
-    render :new, locals: { swarm: swarm }
+    render :new, locals: { swarm: swarm, campaigns: all_campaigns }
   end
 
   def edit
-    render locals: { swarm: set_monster }
+    render locals: { swarm: set_monster, campaigns: all_campaigns }
   end
 
   def create
@@ -29,7 +29,7 @@ class SwarmsController < ApplicationController
 	format.html { redirect_to swarm, notice: 'Monster was successfully created.' }
 	format.json { render :show, status: :created, location: swarm }
       else
-	format.html { render :new, locals: { swarm: swarm } }
+	format.html { render :new, locals: { swarm: swarm, campaigns: all_campaigns } }
 	format.json { render json: swarm.errors, status: :unprocessable_entity }
       end
     end
@@ -44,7 +44,7 @@ class SwarmsController < ApplicationController
 	format.html { redirect_to swarm, notice: 'Monster was successfully updated.' }
 	format.json { render :show, status: :ok, location: swarm }
       else
-	format.html { render :edit, locals: { swarm: swarm } }
+	format.html { render :edit, locals: { swarm: swarm, campaigns: all_campaigns } }
 	format.json { render json: swarm.errors, status: :unprocessable_entity }
       end
     end

@@ -4,10 +4,11 @@
 <h2>
   <% filter_params.each do |filter| %>
     <%= "#{filter[0].titleize.downcase}" %>
+    <% display_param = (filter[0].to_s =~ /in_campaign/ ? campaign_name : filter[1]) %>
     <% if filter_params.count > 1 %>
-      <%= link_to "'#{filter[1]}'", monsters_path(filter[0] => filter[1]), :class => "quiet" %>
+      <%= link_to "'#{display_param}'", monsters_path(filter[0] => filter[1]), :class => "quiet" %>
     <% else %>
-      <%= "'#{filter[1]}'" %>
+      <%= "'#{display_param}'" %>
     <% end %>
   <% end %>
 </h2>
@@ -16,40 +17,41 @@
 
 <%= page_entries_info monsters %>
 
-<table>
+<table class="fixed-table" style="width: 100%;">
   <thead>
     <tr>
-      <th><%= sortable "monsters.name", Monster, params, "Name" %></th>
+      <th style="width: 15%;"><%= sortable "monsters.name", Monster, params, "Name" %></th>
       <% if alias_on_page %>
-        <th>Aliases</th>
+        <th style="width: 15%;">Aliases</th>
       <% end %>
-      <th><%= sortable "monster_classes.name", Monster, params, "Class" %></th>
+      <th style="width: 10%;"><%= sortable "monster_classes.name", Monster, params, "Class" %></th>
       <th>Description</th>
       <% if variant_on_page %>
-        <th>Variant of</th>
+        <th style="width: 15%;">Variant of</th>
       <% end %>
-      <th colspan="2"></th>
+      <th style="width: 25px;"></th>
+      <th style="width: 50px;"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% monsters.each do |monster| %>
-      <tr>
-        <td><%= link_to monster.name, monster.specific, :class => "quiet" %></td>
+    <% monsters.each_with_index do |monster, index| %>
+      <tr class="tr<%= index % 2 %>">
+        <td><%= link_to monster.name, monster.specific, :class => "quiet", :title => monster.name %></td>
         <% if alias_on_page %>
 	  <td><%= monster_alias_list monster %></td>
 	<% end %>
-	<td><%= link_to monster.monster_class_name, monster.monster_class, :class => "quiet" %></td>
-        <td><%= truncate monster.description, :length => 60, :separator => /\s/, :omission => "\u2026" %></td>
+	<td><%= link_to monster.monster_class_name, monster.monster_class, :class => "quiet", :title => monster.monster_class_name %></td>
+        <td><span title="<%= monster.description %>"><%= monster.description %></span></td>
         <% if variant_on_page %>
           <td>
             <% if ! monster.root? %>
-              <%= link_to monster.parent.name, monster.parent.specific, :class => "quiet" %>
+              <%= link_to monster.parent.name, monster.parent.specific, :class => "quiet", :title => monster.parent.name %>
             <% end %>
           </td>
         <% end %>
-        <td><%= link_to 'Edit', edit_polymorphic_path(monster.specific) %></td>
-        <td><%= link_to 'Destroy', monster.specific, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="font-size: 80%;"><%= link_to 'Edit', edit_polymorphic_path(monster.specific) %></td>
+        <td style="font-size: 80%;"><%= link_to 'Destroy', monster.specific, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -57,12 +59,36 @@
 
 <br>
 <% unless params[:starting_with ] %>
-  Filter by first letter of name:
-  <% starts_with_tags.each do |starting_character| %>
-    <span style="padding-right: 5px;"><%= link_to "#{starting_character}", monsters_path(filter_params.merge(:starting_with => "#{starting_character}")) %></span>
-  <% end %>
-  <br>
+  <div class="field">
+    <span class="filter-label">Filter by initial</span>
+    <table class="fixed-table" style="width: 80%; border: 1px solid grey;">
+      <% starts_with_tags.each_with_index do |starting_character, index| %>
+        <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :number_of_columns => 30, :total_count => monsters.count } do %>
+          <%= link_to "#{starting_character}", monsters_path(filter_params.merge(:starting_with => "#{starting_character}")) %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
 <% end %>
+
+<div class="field">
+  <span class="filter-label">Filter by campaign</span>
+  <table class="fixed-table" style="width: 80%; border: 1px solid grey;">
+    <% campaigns.each_with_index do |campaign, index| %>
+      <%= render :layout => 'layouts/fixed_table_columns',
+          :locals => { :index => index, :number_of_columns => 5, :total_count => monsters.count } do %>
+        <% if filter_params[:in_campaign].to_s == campaign.id.to_s %>
+          <%= "#{campaign.name}" %>
+        <% else %>
+          <%= link_to "#{campaign.name}",
+            monsters_path(filter_params.merge(:in_campaign => "#{campaign.id}")),
+            :title => campaign.name + " (" + pluralize(campaign.campaign_monsters.count, "monster") + ")" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+
 
 <%= paginate monsters %>
 

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<div class="field">
+  <span class="field-label" style="font-weight: bold;">Name</span>
+  <span><%= campaign.name %></span>
+</div>
+<div class="field">
+  <span class="field-label" style="font-weight: bold;">Monsters</span>
+  <table class="fixed-table" style="width: 85%; border: 1px solid grey;">
+    <% campaign.campaign_monsters.order_by_monster.each_with_index do |campaign_monster, index| %>
+      <%= render :layout => 'layouts/fixed_table_columns',
+          :locals => { :index => index, :total_count => campaign.campaign_monsters.count } do %>
+        <%= link_to campaign_monster.monster_name, campaign_monster.monster.specific,
+            :class => "quiet",
+            :title => campaign_monster.monster_name %>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+
+<%= link_to 'Edit', edit_campaign_path(campaign) %> |
+<%= link_to 'Index', campaigns_path %>

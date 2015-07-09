@@ -1,0 +1,4 @@
+<%= render 'expanding_fieldset', f: f,
+  id: "attacks", collection: :attacks,
+  partial: 'attack_fields', label: 'add attack', header: "Attacks",
+      header_list: [ :name, :skill, :description ], freeform: nil  %>

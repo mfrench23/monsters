@@ -1,0 +1,16 @@
+<%= f.hidden_field :ancestry %>
+
+<div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+
+<%= render 'expanding_fieldset', f: f,
+  id: "monster-names", collection: :monster_names,
+  partial: 'monster_name_fields', label: 'add alias', header: "Aliases",
+      header_list: [ :name, :notes ], freeform: nil  %>
+
+<div class="field">
+  <%= f.label :monster_class_id %>
+  <%= f.collection_select :monster_class_id, MonsterClass.order_by_name, :id, :name %>
+</div>
