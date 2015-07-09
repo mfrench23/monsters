@@ -4,20 +4,19 @@
 
 <%= page_entries_info locations %>
 
-<table>
+<table class="fixed-table" style="width: 50%;">
   <thead>
     <tr>
-      <th><%= sortable "locations.name", Location, params, "Name" %></th>
-      <th colspan="2"></th>
+      <th style="width: 200px;"><%= sortable "locations.name", Location, params, "Name" %></th>
+      <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
 
   <tbody>
-    <% locations.each do |location| %>
-      <tr>
+    <% locations.each_with_index do |location, index| %>
+      <tr class="tr<%= index % 2 %>">
         <td><%= link_to location.name, location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= render 'index_edit_destroy_links', target: location %>
       </tr>
     <% end %>
   </tbody>

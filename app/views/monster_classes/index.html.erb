@@ -4,22 +4,21 @@
 
 <%= page_entries_info monster_classes %>
 
-<table>
+<table class="fixed-table" style="width: 60%;">
   <thead>
     <tr>
       <th><%= sortable "monster_classes.name", MonsterClass, params, "Name" %></th>
-      <th>Number of monsters</th>
-      <th colspan="2"></th>
+      <th style="width: 180px;">Number of monsters</th>
+      <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
 
   <tbody>
-    <% monster_classes.each do |monster_class| %>
-      <tr>
+    <% monster_classes.each_with_index do |monster_class, index| %>
+      <tr class="tr<%= index % 2 %>">
         <td><%= link_to monster_class.name, monster_class %></td>
         <td class="count"><%= monster_class.monsters.count %></td>
-        <td><%= link_to 'Edit', edit_monster_class_path(monster_class) %></td>
-        <td><%= link_to 'Destroy', monster_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= render 'index_edit_destroy_links', target: monster_class %>
       </tr>
     <% end %>
   </tbody>

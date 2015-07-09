@@ -4,19 +4,20 @@
 
 <%= page_entries_info master_traits %>
 
-<table>
+<table class="fixed-table" style="width: 75%;">
   <thead>
     <tr>
       <th><%= sortable "master_traits.name, master_traits.notes", MasterTrait, params, "Name" %></th>
-      <th># of monsters possessing</th>
-      <th>Meta-Trait?</th>
-      <th colspan="3"></th>
+      <th style="width: 12%; font-size: 80%;"># of monsters<br>possessing</th>
+      <th style="width: 10%;">Meta-Trait?</th>
+      <%= render 'index_edit_destroy_headers' %>
+      <th style="width: 75px;"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% master_traits.each do |master_trait| %>
-      <tr>
+    <% master_traits.each_with_index do |master_trait, index| %>
+      <tr class="tr<%= index % 2 %>">
         <td><%= link_to master_trait.name, master_trait %></td>
         <td class="count">
           <span title="<%= master_trait.traits.creature_possessed.map{ |t| t.creature.name }.sort.join("; ") %>">
@@ -28,9 +29,8 @@
             <%= master_trait.meta_trait? ? "Y" : "N" %>
           </span>
         </td>
-        <td><%= link_to 'Edit', edit_master_trait_path(master_trait) %></td>
-        <td><%= link_to 'Destroy', master_trait, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Merge into...', merge_into_master_trait_path(master_trait) %></td>
+        <%= render 'index_edit_destroy_links', target: master_trait %>
+        <td style="font-size: 80%;"><%= link_to 'Merge into...', merge_into_master_trait_path(master_trait) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -4,28 +4,27 @@
 
 <%= page_entries_info master_skills %>
 
-<table>
+<table class="fixed-table" style="width: 75%;">
   <thead>
     <tr>
       <th><%= sortable "master_skills.name", MasterSkill, params, "Name" %></th>
-      <th>Requires specialization</th>
-      <th>Requires TL</th>
-      <th><%= sortable "characteristics.name", MasterSkill, params, "Base Stat" %></th>
+      <th style="width: 85px;">Specialized?</th>
+      <th style="width: 45px;">TL?</th>
+      <th style="width: 65px;"><%= sortable "characteristics.name", MasterSkill, params, "Base Stat" %></th>
       <th>Notes</th>
-      <th colspan="2"></th>
+      <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
 
   <tbody>
-    <% master_skills.each do |master_skill| %>
-      <tr>
+    <% master_skills.each_with_index do |master_skill, index| %>
+      <tr class="tr<%= index % 2 %>">
         <td><%= link_to master_skill.name, master_skill %></td>
-        <td><%= master_skill.requires_specialization %></td>
-        <td><%= master_skill.requires_tech_level %></td>
-        <td><%= master_skill.characteristic.to_s %></td>
-        <td><%= master_skill.notes %></td>
-        <td><%= link_to 'Edit', edit_master_skill_path(master_skill) %></td>
-        <td><%= link_to 'Destroy', master_skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="text-align: center;"><%= master_skill.requires_specialization ? "Y" : "" %></td>
+        <td style="text-align: center;"><%= master_skill.requires_tech_level ? "Y" : "" %></td>
+        <td style="text-align: center;"><%= master_skill.characteristic.to_s %></td>
+        <td><span title="<%= master_skill.notes %>"><%= master_skill.notes %></span></td>
+        <%= render 'index_edit_destroy_links', target: master_skill %>
       </tr>
     <% end %>
   </tbody>

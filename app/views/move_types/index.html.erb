@@ -4,20 +4,19 @@
 
 <%= page_entries_info move_types %>
 
-<table>
+<table class="fixed-table" style="width: 40%;">
   <thead>
     <tr>
       <th><%= sortable "move_types.name", MoveType, params, "Name" %></th>
-      <th colspan="2"></th>
+      <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
 
   <tbody>
-    <% move_types.each do |move_type| %>
-      <tr>
+    <% move_types.each_with_index do |move_type, index| %>
+      <tr class="tr<%= index % 2 %>">
         <td><%= link_to move_type.name, move_type %></td>
-        <td><%= link_to 'Edit', edit_move_type_path(move_type) %></td>
-        <td><%= link_to 'Destroy', move_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= render 'index_edit_destroy_links', target: move_type %>
       </tr>
     <% end %>
   </tbody>

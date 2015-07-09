@@ -29,8 +29,7 @@
       <% if variant_on_page %>
         <th style="width: 15%;">Variant of</th>
       <% end %>
-      <th style="width: 25px;"></th>
-      <th style="width: 50px;"></th>
+      <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
 
@@ -50,8 +49,7 @@
             <% end %>
           </td>
         <% end %>
-        <td style="font-size: 80%;"><%= link_to 'Edit', edit_polymorphic_path(monster.specific) %></td>
-        <td style="font-size: 80%;"><%= link_to 'Destroy', monster.specific, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%= render 'index_edit_destroy_links', target: monster.specific %>
       </tr>
     <% end %>
   </tbody>

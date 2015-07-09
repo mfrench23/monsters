@@ -4,22 +4,21 @@
 
 <%= page_entries_info books %>
 
-<table>
+<table class="fixed-table" style="width: 75%;">
   <thead>
     <tr>
       <th><%= sortable "books.name", Book, params, "Name" %></th>
-      <th><%= sortable "books.abbreviation", Book, params, "Abbreviation" %></th>
-      <th colspan="2"></th>
+      <th style="width: 20%;"><%= sortable "books.abbreviation", Book, params, "Abbreviation" %></th>
+      <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
 
   <tbody>
-    <% books.each do |book| %>
-      <tr>
+    <% books.each_with_index do |book, index| %>
+      <tr class="tr<%= index % 2 %>">
         <td><%= link_to book.name, book %></td>
-        <td><%= book.abbreviation %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="text-align: center;"><%= book.abbreviation %></td>
+        <%= render 'index_edit_destroy_links', target: book %>
       </tr>
     <% end %>
   </tbody>
