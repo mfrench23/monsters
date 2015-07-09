@@ -1,10 +1,17 @@
 <div class="field">
-  <%= f.label :description %>
-  <%= f.text_area :description %>
+  <span class="field-label"><%= f.label :description %></span>
+  <fieldset class="expanding-fieldset-container">
+    <%= simple_format f.object.ancestor_description, {:class => "longtext"}, wrapper_tag: "div" %>
+    <%= f.text_area :description, :size => "80x5" %>
+  </fieldset>
 </div>
+
 <div class="field">
-  <%= f.label :notes %>
-  <%= f.text_area :notes %>
+  <span class="field-label"><%= f.label :notes %></span>
+  <fieldset class="expanding-fieldset-container">
+    <%= simple_format f.object.ancestor_notes, {:class => "longtext"}, wrapper_tag: "div" %><br>
+    <%= f.text_area :notes, :size => "80x5" %>
+  </fieldset>
 </div>
 
 <%= render 'expanding_fieldset', f: f,

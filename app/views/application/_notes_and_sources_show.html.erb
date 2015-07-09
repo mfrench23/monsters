@@ -1,8 +1,8 @@
-<% unless m.notes.blank? %>
+<% unless m.expanded_notes.blank? %>
   <div style="display: table-row;">
     <div class="field-label show trait">Notes</div>
     <div class="trait">
-      <%= simple_format m.notes, {:class => "longtext"}, wrapper_tag: "div" %>
+      <%= simple_format m.expanded_notes, {:class => "longtext"}, wrapper_tag: "div" %>
     </div>
   </div>
 <% end %>

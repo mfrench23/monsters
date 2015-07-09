@@ -4,7 +4,7 @@ class Monster < AbstractEntity
   before_validation :nil_blank_attributes
 
   actable touch: true # can be a "superclass" for MTI - gem active_record-acts_as - and gets updated_at along with its child
-  has_ancestry # for determining which monsters are variants of others
+  has_ancestry :cache_depth => true # for determining which monsters are variants of others
 
   has_many :page_references, dependent: :destroy
   accepts_nested_attributes_for :page_references, allow_destroy: true, :reject_if => lambda { |x| x['book_id'].blank? && x['pages'].blank? }
@@ -57,6 +57,8 @@ class Monster < AbstractEntity
 
   def deep_copy
     copy = dup
+    copy.description = nil # not inherited from parent
+    copy.notes = nil # not inherited from parent
     page_references.each { |pg| copy.page_references << pg.deep_copy }
     attacks.each { |a| copy.attacks << a.deep_copy }
     movement_rates.each { |mr| copy.movement_rates << mr.deep_copy }
@@ -67,6 +69,28 @@ class Monster < AbstractEntity
     copy.name = "Copy of #{name}"
     copy.parent = self
     copy
+  end
+
+  def ancestor_description
+    accumulated = ancestors.inject(nil) do |memo, ancestor|
+      [memo, ancestor.description].join("\n\n")
+    end
+    accumulated
+  end
+
+  def expanded_description
+    [ ancestor_description, description ].join("\n\n")
+  end
+
+  def ancestor_notes
+    accumulated = ancestors.inject(nil) do |memo, ancestor|
+      [memo, ancestor.notes].join("\n\n")
+    end
+    accumulated
+  end
+
+  def expanded_notes
+    [ ancestor_notes, notes ].join("\n\n")
   end
 
   # required because cocoon uses reflect_on_association, which isn't fooled by actable

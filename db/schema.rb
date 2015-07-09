@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707053152) do
+ActiveRecord::Schema.define(version: 20150709230246) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -175,13 +175,14 @@ ActiveRecord::Schema.define(version: 20150707053152) do
   create_table "monsters", force: :cascade do |t|
     t.text     "description",      limit: 65535
     t.text     "notes",            limit: 65535
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "monster_class_id", limit: 4,     null: false
-    t.string   "name",             limit: 255,   null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.integer  "monster_class_id", limit: 4,                 null: false
+    t.string   "name",             limit: 255,               null: false
     t.integer  "actable_id",       limit: 4
     t.string   "actable_type",     limit: 255
     t.string   "ancestry",         limit: 255
+    t.integer  "ancestry_depth",   limit: 4,     default: 0
   end
 
   add_index "monsters", ["actable_type", "actable_id"], name: "index_monsters_on_actable_type_and_actable_id", unique: true, using: :btree
