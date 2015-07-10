@@ -10,74 +10,74 @@ module Creature::SkillList
 
     private
 
-    def pull_tech_level(txt)
+    def pull_tech_level(working_text)
       tech_level = nil;
-      txt.gsub!(/\/TL[\d]+/) { |m| tech_level = m[3..-1]; "" }
-      return txt, tech_level
+      working_text.gsub!(/\/TL[\d]+/) { |m| tech_level = m[3..-1]; "" }
+      return working_text, tech_level
     end
 
     Regex_attribute = /(DX|IQ|HT|Will|Per)/
 
-    def pull_characteristic_plus_modifier(txt)
+    def pull_characteristic_plus_modifier(working_text)
       characteristic = modifier_value = nil;
-      txt.gsub!(/#{Regex_attribute}([+-]\d+)?/) do |m|
+      working_text.gsub!(/#{Regex_attribute}([+-]\d+)?/) do |m|
         characteristic = $1
         modifier_value = ( $2.nil? ? "0" : ($2).tr("+"," ").strip )
         ""
       end
-      return txt, characteristic, modifier_value
+      return working_text, characteristic, modifier_value
     end
 
-    def pull_skill_difficulty(txt)
-      txt.gsub!(/ \((E|A|H|VH)\)/) { |m| "" }
-      return txt
+    def pull_skill_difficulty(working_text)
+      working_text.gsub!(/ \((E|A|H|VH)\)/) { |m| "" }
+      return working_text
     end
 
-    def pull_skill_price(txt)
-      txt.gsub!(/ \[\d+\]/) { |m| "" }
-      return txt
+    def pull_skill_price(working_text)
+      working_text.gsub!(/ \[\d+\]/) { |m| "" }
+      return working_text
     end
 
     Regex_skill_name = /(?<skill_name>.*?)( \((?<specialization>[^)]*)\))?/
     Regex_actual_value = /(([^\w]+)(?<actual_value>[\d]+))?/
     Regex_notes = /(\((?<notes>[^)]*)\))?/
 
-    def pull_remainder(txt)
+    def pull_remainder(working_text)
       master_skill_name = actual_value = specialization = notes = nil
-      if m = txt.match(/^#{Regex_skill_name}#{Regex_actual_value}([^\w]+)?#{Regex_notes}$/)
+      if m = working_text.match(/^#{Regex_skill_name}#{Regex_actual_value}([^\w]+)?#{Regex_notes}$/)
         master_skill_name = m[:skill_name]
         actual_value = m[:actual_value]
         specialization = m[:specialization]
         notes = m[:notes]
-        txt = ""
+        working_text = ""
       end
-      return txt, master_skill_name, actual_value, specialization, notes
+      return working_text, master_skill_name, actual_value, specialization, notes
     end
 
-    def translate_skill(raw_txt)
-      txt, tech_level = pull_tech_level(raw_txt.strip)
-      txt, characteristic, modifier_value = pull_characteristic_plus_modifier(txt)
-      txt, master_skill_name, actual_value, specialization, notes = pull_remainder(pull_skill_price(pull_skill_difficulty(txt)))
-      generate_skill(raw_txt, master_skill_name, characteristic, modifier_value, actual_value, specialization, tech_level, notes)
+    def translate_skill(raw_text)
+      working_text, tech_level = pull_tech_level(raw_text.strip)
+      working_text, characteristic, modifier_value = pull_characteristic_plus_modifier(working_text)
+      working_text, master_skill_name, actual_value, specialization, notes = pull_remainder(pull_skill_price(pull_skill_difficulty(working_text)))
+      generate_skill(raw_text, master_skill_name, characteristic, modifier_value, actual_value, specialization, tech_level, notes)
     end
 
-    def generate_skill(raw_txt, master_skill_name, characteristic, modifier_value, actual_value, specialization, tech_level, notes)
+    def generate_skill(raw_text, master_skill_name, characteristic, modifier_value, actual_value, specialization, tech_level, notes)
       master_skill = MasterSkill.find_by(name: master_skill_name)
       if ! master_skill.nil?
 	if (! characteristic.blank?) && (! modifier_value.blank?) && master_skill.characteristic.to_s == characteristic
 	  @list << Skill.new(:master_skill => master_skill, :modifier => modifier_value,
 	                     :tech_level => tech_level,
 	                     :specialization => specialization, :notes => notes)
-	  raw_txt = nil
+	  raw_text = nil
 	elsif (! actual_value.blank?)
 	  @list << Skill.new(:master_skill => master_skill, :actual => actual_value,
 	                     :tech_level => tech_level,
 	                     :specialization => specialization, :notes => notes)
-	  raw_txt = nil
+	  raw_text = nil
 	end
       end
 
-      raw_txt
+      raw_text
     end
   end
 end

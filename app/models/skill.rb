@@ -7,7 +7,9 @@ class Skill < AbstractEntity
 
   validates :master_skill, presence: true
   validate :validate_has_modifier_or_actual
-  validate :validate_has_required
+  validate :validate_specialization_if_required
+  validate :validate_tech_level_if_required
+  validate :validate_tech_level_if_forbidden
 
   delegate :notes, to: :master_skill, prefix: true
   delegate :name, to: :monster, prefix: true
@@ -66,15 +68,21 @@ class Skill < AbstractEntity
     end
   end
 
-  def validate_has_required
-    if master_skill.requires_specialization && specialization.blank?
-      errors[:specialization] << ": #{master_skill.name} requires specialization"
+  def validate_tech_level_if_forbidden
+    if (! master_skill.requires_tech_level) && (!tech_level.blank?)
+      errors[:tech_level] << ": #{master_skill.name} may not have a TL"
     end
+  end
+
+  def validate_tech_level_if_required
     if master_skill.requires_tech_level && tech_level.blank?
       errors[:tech_level] << ": #{master_skill.name} requires TL"
     end
-    if (! master_skill.requires_tech_level) && (!tech_level.blank?)
-      errors[:tech_level] << ": #{master_skill.name} may not have a TL"
+  end
+
+  def validate_specialization_if_required
+    if master_skill.requires_specialization && specialization.blank?
+      errors[:specialization] << ": #{master_skill.name} requires specialization"
     end
   end
 end

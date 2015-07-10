@@ -1,8 +1,19 @@
 module DamageResistancesHelper
   def simpleDR(dr)
-    if dr.notes.to_s.strip.length > 0
-      notes = " (" + dr.notes + ")"
-    end
-    (dr.location.blank? ? dr.dr.to_s : [dr.location.to_s, dr.dr.to_s].join(": ") )  + notes.to_s
+    location(dr).to_s + score(dr) + notes(dr).to_s
+  end
+
+  private
+
+  def score(dr)
+    dr.dr.to_s
+  end
+
+  def location(dr)
+    dr.location.to_s + ": " unless dr.location.blank?
+  end
+
+  def notes(dr)
+    " (" + dr.notes + ")" unless dr.notes.blank?
   end
 end
