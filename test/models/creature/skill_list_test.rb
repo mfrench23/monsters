@@ -48,7 +48,7 @@ class SkillListTest < ActiveSupport::TestCase
 
   test "cannot translate skills that don't exist in the master skill list" do
     list = Creature::SkillList::FreeformSkillList.new("Ohno; Axe/Mace@DX+1; Crapskill; Acrobatics-14")
-    assert_equal 2, list.list.count
+    assert_equal 2, list.list.count, "Expecting Axe/Mace and Acrobatics to be accepted, but actually finding #{list.list.to_s}"
     assert_equal "Ohno; Crapskill", list.text
   end
   
