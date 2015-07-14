@@ -1,6 +1,7 @@
 class Skill::Modifier
   attr_accessor :string
   attr_accessor :modval
+  attr_accessor :at_symbol
 
   def initialize(number)
     if (! number.blank?) && (number >= 0)
@@ -15,6 +16,6 @@ class Skill::Modifier
   end
 
   def actual(score)
-    return (score.blank? ? nil : score+modval)
+    return (score.blank? ? nil : "=" + (score+modval).to_s)
   end
 end

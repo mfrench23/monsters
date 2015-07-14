@@ -3,7 +3,6 @@ class Creature < AbstractEntity
 
   attr_accessor :freeform_trait_list
 
-  before_save :convert_skills
   before_validation :nil_blank_attributes
 
   has_many  :damage_resistances, dependent: :destroy
@@ -41,11 +40,7 @@ class Creature < AbstractEntity
   end
 
   def freeform_skill_list=(value)
-    sl = SkillList::FreeformSkillList.new(value)
-    sl.list.each do |skill|
-      self.skills << skill
-    end
-    @freeform_skill_list = sl.text
+    @freeform_skill_list = value
   end
 
   def freeform_skill_list
@@ -57,12 +52,6 @@ class Creature < AbstractEntity
   def nil_blank_attributes
     [:height, :weight, :gear, :parts_value_cents].each do |attr|
       self[attr] = nil if self[attr].blank?
-    end
-  end
-
-  def convert_skills
-    skills.each do |skill|
-      skill.convert_actual_to_modifier(characteristic_score(skill.characteristic))
     end
   end
 end

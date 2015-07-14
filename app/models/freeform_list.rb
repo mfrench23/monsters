@@ -1,7 +1,10 @@
-class Creature::FreeformList
-  # break on semicolons or commas, ignoring either if inside parenthetical phrases
-  def freeform_break(value)
+class FreeformList
+  def initialize(value)
     @value = value
+  end
+
+  # break on semicolons or commas, ignoring either if inside parenthetical phrases
+  def freeform_break
     paren_depth = 0
     one_line_of_clean_data.gsub(/./) do |c|
       paren_depth += paren_depth_to_add(c) # count depth in nested parens

@@ -6,7 +6,6 @@ class Skill < AbstractEntity
   has_one :monster, :through => :creature
 
   validates :master_skill, presence: true
-  validate :validate_has_modifier_or_actual
   validate :validate_specialization_if_required
   validate :validate_tech_level_if_required
   validate :validate_tech_level_if_forbidden
@@ -18,29 +17,7 @@ class Skill < AbstractEntity
   scope :order_by_master_skill, -> { includes(:master_skill).order("master_skills.name") }
 
   def to_s
-    if(modifier)
-      mod = Modifier.new(modifier)
-      actval = mod.actual( creature.try(:characteristic_score, characteristic) )
-      at_sym = " @" + characteristic.to_s + mod.to_s
-      eq_sym = "="
-    else
-      actval = actual
-      at_sym = nil
-      eq_sym = "-"
-    end
-    master_skill.name + spec_to_s + tl_to_s + at_sym.to_s + (actval.nil? ? "" : eq_sym.to_s + actval.to_s ) + (notes.blank? ? "" : " (#{notes})" )
-  end
-
-  def actual
-    @actual
-  end
-
-  def actual=(value)
-    @actual = value
-  end
-
-  def convert_actual_to_modifier(monster_score)
-    self.modifier = self.modifier || calc_modifier(monster_score)
+    master_skill.name + spec_to_s + tl_to_s + at_actual_phrase + (notes.blank? ? "" : " (#{notes})" )
   end
 
   def deep_copy
@@ -50,8 +27,10 @@ class Skill < AbstractEntity
 
   private
 
-  def calc_modifier(monster_score)
-    self.actual.to_i - monster_score.to_i
+  def at_actual_phrase
+    mod = Modifier.new(modifier)
+    actval = mod.actual( creature.try(:characteristic_score, characteristic) )
+    " @#{characteristic.to_s}#{mod.to_s}#{actval}"
   end
 
   def spec_to_s
@@ -60,12 +39,6 @@ class Skill < AbstractEntity
 
   def tl_to_s
     ( tech_level.blank? ? nil : "/TL#{tech_level}" ).to_s
-  end
-
-  def validate_has_modifier_or_actual
-    if actual.blank? && modifier.blank?
-      errors[:modifier] << ": Either 'modifier' or 'actual' must be populated"
-    end
   end
 
   def validate_tech_level_if_forbidden

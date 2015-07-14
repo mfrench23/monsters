@@ -28,9 +28,9 @@ class SkillTest < ActiveSupport::TestCase
   
   test "modifier can modify a stat" do
     m = Skill::Modifier.new(1)
-    assert_equal 15, m.actual(14)
+    assert_equal "=15", m.actual(14)
     m = Skill::Modifier.new(-1)
-    assert_equal 13, m.actual(14)
+    assert_equal "=13", m.actual(14)
   end
   
   test "modifier can modify a monster" do
@@ -40,38 +40,13 @@ class SkillTest < ActiveSupport::TestCase
   end
 
   test "can save monster with a skill with modifier" do
-    skill_no_act = FactoryGirl.build(:skill, modifier: 4, actual: nil)
+    skill_no_act = FactoryGirl.build(:skill, modifier: 4)
     assert_equal "Stealth @DX+4", skill_no_act.to_s
     @creature.skills << skill_no_act
     assert_equal true, @creature.save
     assert_equal 1, @creature.skills.count
     sk = @creature.skills.first
     assert_equal "Stealth @DX+4=14", sk.to_s
-  end
-
-  test "can save a skill with actual, no modifier, and get back a modifier value" do
-    skill_no_mod = FactoryGirl.build(:skill, modifier: nil, actual: 14)
-    assert_equal "Stealth-14", skill_no_mod.to_s
-    assert_equal 0, @creature.skills.count
-    @creature.skills << skill_no_mod
-    assert_equal true, @creature.save
-    sk = @creature.skills.first
-    assert_equal "Stealth @DX+4=14", sk.to_s
-  end
-
-  test "cannot save a skill without a modifier or an actual value" do
-    skill = FactoryGirl.build(:skill, modifier: nil, actual: nil)
-    assert_nil skill.modifier
-    assert_nil skill.actual
-    assert_equal false, skill.validate
-    @creature.skills << skill
-    assert_equal false, skill.validate
-    skill.actual = 12
-    assert_equal true, skill.validate
-    skill.actual = nil
-    assert_equal false, skill.validate
-    skill.modifier = 3
-    assert_equal true, skill.validate
   end
 
   test "cannot save a skill without required specialization" do

@@ -1,10 +1,9 @@
 module Creature::TraitList
-
-  class FreeformTraitList < Creature::FreeformList
+  class FreeformTraitList
     attr_accessor :list
 
     def initialize(value)
-      out = freeform_break(value)
+      out = FreeformList.new(value).freeform_break
       @list = out.map{ |line| string_to_trait(line) }.sort_by{ |trait| [trait.master_trait_name, trait.level] }
     end
 

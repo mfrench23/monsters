@@ -51,18 +51,6 @@ class CreatureTest < ActiveSupport::TestCase
     end
     assert_equal "Arglebargle", @one.traits.first.master_trait.name
   end
-  
-  test "cannot save with pending freeform skill entries" do
-    assert_equal true, @one.validate
-    @one.freeform_skill_list = "garbage entry that isn't a good skill"
-    assert_equal false, @one.validate
-  end
-
-  test "can save with freeform skill entries that aren't bogus" do
-    assert_equal true, @one.validate
-    @one.freeform_skill_list = "Stealth@DX+1; Acrobatics-12; Hiking 11; Animal Handling (Big Cats)-12"
-    assert_equal true, @one.validate, @one.errors.messages
-  end
 
   test "new creature starts with basic characteristics" do
     m = Creature.new
@@ -73,8 +61,9 @@ class CreatureTest < ActiveSupport::TestCase
 
   test "can deep_copy" do
     # set up original
-    @one.freeform_skill_list="Brawling@DX+1; Stealth@DX+0"
-    @one.freeform_trait_list="Combat Reflexes"
+    @one.skills << Skill.new(:master_skill => MasterSkill.find_by(:name => "Brawling"), :modifier => 1 )
+    @one.skills << Skill.new(:master_skill => MasterSkill.find_by(:name => "Stealth"), :modifier => 0 )
+    @one.traits << Trait.new(:master_trait => MasterTrait.new( :name => "Combat Reflexes" ) )
     @one.damage_resistances << DamageResistance.new(dr: 2, location: Location.first)
     @one.parry_scores << ParryScore.new(weapon: "Brawling", parry: 11)
     @one.page_references << PageReference.new(book: Book.first, pages: "37-38")
