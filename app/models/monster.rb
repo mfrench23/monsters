@@ -57,15 +57,15 @@ class Monster < AbstractEntity
 
   def deep_copy
     copy = dup
+    deep_copy_reference(:page_references, copy)
+    deep_copy_reference(:attacks, copy)
+    deep_copy_reference(:movement_rates, copy)
+    deep_copy_reference(:characteristic_monsters, copy)
+    deep_copy_reference(:campaign_monsters, copy)
+    deep_copy_reference(:illustrations, copy)
     copy.description = nil # not inherited from parent
     copy.notes = nil # not inherited from parent
-    page_references.each { |pg| copy.page_references << pg.deep_copy }
-    attacks.each { |a| copy.attacks << a.deep_copy }
-    movement_rates.each { |mr| copy.movement_rates << mr.deep_copy }
-    # monster names don't get copied
-    characteristic_monsters.each { |cm| copy.characteristic_monsters << cm.deep_copy }
-    campaign_monsters.each { |cm| copy.campaign_monsters << cm.deep_copy }
-    illustrations.each { |illo| copy.illustrations << illo.deep_copy }
+    # aliases don't get copied, and name gets modified
     copy.name = "Copy of #{name}"
     copy.parent = self
     copy
