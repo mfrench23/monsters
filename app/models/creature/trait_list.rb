@@ -3,7 +3,7 @@ module Creature::TraitList
     attr_accessor :list
 
     def initialize(value)
-      out = FreeformList.new(value).freeform_break
+      out = Logical::FreeformList.new(value).list
       @list = out.map{ |line| string_to_trait(line) }.sort_by{ |trait| [trait.master_trait_name, trait.level] }
     end
 

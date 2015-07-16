@@ -62,7 +62,7 @@ class FreeformSkillList
 
   def initialize(value, characteristics_hash)
     @list = []
-    array_of_remainders = FreeformList.new(value).freeform_break.map { |t| add_to_list_returning_remaining_text(t, characteristics_hash) }
+    array_of_remainders = Logical::FreeformList.new(value).list.map { |t| add_to_list_returning_remaining_text(t, characteristics_hash) }
     @text = array_of_remainders.reject { |x| x.nil? }.join(";").strip
   end
 
