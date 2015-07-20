@@ -25,6 +25,10 @@
   <%= master_skill.requires_tech_level %>
 </p>
 
+<p>
+  <%= render 'show_sources', m: master_skill %>
+</p>
+
 
 <% if master_skill.skills.any? %>
   <strong>Possessed by...</strong>

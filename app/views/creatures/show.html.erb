@@ -43,6 +43,7 @@
     <% end %>
 
     <%= render 'notes_and_sources_show', m: creature %>
+    <%= render 'show_sources', m: creature %>
 
     <% unless creature.parts_value.blank? %>
       <div style="display: table-row;">

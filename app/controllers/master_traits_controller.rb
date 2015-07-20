@@ -96,6 +96,7 @@ class MasterTraitsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def master_trait_params
       params.require(:master_trait).permit(:name, :notes, :is_feature,
+                                           page_references_attributes: [:id, :book_id, :pages, :_destroy],
                                            traits_in_meta_trait_attributes: [:id, :master_trait_id, :level, :notes, :_destroy],
                                            traits_attributes: [:id, :creature_id, :level, :notes, :_destroy])
     end

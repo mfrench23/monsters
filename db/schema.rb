@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709230246) do
+ActiveRecord::Schema.define(version: 20150716225621) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -211,15 +211,16 @@ ActiveRecord::Schema.define(version: 20150709230246) do
   add_index "movement_rates", ["move_type_id"], name: "index_movement_rates_on_move_type_id", using: :btree
 
   create_table "page_references", force: :cascade do |t|
-    t.integer  "book_id",    limit: 4
-    t.integer  "monster_id", limit: 4,   null: false
-    t.string   "pages",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "book_id",            limit: 4
+    t.string   "pages",              limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "referenceable_id",   limit: 4
+    t.string   "referenceable_type", limit: 255
   end
 
   add_index "page_references", ["book_id"], name: "index_page_references_on_book_id", using: :btree
-  add_index "page_references", ["monster_id"], name: "index_page_references_on_monster_id", using: :btree
+  add_index "page_references", ["referenceable_type", "referenceable_id"], name: "index_page_references_on_referenceable_type_and_referenceable_id", using: :btree
 
   create_table "parry_scores", force: :cascade do |t|
     t.string   "weapon",      limit: 255
@@ -283,7 +284,6 @@ ActiveRecord::Schema.define(version: 20150709230246) do
   add_foreign_key "movement_rates", "monsters"
   add_foreign_key "movement_rates", "move_types"
   add_foreign_key "page_references", "books"
-  add_foreign_key "page_references", "monsters"
   add_foreign_key "parry_scores", "creatures"
   add_foreign_key "skills", "creatures"
   add_foreign_key "skills", "master_skills"

@@ -25,6 +25,10 @@
   </ul>
 <% end %>
 
+<p>
+  <%= render 'show_sources', m: master_trait %>
+</p>
+
 <% if master_trait.traits.creature_possessed.any? %>
   <strong>Possessed by...</strong>
   <ul>

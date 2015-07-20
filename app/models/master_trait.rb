@@ -1,4 +1,6 @@
 class MasterTrait < AbstractEntity
+  include PageReferenceable
+
   has_many :traits, dependent: :destroy
   accepts_nested_attributes_for :traits, allow_destroy: true
 

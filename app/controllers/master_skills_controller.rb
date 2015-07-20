@@ -72,6 +72,7 @@ class MasterSkillsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def master_skill_params
       params.require(:master_skill).permit(:name, :characteristic_id, :notes,
-                                           :requires_specialization, :requires_tech_level)
+                                           :requires_specialization, :requires_tech_level,
+                                           page_references_attributes: [:id, :book_id, :pages, :_destroy] )
     end
 end

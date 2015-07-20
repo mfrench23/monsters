@@ -1,13 +1,12 @@
 class Monster < AbstractEntity
   include Filterable
+  include PageReferenceable
 
   before_validation :nil_blank_attributes
 
   actable touch: true # can be a "superclass" for MTI - gem active_record-acts_as - and gets updated_at along with its child
   has_ancestry :cache_depth => true # for determining which monsters are variants of others
 
-  has_many :page_references, dependent: :destroy
-  accepts_nested_attributes_for :page_references, allow_destroy: true, :reject_if => lambda { |x| x['book_id'].blank? && x['pages'].blank? }
   has_many :attacks, dependent: :destroy
   accepts_nested_attributes_for :attacks, allow_destroy: true, :reject_if => lambda { |x| x['name'].blank? && x['skill'].blank? && x['description'].blank? }
   has_many  :movement_rates, dependent: :destroy
