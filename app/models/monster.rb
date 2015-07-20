@@ -1,6 +1,7 @@
 class Monster < AbstractEntity
   include Filterable
   include PageReferenceable
+  include Illustratable
 
   before_validation :nil_blank_attributes
 
@@ -18,14 +19,10 @@ class Monster < AbstractEntity
   has_many :campaign_monsters, dependent: :destroy, inverse_of: :monster
   accepts_nested_attributes_for :campaign_monsters, allow_destroy: true, :reject_if => lambda { |x| x['campaign_id'].blank? }
 
-  has_many :monsters, :through => :campaign_monsters
   has_many :characteristics, :through => :characteristic_monsters
 
   belongs_to :monster_class, counter_cache: true
   delegate :name, to: :monster_class, prefix: true
-
-  has_many :illustrations, :as => :illustratable
-  accepts_nested_attributes_for :illustrations, allow_destroy: true, :reject_if => lambda { |x| x['image'].nil? }
 
   validates :name, :monster_class_id, presence: true
 
@@ -107,10 +104,6 @@ class Monster < AbstractEntity
 
   def build_page_reference
     PageReference.new
-  end
-
-  def build_illustration
-    Illustration.new
   end
 
   def build_campaign_monster
