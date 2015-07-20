@@ -12,11 +12,11 @@
   </div>
 <% end %>
 
-<% unless m.expanded_description.blank? %>
+<% unless m.expanded_field(:description).blank? %>
   <div style="display: table-row;">
     <div class="field-label show trait">Description</div>
     <div class="trait">
-      <%=simple_format m.expanded_description, {:class => "longtext"}, wrapper_tag: "div" %>
+      <%=simple_format m.expanded_field(:description), {:class => "longtext"}, wrapper_tag: "div" %>
     </div>
   </div>
 <% end %>

@@ -26,4 +26,23 @@ class MonsterTest < ActiveSupport::TestCase
     @one.characteristic_monsters << CharacteristicMonster.new(characteristic: Characteristic.find_by(name: "PR"), score: 21)
     assert_equal 38, @one.combat_effectiveness_rating
   end
+
+  test "ancestor's text fields accumulate" do
+    @one.description = "One."
+    @one.notes = "A"
+    @one.save
+    two = @one.deep_copy
+    two.description = "Two."
+    two.notes = "B"
+    two.save
+    three = two.deep_copy
+    three.description = "Three."
+    three.notes = "C"
+    assert_equal "One.\n\nTwo.", two.expanded_field(:description)
+    assert_equal "One.\n\nTwo.", three.ancestor_accumulate_field(:description)
+    assert_equal "One.", two.ancestor_accumulate_field(:description)
+    assert_equal "One.\n\nTwo.\n\nThree.", three.expanded_field(:description)
+    assert_equal "A\n\nB\n\nC", three.expanded_field(:notes)
+    assert_equal "A", @one.expanded_field(:notes)
+  end
 end

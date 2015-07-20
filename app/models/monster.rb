@@ -67,26 +67,14 @@ class Monster < AbstractEntity
     copy
   end
 
-  def ancestor_description
-    accumulated = ancestors.inject(nil) do |memo, ancestor|
-      [memo, ancestor.description].join("\n\n")
-    end
-    accumulated
+  def ancestor_accumulate_field(field)
+    parent.expanded_field(field) unless is_root?
   end
 
-  def expanded_description
-    [ ancestor_description, description ].join("\n\n")
-  end
-
-  def ancestor_notes
-    accumulated = ancestors.inject(nil) do |memo, ancestor|
-      [memo, ancestor.notes].join("\n\n")
-    end
-    accumulated
-  end
-
-  def expanded_notes
-    [ ancestor_notes, notes ].join("\n\n")
+  def expanded_field(field)
+    ancestor_text = ancestor_accumulate_field(field)
+    field_val = send(field)
+    ancestor_text.to_s + (ancestor_text.blank? || field_val.blank? ? "" : "\n\n" ) + field_val.to_s
   end
 
   # required because cocoon uses reflect_on_association, which isn't fooled by actable
@@ -100,10 +88,6 @@ class Monster < AbstractEntity
 
   def build_attack
     Attack.new
-  end
-
-  def build_page_reference
-    PageReference.new
   end
 
   def build_campaign_monster
