@@ -26,7 +26,7 @@ class MasterSkillsController < ApplicationController
   # POST /master_skills
   # POST /master_skills.json
   def create
-    master_skill = MasterSkill.new(master_skill_params)
+    master_skill = MasterSkill.new(MasterSkillForm.new(params).params)
 
     respond_to do |format|
       if master_skill.save
@@ -44,7 +44,7 @@ class MasterSkillsController < ApplicationController
   def update
     master_skill = set_master_skill
     respond_to do |format|
-      if master_skill.update(master_skill_params)
+      if master_skill.update(MasterSkillForm.new(params).params)
         format.html { redirect_to master_skill, notice: 'Master skill was successfully updated.' }
         format.json { render :show, status: :ok, location: master_skill }
       else
@@ -65,14 +65,8 @@ class MasterSkillsController < ApplicationController
   end
 
   private
-    def set_master_skill
-      MasterSkill.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def master_skill_params
-      params.require(:master_skill).permit(:name, :characteristic_id, :notes,
-                                           :requires_specialization, :requires_tech_level,
-                                           page_references_attributes: [:id, :book_id, :pages, :_destroy] )
-    end
+  def set_master_skill
+    MasterSkill.find(params[:id])
+  end
 end

@@ -34,14 +34,14 @@ class CreatureForm
   end
 
   def monster_params(params)
-    params.require(:creature).permit(
-      :name, :height, :weight, :gear,
-      :description, :notes,
-      :monster_class_id,
-      :freeform_trait_list,
-      :freeform_skill_list,
-      :parts_value,
-      :ancestry,
+    params.require(:creature).permit( permitted_attributes )
+  end
+
+  def permitted_attributes
+    [:name, :height, :weight, :gear,
+      :description, :notes, :monster_class_id,
+      :freeform_trait_list, :freeform_skill_list,
+      :parts_value, :ancestry,
       characteristic_monsters_attributes: [:id, :characteristic_id, :score],
       illustrations_attributes: [:id, :image, :notes, :_destroy],
       campaign_monsters_attributes: [:id, :campaign_id, :_destroy],
@@ -52,7 +52,8 @@ class CreatureForm
       page_references_attributes: [:id, :book_id, :pages, :_destroy],
       parry_scores_attributes: [:id, :weapon, :parry, :_destroy],
       skills_attributes: [:id, :master_skill_id, :modifier, :specialization, :tech_level, :notes, :_destroy],
-      traits_attributes: [:id, :master_trait_id, :level, :notes, :_destroy] )
+      traits_attributes: [:id, :master_trait_id, :level, :notes, :_destroy]
+    ]
   end
 end
 
