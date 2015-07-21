@@ -69,6 +69,8 @@ class CreatureTest < ActiveSupport::TestCase
     @one.page_references << PageReference.new(book: Book.first, pages: "37-38")
     @one.attacks << Attack.new(description: "3d cr")
     @one.movement_rates << MovementRate.new(move_type: MoveType.first, rate: 3)
+    @one.notes = "These are notes."
+    @one.description = "This is a description."
     assert_equal true, @one.save
     assert_equal 10, @one.characteristic_monsters.first.score
     assert_equal "Brawling", @one.skills.first.master_skill.name
@@ -87,6 +89,8 @@ class CreatureTest < ActiveSupport::TestCase
     end
     assert_equal "Brawling", copy.skills.first.master_skill.name
     assert_equal @one, copy.parent.specific
+    assert_nil copy.notes
+    assert_nil copy.description
 
     # load the original, make sure changes to copy didn't copy back to it
     one_loaded = Creature.find(@one.id)

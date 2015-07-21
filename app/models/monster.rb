@@ -34,7 +34,7 @@ class Monster < AbstractEntity
   scope :order_by_name, -> { order(:name) }
 
   def characteristic_monster(characteristic_name)
-    characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.try(:first) || generate_characteristic_monster(characteristic_name)
+    characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.try(:first) || CharacteristicMonster.get_instance(characteristic_name, self)
   end
 
   def characteristic_score(characteristic_name)
@@ -53,16 +53,9 @@ class Monster < AbstractEntity
 
   def deep_copy
     copy = dup
-    deep_copy_reference(:page_references, copy)
-    deep_copy_reference(:attacks, copy)
-    deep_copy_reference(:movement_rates, copy)
-    deep_copy_reference(:characteristic_monsters, copy)
-    deep_copy_reference(:campaign_monsters, copy)
-    deep_copy_reference(:illustrations, copy)
-    copy.description = nil # not inherited from parent
-    copy.notes = nil # not inherited from parent
-    # aliases don't get copied, and name gets modified
-    copy.name = "Copy of #{name}"
+    reference_list_attributes.each { |reference| deep_copy_reference(reference, copy) }
+    copy.description, copy.notes = nil # not inherited from parent
+    copy.name = "Copy of #{name}" # aliases don't get copied, and name gets modified
     copy.parent = self
     copy
   end
@@ -96,14 +89,13 @@ class Monster < AbstractEntity
 
   private
 
+  def reference_list_attributes
+    [:page_references, :attacks, :movement_rates, :characteristic_monsters, :campaign_monsters, :illustrations ]
+  end
+
   def nil_blank_attributes
     [:description, :notes, :ancestry].each do |attr|
       self[attr] = nil if self[attr].blank?
     end
-  end
-
-  def generate_characteristic_monster(characteristic_name)
-    ch = CharacteristicList.characteristics_for(actable_type).select {|c| characteristic_name.to_s == c.name }.first
-    CharacteristicMonster.new(:characteristic => ch, :monster => self, :score => ch.base_value) unless ch.nil?
   end
 end
