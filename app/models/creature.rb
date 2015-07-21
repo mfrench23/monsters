@@ -2,6 +2,7 @@ class Creature < AbstractEntity
   include TraitList
 
   attr_accessor :freeform_trait_list
+  attr_accessor :freeform_skill_list
 
   before_validation :nil_blank_attributes
 
@@ -18,18 +19,14 @@ class Creature < AbstractEntity
 
   acts_as :monster
 
-  monetize :parts_value_cents, :allow_nil => true,
-      :numericality => { :greater_than_or_equal_to => 0 }
+  monetize :parts_value_cents, :allow_nil => true, :numericality => { :greater_than_or_equal_to => 0 }
 
   validates :freeform_skill_list, absence: true
 
   def deep_copy
     copy = dup
     copy.monster = monster.deep_copy
-    deep_copy_reference(:damage_resistances, copy)
-    deep_copy_reference(:skills, copy)
-    deep_copy_reference(:traits, copy)
-    deep_copy_reference(:parry_scores, copy)
+    reference_list_attributes.each { |reference| deep_copy_reference(reference, copy) }
     copy
   end
 
@@ -39,15 +36,11 @@ class Creature < AbstractEntity
     end
   end
 
-  def freeform_skill_list=(value)
-    @freeform_skill_list = value
-  end
-
-  def freeform_skill_list
-    @freeform_skill_list
-  end
-
   private
+
+  def reference_list_attributes
+    [:damage_resistances, :skills, :traits, :parry_scores]
+  end
 
   def nil_blank_attributes
     [:height, :weight, :gear, :parts_value_cents].each do |attr|
