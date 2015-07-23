@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716225621) do
+ActiveRecord::Schema.define(version: 20150721225426) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -107,6 +107,26 @@ ActiveRecord::Schema.define(version: 20150716225621) do
 
   add_index "damage_resistances", ["creature_id"], name: "fk_rails_9b36326d78", using: :btree
   add_index "damage_resistances", ["location_id"], name: "index_damage_resistances_on_location_id", using: :btree
+
+  create_table "equipment_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "equipment_categories", ["name"], name: "index_equipment_categories_on_name", unique: true, using: :btree
+
+  create_table "equipment_types", force: :cascade do |t|
+    t.string   "name",                  limit: 255
+    t.decimal  "base_weight",                         precision: 10, scale: 4
+    t.integer  "base_cost_cents",       limit: 4
+    t.integer  "equipment_category_id", limit: 4
+    t.text     "notes",                 limit: 65535
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+  end
+
+  add_index "equipment_types", ["equipment_category_id"], name: "index_equipment_types_on_equipment_category_id", using: :btree
 
   create_table "illustrations", force: :cascade do |t|
     t.integer  "illustratable_id",   limit: 4
@@ -278,6 +298,7 @@ ActiveRecord::Schema.define(version: 20150716225621) do
   add_foreign_key "damage_resistances", "creatures"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
+  add_foreign_key "equipment_types", "equipment_categories"
   add_foreign_key "master_skills", "characteristics"
   add_foreign_key "monster_names", "monsters"
   add_foreign_key "monsters", "monster_classes"

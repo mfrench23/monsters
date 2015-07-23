@@ -5,8 +5,8 @@
   <span><%= campaign.name %></span>
 </div>
 <div class="field">
-  <span class="field-label" style="font-weight: bold;">Monsters</span>
-  <table class="fixed-table" style="width: 85%; border: 1px solid grey;">
+  <span class="field-label show">Monsters</span>
+  <table class="fixed-table boxed-list">
     <% campaign.campaign_monsters.order_by_monster.each_with_index do |campaign_monster, index| %>
       <%= render :layout => 'layouts/fixed_table_columns',
           :locals => { :index => index, :total_count => campaign.campaign_monsters.count } do %>

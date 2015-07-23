@@ -197,6 +197,10 @@ a.quiet:active {
   width: 95%;
   white-space: nowrap;
 }
+.boxed-list {
+  width: 80%; 
+  border: 1px solid grey;
+}
 
 .fixed-table td {
   white-space: nowrap;

@@ -99,7 +99,7 @@
 
   <div class="field">
     <%= f.label :parts_value %>
-    <%= f.text_field :parts_value %> per pound
+    <%= currency_symbol %><%= f.text_field :parts_value %> per pound
   </div>
 
   <% charSet = [creature.characteristic_monster("OR")]  %>

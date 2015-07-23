@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Equipment Types</h1>
+
+<table class="fixed-table"  style="width: 80%;">
+  <thead>
+    <tr>
+      <th style="width: 20%;"><%= sortable "equipment_types.name", EquipmentType, params, "Name" %></th>
+      <th style="width: 10%;"><%= sortable "equipment_types.base_weight", EquipmentType, params, "Base Weight" %></th>
+      <th style="width: 10%;"><%= sortable "equipment_types.base_cost_cents", EquipmentType, params, "Base Cost" %></th>
+      <th style="width: 20%;"><%= sortable "equipment_categories.name", EquipmentType, params, "Equipment Category" %></th>
+      <th>Notes</th>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% equipment_types.each do |equipment_type| %>
+      <tr>
+        <td><%= link_to equipment_type.name, equipment_type %></td>
+        <td><%= equipment_type.base_weight %></td>
+        <td><%= humanized_money_with_symbol equipment_type.base_cost %></td>
+        <td><%= link_to equipment_type.equipment_category, equipment_type.equipment_category, :class => "quiet" unless equipment_type.equipment_category.blank? %></td>
+        <td><%= equipment_type.notes %></td>
+        <%= render 'index_edit_destroy_links', target: equipment_type %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Equipment type', new_equipment_type_path %>

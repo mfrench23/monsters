@@ -15,6 +15,9 @@
   <li><%= link_to 'Trait List', controller: 'master_traits' %>
     <%= entity_links :master_trait %>
   </li>
+  <li><%= link_to 'Equipment List', controller: 'equipment_types' %>
+    <%= entity_links :equipment_type %>
+  </li>
   <li><span>Utility</span>
     <ul>
       <li><%= link_to 'Campaigns', controller: 'campaigns' %>
@@ -22,6 +25,9 @@
       </li>
       <li><%= link_to 'Monster Classes', controller: 'monster_classes' %>
         <%= entity_links :monster_class %>
+      </li>
+      <li><%= link_to 'Equipment Categories', controller: 'equipment_categories' %>
+        <%= entity_links :equipment_category %>
       </li>
       <li><%= link_to 'Hit Locations', controller: 'locations' %>
         <%= entity_links :location %>

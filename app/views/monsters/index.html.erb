@@ -59,7 +59,7 @@
 <% unless params[:starting_with ] %>
   <div class="field">
     <span class="filter-label">Filter by initial</span>
-    <table class="fixed-table" style="width: 80%; border: 1px solid grey;">
+    <table class="fixed-table boxed-list">
       <% starts_with_tags.each_with_index do |starting_character, index| %>
         <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :number_of_columns => 30, :total_count => monsters.count } do %>
           <%= link_to "#{starting_character}", monsters_path(filter_params.merge(:starting_with => "#{starting_character}")) %>
@@ -71,7 +71,7 @@
 
 <div class="field">
   <span class="filter-label">Filter by campaign</span>
-  <table class="fixed-table" style="width: 80%; border: 1px solid grey;">
+  <table class="fixed-table boxed-list">
     <% campaigns.each_with_index do |campaign, index| %>
       <%= render :layout => 'layouts/fixed_table_columns',
           :locals => { :index => index, :number_of_columns => 5, :total_count => monsters.count } do %>

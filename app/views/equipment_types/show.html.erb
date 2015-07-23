@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= equipment_type.name %>
+</p>
+
+<p>
+  <strong>Base weight:</strong>
+  <%= equipment_type.base_weight %> lbs.
+</p>
+
+<p>
+  <strong>Base cost:</strong>
+  <%= humanized_money_with_symbol equipment_type.base_cost %>
+</p>
+
+<p>
+  <strong>Equipment category:</strong>
+  <%= link_to equipment_type.equipment_category, equipment_type.equipment_category, :class => "quiet" %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= equipment_type.notes %>
+</p>
+
+<%= link_to 'Edit', edit_equipment_type_path(equipment_type) %> |
+<%= link_to 'Index', equipment_types_path %>
