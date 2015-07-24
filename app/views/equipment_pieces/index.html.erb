@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Equipment Pieces</h1>
+
+<%= page_entries_info equipment_pieces %>
+
+<table class="fixed-table" style="width: 75%;">
+  <thead>
+    <tr>
+      <th><%= sortable "equipment_pieces.name", EquipmentPiece, params, "Name" %></th>
+      <th><%= sortable "equipment_types.name", EquipmentPiece, params, "Type" %></th>
+      <th><%= sortable "equipment_categories.name", EquipmentPiece, params, "Category" %></th>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% equipment_pieces.each do |equipment_piece| %>
+      <tr>
+        <td><%= link_to equipment_piece.name, equipment_piece %></td>
+        <td><%= equipment_piece.equipment_type %></td>
+        <td><%= equipment_piece.equipment_category %></td>
+        <%= render 'index_edit_destroy_links', target: equipment_piece %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= paginate equipment_pieces %>
+<%= link_to 'New Equipment piece', new_equipment_piece_path %>

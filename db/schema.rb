@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721225426) do
+ActiveRecord::Schema.define(version: 20150724175111) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -115,6 +115,15 @@ ActiveRecord::Schema.define(version: 20150721225426) do
   end
 
   add_index "equipment_categories", ["name"], name: "index_equipment_categories_on_name", unique: true, using: :btree
+
+  create_table "equipment_pieces", force: :cascade do |t|
+    t.integer  "equipment_type_id", limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "name",              limit: 255
+  end
+
+  add_index "equipment_pieces", ["equipment_type_id"], name: "index_equipment_pieces_on_equipment_type_id", using: :btree
 
   create_table "equipment_types", force: :cascade do |t|
     t.string   "name",                  limit: 255
@@ -298,6 +307,7 @@ ActiveRecord::Schema.define(version: 20150721225426) do
   add_foreign_key "damage_resistances", "creatures"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
+  add_foreign_key "equipment_pieces", "equipment_types"
   add_foreign_key "equipment_types", "equipment_categories"
   add_foreign_key "master_skills", "characteristics"
   add_foreign_key "monster_names", "monsters"

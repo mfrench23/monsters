@@ -1,0 +1,25 @@
+<%= form_for(equipment_piece) do |f| %>
+  <% if equipment_piece.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(equipment_piece.errors.count, "error") %> prohibited this equipment_piece from being saved:</h2>
+
+      <ul>
+      <% equipment_piece.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :equipment_type_id %><br>
+    <%= f.collection_select :equipment_type_id, EquipmentType.order_by_name, :id, :name, :include_blank => false %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

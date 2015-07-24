@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= equipment_piece.name %>
+</p>
+
+<p>
+  <strong>Equipment type:</strong>
+  <%= equipment_piece.equipment_type %>
+</p>
+
+<%= link_to 'Edit', edit_equipment_piece_path(equipment_piece) %> |
+<%= link_to 'Index', equipment_pieces_path %>

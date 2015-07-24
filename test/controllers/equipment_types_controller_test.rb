@@ -19,7 +19,10 @@ class EquipmentTypesControllerTest < ActionController::TestCase
   test "should create equipment_type" do
     name = @equipment_type.name + " Too"
     assert_difference('EquipmentType.count') do
-      post :create, equipment_type: { base_cost_cents: @equipment_type.base_cost_cents, base_weight: @equipment_type.base_weight, equipment_category_id: @equipment_type.equipment_category_id, name: name, notes: @equipment_type.notes }
+      post :create, equipment_type: { base_cost: @equipment_type.base_cost,
+                                      base_weight: @equipment_type.base_weight,
+                                      equipment_category_id: @equipment_type.equipment_category_id,
+                                      name: name, notes: @equipment_type.notes }
     end
 
     assert_response :found

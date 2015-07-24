@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   resources :equipment_categories
   resources :equipment_types
+  resources :equipment_pieces
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -83,6 +83,6 @@ class EquipmentTypesController < ApplicationController
   end
 
   def equipment_type_params
-    params.require(:equipment_type).permit(:name, :base_weight, :base_cost_cents, :equipment_category_id, :notes)
+    params.require(:equipment_type).permit(:name, :base_weight, :base_cost, :equipment_category_id, :notes)
   end
 end
