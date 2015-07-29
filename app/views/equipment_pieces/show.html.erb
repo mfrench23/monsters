@@ -10,5 +10,34 @@
   <%= equipment_piece.equipment_type %>
 </p>
 
+<p>
+  <strong>Modifiers:</strong>
+  <ul>
+  <% equipment_piece.equipment_modifiers.each do |equipment_modifier| %>
+    <li><%= equipment_modifier.to_s %></li>
+  <% end %>
+  </ul>
+</p>
+
+<p>
+  <strong>Base Cost:</strong>
+  <%= humanized_money_with_symbol equipment_piece.base_cost %>
+</p>
+
+<p>
+  <strong>Base Weight:</strong>
+  <%= equipment_piece.base_weight %> lbs.
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= humanized_money_with_symbol equipment_piece.cost %>
+</p>
+
+<p>
+  <strong>Weight:</strong>
+  <%= equipment_piece.weight %> lbs.
+</p>
+
 <%= link_to 'Edit', edit_equipment_piece_path(equipment_piece) %> |
 <%= link_to 'Index', equipment_pieces_path %>

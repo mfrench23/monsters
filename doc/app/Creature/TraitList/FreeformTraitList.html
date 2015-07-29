@@ -58,7 +58,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="../FreeformList.html">Creature::FreeformList</a>
+  <p class="link">Object
   
 </div>
 
@@ -113,6 +113,21 @@
         
       
         <dt id="Regex_notes">Regex_notes
+        
+        <dd>
+        
+      
+        <dt id="Regex_optional_level">Regex_optional_level
+        
+        <dd>
+        
+      
+        <dt id="Regex_order1">Regex_order1
+        
+        <dd>
+        
+      
+        <dt id="Regex_order2">Regex_order2
         
         <dd>
         
@@ -177,8 +192,8 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File app/models/creature/trait_list.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">value</span>)
-  <span class="ruby-identifier">out</span> = <span class="ruby-identifier">freeform_break</span>(<span class="ruby-identifier">value</span>)
-  <span class="ruby-ivar">@list</span> = <span class="ruby-identifier">out</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">string_to_trait</span>(<span class="ruby-identifier">line</span>) }
+  <span class="ruby-identifier">out</span> = <span class="ruby-constant">Logical</span><span class="ruby-operator">::</span><span class="ruby-constant">FreeformList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">list</span>
+  <span class="ruby-ivar">@list</span> = <span class="ruby-identifier">out</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">string_to_trait</span>(<span class="ruby-identifier">line</span>) }.<span class="ruby-identifier">sort_by</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">trait</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">trait</span>.<span class="ruby-identifier">master_trait_name</span>, <span class="ruby-identifier">trait</span>.<span class="ruby-identifier">level</span>] }
 <span class="ruby-keyword">end</span></pre>
           </div>
           

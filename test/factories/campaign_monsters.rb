@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :campaign_monster do
     campaign nil
-monster nil
+    monster nil
   end
 
 end

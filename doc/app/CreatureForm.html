@@ -148,7 +148,8 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File app/forms/creature_form.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>)
-  <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">monster_params</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">paramlist</span> = <span class="ruby-identifier">convert_freeform_skill_list</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">monster_params</span>(<span class="ruby-identifier">paramlist</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

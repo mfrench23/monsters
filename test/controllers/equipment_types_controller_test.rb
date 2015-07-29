@@ -31,6 +31,18 @@ class EquipmentTypesControllerTest < ActionController::TestCase
     assert_redirected_to equipment_type
   end
 
+  test "should fail to create equipment_type with duplicate name" do
+    name = @equipment_type.name
+    assert_no_difference('EquipmentType.count') do
+      post :create, equipment_type: { base_cost: @equipment_type.base_cost,
+                                      base_weight: @equipment_type.base_weight,
+                                      equipment_category_id: @equipment_type.equipment_category_id,
+                                      name: name, notes: @equipment_type.notes }
+    end
+
+    assert_response :ok
+  end
+
   test "should show equipment_type" do
     get :show, id: @equipment_type
     assert_response :success

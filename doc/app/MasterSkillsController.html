@@ -139,7 +139,7 @@
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File app/controllers/master_skills_controller.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-identifier">master_skill</span> = <span class="ruby-constant">MasterSkill</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">master_skill_params</span>)
+  <span class="ruby-identifier">master_skill</span> = <span class="ruby-constant">MasterSkill</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">MasterSkillForm</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>).<span class="ruby-identifier">params</span>)
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">master_skill</span>.<span class="ruby-identifier">save</span>
@@ -355,7 +355,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">master_skill</span> = <span class="ruby-identifier">set_master_skill</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">master_skill</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">master_skill_params</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">master_skill</span>.<span class="ruby-identifier">update</span>(<span class="ruby-constant">MasterSkillForm</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>).<span class="ruby-identifier">params</span>)
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">master_skill</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Master skill was successfully updated.&#39;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-identifier">master_skill</span> }
     <span class="ruby-keyword">else</span>

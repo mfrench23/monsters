@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>class EquipmentModifier - Rails Application Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">ActiveRecord::Base
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-base_cost_mod-3D">#base_cost_mod=</a>
+    
+    <li ><a href="#method-i-base_weight_mod-3D">#base_weight_mod=</a>
+    
+    <li ><a href="#method-i-cost_mod-3D">#cost_mod=</a>
+    
+    <li ><a href="#method-i-modifier_value_object">#modifier_value_object</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+    <li ><a href="#method-i-weight_mod-3D">#weight_mod=</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-EquipmentModifier">
+  <h1 id="class-EquipmentModifier" class="class">
+    class EquipmentModifier
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-base_cost_mod-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">base_cost_mod=</span><span
+            class="method-args">(value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="base_cost_mod-3D-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">base_cost_mod=</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-ivar">@base_cost_modifier_value_object</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">write_attribute</span>(<span class="ruby-value">:base_cost_mod</span>, <span class="ruby-identifier">value</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-base_weight_mod-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">base_weight_mod=</span><span
+            class="method-args">(value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="base_weight_mod-3D-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">base_weight_mod=</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-ivar">@base_weight_modifier_value_object</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">write_attribute</span>(<span class="ruby-value">:base_weight_mod</span>, <span class="ruby-identifier">value</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-cost_mod-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cost_mod=</span><span
+            class="method-args">(value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="cost_mod-3D-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">cost_mod=</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-ivar">@cost_modifier_value_object</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">write_attribute</span>(<span class="ruby-value">:cost_mod</span>, <span class="ruby-identifier">value</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-modifier_value_object" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">modifier_value_object</span><span
+            class="method-args">(symbol)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="modifier_value_object-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">modifier_value_object</span>(<span class="ruby-identifier">symbol</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">base_cost_modifier_value_object</span> <span class="ruby-keyword">if</span> <span class="ruby-value">:base_cost</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">symbol</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">cost_modifier_value_object</span> <span class="ruby-keyword">if</span> <span class="ruby-value">:cost</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">symbol</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">base_weight_modifier_value_object</span> <span class="ruby-keyword">if</span> <span class="ruby-value">:base_weight</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">symbol</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">weight_modifier_value_object</span> <span class="ruby-keyword">if</span> <span class="ruby-value">:weight</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">symbol</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-node">&quot;#{name} (&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">modifiers_to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;)&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-weight_mod-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">weight_mod=</span><span
+            class="method-args">(value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="weight_mod-3D-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">weight_mod=</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-ivar">@weight_modifier_value_object</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">write_attribute</span>(<span class="ruby-value">:weight_mod</span>, <span class="ruby-identifier">value</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -148,7 +148,7 @@
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">creature</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Monster was successfully created.&#39;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span> }
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span>} }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span>, <span class="ruby-identifier">campaigns</span><span class="ruby-operator">:</span> <span class="ruby-identifier">all_campaigns</span>} }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
@@ -221,7 +221,7 @@
           <div class="method-source-code" id="edit-source">
             <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">set_creature</span> }
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">set_creature</span>, <span class="ruby-identifier">campaigns</span><span class="ruby-operator">:</span> <span class="ruby-identifier">all_campaigns</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -257,7 +257,7 @@
   <span class="ruby-identifier">creature</span> = <span class="ruby-constant">Creature</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">creature</span>.<span class="ruby-identifier">movement_rates</span>.<span class="ruby-identifier">build</span>
   <span class="ruby-identifier">creature</span>.<span class="ruby-identifier">attacks</span>.<span class="ruby-identifier">build</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span> }
+  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span>, <span class="ruby-identifier">campaigns</span><span class="ruby-operator">:</span> <span class="ruby-identifier">all_campaigns</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -331,7 +331,7 @@
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">creature</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Monster was successfully updated.&#39;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:show</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span> }
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span>} }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-value">:edit</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {<span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span>, <span class="ruby-identifier">campaigns</span><span class="ruby-operator">:</span> <span class="ruby-identifier">all_campaigns</span>} }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
@@ -367,8 +367,8 @@
           <div class="method-source-code" id="variant-source">
             <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">variant</span>
-  <span class="ruby-identifier">creature</span> = <span class="ruby-constant">Creature</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">deep_copy</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span> }
+  <span class="ruby-identifier">creature</span> = <span class="ruby-identifier">set_creature</span>.<span class="ruby-identifier">deep_copy</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span>, <span class="ruby-identifier">campaigns</span><span class="ruby-operator">:</span> <span class="ruby-identifier">all_campaigns</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
           

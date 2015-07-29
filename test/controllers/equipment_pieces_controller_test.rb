@@ -2,7 +2,8 @@ require 'test_helper'
 
 class EquipmentPiecesControllerTest < ActionController::TestCase
   setup do
-    @equipment_piece = FactoryGirl.create(:equipment_piece)
+    @equipment_type = FactoryGirl.create(:equipment_type)
+    @equipment_piece = FactoryGirl.create(:equipment_piece, :equipment_type => @equipment_type)
   end
 
   test "should get index" do
@@ -19,7 +20,12 @@ class EquipmentPiecesControllerTest < ActionController::TestCase
   test "should create equipment_piece" do
     name = "The Mighty Broadsword Of Ick-Wiki-Wiki-KerTHUMP!"
     assert_difference('EquipmentPiece.count') do
-      post :create, equipment_piece: { equipment_type_id: @equipment_piece.equipment_type_id, name: name }
+      post :create, equipment_piece: { equipment_type_id: @equipment_piece.equipment_type_id, name: name,
+                                       equipment_modifiers_attributes: {
+                                           "0" => {:name => "Shiny", :cost_mod => "+1 CF", :weight_mod => "+3 lbs."},
+                                           "1" => {:name => "Spiked", :base_cost_mod => "+$50", :base_weight_mod => "x1.1"}
+                                         }
+                                       }
     end
 
     assert_response :found
@@ -27,6 +33,11 @@ class EquipmentPiecesControllerTest < ActionController::TestCase
     equipment_piece = EquipmentPiece.where(:name => name ).order("created_at desc").first
     assert_not_nil equipment_piece
     assert_redirected_to equipment_piece
+    assert_equal Money.new(1000), @equipment_piece.base_cost
+    assert_equal Money.new(6000), equipment_piece.base_cost
+    assert_equal (@equipment_piece.base_weight * 1.1), equipment_piece.base_weight
+    assert_equal (equipment_piece.base_cost * 2), equipment_piece.cost
+    assert_equal (equipment_piece.base_weight + 3), equipment_piece.weight
   end
 
   test "should fail to create equipment_piece" do

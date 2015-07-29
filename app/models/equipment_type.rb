@@ -6,6 +6,9 @@ class EquipmentType < ActiveRecord::Base
 
   scope :order_by_name, -> { order(:name) }
 
+  validates :name, presence: true
+  validates_uniqueness_of :name
+
   def to_s
     name
   end

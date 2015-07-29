@@ -62,7 +62,18 @@
   
 </div>
 
-    
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="PageReferenceable.html">PageReferenceable</a>
+  
+  
+  </ul>
+</div>
+
     
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
@@ -70,9 +81,11 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-grant_meta_trait_members">#grant_meta_trait_members</a>
+    
     <li ><a href="#method-i-merge">#merge</a>
     
-    <li ><a href="#method-i-to_s">#to_s</a>
+    <li ><a href="#method-i-meta_trait-3F">#meta_trait?</a>
     
   </ul>
 </div>
@@ -108,6 +121,45 @@
        </header>
 
     
+      <div id="method-i-grant_meta_trait_members" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">grant_meta_trait_members</span><span
+            class="method-args">(trait)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="grant_meta_trait_members-source">
+            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">grant_meta_trait_members</span>(<span class="ruby-identifier">trait</span>)
+  <span class="ruby-identifier">traits_in_meta_trait</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">granted</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">new_trait</span> = <span class="ruby-identifier">granted</span>.<span class="ruby-identifier">deep_copy</span>
+    <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">trait_owner</span> = <span class="ruby-identifier">trait</span>
+    <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">parent</span> = <span class="ruby-identifier">trait</span>
+    <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">creature_id</span> = <span class="ruby-identifier">trait</span>.<span class="ruby-identifier">creature_id</span>
+    <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-merge" class="method-detail ">
         
         <div class="method-heading">
@@ -128,7 +180,7 @@ traits it is responsible for, and delete it.</p>
 
           
           <div class="method-source-code" id="merge-source">
-            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 11</span>
+            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">merge</span>(<span class="ruby-identifier">dupe</span>)
   <span class="ruby-identifier">dupe</span>.<span class="ruby-identifier">traits</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">master_trait_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
   <span class="ruby-identifier">dupe</span>.<span class="ruby-identifier">destroy</span>
@@ -143,10 +195,10 @@ traits it is responsible for, and delete it.</p>
       </div>
 
     
-      <div id="method-i-to_s" class="method-detail ">
+      <div id="method-i-meta_trait-3F" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">to_s</span><span
+          <span class="method-name">meta_trait?</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -161,10 +213,10 @@ traits it is responsible for, and delete it.</p>
           
 
           
-          <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  (<span class="ruby-identifier">is_feature</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;Feature: &quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">notes</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot; (&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">notes</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;)&quot;</span>)
+          <div class="method-source-code" id="meta_trait-3F-source">
+            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">meta_trait?</span>
+  <span class="ruby-identifier">traits_in_meta_trait</span>.<span class="ruby-identifier">any?</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

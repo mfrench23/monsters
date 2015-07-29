@@ -70,6 +70,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-get_instance">::get_instance</a>
+    
     <li ><a href="#method-i-deep_copy">#deep_copy</a>
     
   </ul>
@@ -100,6 +102,48 @@
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-get_instance" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_instance</span><span
+            class="method-args">(characteristic_name, monster)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_instance-source">
+            <pre><span class="ruby-comment"># File app/models/characteristic_monster.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_instance</span>(<span class="ruby-identifier">characteristic_name</span>, <span class="ruby-identifier">monster</span>)
+  <span class="ruby-identifier">ch</span> = <span class="ruby-constant">CharacteristicList</span>.<span class="ruby-identifier">characteristics_for</span>(<span class="ruby-identifier">monster</span>.<span class="ruby-identifier">actable_type</span>).<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">characteristic_name</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span> }.<span class="ruby-identifier">first</span>
+  <span class="ruby-constant">CharacteristicMonster</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:characteristic</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ch</span>, <span class="ruby-value">:monster</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">monster</span>, <span class="ruby-value">:score</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">base_value</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">ch</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>

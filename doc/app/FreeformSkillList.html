@@ -4,17 +4,17 @@
 <head>
 <meta charset="utf-8">
 
-<title>class Creature::SkillList::FreeformSkillList - Rails Application Documentation</title>
+<title>class FreeformSkillList - Rails Application Documentation</title>
 
 <script type="text/javascript">
-  var rdoc_rel_prefix = "../../";
+  var rdoc_rel_prefix = "./";
 </script>
 
-<script src="../../js/jquery.js"></script>
-<script src="../../js/darkfish.js"></script>
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
 
-<link href="../../css/fonts.css" rel="stylesheet">
-<link href="../../css/rdoc.css" rel="stylesheet">
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
 
 
 
@@ -23,13 +23,13 @@
   <div id="project-navigation">
     <div id="home-section" role="region" title="Quick navigation" class="nav-section">
   <h2>
-    <a href="../../index.html" rel="home">Home</a>
+    <a href="./index.html" rel="home">Home</a>
   </h2>
 
   <div id="table-of-contents-navigation">
-    <a href="../../table_of_contents.html#pages">Pages</a>
-    <a href="../../table_of_contents.html#classes">Classes</a>
-    <a href="../../table_of_contents.html#methods">Methods</a>
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
   </div>
 </div>
 
@@ -58,7 +58,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="../FreeformList.html">Creature::FreeformList</a>
+  <p class="link">Object
   
 </div>
 
@@ -78,9 +78,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Creature::SkillList::FreeformSkillList">
-  <h1 id="class-Creature::SkillList::FreeformSkillList" class="class">
-    class Creature::SkillList::FreeformSkillList
+<main role="main" aria-labelledby="class-FreeformSkillList">
+  <h1 id="class-FreeformSkillList" class="class">
+    class FreeformSkillList
   </h1>
 
   <section class="description">
@@ -95,35 +95,6 @@
 
     
 
-    
-    <section class="constants-list">
-      <header>
-        <h3>Constants</h3>
-      </header>
-      <dl>
-      
-        <dt id="Regex_actual_value">Regex_actual_value
-        
-        <dd>
-        
-      
-        <dt id="Regex_attribute">Regex_attribute
-        
-        <dd>
-        
-      
-        <dt id="Regex_notes">Regex_notes
-        
-        <dd>
-        
-      
-        <dt id="Regex_skill_name">Regex_skill_name
-        
-        <dd>
-        
-      
-      </dl>
-    </section>
     
 
     
@@ -173,7 +144,7 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(value)</span>
+            class="method-args">(value, characteristics_hash)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -188,10 +159,11 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/models/creature/skill_list.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">value</span>)
+            <pre><span class="ruby-comment"># File app/forms/creature_form.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">characteristics_hash</span>)
   <span class="ruby-ivar">@list</span> = []
-  <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">freeform_break</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">translate_skill</span>(<span class="ruby-identifier">t</span>) }.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;;&quot;</span>).<span class="ruby-identifier">strip</span>
+  <span class="ruby-identifier">array_of_remainders</span> = <span class="ruby-constant">Logical</span><span class="ruby-operator">::</span><span class="ruby-constant">FreeformList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">list</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">add_to_list_returning_remaining_text</span>(<span class="ruby-identifier">t</span>, <span class="ruby-identifier">characteristics_hash</span>) }
+  <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">array_of_remainders</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;;&quot;</span>).<span class="ruby-identifier">strip</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

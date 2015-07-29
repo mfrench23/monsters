@@ -19,6 +19,12 @@
     <%= f.label :equipment_type_id %><br>
     <%= f.collection_select :equipment_type_id, EquipmentType.order_by_name, :id, :name, :include_blank => false %>
   </div>
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "equipment_modifiers", collection: :equipment_modifiers,
+    partial: 'equipment_modifier_fields', label: 'add modifier', header: "Modifiers",
+    header_list: [ :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod ], freeform: nil %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
