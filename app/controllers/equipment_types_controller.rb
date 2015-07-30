@@ -3,7 +3,11 @@ class EquipmentTypesController < ApplicationController
   # GET /equipment_types.json
   def index
     render locals: {
-      equipment_types: filtered_sorted_paginated_results
+      equipment_types: filtered_sorted_paginated_results,
+      starts_with_tags: first_characters_in_results,
+      campaigns: all_campaigns_with_equipment_types.order_by_name,
+      filter_params: filter_params(params),
+      campaign_name: name_of_filtering_campaign
     }
   end
 
@@ -66,12 +70,20 @@ class EquipmentTypesController < ApplicationController
 
   private
 
+  def all_campaigns_with_equipment_types
+    Campaign.has_contents(EquipmentType.to_s)
+  end
+
+  def first_characters_in_results
+    filtered_results(params).group("substr(upper(name), 1,1)").count.keys.sort
+  end
+
   def filtered_sorted_paginated_results
     filtered_sorted_results.page( params[:page] )
   end
 
   def filtered_sorted_results
-    EquipmentType.includes(:equipment_category).order(sort_params)
+    filtered_results(params).includes(:equipment_category).order(sort_params)
   end
 
   def sort_params
@@ -90,5 +102,13 @@ class EquipmentTypesController < ApplicationController
     [:name, :base_weight, :base_cost, :equipment_category_id, :notes,
       campaign_contents_attributes: [:id, :campaign_id, :_destroy],
      ]
+  end
+
+  def filtered_results(params)
+    EquipmentType.filter(filter_params(params))
+  end
+
+  def filter_params(params)
+    params.slice(:starting_with, :in_campaign)
   end
 end

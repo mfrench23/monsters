@@ -2,6 +2,20 @@
 
 <h1>Listing Equipment Types</h1>
 
+<h2>
+  <% filter_params.each do |filter| %>
+    <%= "#{filter[0].titleize.downcase}" %>
+    <% display_param = (filter[0].to_s =~ /in_campaign/ ? campaign_name : filter[1]) %>
+    <% if filter_params.count > 1 %>
+      <%= link_to "'#{display_param}'", equipment_types_path(filter[0] => filter[1]), :class => "quiet" %>
+    <% else %>
+      <%= "'#{display_param}'" %>
+    <% end %>
+  <% end %>
+</h2>
+
+<%= page_entries_info equipment_types %>
+
 <table class="fixed-table"  style="width: 80%;">
   <thead>
     <tr>
@@ -29,5 +43,39 @@
 </table>
 
 <br>
+
+<% unless params[:starting_with ] %>
+  <div class="field">
+    <span class="filter-label">Filter by initial</span>
+    <table class="fixed-table boxed-list">
+      <% starts_with_tags.each_with_index do |starting_character, index| %>
+        <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :number_of_columns => 30, :total_count => equipment_types.count } do %>
+          <%= link_to "#{starting_character}", equipment_types_path(filter_params.merge(:starting_with => "#{starting_character}")) %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+<% end %>
+
+<div class="field">
+  <span class="filter-label">Filter by campaign</span>
+  <table class="fixed-table boxed-list">
+    <% campaigns.each_with_index do |campaign, index| %>
+      <%= render :layout => 'layouts/fixed_table_columns',
+          :locals => { :index => index, :number_of_columns => 5, :total_count => campaigns.count } do %>
+        <% if filter_params[:in_campaign].to_s == campaign.id.to_s %>
+          <%= "#{campaign.name}" %>
+        <% else %>
+          <%= link_to "#{campaign.name}",
+            equipment_types_path(filter_params.merge(:in_campaign => "#{campaign.id}")),
+            :title => campaign.name + " (" + pluralize(campaign.equipment_types.count, "equipment type") + ")" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+
+
+<%= paginate equipment_types %>
 
 <%= link_to 'New Equipment type', new_equipment_type_path %>

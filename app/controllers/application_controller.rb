@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def name_of_filtering_campaign
+    Campaign.find(params[:in_campaign]).name unless params[:in_campaign].nil?
+  end
+
   def all_campaigns
     Campaign.all
   end

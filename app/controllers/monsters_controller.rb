@@ -15,10 +15,6 @@ class MonstersController < ApplicationController
     filtered_results(params).group("substr(upper(name), 1,1)").count.keys.sort
   end
 
-  def name_of_filtering_campaign
-    Campaign.find(params[:in_campaign]).name unless params[:in_campaign].nil?
-  end
-
   def filtered_sorted_paginated_results
     filtered_sorted_results.page(params[:page])
   end
