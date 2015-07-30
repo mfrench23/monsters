@@ -15,12 +15,12 @@ class EquipmentTypesController < ApplicationController
 
   # GET /equipment_types/new
   def new
-    render locals: { equipment_type: EquipmentType.new }
+    render locals: { equipment_type: EquipmentType.new, campaigns: all_campaigns }
   end
 
   # GET /equipment_types/1/edit
   def edit
-    render locals: { equipment_type: set_equipment_type }
+    render locals: { equipment_type: set_equipment_type, campaigns: all_campaigns }
   end
 
   # POST /equipment_types
@@ -33,7 +33,7 @@ class EquipmentTypesController < ApplicationController
         format.html { redirect_to equipment_type, notice: 'Equipment type was successfully created.' }
         format.json { render :show, status: :created, location: equipment_type }
       else
-        format.html { render :new, locals: { equipment_type: equipment_type } }
+        format.html { render :new, locals: { equipment_type: equipment_type, campaigns: all_campaigns } }
         format.json { render json: equipment_type.errors, status: :unprocessable_entity }
       end
     end
@@ -48,7 +48,7 @@ class EquipmentTypesController < ApplicationController
         format.html { redirect_to equipment_type, notice: 'Equipment type was successfully updated.' }
         format.json { render :show, status: :ok, location: equipment_type }
       else
-        format.html { render :edit, locals: {equipment_type: equipment_type} }
+        format.html { render :edit, locals: {equipment_type: equipment_type, campaigns: all_campaigns} }
         format.json { render json: equipment_type.errors, status: :unprocessable_entity }
       end
     end
@@ -87,6 +87,8 @@ class EquipmentTypesController < ApplicationController
   end
 
   def permitted_attributes
-    [:name, :base_weight, :base_cost, :equipment_category_id, :notes]
+    [:name, :base_weight, :base_cost, :equipment_category_id, :notes,
+      campaign_contents_attributes: [:id, :campaign_id, :_destroy],
+     ]
   end
 end

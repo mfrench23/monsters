@@ -18,5 +18,19 @@
   </table>
 </div>
 
+<div class="field">
+  <span class="field-label show">Equipment</span>
+  <table class="fixed-table boxed-list">
+    <% campaign.equipment_types.order_by_name.each_with_index do |equipment_type, index| %>
+      <%= render :layout => 'layouts/fixed_table_columns',
+          :locals => { :index => index, :total_count => campaign.equipment_types.count } do %>
+        <%= link_to equipment_type.name, equipment_type,
+            :class => "quiet",
+            :title => equipment_type.name %>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+
 <%= link_to 'Edit', edit_campaign_path(campaign) %> |
 <%= link_to 'Index', campaigns_path %>
