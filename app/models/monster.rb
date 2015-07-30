@@ -28,7 +28,6 @@ class Monster < AbstractEntity
   scope :starting_with, -> (name) { where("upper(monsters.name) like ?", "#{name}%")}
   scope :created_on, -> (date) { where("date(monsters.created_at) = ?", "#{date}")}
   scope :updated_on, -> (date) { where("date(monsters.updated_at) = ?", "#{date}")}
-  scope :in_campaign, -> (campaign_id) { where("0 < (select count(*) from campaign_contents where campaign_contents.content_id = monsters.id and campaign_contents.content_type = ? and campaign_contents.campaign_id = ?)", Monster.to_s, "#{campaign_id}") }
 
   scope :order_by_name, -> { order(:name) }
 
