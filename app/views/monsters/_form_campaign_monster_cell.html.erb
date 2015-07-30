@@ -1,5 +1,0 @@
-<% campaign_monster = owner.campaign_monsters.select{ |cm| cm.campaign_id == campaign.id }.first %>
-<%= f.hidden_field :id, :value => campaign_monster.try(:id) %>
-<%= f.hidden_field :campaign_id, :value => campaign.id %>
-<%= f.check_box "_destroy", { checked: campaign_monster.present? }, "false", "true" %>
-<%= campaign.name %>

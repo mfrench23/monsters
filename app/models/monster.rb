@@ -2,6 +2,7 @@ class Monster < AbstractEntity
   include Filterable
   include PageReferenceable
   include Illustratable
+  include CampaignContained
 
   before_validation :nil_blank_attributes
 
@@ -16,8 +17,6 @@ class Monster < AbstractEntity
   accepts_nested_attributes_for :monster_names, allow_destroy: true, :reject_if => lambda { |x| x['name'].blank? }
   has_many  :characteristic_monsters, dependent: :destroy
   accepts_nested_attributes_for :characteristic_monsters, allow_destroy: true, :reject_if => lambda { |x| x['characteristic_id'].blank? }
-  has_many :campaign_monsters, dependent: :destroy, inverse_of: :monster
-  accepts_nested_attributes_for :campaign_monsters, allow_destroy: true, :reject_if => lambda { |x| x['campaign_id'].blank? }
 
   has_many :characteristics, :through => :characteristic_monsters
 
@@ -29,7 +28,7 @@ class Monster < AbstractEntity
   scope :starting_with, -> (name) { where("upper(monsters.name) like ?", "#{name}%")}
   scope :created_on, -> (date) { where("date(monsters.created_at) = ?", "#{date}")}
   scope :updated_on, -> (date) { where("date(monsters.updated_at) = ?", "#{date}")}
-  scope :in_campaign, -> (campaign_id) { where("0 < (select count(*) from campaign_monsters where campaign_monsters.monster_id = monsters.id and campaign_monsters.campaign_id = ?)", "#{campaign_id}") }
+  scope :in_campaign, -> (campaign_id) { where("0 < (select count(*) from campaign_contents where campaign_contents.content_id = monsters.id and campaign_contents.content_type = ? and campaign_contents.campaign_id = ?)", Monster.to_s, "#{campaign_id}") }
 
   scope :order_by_name, -> { order(:name) }
 
@@ -83,14 +82,10 @@ class Monster < AbstractEntity
     Attack.new
   end
 
-  def build_campaign_monster
-    CampaignMonster.new
-  end
-
   private
 
   def reference_list_attributes
-    [:page_references, :attacks, :movement_rates, :characteristic_monsters, :campaign_monsters, :illustrations ]
+    [:page_references, :attacks, :movement_rates, :characteristic_monsters, :campaign_contents, :illustrations ]
   end
 
   def nil_blank_attributes

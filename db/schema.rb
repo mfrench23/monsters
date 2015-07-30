@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728011349) do
+ActiveRecord::Schema.define(version: 20150730002238) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -34,17 +34,17 @@ ActiveRecord::Schema.define(version: 20150728011349) do
 
   add_index "books", ["name"], name: "index_books_on_name", unique: true, using: :btree
 
-  create_table "campaign_monsters", force: :cascade do |t|
-    t.integer  "campaign_id", limit: 4
-    t.integer  "monster_id",  limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+  create_table "campaign_contents", force: :cascade do |t|
+    t.integer  "campaign_id",  limit: 4
+    t.integer  "content_id",   limit: 4
+    t.string   "content_type", limit: 255
+    t.text     "notes",        limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "campaign_monsters", ["campaign_id", "monster_id"], name: "index_campaign_monsters_on_campaign_id_and_monster_id", unique: true, using: :btree
-  add_index "campaign_monsters", ["campaign_id"], name: "index_campaign_monsters_on_campaign_id", using: :btree
-  add_index "campaign_monsters", ["monster_id", "campaign_id"], name: "index_campaign_monsters_on_monster_id_and_campaign_id", unique: true, using: :btree
-  add_index "campaign_monsters", ["monster_id"], name: "index_campaign_monsters_on_monster_id", using: :btree
+  add_index "campaign_contents", ["campaign_id"], name: "index_campaign_contents_on_campaign_id", using: :btree
+  add_index "campaign_contents", ["content_type", "content_id"], name: "index_campaign_contents_on_content_type_and_content_id", using: :btree
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -316,8 +316,7 @@ ActiveRecord::Schema.define(version: 20150728011349) do
   add_index "traits", ["trait_owner_id", "trait_owner_type"], name: "index_traits_on_trait_owner_id_and_trait_owner_type", using: :btree
 
   add_foreign_key "attacks", "monsters"
-  add_foreign_key "campaign_monsters", "campaigns"
-  add_foreign_key "campaign_monsters", "monsters"
+  add_foreign_key "campaign_contents", "campaigns"
   add_foreign_key "characteristic_lists", "characteristics"
   add_foreign_key "characteristic_monsters", "characteristics"
   add_foreign_key "characteristic_monsters", "monsters"

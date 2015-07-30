@@ -1,6 +1,6 @@
 class Book < AbstractEntity
   has_many :page_references, dependent: :destroy
-  has_many :monsters, through: :page_references, :source => :referenceable, :source_type => 'Monster'
+  has_many :monsters, through: :page_references, :source => :referenceable, :source_type => Monster.to_s
 
   validates :name, presence: true
 
