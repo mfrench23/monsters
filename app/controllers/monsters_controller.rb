@@ -32,7 +32,7 @@ class MonstersController < ApplicationController
   end
 
   def all_campaigns_with_monsters
-    Campaign.joins(:campaign_monsters).group("campaigns.id").having("count(campaign_monsters.monster_id) > ?", 0)
+    Campaign.has_contents(Monster.to_s)
   end
 
   def filtered_results(params)

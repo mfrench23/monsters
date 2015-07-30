@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150716225621) do
+ActiveRecord::Schema.define(version: 20150730002238) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -34,17 +34,17 @@ ActiveRecord::Schema.define(version: 20150716225621) do
 
   add_index "books", ["name"], name: "index_books_on_name", unique: true, using: :btree
 
-  create_table "campaign_monsters", force: :cascade do |t|
-    t.integer  "campaign_id", limit: 4
-    t.integer  "monster_id",  limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+  create_table "campaign_contents", force: :cascade do |t|
+    t.integer  "campaign_id",  limit: 4
+    t.integer  "content_id",   limit: 4
+    t.string   "content_type", limit: 255
+    t.text     "notes",        limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "campaign_monsters", ["campaign_id", "monster_id"], name: "index_campaign_monsters_on_campaign_id_and_monster_id", unique: true, using: :btree
-  add_index "campaign_monsters", ["campaign_id"], name: "index_campaign_monsters_on_campaign_id", using: :btree
-  add_index "campaign_monsters", ["monster_id", "campaign_id"], name: "index_campaign_monsters_on_monster_id_and_campaign_id", unique: true, using: :btree
-  add_index "campaign_monsters", ["monster_id"], name: "index_campaign_monsters_on_monster_id", using: :btree
+  add_index "campaign_contents", ["campaign_id"], name: "index_campaign_contents_on_campaign_id", using: :btree
+  add_index "campaign_contents", ["content_type", "content_id"], name: "index_campaign_contents_on_content_type_and_content_id", using: :btree
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -107,6 +107,52 @@ ActiveRecord::Schema.define(version: 20150716225621) do
 
   add_index "damage_resistances", ["creature_id"], name: "fk_rails_9b36326d78", using: :btree
   add_index "damage_resistances", ["location_id"], name: "index_damage_resistances_on_location_id", using: :btree
+
+  create_table "equipment_categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "equipment_categories", ["name"], name: "index_equipment_categories_on_name", unique: true, using: :btree
+
+  create_table "equipment_modifiers", force: :cascade do |t|
+    t.string   "name",               limit: 255
+    t.string   "base_cost_mod",      limit: 255
+    t.string   "base_weight_mod",    limit: 255
+    t.string   "cost_mod",           limit: 255
+    t.string   "weight_mod",         limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "equipment_piece_id", limit: 4
+  end
+
+  add_index "equipment_modifiers", ["equipment_piece_id"], name: "index_equipment_modifiers_on_equipment_piece_id", using: :btree
+
+  create_table "equipment_pieces", force: :cascade do |t|
+    t.integer  "equipment_type_id", limit: 4
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.string   "name",              limit: 255
+    t.decimal  "base_weight",                   precision: 10, scale: 4
+    t.integer  "base_cost_cents",   limit: 4
+    t.decimal  "weight",                        precision: 10, scale: 4
+    t.integer  "cost_cents",        limit: 4
+  end
+
+  add_index "equipment_pieces", ["equipment_type_id"], name: "index_equipment_pieces_on_equipment_type_id", using: :btree
+
+  create_table "equipment_types", force: :cascade do |t|
+    t.string   "name",                  limit: 255
+    t.decimal  "base_weight",                         precision: 10, scale: 4
+    t.integer  "base_cost_cents",       limit: 4
+    t.integer  "equipment_category_id", limit: 4
+    t.text     "notes",                 limit: 65535
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+  end
+
+  add_index "equipment_types", ["equipment_category_id"], name: "index_equipment_types_on_equipment_category_id", using: :btree
 
   create_table "illustrations", force: :cascade do |t|
     t.integer  "illustratable_id",   limit: 4
@@ -270,14 +316,16 @@ ActiveRecord::Schema.define(version: 20150716225621) do
   add_index "traits", ["trait_owner_id", "trait_owner_type"], name: "index_traits_on_trait_owner_id_and_trait_owner_type", using: :btree
 
   add_foreign_key "attacks", "monsters"
-  add_foreign_key "campaign_monsters", "campaigns"
-  add_foreign_key "campaign_monsters", "monsters"
+  add_foreign_key "campaign_contents", "campaigns"
   add_foreign_key "characteristic_lists", "characteristics"
   add_foreign_key "characteristic_monsters", "characteristics"
   add_foreign_key "characteristic_monsters", "monsters"
   add_foreign_key "damage_resistances", "creatures"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
+  add_foreign_key "equipment_modifiers", "equipment_pieces"
+  add_foreign_key "equipment_pieces", "equipment_types"
+  add_foreign_key "equipment_types", "equipment_categories"
   add_foreign_key "master_skills", "characteristics"
   add_foreign_key "monster_names", "monsters"
   add_foreign_key "monsters", "monster_classes"

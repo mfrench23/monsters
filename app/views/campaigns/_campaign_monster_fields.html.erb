@@ -1,15 +1,16 @@
 <% number_of_columns = 5 %>
 <div class="field">
   <span class="field-label">Monsters</span>
-  <fieldset id="campaign_monsters" class="expanding-fieldset-container">
+  <fieldset id="campaign_contents" class="expanding-fieldset-container">
     <table class="fixed-table">
-      <%= f.fields_for :campaign_monsters, monsters.order_by_name do |x| %>
+      <%= f.fields_for :campaign_contents, monsters.order_by_name do |x| %>
         <% monster = x.object %>
         <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => x.index, :number_of_columns => number_of_columns, :total_count => monsters.count } do %>
-          <% campaign_monster = f.object.campaign_monsters.select{ |cm| cm.monster_id == monster.id }.first %>
-          <%= x.hidden_field :id, :value => campaign_monster.try(:id) %>
-          <%= x.hidden_field :monster_id, :value => monster.id %>
-          <%= x.check_box "_destroy", { checked: campaign_monster.present? }, "false", "true" %>
+          <% campaign_content = f.object.campaign_contents.select{ |cm| (cm.content == monster) }.first %>
+          <%= x.hidden_field :id, :value => campaign_content.try(:id) %>
+          <%= x.hidden_field :content_id, :value => monster.id %>
+          <%= x.hidden_field :content_type, :value => Monster.to_s %>
+          <%= x.check_box "_destroy", { checked: campaign_content.present? }, "false", "true" %>
           <span title="<%= monster.name %>"><%= monster.name %></span>
         <% end %>
       <% end %>
