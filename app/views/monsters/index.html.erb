@@ -80,7 +80,7 @@
         <% else %>
           <%= link_to "#{campaign.name}",
             monsters_path(filter_params.merge(:in_campaign => "#{campaign.id}")),
-            :title => campaign.name + " (" + pluralize(campaign.campaign_monsters.count, "monster") + ")" %>
+            :title => campaign.name + " (" + pluralize(campaign.monsters.count, "monster") + ")" %>
         <% end %>
       <% end %>
     <% end %>

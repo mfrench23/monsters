@@ -7,10 +7,10 @@
       <% end %>
     </div>
   <% end %>
-  <% if m.campaign_monsters.any? %>
+  <% if m.campaign_contents.any? %>
     <div class="nested-header rightsidebar" style="padding-top: 20px;">Campaigns</div>
     <ul class="rightsidebar">
-      <% m.campaign_monsters.each do |cm| %>
+      <% m.campaign_contents.each do |cm| %>
         <li class="rightsidebar"><%= link_to cm.campaign_name, cm.campaign -%></li>
       <% end %>
     </ul>

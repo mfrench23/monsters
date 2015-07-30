@@ -7,12 +7,12 @@
 <div class="field">
   <span class="field-label" style="font-weight: bold;">Monsters</span>
   <table class="fixed-table" style="width: 85%; border: 1px solid grey;">
-    <% campaign.campaign_monsters.order_by_monster.each_with_index do |campaign_monster, index| %>
+    <% campaign.monsters.order_by_name.each_with_index do |monster, index| %>
       <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :total_count => campaign.campaign_monsters.count } do %>
-        <%= link_to campaign_monster.monster_name, campaign_monster.monster.specific,
+          :locals => { :index => index, :total_count => campaign.monsters.count } do %>
+        <%= link_to monster.name, monster.specific,
             :class => "quiet",
-            :title => campaign_monster.monster_name %>
+            :title => monster.name %>
       <% end %>
     <% end %>
   </table>

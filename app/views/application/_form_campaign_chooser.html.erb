@@ -1,12 +1,12 @@
 <% number_of_columns = 3 %>
 <div class="field">
   <span class="field-label">Campaigns</span>
-  <fieldset id="campaign_monsters" class="expanding-fieldset-container">
+  <fieldset id="campaign_contents" class="expanding-fieldset-container">
     <table class="fixed-table">
-      <%= f.fields_for :campaign_monsters, campaigns.order_by_name do |x| %>
+      <%= f.fields_for :campaign_contents, campaigns.order_by_name do |x| %>
         <% campaign = x.object %>
         <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => x.index, :number_of_columns => number_of_columns, :total_count => campaigns.count } do %>
-            <%= render "monsters/form_campaign_monster_cell", owner: f.object, f: x, campaign: campaign %>
+            <%= render "form_campaign_content_cell", owner: f.object, f: x, campaign: campaign %>
         <% end %>
       <% end %>
     </table>
