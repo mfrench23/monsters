@@ -29,7 +29,9 @@ Rails.application.routes.draw do
   resources :locations
 
   resources :equipment_categories
-  resources :equipment_types
+  resources :equipment_types do
+    get :autocomplete_equipment_category_name, :on => :collection
+  end
   resources :equipment_pieces
 
   # The priority is based upon order of creation: first created -> highest priority.

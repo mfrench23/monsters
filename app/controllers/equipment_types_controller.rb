@@ -1,4 +1,6 @@
 class EquipmentTypesController < ApplicationController
+  autocomplete :equipment_category, :name, :full => true
+
   # GET /equipment_types
   # GET /equipment_types.json
   def index
@@ -95,13 +97,7 @@ class EquipmentTypesController < ApplicationController
   end
 
   def equipment_type_params
-    params.require(:equipment_type).permit(permitted_attributes)
-  end
-
-  def permitted_attributes
-    [:name, :base_weight, :base_cost, :equipment_category_id, :notes,
-      campaign_contents_attributes: [:id, :campaign_id, :_destroy],
-     ]
+    EquipmentTypeForm.new(params).params
   end
 
   def filtered_results(params)

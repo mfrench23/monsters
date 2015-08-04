@@ -57,6 +57,9 @@ gem 'ancestry'
 # Automatic eager loading
 gem 'goldiloader'
 
+gem 'rails4-autocomplete'
+gem 'jquery-ui-rails'
+
 gem 'rails-erd', group: :development
 
 group :development, :test do
