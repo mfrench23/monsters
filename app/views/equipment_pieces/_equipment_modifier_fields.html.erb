@@ -3,16 +3,16 @@
     <%= f.text_field :name %>
   </div>
   <div class="controls">
-    <%= f.text_field :base_cost_mod %>
+    <%= f.text_field :base_cost_mod, :size => 10 %>
   </div>
   <div class="controls">
-    <%= f.text_field :base_weight_mod %>
+    <%= f.text_field :base_weight_mod, :size => 10 %>
   </div>
   <div class="controls">
-    <%= f.text_field :cost_mod %>
+    <%= f.text_field :cost_mod, :size => 10 %>
   </div>
   <div class="controls">
-    <%= f.text_field :weight_mod %>
+    <%= f.text_field :weight_mod, :size => 10 %>
   </div>
   <div class="controls">
     <%= link_to_remove_association "remove", f %>
