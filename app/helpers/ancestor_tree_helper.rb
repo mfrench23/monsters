@@ -12,13 +12,17 @@ module AncestorTreeHelper
   end
 
   def child_tree(monster)
-    child_entries = monster.children.sort { |x,y| x.name.upcase <=> y.name.upcase }.reduce("".html_safe) do |memo, child|
+    child_entries = sorted_children(monster).reduce("".html_safe) do |memo, child|
       memo += content_tag(:li, format_show_link(child) + " (descendant)".html_safe, class: "rightsidebar" )
     end
     content_tag( :ul, child_entries )
   end
 
   private
+
+  def sorted_children(monster)
+    monster.children.sort { |x,y| x.name.upcase <=> y.name.upcase }
+  end
 
   def ancestor_tree_contents(monster)
     self_plus_children = content_tag(:li, monster.name.html_safe + child_tree(monster), class: "rightsidebar")
