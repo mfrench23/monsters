@@ -79,6 +79,10 @@
     <li><a class="include" href="Illustratable.html">Illustratable</a>
   
   
+  
+    <li><a class="include" href="CampaignContained.html">CampaignContained</a>
+  
+  
   </ul>
 </div>
 
@@ -92,8 +96,6 @@
     <li ><a href="#method-i-ancestor_accumulate_field">#ancestor_accumulate_field</a>
     
     <li ><a href="#method-i-build_attack">#build_attack</a>
-    
-    <li ><a href="#method-i-build_campaign_monster">#build_campaign_monster</a>
     
     <li ><a href="#method-i-build_monster_name">#build_monster_name</a>
     
@@ -164,7 +166,7 @@
 
           
           <div class="method-source-code" id="ancestor_accumulate_field-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ancestor_accumulate_field</span>(<span class="ruby-identifier">field</span>)
   <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">expanded_field</span>(<span class="ruby-identifier">field</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">is_root?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -197,42 +199,9 @@
 
           
           <div class="method-source-code" id="build_attack-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 82</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build_attack</span>
   <span class="ruby-constant">Attack</span>.<span class="ruby-identifier">new</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-build_campaign_monster" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">build_campaign_monster</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="build_campaign_monster-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 86</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_campaign_monster</span>
-  <span class="ruby-constant">CampaignMonster</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -264,7 +233,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="build_monster_name-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build_monster_name</span>
   <span class="ruby-constant">MonsterName</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -297,7 +266,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="build_movement_rate-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 78</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build_movement_rate</span>
   <span class="ruby-constant">MovementRate</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -330,7 +299,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="characteristic_monster-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">characteristic_monster</span>(<span class="ruby-identifier">characteristic_name</span>)
   <span class="ruby-identifier">characteristic_monsters</span>.<span class="ruby-identifier">select</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">cm</span><span class="ruby-operator">|</span> <span class="ruby-identifier">cm</span>.<span class="ruby-identifier">characteristic</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">characteristic_name</span>.<span class="ruby-identifier">to_s</span>}.<span class="ruby-identifier">try</span>(<span class="ruby-value">:first</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">CharacteristicMonster</span>.<span class="ruby-identifier">get_instance</span>(<span class="ruby-identifier">characteristic_name</span>, <span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -363,7 +332,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="characteristic_score-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 40</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">characteristic_score</span>(<span class="ruby-identifier">characteristic_name</span>)
   <span class="ruby-identifier">characteristic_monster</span>(<span class="ruby-identifier">characteristic_name</span>).<span class="ruby-identifier">try</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">characteristic</span>.<span class="ruby-identifier">normalize</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">score</span>) }
 <span class="ruby-keyword">end</span></pre>
@@ -396,7 +365,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="combat_effectiveness_rating-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">combat_effectiveness_rating</span>
   <span class="ruby-identifier">offensive_rating</span> = <span class="ruby-identifier">characteristic_score</span> <span class="ruby-string">&quot;OR&quot;</span>
   <span class="ruby-identifier">protective_rating</span> = <span class="ruby-identifier">characteristic_score</span> <span class="ruby-string">&quot;PR&quot;</span>
@@ -431,7 +400,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="deep_copy-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
   <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
   <span class="ruby-identifier">reference_list_attributes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">reference</span><span class="ruby-operator">|</span> <span class="ruby-identifier">deep_copy_reference</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">copy</span>) }
@@ -469,7 +438,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="expanded_field-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 67</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">expanded_field</span>(<span class="ruby-identifier">field</span>)
   <span class="ruby-identifier">ancestor_text</span> = <span class="ruby-identifier">ancestor_accumulate_field</span>(<span class="ruby-identifier">field</span>)
   <span class="ruby-identifier">field_val</span> = <span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>)
@@ -504,7 +473,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>

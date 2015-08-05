@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class CampaignMonster - Rails Application Documentation</title>
+<title>class EquipmentTypeForm - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -58,7 +58,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Base
+  <p class="link">Object
   
 </div>
 
@@ -70,7 +70,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-deep_copy">#deep_copy</a>
+    <li ><a href="#method-c-new">::new</a>
     
   </ul>
 </div>
@@ -78,9 +78,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-CampaignMonster">
-  <h1 id="class-CampaignMonster" class="class">
-    class CampaignMonster
+<main role="main" aria-labelledby="class-EquipmentTypeForm">
+  <h1 id="class-EquipmentTypeForm" class="class">
+    class EquipmentTypeForm
   </h1>
 
   <section class="description">
@@ -98,19 +98,40 @@
     
 
     
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-params" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">params</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
 
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
        <header>
-         <h3>Public Instance Methods</h3>
+         <h3>Public Class Methods</h3>
        </header>
 
     
-      <div id="method-i-deep_copy" class="method-detail ">
+      <div id="method-c-new" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">deep_copy</span><span
-            class="method-args">()</span>
+          <span class="method-name">new</span><span
+            class="method-args">(params=nil)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -124,11 +145,11 @@
           
 
           
-          <div class="method-source-code" id="deep_copy-source">
-            <pre><span class="ruby-comment"># File app/models/campaign_monster.rb, line 13</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
-  <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
-  <span class="ruby-identifier">copy</span>
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/forms/equipment_type_form.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">whitelisted_params</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">convert_new_equipment_category_name</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -69,41 +69,29 @@ class EquipmentPiece < ActiveRecord::Base
     calc_cost
   end
 
+  def calc_depedent_value(method, starting_base = nil)
+    starting_base ||= equipment_type.try(method)
+    result = equipment_modifiers.reduce(starting_base) do |memo, mod|
+      memo += mod.modifier_value_object(method).addition(starting_base)
+    end
+    return equipment_modifiers.reduce(result) do |memo, mod|
+      memo *= mod.modifier_value_object(method).factor
+    end
+  end
+
   def calc_base_cost
-    starting_base_cost = equipment_type.try(:base_cost)
-    result = equipment_modifiers.reduce(starting_base_cost) do |memo, mod|
-      memo += mod.modifier_value_object(:base_cost).addition(starting_base_cost)
-    end
-    self.base_cost = equipment_modifiers.reduce(result) do |memo, mod|
-      memo *= mod.modifier_value_object(:base_cost).factor
-    end
+    self.base_cost = calc_depedent_value(:base_cost)
   end
 
   def calc_base_weight
-    starting_base_weight = equipment_type.try(:base_weight)
-    result = equipment_modifiers.reduce(starting_base_weight) do |memo, mod|
-      memo += mod.modifier_value_object(:base_weight).addition(starting_base_weight)
-    end
-    self.base_weight = equipment_modifiers.reduce(result) do |memo, mod|
-      memo *= mod.modifier_value_object(:base_weight).factor
-    end
+    self.base_weight = calc_depedent_value(:base_weight)
   end
 
   def calc_weight
-    result = equipment_modifiers.reduce(base_weight) do |memo, mod|
-      memo += mod.modifier_value_object(:weight).addition(base_weight)
-    end
-    self.weight = equipment_modifiers.reduce(result) do |memo, mod|
-      memo *= mod.modifier_value_object(:weight).factor
-    end
+    self.weight = calc_depedent_value(:weight, base_weight)
   end
 
   def calc_cost
-    result = equipment_modifiers.reduce(base_cost) do |memo, mod|
-      memo += mod.modifier_value_object(:cost).addition(base_cost)
-    end
-    self.cost = equipment_modifiers.reduce(result) do |memo, mod|
-      memo *= mod.modifier_value_object(:cost).factor
-    end
+    self.cost = calc_depedent_value(:cost, base_cost)
   end
 end

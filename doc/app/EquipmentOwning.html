@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class EquipmentType - Rails Application Documentation</title>
+<title>module EquipmentOwning - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -18,7 +18,7 @@
 
 
 
-<body id="top" role="document" class="class">
+<body id="top" role="document" class="module">
 <nav role="navigation">
   <div id="project-navigation">
     <div id="home-section" role="region" title="Quick navigation" class="nav-section">
@@ -54,38 +54,29 @@
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
-  <h3>Parent</h3>
-
-  
-  <p class="link">ActiveRecord::Base
-  
-</div>
-
-    <div id="includes-section" class="nav-section">
-  <h3>Included Modules</h3>
+    
+    
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
 
   <ul class="link-list">
+    
   
-  
-    <li><a class="include" href="CampaignContained.html">CampaignContained</a>
-  
-  
-  
-    <li><a class="include" href="Filterable.html">Filterable</a>
+    <li><span class="extend">ActiveSupport::Concern</span>
   
   
   </ul>
 </div>
 
-    
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-to_s">#to_s</a>
+    <li ><a href="#method-i-build_equipment_piece">#build_equipment_piece</a>
+    
+    <li ><a href="#method-i-final_owner">#final_owner</a>
     
   </ul>
 </div>
@@ -93,15 +84,13 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-EquipmentType">
-  <h1 id="class-EquipmentType" class="class">
-    class EquipmentType
+<main role="main" aria-labelledby="module-EquipmentOwning">
+  <h1 id="module-EquipmentOwning" class="module">
+    module EquipmentOwning
   </h1>
 
   <section class="description">
     
-<p>An abstract kind of equipment, like “broadsword” or “backpack”.</p>
-
   </section>
 
   
@@ -123,10 +112,10 @@
        </header>
 
     
-      <div id="method-i-to_s" class="method-detail ">
+      <div id="method-i-build_equipment_piece" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">to_s</span><span
+          <span class="method-name">build_equipment_piece</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -141,10 +130,43 @@
           
 
           
-          <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_type.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">name</span>
+          <div class="method-source-code" id="build_equipment_piece-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/equipment_owning.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_equipment_piece</span>
+  <span class="ruby-constant">EquipmentPiece</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-final_owner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">final_owner</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="final_owner-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/equipment_owning.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">final_owner</span>
+  <span class="ruby-keyword">self</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

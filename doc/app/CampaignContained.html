@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class EquipmentType - Rails Application Documentation</title>
+<title>module CampaignContained - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -18,7 +18,7 @@
 
 
 
-<body id="top" role="document" class="class">
+<body id="top" role="document" class="module">
 <nav role="navigation">
   <div id="project-navigation">
     <div id="home-section" role="region" title="Quick navigation" class="nav-section">
@@ -54,38 +54,27 @@
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
-  <h3>Parent</h3>
-
-  
-  <p class="link">ActiveRecord::Base
-  
-</div>
-
-    <div id="includes-section" class="nav-section">
-  <h3>Included Modules</h3>
+    
+    
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
 
   <ul class="link-list">
+    
   
-  
-    <li><a class="include" href="CampaignContained.html">CampaignContained</a>
-  
-  
-  
-    <li><a class="include" href="Filterable.html">Filterable</a>
+    <li><span class="extend">ActiveSupport::Concern</span>
   
   
   </ul>
 </div>
 
-    
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-to_s">#to_s</a>
+    <li ><a href="#method-i-build_campaign_content">#build_campaign_content</a>
     
   </ul>
 </div>
@@ -93,15 +82,13 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-EquipmentType">
-  <h1 id="class-EquipmentType" class="class">
-    class EquipmentType
+<main role="main" aria-labelledby="module-CampaignContained">
+  <h1 id="module-CampaignContained" class="module">
+    module CampaignContained
   </h1>
 
   <section class="description">
     
-<p>An abstract kind of equipment, like “broadsword” or “backpack”.</p>
-
   </section>
 
   
@@ -123,10 +110,10 @@
        </header>
 
     
-      <div id="method-i-to_s" class="method-detail ">
+      <div id="method-i-build_campaign_content" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">to_s</span><span
+          <span class="method-name">build_campaign_content</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -141,10 +128,10 @@
           
 
           
-          <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_type.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">name</span>
+          <div class="method-source-code" id="build_campaign_content-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/campaign_contained.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">build_campaign_content</span>
+  <span class="ruby-constant">CampaignContent</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

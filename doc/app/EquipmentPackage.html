@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class EquipmentType - Rails Application Documentation</title>
+<title>class EquipmentPackage - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -68,11 +68,7 @@
   <ul class="link-list">
   
   
-    <li><a class="include" href="CampaignContained.html">CampaignContained</a>
-  
-  
-  
-    <li><a class="include" href="Filterable.html">Filterable</a>
+    <li><a class="include" href="EquipmentOwning.html">EquipmentOwning</a>
   
   
   </ul>
@@ -85,7 +81,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-to_s">#to_s</a>
+    <li ><a href="#method-i-final_owner">#final_owner</a>
     
   </ul>
 </div>
@@ -93,15 +89,13 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-EquipmentType">
-  <h1 id="class-EquipmentType" class="class">
-    class EquipmentType
+<main role="main" aria-labelledby="class-EquipmentPackage">
+  <h1 id="class-EquipmentPackage" class="class">
+    class EquipmentPackage
   </h1>
 
   <section class="description">
     
-<p>An abstract kind of equipment, like “broadsword” or “backpack”.</p>
-
   </section>
 
   
@@ -123,10 +117,10 @@
        </header>
 
     
-      <div id="method-i-to_s" class="method-detail ">
+      <div id="method-i-final_owner" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">to_s</span><span
+          <span class="method-name">final_owner</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -141,10 +135,10 @@
           
 
           
-          <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_type.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">name</span>
+          <div class="method-source-code" id="final_owner-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_package.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">final_owner</span>
+  <span class="ruby-identifier">creature</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

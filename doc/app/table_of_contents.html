@@ -61,8 +61,11 @@
   <li class="class">
     <a href="Campaign.html">Campaign</a>
   </li>
+  <li class="module">
+    <a href="CampaignContained.html">CampaignContained</a>
+  </li>
   <li class="class">
-    <a href="CampaignMonster.html">CampaignMonster</a>
+    <a href="CampaignContent.html">CampaignContent</a>
   </li>
   <li class="class">
     <a href="CampaignsController.html">CampaignsController</a>
@@ -124,6 +127,12 @@
   <li class="class">
     <a href="EquipmentModifier/ModifierValueObject/NoOpModifierValueObject.html">EquipmentModifier::ModifierValueObject::NoOpModifierValueObject</a>
   </li>
+  <li class="module">
+    <a href="EquipmentOwning.html">EquipmentOwning</a>
+  </li>
+  <li class="class">
+    <a href="EquipmentPackage.html">EquipmentPackage</a>
+  </li>
   <li class="class">
     <a href="EquipmentPiece.html">EquipmentPiece</a>
   </li>
@@ -133,8 +142,14 @@
   <li class="class">
     <a href="EquipmentPiecesController.html">EquipmentPiecesController</a>
   </li>
+  <li class="module">
+    <a href="EquipmentPiecesHelper.html">EquipmentPiecesHelper</a>
+  </li>
   <li class="class">
     <a href="EquipmentType.html">EquipmentType</a>
+  </li>
+  <li class="class">
+    <a href="EquipmentTypeForm.html">EquipmentTypeForm</a>
   </li>
   <li class="class">
     <a href="EquipmentTypesController.html">EquipmentTypesController</a>
@@ -291,6 +306,11 @@
     <span class="container">EquipmentPieceForm</span>
 
   <li class="method">
+    <a href="EquipmentTypeForm.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">EquipmentTypeForm</span>
+
+  <li class="method">
     <a href="MasterSkillForm.html#method-c-new">::new</a>
     &mdash;
     <span class="container">MasterSkillForm</span>
@@ -396,9 +416,14 @@
     <span class="container">Monster</span>
 
   <li class="method">
-    <a href="Monster.html#method-i-build_campaign_monster">#build_campaign_monster</a>
+    <a href="CampaignContained.html#method-i-build_campaign_content">#build_campaign_content</a>
     &mdash;
-    <span class="container">Monster</span>
+    <span class="container">CampaignContained</span>
+
+  <li class="method">
+    <a href="EquipmentOwning.html#method-i-build_equipment_piece">#build_equipment_piece</a>
+    &mdash;
+    <span class="container">EquipmentOwning</span>
 
   <li class="method">
     <a href="Illustratable.html#method-i-build_illustration">#build_illustration</a>
@@ -476,11 +501,6 @@
     <span class="container">EquipmentCategoriesController</span>
 
   <li class="method">
-    <a href="EquipmentPiecesController.html#method-i-create">#create</a>
-    &mdash;
-    <span class="container">EquipmentPiecesController</span>
-
-  <li class="method">
     <a href="EquipmentTypesController.html#method-i-create">#create</a>
     &mdash;
     <span class="container">EquipmentTypesController</span>
@@ -526,9 +546,9 @@
     <span class="container">Attack</span>
 
   <li class="method">
-    <a href="CampaignMonster.html#method-i-deep_copy">#deep_copy</a>
+    <a href="CampaignContent.html#method-i-deep_copy">#deep_copy</a>
     &mdash;
-    <span class="container">CampaignMonster</span>
+    <span class="container">CampaignContent</span>
 
   <li class="method">
     <a href="CharacteristicMonster.html#method-i-deep_copy">#deep_copy</a>
@@ -746,6 +766,21 @@
     <span class="container">Filterable::ClassMethods</span>
 
   <li class="method">
+    <a href="EquipmentPackage.html#method-i-final_owner">#final_owner</a>
+    &mdash;
+    <span class="container">EquipmentPackage</span>
+
+  <li class="method">
+    <a href="EquipmentPiece.html#method-i-final_owner">#final_owner</a>
+    &mdash;
+    <span class="container">EquipmentPiece</span>
+
+  <li class="method">
+    <a href="EquipmentOwning.html#method-i-final_owner">#final_owner</a>
+    &mdash;
+    <span class="container">EquipmentOwning</span>
+
+  <li class="method">
     <a href="Creature.html#method-i-freeform_trait_list-3D">#freeform_trait_list=</a>
     &mdash;
     <span class="container">Creature</span>
@@ -886,11 +921,6 @@
     <span class="container">EquipmentCategoriesController</span>
 
   <li class="method">
-    <a href="EquipmentPiecesController.html#method-i-new">#new</a>
-    &mdash;
-    <span class="container">EquipmentPiecesController</span>
-
-  <li class="method">
     <a href="EquipmentTypesController.html#method-i-new">#new</a>
     &mdash;
     <span class="container">EquipmentTypesController</span>
@@ -934,6 +964,16 @@
     <a href="AncestorTreeHelper.html#method-i-parent_tree">#parent_tree</a>
     &mdash;
     <span class="container">AncestorTreeHelper</span>
+
+  <li class="method">
+    <a href="EquipmentPiecesHelper.html#method-i-pretty_print_equipment_piece">#pretty_print_equipment_piece</a>
+    &mdash;
+    <span class="container">EquipmentPiecesHelper</span>
+
+  <li class="method">
+    <a href="EquipmentPiecesHelper.html#method-i-pretty_print_equipment_piece_modifiers">#pretty_print_equipment_piece_modifiers</a>
+    &mdash;
+    <span class="container">EquipmentPiecesHelper</span>
 
   <li class="method">
     <a href="CharacteristicList.html#method-i-readonly-3F">#readonly?</a>
@@ -1029,6 +1069,11 @@
     <a href="Characteristic.html#method-i-to_s">#to_s</a>
     &mdash;
     <span class="container">Characteristic</span>
+
+  <li class="method">
+    <a href="Creature.html#method-i-to_s">#to_s</a>
+    &mdash;
+    <span class="container">Creature</span>
 
   <li class="method">
     <a href="EquipmentCategory.html#method-i-to_s">#to_s</a>
