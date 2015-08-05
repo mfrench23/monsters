@@ -38,6 +38,10 @@ class Creature < AbstractEntity
     end
   end
 
+  def to_s
+    name
+  end
+
   private
 
   def reference_list_attributes

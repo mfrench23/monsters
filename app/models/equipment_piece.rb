@@ -42,6 +42,10 @@ class EquipmentPiece < ActiveRecord::Base
     calculate_dependant_value(:weight, :calc_weight)
   end
 
+  def final_owner
+    owner.final_owner unless owner.nil?
+  end
+
   private
 
   def calculate_dependant_value(attribute_name, method_to_populate)

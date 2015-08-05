@@ -9,4 +9,8 @@ module EquipmentOwning
   def build_equipment_piece
     EquipmentPiece.new
   end
+
+  def final_owner
+    self
+  end
 end
