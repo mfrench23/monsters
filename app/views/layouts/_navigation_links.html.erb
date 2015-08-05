@@ -16,10 +16,11 @@
     <%= entity_links :master_trait %>
   </li>
   <li><%= link_to 'Equipment List', controller: 'equipment_types' %>
-    <%= entity_links :equipment_type %>
-  </li>
-  <li><%= link_to 'Equipment Instances', controller: 'equipment_pieces' %>
-    <%= entity_links :equipment_piece %>
+    <ul>
+      <li><%= link_to 'List All Equipment Types', equipment_types_path %></li>
+      <li><%= link_to 'New Equipment Type', new_equipment_type_path %></li>
+      <li><%= link_to "Equipment Instances", equipment_pieces_path %></li>
+    </ul>
   </li>
   <li><span>Utility</span>
     <ul>

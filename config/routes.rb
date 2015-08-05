@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   resources :equipment_types do
     get :autocomplete_equipment_category_name, :on => :collection
   end
-  resources :equipment_pieces
+  resources :equipment_pieces, :except => [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

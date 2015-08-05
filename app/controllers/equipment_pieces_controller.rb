@@ -13,30 +13,9 @@ class EquipmentPiecesController < ApplicationController
     render locals: { equipment_piece: set_equipment_piece }
   end
 
-  # GET /equipment_pieces/new
-  def new
-    render locals: { equipment_piece: EquipmentPiece.new }
-  end
-
   # GET /equipment_pieces/1/edit
   def edit
     render locals: { equipment_piece: set_equipment_piece }
-  end
-
-  # POST /equipment_pieces
-  # POST /equipment_pieces.json
-  def create
-    equipment_piece = EquipmentPiece.new(EquipmentPieceForm.new(params).params)
-
-    respond_to do |format|
-      if equipment_piece.save
-        format.html { redirect_to equipment_piece, notice: 'Equipment piece was successfully created.' }
-        format.json { render :show, status: :created, location: equipment_piece }
-      else
-        format.html { render :new, locals: { equipment_piece: equipment_piece } }
-        format.json { render json: equipment_piece.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /equipment_pieces/1
