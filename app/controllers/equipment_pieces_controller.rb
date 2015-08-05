@@ -83,6 +83,7 @@ class EquipmentPiecesController < ApplicationController
   end
 
   def sort_params
+    params[:sort] ||= "equipment_types.name"
     view_context.sort_param(EquipmentPiece, params[:sort], params[:direction])
   end
 

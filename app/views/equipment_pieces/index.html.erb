@@ -1,25 +1,41 @@
+<%
+  needs_name_column = equipment_pieces.reduce(false) { |memo, equipment_piece| memo = memo || equipment_piece.name? }
+-%>
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Equipment Pieces</h1>
 
 <%= page_entries_info equipment_pieces %>
 
-<table class="fixed-table" style="width: 75%;">
+<table class="fixed-table" style="width: 95%;">
   <thead>
     <tr>
-      <th><%= sortable "equipment_pieces.name", EquipmentPiece, params, "Name" %></th>
-      <th><%= sortable "equipment_types.name", EquipmentPiece, params, "Type" %></th>
-      <th><%= sortable "equipment_categories.name", EquipmentPiece, params, "Category" %></th>
+      <th style="width: <% needs_name_column ? "15" : "20" %>%"><%= sortable "equipment_types.name", EquipmentPiece, params, "Item Type" %></th>
+      <% if needs_name_column %>
+        <th style="width: 20%"><%= sortable "equipment_pieces.name", EquipmentPiece, params, "Name" %></th>
+      <% end %>
+      <th>Modifiers</th>
+      <th style="width: 80px;"><%= sortable "equipment_categories.name", EquipmentPiece, params, "Category" %></th>
+      <th style="width: 100px;"><%= sortable "equipment_pieces.cost_cents", EquipmentPiece, params, "Value" %></th>
+      <th style="width: 100px;"><%= sortable "equipment_pieces.weight", EquipmentPiece, params, "Weight (lbs.)" %></th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
 
   <tbody>
     <% equipment_pieces.each do |equipment_piece| %>
+      <% name = '"' + equipment_piece.name + '"' if equipment_piece.name? -%>
+      <% modifiers_string = pretty_print_equipment_piece_modifiers equipment_piece -%>
+      <% modifiers_span = content_tag( :span, modifiers_string, :title => modifiers_string ) -%>
       <tr>
-        <td><%= link_to equipment_piece.name, equipment_piece %></td>
-        <td><%= equipment_piece.equipment_type %></td>
-        <td><%= equipment_piece.equipment_category %></td>
+        <td><%= link_to equipment_piece.equipment_type, equipment_piece, :title => equipment_piece.equipment_type %></td>
+        <% if needs_name_column %>
+          <td><%= content_tag :span, name, :title => name %></td>
+        <% end %>
+        <td><%= modifiers_span %></td>
+        <td><%= content_tag :span, equipment_piece.equipment_category, :title => equipment_piece.equipment_category %></td>
+        <td class="cash"><%= currency_symbol %><%= equipment_piece.cost %></td>
+        <td class="count"><%= equipment_piece.weight %></td>
         <%= render 'index_edit_destroy_links', target: equipment_piece %>
       </tr>
     <% end %>

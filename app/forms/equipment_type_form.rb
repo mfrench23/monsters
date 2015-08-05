@@ -9,15 +9,12 @@ class EquipmentTypeForm
   private
 
   def convert_new_equipment_category_name
-    # if :equipment_category_id is numeric, it's an id handled by the autocomplete gem, but
-    # if it's NOT numeric, it's something new that the user entered, and needs to be
-    # created as a new category.
-    unless @params[:equipment_category_id] == @params[:equipment_category_id].to_i.to_s
-      cat = EquipmentCategory.new(:name => @params[:equipment_category_id])
-      if cat.save
-        @params[:equipment_category_id] = cat.id
-      end
-    end
+    cat = EquipmentCategory.find_or_create_by(:name => @params[:equipment_category_id] )
+    set_equipment_category_id cat
+  end
+
+  def set_equipment_category_id equipment_category
+    @params[:equipment_category_id] = equipment_category.id unless equipment_category.nil?
   end
 
   def whitelisted_params(params)
