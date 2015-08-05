@@ -42,6 +42,25 @@
       </div>
     <% end %>
 
+    <% if creature.equipment_packages.any? %>
+      <div style="display: table-row;">
+        <div class="field-label show trait">Equipment<br>Packages</div>
+        <div class="trait">
+          <% creature.equipment_packages.each do |equipment_package| %>
+            <span class="equipment-package-name"><%= equipment_package.name %></span>
+            <% if equipment_package.notes? %>
+              <%= simple_format "(#{equipment_package.notes})", {:class => "longtext equipment-package-notes"}, wrapper_tag: "span" %>
+            <% end %>
+            <ul style="list-style-type: circle">
+            <% equipment_package.equipment_pieces.each do |equipment_piece| %>
+              <li><%= pretty_print_equipment_piece equipment_piece %></li>
+            <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
     <%= render 'notes_and_sources_show', m: creature %>
     <%= render 'show_sources', m: creature %>
 

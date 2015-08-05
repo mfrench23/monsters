@@ -1,0 +1,21 @@
+<li class="control-group nested-fields">
+  <div class="controls">
+    <%= f.text_field :name, :size => 10 %>
+  </div>
+
+  <div class="controls">
+    <%= f.text_area :notes, :size => "10x5" %>
+  </div>
+
+  <div class="controls">
+    <%= render 'expanding_fieldset', f: f,
+      id: "equipment_pieces", collection: :equipment_pieces,
+      partial: '/creatures/equipment_piece_fields', label: 'add equipment piece', header: nil,
+          header_list: [ :name, :type, :modifiers ],
+          freeform: nil %>
+  </div>
+
+  <div class="controls">
+    <%= link_to_remove_association "remove", f %>
+  </div>
+</li>

@@ -14,6 +14,8 @@ class Creature < AbstractEntity
   accepts_nested_attributes_for :traits, allow_destroy: true, reject_if: :all_blank
   has_many :parry_scores, dependent: :destroy
   accepts_nested_attributes_for :parry_scores, allow_destroy: true, reject_if: :all_blank
+  has_many :equipment_packages, dependent: :destroy
+  accepts_nested_attributes_for :equipment_packages, allow_destroy: true
 
   has_many :flattened_traits, -> { order_by_master_trait }, :dependent => :destroy, :class_name => "Trait"
 

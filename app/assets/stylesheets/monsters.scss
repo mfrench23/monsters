@@ -34,12 +34,6 @@ li.nested-fields {
   padding: 3px;
 }
 
-.add_fields {
-  font-size: 80%;  
-}
-.expanding-fieldset-container {
-  padding: 0px;
-}
 .trait {
   display: table-cell;
   vertical-align: top;
@@ -55,6 +49,9 @@ span.attack-label {
   margin: 0 5px 0 0;
 }
 span.attack-description {
+}
+.equipment-package-name {
+  font-style: italic;
 }
 li.attack-line {
   padding-left: 30px;

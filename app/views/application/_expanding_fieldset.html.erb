@@ -1,6 +1,7 @@
 <% list_array ||= f.object.send(collection) %>
+<% append_node_id = id + (Time.now.to_f * 1000).to_i.to_s %>
 <div class="field">
-  <span class="field-label"><%= header %></span>
+  <span class="field-label"><%= raw header %></span>
   <fieldset id=<%= id %> class="expanding-fieldset-container">
     <% if not freeform.blank? %>
       <div class="field">
@@ -8,7 +9,7 @@
         <%= f.text_area freeform %>
       </div>
     <% end %>
-    <ul class="nested-fields" style="display: <%= (list_array.any? ? "table-row" : "none" ) %>;">
+    <ul id="<%= append_node_id %>" class="nested-fields" style="display: <%= (list_array.any? ? "table-row" : "none" ) %>;">
       <% if (not header_list.nil?) %>
         <li class="control-group nested-fields nested-header">
           <% header_list.each do |header_item| %>
@@ -23,7 +24,7 @@
     <% if label.present? %>
       <%= link_to_add_association label, f, collection,
         'data-association-insertion-method' => "append",
-        'data-association-insertion-node' => "#" + id + " ul"
+        'data-association-insertion-node' => "#" + append_node_id
       %>
     <% end %>
   </fieldset>

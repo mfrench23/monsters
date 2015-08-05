@@ -95,6 +95,12 @@
     <%= f.text_area :gear %>
   </div>
 
+  <%= render 'expanding_fieldset', f: f,
+    id: "equipment_packages", collection: :equipment_packages,
+    partial: '/creatures/equipment_package_fields', label: 'add equipment package', header: "Equipment<br>Packages",
+    header_list: [ :name, :notes, :equipment_pieces ],
+    freeform: nil %>
+
   <%= render 'monsters/form_monster_descriptive_details', f: f -%>
 
   <div class="field">

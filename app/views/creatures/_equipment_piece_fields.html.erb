@@ -1,0 +1,20 @@
+<li class="control-group nested-fields">
+  <div class="controls">
+    <%= f.text_field :name, :size => 10 %>
+  </div>
+
+  <div class="controls">
+    <%= f.collection_select :equipment_type_id, EquipmentType.order_by_name, :id, :name, :include_blank => false %>
+  </div>
+
+  <div class="controls">
+    <%= render 'expanding_fieldset', f: f,
+      id: "equipment_modifiers", collection: :equipment_modifiers,
+      partial: 'equipment_modifier_fields', label: 'add modifier', header: nil,
+      header_list: [ :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod ], freeform: nil %>
+  </div>
+
+  <div class="controls">
+    <%= link_to_remove_association "remove", f %>
+  </div>
+</li>

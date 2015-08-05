@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730002238) do
+ActiveRecord::Schema.define(version: 20150804215320) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -129,6 +129,16 @@ ActiveRecord::Schema.define(version: 20150730002238) do
 
   add_index "equipment_modifiers", ["equipment_piece_id"], name: "index_equipment_modifiers_on_equipment_piece_id", using: :btree
 
+  create_table "equipment_packages", force: :cascade do |t|
+    t.integer  "creature_id", limit: 4
+    t.string   "name",        limit: 255
+    t.text     "notes",       limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "equipment_packages", ["creature_id"], name: "index_equipment_packages_on_creature_id", using: :btree
+
   create_table "equipment_pieces", force: :cascade do |t|
     t.integer  "equipment_type_id", limit: 4
     t.datetime "created_at",                                             null: false
@@ -138,9 +148,12 @@ ActiveRecord::Schema.define(version: 20150730002238) do
     t.integer  "base_cost_cents",   limit: 4
     t.decimal  "weight",                        precision: 10, scale: 4
     t.integer  "cost_cents",        limit: 4
+    t.integer  "owner_id",          limit: 4
+    t.string   "owner_type",        limit: 255
   end
 
   add_index "equipment_pieces", ["equipment_type_id"], name: "index_equipment_pieces_on_equipment_type_id", using: :btree
+  add_index "equipment_pieces", ["owner_type", "owner_id"], name: "index_equipment_pieces_on_owner_type_and_owner_id", using: :btree
 
   create_table "equipment_types", force: :cascade do |t|
     t.string   "name",                  limit: 255
@@ -324,6 +337,7 @@ ActiveRecord::Schema.define(version: 20150730002238) do
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "equipment_modifiers", "equipment_pieces"
+  add_foreign_key "equipment_packages", "creatures"
   add_foreign_key "equipment_pieces", "equipment_types"
   add_foreign_key "equipment_types", "equipment_categories"
   add_foreign_key "master_skills", "characteristics"

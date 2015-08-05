@@ -1,18 +1,18 @@
 <li class="control-group nested-fields">
   <div class="controls">
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :size => 10 %>
   </div>
   <div class="controls">
-    <%= f.text_field :base_cost_mod, :size => 10 %>
+    <%= f.text_field :base_cost_mod, :size => 8 %>
   </div>
   <div class="controls">
-    <%= f.text_field :base_weight_mod, :size => 10 %>
+    <%= f.text_field :base_weight_mod, :size => 8 %>
   </div>
   <div class="controls">
-    <%= f.text_field :cost_mod, :size => 10 %>
+    <%= f.text_field :cost_mod, :size => 8 %>
   </div>
   <div class="controls">
-    <%= f.text_field :weight_mod, :size => 10 %>
+    <%= f.text_field :weight_mod, :size => 8 %>
   </div>
   <div class="controls">
     <%= link_to_remove_association "remove", f %>

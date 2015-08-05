@@ -7,6 +7,7 @@ class EquipmentPiece < ActiveRecord::Base
   before_validation :calculate_dependant_values
 
   belongs_to :equipment_type
+  belongs_to :owner, polymorphic: true
 
   has_many :equipment_modifiers, dependent: :destroy, :after_add => :nil_dependant_values, :after_remove => :nil_dependant_values
   accepts_nested_attributes_for :equipment_modifiers, allow_destroy: true, :reject_if => lambda { |x| x['name'].blank? }
