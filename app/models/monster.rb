@@ -52,10 +52,7 @@ class Monster < AbstractEntity
   def deep_copy
     copy = dup
     reference_list_attributes.each { |reference| deep_copy_reference(reference, copy) }
-    copy.description, copy.notes = nil # not inherited from parent
-    copy.name = "Copy of #{name}" # aliases don't get copied, and name gets modified
-    copy.parent = self
-    copy
+    transform_into_variant_of copy
   end
 
   def ancestor_accumulate_field(field)
@@ -82,6 +79,13 @@ class Monster < AbstractEntity
   end
 
   private
+
+  def transform_into_variant_of(copy)
+    copy.description = copy.notes = nil # not inherited from parent
+    copy.name = "Copy of #{name}" # aliases don't get copied, and name gets modified
+    copy.parent = self
+    copy
+  end
 
   def reference_list_attributes
     [:page_references, :attacks, :movement_rates, :characteristic_monsters, :campaign_contents, :illustrations ]

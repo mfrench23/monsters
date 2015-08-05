@@ -26,10 +26,7 @@ class MasterTrait < AbstractEntity
 
   def grant_meta_trait_members(trait)
     traits_in_meta_trait.each do |granted|
-      new_trait = granted.deep_copy
-      new_trait.trait_owner = trait
-      new_trait.parent = trait
-      new_trait.creature_id = trait.creature_id
+      new_trait = granted.meta_trait_copy(trait)
       new_trait.save
     end
   end

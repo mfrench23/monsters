@@ -30,6 +30,14 @@ class Trait < AbstractEntity
     copy
   end
 
+  def meta_trait_copy(trait)
+    new_trait = deep_copy
+    new_trait.trait_owner = trait
+    new_trait.parent = trait
+    new_trait.creature_id = trait.creature_id
+    new_trait
+  end
+
   private
 
   def remove_granted_traits
