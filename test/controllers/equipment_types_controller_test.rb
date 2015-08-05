@@ -58,6 +58,11 @@ class EquipmentTypesControllerTest < ActionController::TestCase
     assert_redirected_to @equipment_type
   end
 
+  test "should fail to update" do
+    patch :update, id: @equipment_type, equipment_type: { base_cost_cents: nil, base_weight: nil, equipment_category_id: nil, name: nil }
+    assert_response 200
+  end
+
   test "should destroy equipment_type" do
     assert_difference('EquipmentType.count', -1) do
       delete :destroy, id: @equipment_type

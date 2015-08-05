@@ -28,6 +28,14 @@ class MasterTraitsControllerTest < ActionController::TestCase
     assert_redirected_to master_trait
   end
 
+  test "should fail to create" do
+    assert_no_difference('MasterTrait.count') do
+      post :create, master_trait: { name: nil }
+    end
+
+    assert_response 200
+  end
+
   test "should fail to create master_trait" do
     assert_no_difference('MasterTrait.count') do
       post :create, master_trait: { name: nil, notes: @master_trait.notes }
@@ -58,6 +66,14 @@ class MasterTraitsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to @master_trait
+  end
+
+  test "should fail to merge a master_trait into itself" do
+    assert_no_difference('MasterTrait.count') do
+      post :merge_into, { merge_into_trait_id: @master_trait.id, id: @master_trait.id }
+    end
+
+    assert_response :ok
   end
 
   test "should update master_trait" do

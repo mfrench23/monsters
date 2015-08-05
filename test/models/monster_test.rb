@@ -45,4 +45,8 @@ class MonsterTest < ActiveSupport::TestCase
     assert_equal "A\n\nB\n\nC", three.expanded_field(:notes)
     assert_equal "A", @one.expanded_field(:notes)
   end
+
+  test "can build campaign_content" do
+    assert_not_nil @one.build_campaign_content
+  end
 end

@@ -15,6 +15,7 @@ class MasterTrait < AbstractEntity
 
   # Given another MasterTrait, take over the traits it is responsible for, and delete it.
   def merge(dupe)
+    return false if self == dupe
     dupe.traits.update_all(master_trait_id: self.id)
     dupe.destroy
   end

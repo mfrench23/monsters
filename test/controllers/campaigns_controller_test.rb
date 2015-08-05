@@ -27,6 +27,14 @@ class CampaignsControllerTest < ActionController::TestCase
     assert_redirected_to campaign
   end
 
+  test "should fail to create" do
+    assert_no_difference('Campaign.count') do
+      post :create, campaign: { name: nil }
+    end
+
+    assert_response 200
+  end
+
   test "should show campaign" do
     get :show, id: @campaign
     assert_response :success
@@ -40,6 +48,11 @@ class CampaignsControllerTest < ActionController::TestCase
   test "should update campaign" do
     patch :update, id: @campaign, campaign: { name: @campaign.name + " Renamed" }
     assert_redirected_to @campaign
+  end
+
+  test "should fail to update" do
+    patch :update, id: @campaign, campaign: { name: nil }
+    assert_response 200
   end
 
   test "should destroy campaign" do

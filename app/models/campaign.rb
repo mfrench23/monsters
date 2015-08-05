@@ -7,4 +7,6 @@ class Campaign < ActiveRecord::Base
 
   scope :has_contents, -> (content_type) { joins(:campaign_contents).where("campaign_contents.content_type = ?", "#{content_type}").group("campaigns.id").having("count(campaign_contents.content_id) > ?", 0) }
   scope :order_by_name, -> { order(:name) }
+
+  validates :name, presence: true
 end

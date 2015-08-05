@@ -10,7 +10,6 @@ class CampaignContent < ActiveRecord::Base
   scope :monsters, -> { where("campaign_contents.content_type = ?", Monster.to_s)}
 
   def deep_copy
-    copy = dup
-    copy
+    dup
   end
 end

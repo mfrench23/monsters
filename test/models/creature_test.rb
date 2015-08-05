@@ -98,5 +98,6 @@ class CreatureTest < ActiveSupport::TestCase
     assert_equal "Brawling @DX+1=11", one_loaded.skills.first.to_s
     assert_equal "Brawling", one_loaded.parry_scores.first.weapon
     assert_nil one_loaded.traits.first.level
+    assert_equal "Copy of " + one_loaded.name, copy.to_s
   end
 end
