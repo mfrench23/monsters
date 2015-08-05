@@ -1,4 +1,5 @@
 class MasterSkill < AbstractEntity
+  include Filterable
   include PageReferenceable
 
   belongs_to :characteristic
@@ -7,6 +8,7 @@ class MasterSkill < AbstractEntity
 
   validates :name, :characteristic, presence: true
 
+  scope :starting_with, -> (name) { where("upper(master_skills.name) like ?", "#{name}%")}
   scope :order_by_name, -> { order(:name) }
 
   def to_s

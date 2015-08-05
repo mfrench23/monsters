@@ -3,7 +3,10 @@ class MasterSkillsController < ApplicationController
   # GET /master_skills.json
   def index
     render locals: {
-      master_skills: MasterSkill.includes(:characteristic).order(view_context.sort_param(MasterSkill, params[:sort], params[:direction])).page( params[:page] )
+      master_skills: filtered_sorted_paginated_results,
+      starts_with_tags: first_characters_in_results(filtered_results(params)),
+      campaign_name: name_of_filtering_campaign,
+      filter_params: filter_params(params)
     }
   end
 
@@ -65,6 +68,22 @@ class MasterSkillsController < ApplicationController
   end
 
   private
+
+  def filtered_sorted_paginated_results
+    filtered_sorted_results(params).page( params[:page] )
+  end
+
+  def filtered_sorted_results(params)
+    filtered_results(params).includes(:characteristic).order(view_context.sort_param(MasterSkill, params[:sort], params[:direction]))
+  end
+
+  def filtered_results(params)
+    MasterSkill.filter(filter_params(params))
+  end
+
+  def filter_params(params)
+    params.slice(:starting_with)
+  end
 
   def set_master_skill
     MasterSkill.find(params[:id])

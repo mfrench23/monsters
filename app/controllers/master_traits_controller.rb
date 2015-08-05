@@ -4,7 +4,10 @@ class MasterTraitsController < ApplicationController
   def index
     params[:sort] ||= "master_traits.name, master_traits.notes"
     render locals: {
-      master_traits: MasterTrait.order(view_context.sort_param(MasterTrait, params[:sort], params[:direction])).page( params[:page] )
+      master_traits: filtered_results(params).order(view_context.sort_param(MasterTrait, params[:sort], params[:direction])).page( params[:page] ),
+      filter_params: filter_params(params),
+      starts_with_tags: first_characters_in_results(filtered_results(params)),
+      campaign_name: name_of_filtering_campaign
     }
   end
 
@@ -93,5 +96,13 @@ class MasterTraitsController < ApplicationController
 
   def set_master_trait
     MasterTrait.find(params[:id])
+  end
+
+  def filtered_results(params)
+    MasterTrait.filter(filter_params(params))
+  end
+
+  def filter_params(params)
+    params.slice(:starting_with)
   end
 end

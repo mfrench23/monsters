@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Master Skills</h1>
+<h2>
+  <%= render "display_filter_params", filter_params: filter_params, campaign_name: campaign_name -%>
+</h2>
 
 <%= page_entries_info master_skills %>
 
@@ -31,6 +34,7 @@
 </table>
 
 <br>
+<%= render "filter_by_starting_letter", letters: starts_with_tags, filter_params: filter_params %>
 
 <%= paginate master_skills %>
 <%= link_to 'New Master skill', new_master_skill_path %>

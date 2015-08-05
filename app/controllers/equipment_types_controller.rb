@@ -8,8 +8,8 @@ class EquipmentTypesController < ApplicationController
       equipment_types: filtered_sorted_paginated_results,
       starts_with_tags: first_characters_in_results(filtered_results(params)),
       campaigns: all_campaigns_with_equipment_types.order_by_name,
-      filter_params: filter_params(params),
-      campaign_name: name_of_filtering_campaign
+      campaign_name: name_of_filtering_campaign,
+      filter_params: filter_params(params)
     }
   end
 

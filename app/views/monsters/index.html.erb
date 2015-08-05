@@ -2,15 +2,7 @@
 
 <h1>Listing Monsters</h1>
 <h2>
-  <% filter_params.each do |filter| %>
-    <%= "#{filter[0].titleize.downcase}" %>
-    <% display_param = (filter[0].to_s =~ /in_campaign/ ? campaign_name : filter[1]) %>
-    <% if filter_params.count > 1 %>
-      <%= link_to "'#{display_param}'", monsters_path(filter[0] => filter[1]), :class => "quiet" %>
-    <% else %>
-      <%= "'#{display_param}'" %>
-    <% end %>
-  <% end %>
+  <%= render "display_filter_params", filter_params: filter_params, campaign_name: campaign_name -%>
 </h2>
 <% variant_on_page = monsters.any? { |m| (! m.root? ) } %>
 <% alias_on_page = monsters.any? { |m| m.monster_names.any? } %>
@@ -56,18 +48,7 @@
 </table>
 
 <br>
-<% unless params[:starting_with ] %>
-  <div class="field">
-    <span class="filter-label">Filter by initial</span>
-    <table class="fixed-table boxed-list">
-      <% starts_with_tags.each_with_index do |starting_character, index| %>
-        <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :number_of_columns => 30, :total_count => monsters.count } do %>
-          <%= link_to "#{starting_character}", monsters_path(filter_params.merge(:starting_with => "#{starting_character}")) %>
-        <% end %>
-      <% end %>
-    </table>
-  </div>
-<% end %>
+<%= render "filter_by_starting_letter", letters: starts_with_tags, filter_params: filter_params %>
 
 <div class="field">
   <span class="filter-label">Filter by campaign</span>

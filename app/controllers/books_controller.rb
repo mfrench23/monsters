@@ -3,7 +3,10 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     render locals: {
-      books: Book.order(view_context.sort_param(Book, params[:sort], params[:direction])).page( params[:page] )
+      books: filtered_sorted_paginated_results(params),
+      starts_with_tags: first_characters_in_results(filtered_results(params)),
+      campaign_name: name_of_filtering_campaign,
+      filter_params: filter_params(params)
     }
   end
 
@@ -65,12 +68,27 @@ class BooksController < ApplicationController
   end
 
   private
-    def set_book
-      Book.find(params[:id])
-    end
+  def filtered_sorted_paginated_results(params)
+    filtered_sorted_results(params).page( params[:page] )
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def book_params
-      params.require(:book).permit(:name, :abbreviation)
-    end
+  def set_book
+    Book.find(params[:id])
+  end
+
+  def book_params
+    params.require(:book).permit(:name, :abbreviation)
+  end
+
+  def filtered_sorted_results(params)
+    filtered_results(params).order(view_context.sort_param(Book, params[:sort], params[:direction]))
+  end
+
+  def filtered_results(params)
+    Book.filter(filter_params(params))
+  end
+
+  def filter_params(params)
+    params.slice(:starting_with)
+  end
 end

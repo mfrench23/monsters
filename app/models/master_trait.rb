@@ -1,4 +1,5 @@
 class MasterTrait < AbstractEntity
+  include Filterable
   include PageReferenceable
 
   has_many :traits, dependent: :destroy
@@ -11,6 +12,7 @@ class MasterTrait < AbstractEntity
   before_validation :nil_blank_attributes
   after_save :update_granted_traits
 
+  scope :starting_with, -> (name) { where("upper(master_traits.name) like ?", "#{name}%")}
   scope :order_by_name, -> { order(:name) }
 
   # Given another MasterTrait, take over the traits it is responsible for, and delete it.
