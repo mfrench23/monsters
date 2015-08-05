@@ -50,7 +50,8 @@ class EquipmentPiecesController < ApplicationController
   end
 
   def filtered_sorted_results
-    filtered_results(params).includes(:equipment_type, :equipment_category).order(sort_params)
+    params[:sort] ||= "equipment_types.name"
+    filtered_results(params).includes(:equipment_type, :equipment_category).order(sort_params(EquipmentPiece))
   end
 
   def filtered_results(params)
@@ -59,11 +60,6 @@ class EquipmentPiecesController < ApplicationController
 
   def filter_params(params)
     params.slice(:created_on, :updated_on)
-  end
-
-  def sort_params
-    params[:sort] ||= "equipment_types.name"
-    view_context.sort_param(EquipmentPiece, params[:sort], params[:direction])
   end
 
   def set_equipment_piece
