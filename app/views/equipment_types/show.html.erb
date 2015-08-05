@@ -25,6 +25,18 @@
   <%= equipment_type.notes %>
 </p>
 
+<% owner_list = EquipmentPiece.where(:equipment_type => equipment_type ).select("distinct owner_type, owner_id") %>
+<% if owner_list.count > 0 %>
+  <p>
+    <strong>Examples Owned By:</strong>
+    <ul>
+      <% owner_list.map{ |equipment_piece| equipment_piece.final_owner }.reject { |x| x.nil? }.uniq.each do |final_owner| %>
+        <li><%= link_to final_owner, final_owner %></li>
+      <% end %>
+    </ul>
+  </p>
+<% end %>
+
 <p>
   <strong>Campaigns:</strong>
   <ul>
