@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806003422) do
+ActiveRecord::Schema.define(version: 20150806012615) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -165,6 +165,7 @@ ActiveRecord::Schema.define(version: 20150806003422) do
   end
 
   add_index "equipment_types", ["equipment_category_id"], name: "index_equipment_types_on_equipment_category_id", using: :btree
+  add_index "equipment_types", ["name"], name: "index_equipment_types_on_name", unique: true, using: :btree
 
   create_table "illustrations", force: :cascade do |t|
     t.integer  "illustratable_id",   limit: 4
@@ -199,7 +200,7 @@ ActiveRecord::Schema.define(version: 20150806003422) do
   end
 
   add_index "master_skills", ["characteristic_id"], name: "index_master_skills_on_characteristic_id", using: :btree
-  add_index "master_skills", ["name"], name: "index_master_skills_on_name", using: :btree
+  add_index "master_skills", ["name"], name: "index_master_skills_on_name", unique: true, using: :btree
 
   create_table "master_traits", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
@@ -246,7 +247,7 @@ ActiveRecord::Schema.define(version: 20150806003422) do
   add_index "monsters", ["actable_type", "actable_id"], name: "index_monsters_on_actable_type_and_actable_id", unique: true, using: :btree
   add_index "monsters", ["ancestry"], name: "index_monsters_on_ancestry", using: :btree
   add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree
-  add_index "monsters", ["name"], name: "index_monsters_on_name", using: :btree
+  add_index "monsters", ["name"], name: "index_monsters_on_name", unique: true, using: :btree
 
   create_table "move_types", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false

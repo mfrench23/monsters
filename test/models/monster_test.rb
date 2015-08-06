@@ -16,7 +16,8 @@ class MonsterTest < ActiveSupport::TestCase
   end
 
   test "to_s" do
-    assert_equal @one.to_s, "Tim the Test Monster"
+    m = @one.to_s.match( /^(Tim the Test Monster)/ )
+    assert_equal "Tim the Test Monster", m[1]
   end
 
   test "Combat Effectiveness Rating calculation" do

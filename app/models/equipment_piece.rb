@@ -22,7 +22,6 @@ class EquipmentPiece < AbstractEntity
 
   scope :created_on, -> (date) { where("date(equipment_pieces.created_at) = ?", "#{date}")}
   scope :updated_on, -> (date) { where("date(equipment_pieces.updated_at) = ?", "#{date}")}
-  scope :order_by_name, -> { order(:name) }
 
   validates :equipment_type, presence: true
 

@@ -1,8 +1,9 @@
 class Monster < AbstractEntity
-  include Filterable
-  include PageReferenceable
-  include Illustratable
   include CampaignContained
+  include Filterable
+  include Illustratable
+  include Nameable
+  include PageReferenceable
 
   before_validation :nil_blank_attributes
 
@@ -23,13 +24,10 @@ class Monster < AbstractEntity
   belongs_to :monster_class, counter_cache: true
   delegate :name, to: :monster_class, prefix: true
 
-  validates :name, :monster_class_id, presence: true
+  validates :monster_class_id, presence: true
 
-  scope :starting_with, -> (name) { where("upper(monsters.name) like ?", "#{name}%")}
   scope :created_on, -> (date) { where("date(monsters.created_at) = ?", "#{date}")}
   scope :updated_on, -> (date) { where("date(monsters.updated_at) = ?", "#{date}")}
-
-  scope :order_by_name, -> { order(:name) }
 
   def characteristic_monster(characteristic_name)
     characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.try(:first) || CharacteristicMonster.get_instance(characteristic_name, self)
