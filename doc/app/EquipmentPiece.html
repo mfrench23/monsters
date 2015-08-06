@@ -58,22 +58,11 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Base
+  <p class="link"><a href="AbstractEntity.html">AbstractEntity</a>
   
 </div>
 
-    <div id="includes-section" class="nav-section">
-  <h3>Included Modules</h3>
-
-  <ul class="link-list">
-  
-  
-    <li><a class="include" href="Filterable.html">Filterable</a>
-  
-  
-  </ul>
-</div>
-
+    
     
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
@@ -86,6 +75,8 @@
     <li ><a href="#method-i-base_weight">#base_weight</a>
     
     <li ><a href="#method-i-cost_cents">#cost_cents</a>
+    
+    <li ><a href="#method-i-deep_copy">#deep_copy</a>
     
     <li ><a href="#method-i-final_owner">#final_owner</a>
     
@@ -148,7 +139,7 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="base_cost_cents-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">base_cost_cents</span>
   <span class="ruby-identifier">calculate_dependant_value</span>(<span class="ruby-value">:base_cost_cents</span>, <span class="ruby-value">:calc_base_cost</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -181,7 +172,7 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="base_weight-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">base_weight</span>
   <span class="ruby-identifier">calculate_dependant_value</span>(<span class="ruby-value">:base_weight</span>, <span class="ruby-value">:calc_base_weight</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -214,9 +205,44 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="cost_cents-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cost_cents</span>
   <span class="ruby-identifier">calculate_dependant_value</span>(<span class="ruby-value">:cost_cents</span>, <span class="ruby-value">:calc_cost</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-deep_copy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">deep_copy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="deep_copy-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
+  <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
+  <span class="ruby-identifier">reference_list_attributes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">reference</span><span class="ruby-operator">|</span> <span class="ruby-identifier">deep_copy_reference</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">copy</span>) }
+  <span class="ruby-identifier">copy</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -247,7 +273,7 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="final_owner-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">final_owner</span>
   <span class="ruby-identifier">owner</span>.<span class="ruby-identifier">final_owner</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">owner</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -280,7 +306,7 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="weight-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">weight</span>
   <span class="ruby-identifier">calculate_dependant_value</span>(<span class="ruby-value">:weight</span>, <span class="ruby-value">:calc_weight</span>)
 <span class="ruby-keyword">end</span></pre>

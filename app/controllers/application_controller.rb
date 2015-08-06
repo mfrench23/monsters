@@ -3,15 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  private
+
   def javascript_variables(variables)
     @javascript_variables ||= {}
     @javascript_variables.merge!(variables)
-  end
-
-  private
-
-  def sort_params(klass)
-    view_context.sort_param(klass, params[:sort], params[:direction])
   end
 
   def first_characters_in_results(results)

@@ -1,5 +1,4 @@
 class MasterSkill < AbstractEntity
-  include Filterable
   include Nameable
   include PageReferenceable
 

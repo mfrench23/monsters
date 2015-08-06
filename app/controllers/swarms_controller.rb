@@ -1,13 +1,6 @@
-class SwarmsController < ApplicationController
-  def show
-    render locals: { swarm: set_monster }
-  end
-
-  def new
-    sw = Swarm.new
-    sw.movement_rates.build
-    sw.attacks.build
-    render locals: { swarm: sw, campaigns: all_campaigns }
+class SwarmsController < ModelBasedController
+  def index
+    redirect_to monsters_url
   end
 
   def variant
@@ -15,52 +8,13 @@ class SwarmsController < ApplicationController
     render :new, locals: { swarm: swarm, campaigns: all_campaigns }
   end
 
-  def edit
-    render locals: { swarm: set_monster, campaigns: all_campaigns }
-  end
-
-  def create
-    form = SwarmForm.new(params)
-    swarm = Swarm.new(form.params)
-    swarm.save
-
-    respond_to do |format|
-      if swarm.errors.size() == 0
-	format.html { redirect_to swarm, notice: 'Monster was successfully created.' }
-	format.json { render :show, status: :created, location: swarm }
-      else
-	format.html { render :new, locals: { swarm: swarm, campaigns: all_campaigns } }
-	format.json { render json: swarm.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    form = SwarmForm.new(params)
-    swarm = Swarm.find(params[:id])
-    swarm.update(form.params)
-    respond_to do |format|
-      if swarm.errors.size() == 0
-	format.html { redirect_to swarm, notice: 'Monster was successfully updated.' }
-	format.json { render :show, status: :ok, location: swarm }
-      else
-	format.html { render :edit, locals: { swarm: swarm, campaigns: all_campaigns } }
-	format.json { render json: swarm.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    set_monster.destroy
-    respond_to do |format|
-      format.html { redirect_to monsters_url, notice: 'Monster was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
 
-  def set_monster
-    Swarm.find(params[:id])
+  def whitelisted_entity_params
+    SwarmForm.new(params).params
+  end
+
+  def additional_form_locals
+    {campaigns: all_campaigns}
   end
 end

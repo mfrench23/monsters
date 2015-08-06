@@ -1,5 +1,7 @@
 # Encapsulates behavior common to all entities in the application
 class AbstractEntity < ActiveRecord::Base
+  include Filterable
+
   self.abstract_class = true
 
   def deep_copy_reference(field, copy)

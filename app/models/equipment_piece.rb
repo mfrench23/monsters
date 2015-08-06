@@ -2,8 +2,6 @@
 # broadsword with the gold wire on the hilt" or "the
 # enchanted broadsword behind the door in Room #37".
 class EquipmentPiece < AbstractEntity
-  include Filterable
-
   before_validation :calculate_dependant_values
 
   belongs_to :equipment_type

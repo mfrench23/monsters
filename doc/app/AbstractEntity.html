@@ -62,7 +62,18 @@
   
 </div>
 
-    
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Filterable.html">Filterable</a>
+  
+  
+  </ul>
+</div>
+
     
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
@@ -127,7 +138,7 @@
 
           
           <div class="method-source-code" id="deep_copy_reference-source">
-            <pre><span class="ruby-comment"># File app/models/abstract_entity.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/models/abstract_entity.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy_reference</span>(<span class="ruby-identifier">field</span>, <span class="ruby-identifier">copy</span>)
   <span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">deep_copy</span>

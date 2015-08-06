@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   root 'welcome#index'
 
-  # more complicated routing due to multiple table inheritance
+  # multiple table inheritance: monsters -> creatures and swarms
   resources :monsters, :only => [:index]
-  resources :creatures, :except => [:index] do
+  resources :creatures do
     member do
       get 'variant'
     end
   end
-  resources :swarms, :except => [:index] do
+  resources :swarms do
     member do
       get 'variant'
     end
@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   resources :master_traits do
     member do
       get 'merge_into'
+      post 'do_merge_into'
     end
-    post 'merge_into'
   end
   resources :master_skills
   resources :monster_classes

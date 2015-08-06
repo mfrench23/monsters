@@ -1,5 +1,4 @@
 class Book < AbstractEntity
-  include Filterable
   include Nameable
 
   has_many :page_references, dependent: :destroy

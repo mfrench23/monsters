@@ -5,6 +5,11 @@ class SwarmsControllerTest < ActionController::TestCase
     @swarm = FactoryGirl.create(:swarm)
   end
 
+  test "index should redirect to monsters controller" do
+    get :index
+    assert_redirected_to monsters_url
+  end
+
   test "should get new" do
     get :new
     assert_response :success
@@ -63,6 +68,6 @@ class SwarmsControllerTest < ActionController::TestCase
       delete :destroy, id: @swarm
     end
 
-    assert_redirected_to monsters_path
+    assert_redirected_to swarms_path
   end
 end

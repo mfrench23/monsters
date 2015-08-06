@@ -131,7 +131,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_modifier/modifier_value_object.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier/modifier_value_object.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">plus_or_minus</span>, <span class="ruby-identifier">num</span>, <span class="ruby-identifier">is_money</span> )
   <span class="ruby-ivar">@is_money</span> = <span class="ruby-identifier">is_money</span>
   <span class="ruby-ivar">@sign</span> = ( <span class="ruby-identifier">plus_or_minus</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;-&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-value">-1</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span> )
@@ -174,7 +174,7 @@
 
           
           <div class="method-source-code" id="addition-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_modifier/modifier_value_object.rb, line 80</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier/modifier_value_object.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">addition</span>(<span class="ruby-identifier">base</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">base</span> <span class="ruby-operator">*</span> <span class="ruby-ivar">@val</span> <span class="ruby-operator">*</span> <span class="ruby-ivar">@sign</span>
 <span class="ruby-keyword">end</span></pre>
@@ -207,7 +207,7 @@
 
           
           <div class="method-source-code" id="factor-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_modifier/modifier_value_object.rb, line 83</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier/modifier_value_object.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">factor</span>
   <span class="ruby-keyword">return</span> <span class="ruby-value">1</span>
 <span class="ruby-keyword">end</span></pre>
@@ -240,7 +240,7 @@
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_modifier/modifier_value_object.rb, line 86</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier/modifier_value_object.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   (<span class="ruby-ivar">@sign</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;+&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;-&quot;</span>) <span class="ruby-operator">+</span> (<span class="ruby-string">&quot;%g&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@val</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot; CF&quot;</span>
 <span class="ruby-keyword">end</span></pre>

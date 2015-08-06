@@ -1,8 +1,6 @@
 <%
   needs_name_column = equipment_pieces.reduce(false) { |memo, equipment_piece| memo = memo || equipment_piece.name? }
 -%>
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Equipment Pieces</h1>
 
 <%= page_entries_info equipment_pieces %>

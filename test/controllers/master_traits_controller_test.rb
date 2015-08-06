@@ -62,7 +62,7 @@ class MasterTraitsControllerTest < ActionController::TestCase
   test "should merge duplicate into master_trait" do
     dupe = FactoryGirl.create(:master_trait, name: 'Copy of ' + @master_trait.name)
     assert_difference('MasterTrait.count', -1) do
-      post :merge_into, { merge_into_trait_id: @master_trait.id, id: dupe.id }
+      post :do_merge_into, { merge_into_trait_id: @master_trait.id, id: dupe.id }
     end
 
     assert_redirected_to @master_trait
@@ -70,7 +70,7 @@ class MasterTraitsControllerTest < ActionController::TestCase
 
   test "should fail to merge a master_trait into itself" do
     assert_no_difference('MasterTrait.count') do
-      post :merge_into, { merge_into_trait_id: @master_trait.id, id: @master_trait.id }
+      post :do_merge_into, { merge_into_trait_id: @master_trait.id, id: @master_trait.id }
     end
 
     assert_response :ok

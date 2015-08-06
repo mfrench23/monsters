@@ -58,7 +58,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Base
+  <p class="link"><a href="AbstractEntity.html">AbstractEntity</a>
   
 </div>
 
@@ -75,6 +75,8 @@
     <li ><a href="#method-i-base_weight_mod-3D">#base_weight_mod=</a>
     
     <li ><a href="#method-i-cost_mod-3D">#cost_mod=</a>
+    
+    <li ><a href="#method-i-deep_copy">#deep_copy</a>
     
     <li ><a href="#method-i-modifier_value_object">#modifier_value_object</a>
     
@@ -207,6 +209,39 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cost_mod=</span>(<span class="ruby-identifier">value</span>)
   <span class="ruby-ivar">@cost_modifier_value_object</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-identifier">write_attribute</span>(<span class="ruby-value">:cost_mod</span>, <span class="ruby-identifier">value</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-deep_copy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">deep_copy</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="deep_copy-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
+  <span class="ruby-identifier">dup</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

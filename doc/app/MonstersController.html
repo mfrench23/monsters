@@ -58,23 +58,13 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  <p class="link"><a href="ModelBasedController.html">ModelBasedController</a>
   
 </div>
 
     
     
-    <!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-index">#index</a>
-    
-  </ul>
-</div>
-
   </div>
 </nav>
 
@@ -100,53 +90,6 @@
     
 
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-    
-      <div id="method-i-index" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">index</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/monsters_controller.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> {
-    <span class="ruby-identifier">monsters</span><span class="ruby-operator">:</span> <span class="ruby-identifier">filtered_sorted_paginated_results</span>,
-    <span class="ruby-identifier">filter_params</span><span class="ruby-operator">:</span> <span class="ruby-identifier">filter_params</span>(<span class="ruby-identifier">params</span>),
-    <span class="ruby-identifier">starts_with_tags</span><span class="ruby-operator">:</span> <span class="ruby-identifier">first_characters_in_results</span>(<span class="ruby-identifier">filtered_results</span>(<span class="ruby-identifier">params</span>)),
-    <span class="ruby-identifier">campaigns</span><span class="ruby-operator">:</span> <span class="ruby-identifier">all_campaigns_with_monsters</span>.<span class="ruby-identifier">order_by_name</span>,
-    <span class="ruby-identifier">campaign_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">name_of_filtering_campaign</span>
-  }
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
-  
   </section>
 </main>
 

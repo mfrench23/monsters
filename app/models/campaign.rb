@@ -1,4 +1,4 @@
-class Campaign < ActiveRecord::Base
+class Campaign < AbstractEntity
   include Nameable
 
   has_many :campaign_contents, dependent: :destroy, inverse_of: :campaign

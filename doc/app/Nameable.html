@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class Trait - Rails Application Documentation</title>
+<title>module Nameable - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -18,7 +18,7 @@
 
 
 
-<body id="top" role="document" class="class">
+<body id="top" role="document" class="module">
 <nav role="navigation">
   <div id="project-navigation">
     <div id="home-section" role="region" title="Quick navigation" class="nav-section">
@@ -54,25 +54,27 @@
 
   <div id="class-metadata">
     
-    <div id="parent-class-section" class="nav-section">
-  <h3>Parent</h3>
+    
+    
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
 
+  <ul class="link-list">
+    
   
-  <p class="link"><a href="AbstractEntity.html">AbstractEntity</a>
+    <li><span class="extend">ActiveSupport::Concern</span>
   
+  
+  </ul>
 </div>
 
-    
-    
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-deep_copy">#deep_copy</a>
-    
-    <li ><a href="#method-i-meta_trait_copy">#meta_trait_copy</a>
+    <li ><a href="#method-i-to_s">#to_s</a>
     
   </ul>
 </div>
@@ -80,9 +82,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Trait">
-  <h1 id="class-Trait" class="class">
-    class Trait
+<main role="main" aria-labelledby="module-Nameable">
+  <h1 id="module-Nameable" class="module">
+    module Nameable
   </h1>
 
   <section class="description">
@@ -108,10 +110,10 @@
        </header>
 
     
-      <div id="method-i-deep_copy" class="method-detail ">
+      <div id="method-i-to_s" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">deep_copy</span><span
+          <span class="method-name">to_s</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -126,48 +128,10 @@
           
 
           
-          <div class="method-source-code" id="deep_copy-source">
-            <pre><span class="ruby-comment"># File app/models/trait.rb, line 28</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
-  <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
-  <span class="ruby-identifier">copy</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-meta_trait_copy" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">meta_trait_copy</span><span
-            class="method-args">(trait)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="meta_trait_copy-source">
-            <pre><span class="ruby-comment"># File app/models/trait.rb, line 33</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">meta_trait_copy</span>(<span class="ruby-identifier">trait</span>)
-  <span class="ruby-identifier">new_trait</span> = <span class="ruby-identifier">deep_copy</span>
-  <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">trait_owner</span> = <span class="ruby-identifier">trait</span>
-  <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">parent</span> = <span class="ruby-identifier">trait</span>
-  <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">creature_id</span> = <span class="ruby-identifier">trait</span>.<span class="ruby-identifier">creature_id</span>
-  <span class="ruby-identifier">new_trait</span>
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File app/models/concerns/nameable.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -1,7 +1,6 @@
 # An abstract kind of equipment, like "broadsword" or "backpack".
 class EquipmentType < AbstractEntity
   include CampaignContained
-  include Filterable
   include Nameable
 
   belongs_to :equipment_category

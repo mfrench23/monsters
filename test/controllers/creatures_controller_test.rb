@@ -8,6 +8,11 @@ class CreaturesControllerTest < ActionController::TestCase
     @creature.save
   end
 
+  test "index should redirect to monsters controller" do
+    get :index
+    assert_redirected_to monsters_url
+  end
+
   test "should get new" do
     get :new
     assert_response :success
@@ -66,6 +71,6 @@ class CreaturesControllerTest < ActionController::TestCase
       delete :destroy, id: @creature
     end
 
-    assert_redirected_to monsters_path
+    assert_redirected_to creatures_path
   end
 end

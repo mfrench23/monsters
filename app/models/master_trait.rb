@@ -1,5 +1,4 @@
 class MasterTrait < AbstractEntity
-  include Filterable
   include Nameable
   include PageReferenceable
 

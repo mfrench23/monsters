@@ -1,10 +1,10 @@
 class Monster < AbstractEntity
   include CampaignContained
-  include Filterable
   include Illustratable
   include Nameable
   include PageReferenceable
 
+  after_initialize :populate_new_monster
   before_validation :nil_blank_attributes
 
   actable touch: true # can be a "superclass" for MTI - gem active_record-acts_as - and gets updated_at along with its child
@@ -92,6 +92,13 @@ class Monster < AbstractEntity
   def nil_blank_attributes
     [:description, :notes, :ancestry].each do |attr|
       self[attr] = nil if self[attr].blank?
+    end
+  end
+
+  def populate_new_monster
+    if self.new_record?
+      movement_rates.build if movement_rates.empty?
+      attacks.build if attacks.empty?
     end
   end
 end

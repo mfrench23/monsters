@@ -68,6 +68,10 @@
   <ul class="link-list">
   
   
+    <li><a class="include" href="Nameable.html">Nameable</a>
+  
+  
+  
     <li><a class="include" href="PageReferenceable.html">PageReferenceable</a>
   
   
@@ -140,13 +144,10 @@
 
           
           <div class="method-source-code" id="grant_meta_trait_members-source">
-            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">grant_meta_trait_members</span>(<span class="ruby-identifier">trait</span>)
   <span class="ruby-identifier">traits_in_meta_trait</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">granted</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">new_trait</span> = <span class="ruby-identifier">granted</span>.<span class="ruby-identifier">deep_copy</span>
-    <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">trait_owner</span> = <span class="ruby-identifier">trait</span>
-    <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">parent</span> = <span class="ruby-identifier">trait</span>
-    <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">creature_id</span> = <span class="ruby-identifier">trait</span>.<span class="ruby-identifier">creature_id</span>
+    <span class="ruby-identifier">new_trait</span> = <span class="ruby-identifier">granted</span>.<span class="ruby-identifier">meta_trait_copy</span>(<span class="ruby-identifier">trait</span>)
     <span class="ruby-identifier">new_trait</span>.<span class="ruby-identifier">save</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -180,7 +181,7 @@ traits it is responsible for, and delete it.</p>
 
           
           <div class="method-source-code" id="merge-source">
-            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">merge</span>(<span class="ruby-identifier">dupe</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">dupe</span>
   <span class="ruby-identifier">dupe</span>.<span class="ruby-identifier">traits</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">master_trait_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
@@ -215,7 +216,7 @@ traits it is responsible for, and delete it.</p>
 
           
           <div class="method-source-code" id="meta_trait-3F-source">
-            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/models/master_trait.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">meta_trait?</span>
   <span class="ruby-identifier">traits_in_meta_trait</span>.<span class="ruby-identifier">any?</span>
 <span class="ruby-keyword">end</span></pre>

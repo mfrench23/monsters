@@ -1,4 +1,4 @@
-class CampaignContent < ActiveRecord::Base
+class CampaignContent < AbstractEntity
   belongs_to :campaign
   belongs_to :content, polymorphic: true, touch: true
 
