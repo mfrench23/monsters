@@ -90,11 +90,6 @@
 	header_list: [ :master_skill_id, :specialization, :tech_level, :modifier, :notes ],
 	freeform: :freeform_skill_list  %>
 
-  <div class="field">
-    <%= f.label :gear %>
-    <%= f.text_area :gear %>
-  </div>
-
   <%= render 'expanding_fieldset', f: f,
     id: "equipment_packages", collection: :equipment_packages,
     partial: '/creatures/equipment_package_fields', label: 'add equipment package', header: "Equipment<br>Packages",

@@ -1,4 +1,4 @@
-class EquipmentModifier < ActiveRecord::Base
+class EquipmentModifier < AbstractEntity
   def modifier_value_object(symbol)
     return base_cost_modifier_value_object if :base_cost == symbol
     return cost_modifier_value_object if :cost == symbol
@@ -28,6 +28,10 @@ class EquipmentModifier < ActiveRecord::Base
   def weight_mod=(value)
     @weight_modifier_value_object = nil
     write_attribute(:weight_mod, value)
+  end
+
+  def deep_copy
+    dup
   end
 
   private

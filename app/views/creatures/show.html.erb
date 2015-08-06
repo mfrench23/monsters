@@ -33,15 +33,6 @@
       </div>
     <% end %>
 
-    <% if creature.gear? %>
-      <div style="display: table-row;">
-        <div class="field-label show trait">Gear</div>
-        <div class="trait">
-	  <%= simple_format creature.gear, {:class => "longtext"}, wrapper_tag: "div" %>
-	</div>
-      </div>
-    <% end %>
-
     <% if creature.equipment_packages.any? %>
       <div style="display: table-row;">
         <div class="field-label show trait">Equipment<br>Packages</div>

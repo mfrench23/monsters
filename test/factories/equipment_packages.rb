@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :equipment_package do
-    creature nil
-name "MyString"
-notes "MyText"
+    creature
+    name "Package #1"
+    notes nil
   end
 
 end

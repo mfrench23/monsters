@@ -1,7 +1,7 @@
 # A particular instance of an EquipmentType, like "Bob's
 # broadsword with the gold wire on the hilt" or "the
 # enchanted broadsword behind the door in Room #37".
-class EquipmentPiece < ActiveRecord::Base
+class EquipmentPiece < AbstractEntity
   include Filterable
 
   before_validation :calculate_dependant_values
@@ -46,7 +46,17 @@ class EquipmentPiece < ActiveRecord::Base
     owner.final_owner unless owner.nil?
   end
 
+  def deep_copy
+    copy = dup
+    reference_list_attributes.each { |reference| deep_copy_reference(reference, copy) }
+    copy
+  end
+
   private
+
+  def reference_list_attributes
+    [:equipment_modifiers]
+  end
 
   def calculate_dependant_value(attribute_name, method_to_populate)
     if read_attribute(attribute_name).nil?

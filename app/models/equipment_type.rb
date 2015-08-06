@@ -1,5 +1,5 @@
 # An abstract kind of equipment, like "broadsword" or "backpack".
-class EquipmentType < ActiveRecord::Base
+class EquipmentType < AbstractEntity
   include CampaignContained
   include Filterable
 

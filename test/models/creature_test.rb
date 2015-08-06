@@ -5,19 +5,6 @@ class CreatureTest < ActiveSupport::TestCase
     @one = FactoryGirl.build(:creature)
   end
 
-  test "freeform_trait_list adds to master traits - one simple trait" do
-    name = "Faketrait"
-    assert_difference "MasterTrait.count" do
-      @one.freeform_trait_list = name
-    end
-    mt = MasterTrait.find_by(:name => name)
-    assert_equal false, mt.name.blank?
-    assert_equal true, mt.notes.blank?
-    trait = @one.traits.first
-    assert_equal mt, trait.master_trait
-    assert_equal true, trait.level.blank?
-  end
-
   test "freeform_trait_list adds to master traits - one trait with level and notes" do
     name = "Bogotrait (Disintegration) 3"
     assert_difference "MasterTrait.count" do
@@ -61,6 +48,11 @@ class CreatureTest < ActiveSupport::TestCase
 
   test "can deep_copy" do
     # set up original
+    equipment_type = FactoryGirl.create(:equipment_type)
+    equipment_package = FactoryGirl.build(:equipment_package)
+    equipment_package.equipment_pieces << FactoryGirl.build(:equipment_piece, 
+                                                            :equipment_type => equipment_type, 
+                                                            :equipment_modifiers => [EquipmentModifier.new(:name => "Heavy", :weight_mod => "x1.1")])
     @one.skills << Skill.new(:master_skill => MasterSkill.find_by(:name => "Brawling"), :modifier => 1 )
     @one.skills << Skill.new(:master_skill => MasterSkill.find_by(:name => "Stealth"), :modifier => 0 )
     @one.traits << Trait.new(:master_trait => MasterTrait.new( :name => "Combat Reflexes" ) )
@@ -71,17 +63,22 @@ class CreatureTest < ActiveSupport::TestCase
     @one.movement_rates << MovementRate.new(move_type: MoveType.first, rate: 3)
     @one.notes = "These are notes."
     @one.description = "This is a description."
+    @one.equipment_packages << equipment_package
     assert_equal true, @one.save
     assert_equal 10, @one.characteristic_monsters.first.score
     assert_equal "Brawling", @one.skills.first.master_skill.name
+    assert_equal 10, @one.equipment_packages.first.equipment_pieces.first.cost
 
     # create the copy and modify it
     copy = @one.deep_copy
+    assert_equal "Copy of " + @one.name, copy.to_s
     assert_equal "DX", copy.characteristic_monsters.first.characteristic.to_s
     copy.characteristic_monsters.first.score = 20
     assert_equal 20, (copy.characteristic_score "DX")
     copy.parry_scores.first.weapon = "Kung Fu"
     copy.traits.first.level = 2
+    copy.equipment_packages.first.equipment_pieces.first.equipment_modifiers << EquipmentModifier.new(:name => "Superfly", :cost_mod => "+$15")
+    assert_equal 25, copy.equipment_packages.first.equipment_pieces.first.cost
     assert_no_difference('MasterSkill.count') do
       copy.skills.first.modifier = 2
       assert_equal "Brawling @DX+2=12", copy.skills.first.to_s
@@ -98,6 +95,6 @@ class CreatureTest < ActiveSupport::TestCase
     assert_equal "Brawling @DX+1=11", one_loaded.skills.first.to_s
     assert_equal "Brawling", one_loaded.parry_scores.first.weapon
     assert_nil one_loaded.traits.first.level
-    assert_equal "Copy of " + one_loaded.name, copy.to_s
+    assert_equal 10, one_loaded.equipment_packages.first.equipment_pieces.first.cost
   end
 end

@@ -45,11 +45,11 @@ class Creature < AbstractEntity
   private
 
   def reference_list_attributes
-    [:damage_resistances, :skills, :traits, :parry_scores]
+    [:damage_resistances, :skills, :traits, :parry_scores, :equipment_packages]
   end
 
   def nil_blank_attributes
-    [:height, :weight, :gear, :parts_value_cents].each do |attr|
+    [:height, :weight, :parts_value_cents].each do |attr|
       self[attr] = nil if self[attr].blank?
     end
   end
