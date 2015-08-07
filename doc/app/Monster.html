@@ -111,8 +111,6 @@
     
     <li ><a href="#method-i-expanded_field">#expanded_field</a>
     
-    <li ><a href="#method-i-to_s">#to_s</a>
-    
   </ul>
 </div>
 
@@ -166,7 +164,7 @@
 
           
           <div class="method-source-code" id="ancestor_accumulate_field-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 56</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ancestor_accumulate_field</span>(<span class="ruby-identifier">field</span>)
   <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">expanded_field</span>(<span class="ruby-identifier">field</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">is_root?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -199,7 +197,7 @@
 
           
           <div class="method-source-code" id="build_attack-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build_attack</span>
   <span class="ruby-constant">Attack</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -233,7 +231,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="build_monster_name-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 67</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build_monster_name</span>
   <span class="ruby-constant">MonsterName</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -266,7 +264,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="build_movement_rate-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build_movement_rate</span>
   <span class="ruby-constant">MovementRate</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -400,7 +398,7 @@ by actable</p>
 
           
           <div class="method-source-code" id="deep_copy-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
   <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
   <span class="ruby-identifier">reference_list_attributes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">reference</span><span class="ruby-operator">|</span> <span class="ruby-identifier">deep_copy_reference</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">copy</span>) }
@@ -435,44 +433,11 @@ by actable</p>
 
           
           <div class="method-source-code" id="expanded_field-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 60</span>
+            <pre><span class="ruby-comment"># File app/models/monster.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">expanded_field</span>(<span class="ruby-identifier">field</span>)
   <span class="ruby-identifier">ancestor_text</span> = <span class="ruby-identifier">ancestor_accumulate_field</span>(<span class="ruby-identifier">field</span>)
   <span class="ruby-identifier">field_val</span> = <span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>)
   <span class="ruby-identifier">ancestor_text</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">ancestor_text</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">field_val</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;\n\n&quot;</span> ) <span class="ruby-operator">+</span> <span class="ruby-identifier">field_val</span>.<span class="ruby-identifier">to_s</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-to_s" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">to_s</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/monster.rb, line 46</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

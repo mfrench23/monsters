@@ -43,10 +43,6 @@ class Monster < AbstractEntity
     offensive_rating.nil? || protective_rating.nil? ? nil : offensive_rating.to_i + protective_rating.to_i
   end
 
-  def to_s
-    name
-  end
-
   def deep_copy
     copy = dup
     reference_list_attributes.each { |reference| deep_copy_reference(reference, copy) }

@@ -1,4 +1,4 @@
-Thu, 06 Aug 2015 08:39:17 -0700
+Fri, 07 Aug 2015 09:18:37 -0700
 README.rdoc	Fri, 29 May 2015 09:03:57 -0700
 app/controllers/application_controller.rb	Thu, 06 Aug 2015 08:36:23 -0700
 app/controllers/books_controller.rb	Thu, 06 Aug 2015 05:25:33 -0700
@@ -51,7 +51,11 @@ app/models/creature/trait_list.rb	Thu, 16 Jul 2015 09:44:19 -0700
 app/models/damage_resistance.rb	Wed, 15 Jul 2015 14:33:24 -0700
 app/models/equipment_category.rb	Wed, 05 Aug 2015 18:18:59 -0700
 app/models/equipment_modifier.rb	Wed, 05 Aug 2015 17:58:25 -0700
-app/models/equipment_modifier/modifier_value_object.rb	Wed, 05 Aug 2015 15:39:34 -0700
+app/models/equipment_modifier/additive_modifier_value_object.rb	Thu, 06 Aug 2015 08:59:04 -0700
+app/models/equipment_modifier/cost_factor_modifier_value_object.rb	Thu, 06 Aug 2015 08:58:36 -0700
+app/models/equipment_modifier/modifier_value_object.rb	Thu, 06 Aug 2015 09:00:09 -0700
+app/models/equipment_modifier/multiplier_modifier_value_object.rb	Thu, 06 Aug 2015 08:59:24 -0700
+app/models/equipment_modifier/no_op_modifier_value_object.rb	Thu, 06 Aug 2015 08:56:46 -0700
 app/models/equipment_package.rb	Wed, 05 Aug 2015 17:56:14 -0700
 app/models/equipment_piece.rb	Thu, 06 Aug 2015 01:58:46 -0700
 app/models/equipment_type.rb	Thu, 06 Aug 2015 01:58:42 -0700
@@ -59,7 +63,7 @@ app/models/illustration.rb	Fri, 26 Jun 2015 10:50:42 -0700
 app/models/location.rb	Thu, 06 Aug 2015 01:57:27 -0700
 app/models/master_skill.rb	Thu, 06 Aug 2015 01:58:34 -0700
 app/models/master_trait.rb	Thu, 06 Aug 2015 01:58:29 -0700
-app/models/monster.rb	Thu, 06 Aug 2015 04:02:16 -0700
+app/models/monster.rb	Fri, 07 Aug 2015 09:03:39 -0700
 app/models/monster_class.rb	Wed, 05 Aug 2015 18:22:29 -0700
 app/models/monster_name.rb	Fri, 12 Jun 2015 11:52:35 -0700
 app/models/move_type.rb	Wed, 05 Aug 2015 18:22:33 -0700
