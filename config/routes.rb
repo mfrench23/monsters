@@ -30,7 +30,11 @@ Rails.application.routes.draw do
 
   resources :equipment_categories
   resources :equipment_types do
-    get :autocomplete_equipment_category_name, :on => :collection
+    collection do
+      get :autocomplete_equipment_category_name
+      get :mass_entry
+      post :do_mass_entry
+    end
   end
   resources :equipment_pieces, :except => [:new, :create]
 

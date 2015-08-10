@@ -10,8 +10,7 @@ class ModelBasedController < ApplicationController
   def destroy
     set_model_by_id.destroy
     respond_to do |format|
-      url = url_for controller: controlled_model_class_name.tableize, action: :index
-      format.html { redirect_to url, notice: "#{controlled_model_class_name} was successfully destroyed." }
+      format.html { redirect_to index_url, notice: "#{controlled_model_class_name} was successfully destroyed." }
     end
   end
 
@@ -54,6 +53,10 @@ class ModelBasedController < ApplicationController
         format.json { render json: entity.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def index_url
+    url_for controller: controlled_model_class_name.tableize, action: :index
   end
 
   def index_locals_hash

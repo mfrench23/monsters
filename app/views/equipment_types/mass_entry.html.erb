@@ -1,0 +1,34 @@
+<h1>Mass Entry of Equipment Types</h1>
+
+<%= form_tag(do_mass_entry_equipment_types_path) do |f| %>
+  <div class="field">
+    One equipment type per line, in the format "name ($cost; weight#)":<br>
+    <%= text_area_tag :freeform_text, params[:freeform_text], :size => "80x5" %>
+  </div>
+
+  <% if error_messages.any? %>
+    <div>Problems:</div>
+    <ul>
+      <% error_messages.each do |one_line_error| %>
+        <li>
+          <%= one_line_error %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>The following parameters apply to all entered equipment types.</div>
+  <br />
+  <div class="field">
+    <%= label_tag :equipment_category_id %><br>
+    <%= autocomplete_field_tag :equipment_category_id, params[:equipment_category_id], autocomplete_equipment_category_name_equipment_types_path %>
+  </div>
+  <div class="field">
+    <%= label_tag :campaign_id %><br>
+    <%= select_tag :campaign_id, options_from_collection_for_select(campaigns, :id, :name, params[:campaign_id]) %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Create equipment types" %>
+  </div>
+<% end %>

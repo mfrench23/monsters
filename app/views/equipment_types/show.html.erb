@@ -15,7 +15,7 @@
 
 <p>
   <strong>Equipment category:</strong>
-  <%= link_to equipment_type.equipment_category, equipment_type.equipment_category, :class => "quiet" %>
+  <%= link_to equipment_type.equipment_category, equipment_type.equipment_category, :class => "quiet" unless equipment_type.equipment_category.nil? %>
 </p>
 
 <p>

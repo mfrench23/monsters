@@ -1,6 +1,4 @@
-class EquipmentPieceForm
-  attr_reader :params
-
+class EquipmentPieceForm < AbstractForm
   def initialize(params=nil)
     @params = whitelisted_params(params)
   end

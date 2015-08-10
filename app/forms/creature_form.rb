@@ -1,6 +1,4 @@
-class CreatureForm
-  attr_reader :params
-
+class CreatureForm < AbstractForm
   def initialize(params=nil)
     paramlist = convert_freeform_skill_list(params)
     @params = monster_params(paramlist)

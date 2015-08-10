@@ -1,6 +1,4 @@
-class MasterTraitForm
-  attr_reader :params
-
+class MasterTraitForm < AbstractForm
   def initialize(params=nil)
     @params = whitelisted_params(params)
   end

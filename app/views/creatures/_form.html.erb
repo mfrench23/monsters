@@ -108,7 +108,7 @@
   <% charSet = [creature.characteristic_monster("PR")]  %>
   <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
 
-  <%= render 'form_campaign_chooser', f: f, campaigns: campaigns, monster: creature %>
+  <%= render 'form_campaign_chooser', f: f, campaigns: campaigns %>
 
   <div class="actions" style="clear: both;">
     <%= f.submit %>

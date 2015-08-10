@@ -8,6 +8,11 @@ module CampaignContained
     scope :in_campaign, -> (campaign_id) { joins(:campaign_contents).where(campaign_contents: {campaign_id: campaign_id}) }
   end
 
+  def in_campaign?(campaign_id)
+    table = self.class.to_s.tableize
+    ( self.class.where("#{table}.id = #{self.id}").in_campaign(campaign_id).count > 0 )
+  end
+
   def build_campaign_content
     CampaignContent.new
   end

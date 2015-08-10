@@ -1,6 +1,4 @@
-class SwarmForm
-  attr_reader :params
-
+class SwarmForm < AbstractForm
   def initialize(params=nil)
     @params = monster_params(params)
   end
