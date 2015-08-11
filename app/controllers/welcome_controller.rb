@@ -29,7 +29,8 @@ class WelcomeController < ApplicationController
 
   def date_series(klass, date_field, scope)
     klass.group("date(#{date_field})").count.reduce([]) do |memo, (k, v)|
-      memo << { :x => k.to_time.to_f * 1000, :y => v, :url => monsters_path(scope => k) }
+      url = send(klass.to_s.tableize + "_path", {scope => k})
+      memo << { :x => k.to_time.to_f * 1000, :y => v, :url => url }
     end
   end
 end
