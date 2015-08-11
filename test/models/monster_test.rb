@@ -2,7 +2,6 @@ require 'test_helper'
 
 class MonsterTest < ActiveSupport::TestCase
   setup do
-    @one = FactoryGirl.build(:monster)
   end
 
   test "test starts_with filter" do
@@ -16,23 +15,24 @@ class MonsterTest < ActiveSupport::TestCase
   end
 
   test "to_s" do
-    m = @one.to_s.match( /^(Tim the Test Monster)/ )
-    assert_equal "Tim the Test Monster", m[1]
+    assert_equal "Tim the Test Monster", Monster.new(:name => "Tim the Test Monster").to_s
   end
 
   test "Combat Effectiveness Rating calculation" do
-    assert_nil @one.combat_effectiveness_rating
-    @one.characteristic_monsters << CharacteristicMonster.new(characteristic: Characteristic.find_by(name: "OR"), score: 17)
-    assert_nil @one.combat_effectiveness_rating
-    @one.characteristic_monsters << CharacteristicMonster.new(characteristic: Characteristic.find_by(name: "PR"), score: 21)
-    assert_equal 38, @one.combat_effectiveness_rating
+    one = Monster.new
+    assert_nil one.combat_effectiveness_rating
+    one.characteristic_monsters << CharacteristicMonster.new(characteristic: Characteristic.find_by(name: "OR"), score: 17)
+    assert_nil one.combat_effectiveness_rating
+    one.characteristic_monsters << CharacteristicMonster.new(characteristic: Characteristic.find_by(name: "PR"), score: 21)
+    assert_equal 38, one.combat_effectiveness_rating
   end
 
   test "ancestor's text fields accumulate" do
-    @one.description = "One."
-    @one.notes = "A"
-    @one.save
-    two = @one.deep_copy
+    one = Monster.new(:name => "Tommy", :monster_class => MonsterClass.find_by(:name => "Undead"))
+    one.description = "One."
+    one.notes = "A"
+    one.save!
+    two = one.deep_copy
     two.description = "Two."
     two.notes = "B"
     two.save
@@ -44,10 +44,10 @@ class MonsterTest < ActiveSupport::TestCase
     assert_equal "One.", two.ancestor_accumulate_field(:description)
     assert_equal "One.\n\nTwo.\n\nThree.", three.expanded_field(:description)
     assert_equal "A\n\nB\n\nC", three.expanded_field(:notes)
-    assert_equal "A", @one.expanded_field(:notes)
+    assert_equal "A", one.expanded_field(:notes)
   end
 
   test "can build campaign_content" do
-    assert_not_nil @one.build_campaign_content
+    assert_not_nil Monster.new.build_campaign_content
   end
 end

@@ -2,12 +2,13 @@ require 'test_helper'
 
 class MonsterNameTest < ActiveSupport::TestCase
   setup do
-    @one = FactoryGirl.build(:monster_name)
-    @two = FactoryGirl.build(:monster_name, name: "Don")
-    @three = FactoryGirl.build(:monster_name, name: "Zed")
   end
 
   test "comparison" do
+    @one = MonsterName.new(:name => "Bob")
+    @two = MonsterName.new(:name => "Don")
+    @three = MonsterName.new(:name => "Zed")
+
     assert_equal nil, @one <=> "Fish"
     assert_equal nil, "Fish" <=> @one
     assert_equal 0, @one <=> @one

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806012615) do
+ActiveRecord::Schema.define(version: 20150811235204) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(version: 20150806012615) do
   end
 
   add_index "master_skills", ["characteristic_id"], name: "index_master_skills_on_characteristic_id", using: :btree
+  add_index "master_skills", ["name", "characteristic_id"], name: "index_master_skills_on_name_characteristic_id", unique: true, using: :btree
   add_index "master_skills", ["name"], name: "index_master_skills_on_name", unique: true, using: :btree
 
   create_table "master_traits", force: :cascade do |t|

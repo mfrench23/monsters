@@ -2,13 +2,14 @@ require 'test_helper'
 
 class MetaTraitTest < ActiveSupport::TestCase
   setup do
-    @master_meta = FactoryGirl.build(:master_trait, :name => 'Golden Age Super')
-    @master_member1 = FactoryGirl.create(:master_trait, :name => 'Kirby Crackle')
-    @master_member2 = FactoryGirl.create(:master_trait, :name => 'Strong Jaw')
-    @master_meta.traits_in_meta_trait << FactoryGirl.build(:trait, :master_trait => @master_member1, :level => 2)
-    @master_meta.traits_in_meta_trait << FactoryGirl.build(:trait, :master_trait => @master_member2)
-    @master_meta.save
-    @master_trait_nonmember = FactoryGirl.create(:master_trait, :name => 'Moral Code')
+    @master_meta = MasterTrait.new(:name => 'Golden Age Super')
+    @master_member1 = MasterTrait.new( :name => 'Kirby Crackle')
+    @master_member1.save!
+    @master_member2 = MasterTrait.new( :name => 'Strong Jaw')
+    @master_member2.save!
+    @master_meta.traits_in_meta_trait << Trait.new(:master_trait => @master_member1, :level => 2)
+    @master_meta.traits_in_meta_trait << Trait.new(:master_trait => @master_member2)
+    @master_meta.save!
   end
 
   test "meta-trait creates dependant traits on the same character" do
@@ -28,6 +29,9 @@ class MetaTraitTest < ActiveSupport::TestCase
   end
 
   test "meta-trait changes are reflected in traits" do
+    @master_trait_nonmember = MasterTrait.new(:name => 'Moral Code')
+    @master_trait_nonmember.save!
+
     creature = FactoryGirl.create(:creature)
     creature.traits << Trait.new(:master_trait => @master_meta)
     creature.save

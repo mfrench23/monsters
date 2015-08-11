@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EquipmentPieceTest < ActiveSupport::TestCase
   setup do
-    @type = FactoryGirl.build(:equipment_type)
+    @type = EquipmentType.new(:name => "Kinda Narrow Sword", :base_weight => 9.99, :base_cost_cents => 1000)
     @piece = EquipmentPiece.new(:name => "Test piece", :equipment_type => @type)
   end
 
@@ -17,7 +17,6 @@ class EquipmentPieceTest < ActiveSupport::TestCase
     assert_equal 10, @type.base_cost.dollars.to_i
     assert_equal 10, @piece.cost.dollars.to_i
     @piece.equipment_modifiers << EquipmentModifier.new(:name => "Supercool", :cost_mod => "+4 CF")
-    #@piece.cost_cents = nil
     assert_equal 5000, @piece.cost_cents
     assert_equal 50, @piece.cost.dollars.to_i
   end

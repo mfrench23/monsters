@@ -3,10 +3,10 @@ require 'test_helper'
 class MonstersControllerTest < ActionController::TestCase
   setup do
     @monster = FactoryGirl.create(:creature)
-    @other_monster = FactoryGirl.build(:creature, :name => "Robert" )
-    @other_monster.monster_names << FactoryGirl.build(:monster_name)
-    @other_monster.monster_names << FactoryGirl.build(:monster_name, :name => "Dick")
-    @other_monster.save
+    @other_monster = Creature.new(:name => "Robert", :monster_class => MonsterClass.find_by(:name => "Undead"))
+    @other_monster.monster_names << MonsterName.new(:name => "Bob")
+    @other_monster.monster_names << MonsterName.new(:name => "Dick")
+    @other_monster.save!
   end
 
   test "should show associated creature" do

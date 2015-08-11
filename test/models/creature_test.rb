@@ -2,7 +2,9 @@ require 'test_helper'
 
 class CreatureTest < ActiveSupport::TestCase
   setup do
-    @one = FactoryGirl.build(:creature)
+    dx = Characteristic.find_by(name: "DX")
+    @one = Creature.new(:name => "Boris the Test Monster", :monster_class => MonsterClass.find_by(name: "Undead"),
+                        :characteristic_monsters => [CharacteristicMonster.new(:characteristic => dx, :score => 10)] )
   end
 
   test "freeform_trait_list adds to master traits - one trait with level and notes" do
@@ -49,9 +51,8 @@ class CreatureTest < ActiveSupport::TestCase
   test "can deep_copy" do
     # set up original
     equipment_type = FactoryGirl.create(:equipment_type)
-    equipment_package = FactoryGirl.build(:equipment_package)
-    equipment_package.equipment_pieces << FactoryGirl.build(:equipment_piece, 
-                                                            :equipment_type => equipment_type, 
+    equipment_package = EquipmentPackage.new
+    equipment_package.equipment_pieces << EquipmentPiece.new(:equipment_type => equipment_type, 
                                                             :equipment_modifiers => [EquipmentModifier.new(:name => "Heavy", :weight_mod => "x1.1")])
     @one.skills << Skill.new(:master_skill => MasterSkill.find_by(:name => "Brawling"), :modifier => 1 )
     @one.skills << Skill.new(:master_skill => MasterSkill.find_by(:name => "Stealth"), :modifier => 0 )

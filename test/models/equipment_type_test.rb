@@ -5,15 +5,7 @@ class EquipmentTypeTest < ActiveSupport::TestCase
     @equipment_category = FactoryGirl.create(:equipment_category)
   end
 
-  test "should parse acceptable input" do
-    eq = EquipmentType.parse("Big rock ($20; 150#)", @equipment_category.id)
-    assert_not_nil eq
-    assert_equal "20.00", eq.base_cost.to_s
-    assert_equal "150", "%g" % eq.base_weight.to_s
-    assert_equal true, eq.valid?
-  end
-
-  test "should parse bad input" do
+  test "should parse bad input as an invalid instance" do
     eq = EquipmentType.parse("Big rock (150#)", @equipment_category.id)
     assert_not_nil eq
     eq.validate

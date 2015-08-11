@@ -3,7 +3,7 @@ require 'test_helper'
 class CreaturesControllerTest < ActionController::TestCase
   setup do
     @creature = FactoryGirl.build(:creature)
-    @creature.monster_names << FactoryGirl.build(:monster_name)
+    @creature.monster_names << MonsterName.new(:name => "Timmy")
     @creature.traits << FactoryGirl.build(:trait)
     @creature.save
   end

@@ -5,8 +5,8 @@ class CharacteristicTest < ActiveSupport::TestCase
   end
 
   test "normalizes" do
-    one = FactoryGirl.build(:characteristic, :step_size => 1.0)
-    two = FactoryGirl.build(:characteristic, :step_size => 0.5)
+    one = Characteristic.new(:step_size => 1.0)
+    two = Characteristic.new(:step_size => 0.5)
     assert_equal 1, one.normalize(1.0)
     assert_equal 1, one.normalize(1.2)
     assert_equal 1, one.normalize(1.7)

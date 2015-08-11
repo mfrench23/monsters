@@ -1,25 +1,17 @@
 require 'test_helper'
 
 class DamageResistancesHelperTest < ActionView::TestCase
-  setup do
-    @one = FactoryGirl.build(:damage_resistance)
-    
-    loc = FactoryGirl.build(:location, name: "Tail")
-    @two = FactoryGirl.build(:damage_resistance, location: loc, dr: 2, notes: "Flexible")
-    @three = FactoryGirl.build(:damage_resistance, location: nil, dr: 3)
-    @four = FactoryGirl.build(:damage_resistance, location: nil, dr: 4, notes: "wooden")
+  test "should format correctly with a location" do
+    assert_equal "skull: 1", simpleDR(DamageResistance.new(:location => Location.find_by(:name => 'skull'), :dr => 1))
   end
 
-  test "should format correctly with a location" do
-    assert_equal "skull: 1", simpleDR(@one)
-  end
   test "should format correctly with a location and a note" do
-    assert_equal "Tail: 2 (Flexible)", simpleDR(@two)
+    assert_equal "skull: 2 (Flexible)", simpleDR(DamageResistance.new(:location => Location.find_by(:name => 'skull'), :dr => 2, :notes => 'Flexible'))
   end
   test "should format correctly with just DR alone" do
-    assert_equal "3", simpleDR(@three)
+    assert_equal "3", simpleDR(DamageResistance.new(:dr => 3))
   end
   test "should format correctly with DR and note alone" do
-    assert_equal "4 (wooden)", simpleDR(@four)
+    assert_equal "4 (wooden)", simpleDR(DamageResistance.new(:dr => 4, :notes => 'wooden'))
   end
 end
