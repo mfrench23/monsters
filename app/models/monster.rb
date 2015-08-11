@@ -1,5 +1,6 @@
 class Monster < AbstractEntity
   include CampaignContained
+  include Dateable
   include Illustratable
   include Nameable
   include PageReferenceable
@@ -25,9 +26,6 @@ class Monster < AbstractEntity
   delegate :name, to: :monster_class, prefix: true
 
   validates :monster_class_id, presence: true
-
-  scope :created_on, -> (date) { where("date(monsters.created_at) = ?", "#{date}")}
-  scope :updated_on, -> (date) { where("date(monsters.updated_at) = ?", "#{date}")}
 
   def characteristic_monster(characteristic_name)
     characteristic_monsters.select{ |cm| cm.characteristic.name == characteristic_name.to_s}.try(:first) || CharacteristicMonster.get_instance(characteristic_name, self)

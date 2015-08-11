@@ -62,7 +62,7 @@ class ModelBasedController < ApplicationController
   def index_locals_hash
     {
       controlled_model_plural_symbol => filtered_sorted_paginated_results,
-      :starts_with_tags => first_characters_in_results(filtered_results),
+      :starts_with_tags => (filtered_results.respond_to?(:first_letters) ? filtered_results.first_letters.count.keys.sort : nil),
       :campaign_name => name_of_filtering_campaign,
       :filter_params => filter_params
     }.merge(additional_index_locals)

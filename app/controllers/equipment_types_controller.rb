@@ -57,6 +57,6 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def acceptable_filter_scopes
-    [:starting_with, :in_campaign]
+    [:starting_with, :created_on, :updated_on, :in_campaign]
   end
 end
