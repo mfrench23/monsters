@@ -8,7 +8,7 @@ make_series = (nameval, dataval) ->
       location.href = @url
       e.preventDefault()
       return
-    type: 'column'
+    type: 'line'
     name: nameval
     data: dataval
   }
