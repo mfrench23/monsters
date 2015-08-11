@@ -27,10 +27,7 @@
     <%= f.label :characteristic %><br>
     <%= f.collection_select :characteristic_id, Characteristic.all, :id, :name %>
   </div>
-  <%= render 'expanding_fieldset', f: f,
-    id: "page-references", collection: :page_references,
-    partial: 'page_reference_fields', label: 'add page reference', header: "Sources",
-        header_list: [ :book_id, :pages ], freeform: nil  %>
+  <%= render 'form_page_reference_entry', f: f %>
 
   <div class="field">
     <%= f.label :notes %><br>

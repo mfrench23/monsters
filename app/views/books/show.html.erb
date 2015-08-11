@@ -8,7 +8,32 @@
   <%= book.abbreviation %>
 </p>
 
-<%= render 'simple_monster_list', monsters: book.monsters %>
+<div class="field">
+  <span class="field-label show">References</span>
+  <table class="fixed-table boxed-list">
+    <% index = 0 %>
+    <% previous_type = nil %>
+    <% book.page_references.sort_by{ |pg| [pg.referenceable_type, pg.referenceable.name] }.each do |reference| %>
+      <% if reference.referenceable_type != previous_type %>
+        <% if index > 0 %>
+          </tr>
+        <% end %>
+        <tr>
+          <th style="text-align: left;"><%= reference.referenceable_type.pluralize.titleize %></th>
+        </tr>
+        <% index = 0 %>
+      <% end %>
+      <%= render :layout => 'layouts/fixed_table_columns',
+          :locals => { :index => index, :total_count => book.page_references.count } do %>
+        <%= link_to reference.referenceable.to_s, reference.referenceable,
+            :class => "quiet",
+            :title => reference.referenceable.to_s %>
+      <% end %>
+      <% index = index + 1 %>
+      <% previous_type = reference.referenceable_type %>
+    <% end %>
+  </table>
+</div>
 
 <%= link_to 'Edit', edit_book_path(book) %> |
 <%= link_to 'Index', books_path %>

@@ -1,5 +1,9 @@
 class MonstersController < ModelBasedController
 
+  def show
+    redirect_to set_model_by_id.specific
+  end
+
   private
 
   def additional_index_locals

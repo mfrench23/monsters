@@ -23,6 +23,10 @@
   <%= equipment_type.notes %>
 </p>
 
+<p>
+  <%= render 'show_sources', m: equipment_type %>
+</p>
+
 <% owner_list = EquipmentPiece.where(:equipment_type => equipment_type ).select("distinct owner_type, owner_id") %>
 <% if owner_list.count > 0 %>
   <p>

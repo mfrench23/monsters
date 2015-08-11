@@ -12,7 +12,8 @@ class EquipmentTypeForm < AbstractEquipmentTypeForm
 
   def permitted_attributes
     [:name, :base_weight, :base_cost, :equipment_category_id, :notes,
-      campaign_contents_attributes: [:id, :campaign_id, :_destroy],
+     campaign_contents_attributes: [:id, :campaign_id, :_destroy],
+     page_references_attributes: [:id, :book_id, :pages, :_destroy]
      ]
   end
 end
