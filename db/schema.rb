@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812192750) do
+ActiveRecord::Schema.define(version: 20150812215945) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20150812192750) do
   end
 
   add_index "characteristic_lists", ["characteristic_id"], name: "index_characteristic_lists_on_characteristic_id", using: :btree
+  add_index "characteristic_lists", ["monster_actable_type", "characteristic_id"], name: "index_characteristic_lists_on_monster_type_and_characteristic", unique: true, using: :btree
 
   create_table "characteristic_monsters", force: :cascade do |t|
     t.integer  "characteristic_id", limit: 4,                         null: false

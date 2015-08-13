@@ -58,8 +58,8 @@ Characteristic.find_or_create_by(name: 'PR', sequence_number: 12, base_value: ni
 Characteristic.find_or_create_by(name: 'Block', sequence_number: 13, base_value: nil )
 Characteristic.find_or_create_by(name: 'Dodge', sequence_number: 14, base_value: 7 )
 
-Characteristic.connection.execute "insert into characteristic_lists (characteristic_id, monster_actable_type, created_at, updated_at) select id, 'Creature', now(), now() from characteristics"
-Characteristic.connection.execute "insert into characteristic_lists (characteristic_id, monster_actable_type, created_at, updated_at) select id, 'Swarm', now(), now() from characteristics where name in ('HP', 'HT')"
+Characteristic.connection.execute "insert into characteristic_lists (characteristic_id, monster_actable_type, created_at, updated_at) select id, 'Creature', now(), now() from characteristics c where 0 = (select count(*) from characteristic_lists cl where cl.characteristic_id = c.id and cl.monster_actable_type = 'Creature')"
+Characteristic.connection.execute "insert into characteristic_lists (characteristic_id, monster_actable_type, created_at, updated_at) select id, 'Swarm', now(), now() from characteristics c where name in ('HP', 'HT') and 0 = (select count(*) from characteristic_lists cl where cl.characteristic_id = c.id and cl.monster_actable_type = 'Swarm')"
 
 MasterSkill.find_or_create_by(name: 'Acrobatics', characteristic: dx )
 MasterSkill.find_or_create_by(name: 'Acting', characteristic: iq )
