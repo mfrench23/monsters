@@ -22,11 +22,11 @@
   </thead>
 
   <tbody>
-    <% equipment_pieces.each do |equipment_piece| %>
+    <% equipment_pieces.each_with_index do |equipment_piece, index| %>
       <% name = '"' + equipment_piece.name + '"' if equipment_piece.name? -%>
       <% modifiers_string = pretty_print_equipment_piece_modifiers equipment_piece -%>
       <% modifiers_span = content_tag( :span, modifiers_string, :title => modifiers_string ) -%>
-      <tr>
+      <tr class="tr<%= index % 2 %>">
         <td><%= link_to equipment_piece.equipment_type, equipment_piece, :title => equipment_piece.equipment_type %></td>
         <% if needs_name_column %>
           <td><%= content_tag :span, name, :title => name %></td>

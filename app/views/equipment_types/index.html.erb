@@ -20,8 +20,8 @@
   </thead>
 
   <tbody>
-    <% equipment_types.each do |equipment_type| %>
-      <tr>
+    <% equipment_types.each_with_index do |equipment_type, index| %>
+      <tr class="tr<%= index % 2 %>">
         <td><%= link_to equipment_type.name, equipment_type %></td>
         <td><%= equipment_type.unit_of_measurement %></td>
         <td class="count"><%= equipment_type.base_weight %></td>

@@ -11,8 +11,8 @@
   </thead>
 
   <tbody>
-    <% campaigns.each do |campaign| %>
-      <tr>
+    <% campaigns.each_with_index do |campaign, index| %>
+      <tr class="tr<%= index % 2 %>">
         <td><%= link_to campaign.name, campaign, :class => "quiet" %></td>
         <td class="count"><%= campaign.monsters.count %></td>
         <td class="count"><%= campaign.equipment_types.count %></td>
