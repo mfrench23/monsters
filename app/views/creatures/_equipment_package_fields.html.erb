@@ -11,7 +11,7 @@
     <%= render 'expanding_fieldset', f: f,
       id: "equipment_pieces", collection: :equipment_pieces,
       partial: '/creatures/equipment_piece_fields', label: 'add equipment piece', header: nil,
-          header_list: [ :name, :type, :modifiers ],
+          header_list: [ :name, :quantity, :type, :modifiers ],
           freeform: nil %>
   </div>
 

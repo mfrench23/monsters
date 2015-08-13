@@ -16,7 +16,7 @@ class EquipmentTypeMassEntryFormTest < ActionView::TestCase
 
   def get_form(text)
     campaign = FactoryGirl.create(:campaign)
-    params = ActionController::Parameters.new({:equipment_category_id => "Silly Test Stuff " + Time.now.to_f.to_s,
+    params = ActionController::Parameters.new({:equipment_category_name => "Silly Test Stuff " + Time.now.to_f.to_s,
                                           :campaign_id => campaign.id,
                                           :freeform_text => text})
     EquipmentTypeMassEntryForm.new(params)

@@ -5,6 +5,8 @@ class EquipmentType < AbstractEntity
   include Nameable
   include PageReferenceable
 
+  attr_accessor :equipment_category_name
+
   belongs_to :equipment_category
 
   monetize :base_cost_cents, :allow_nil => false, :numericality => { :greater_than_or_equal_to => 0 }
@@ -12,6 +14,10 @@ class EquipmentType < AbstractEntity
   delegate :name, to: :equipment_category, prefix: true
 
   validates :equipment_category, presence: true
+
+  def equipment_category_name
+    equipment_category.name unless equipment_category.nil?
+  end
 
   def self.parse(text, equipment_category_id)
     EquipmentType.new( :name => extract_name(text), :base_cost => extract_cost(text), :base_weight => extract_weight(text), :equipment_category_id => equipment_category_id)

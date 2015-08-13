@@ -4,8 +4,13 @@
 </p>
 
 <p>
+  <strong>Quantity:</strong>
+  <%= equipment_piece.quantity %>
+</p>
+
+<p>
   <strong>Equipment type:</strong>
-  <%= equipment_piece.equipment_type %>
+  <%= link_to equipment_piece.equipment_type, equipment_piece.equipment_type, :class => "quiet" %>
 </p>
 
 <p>

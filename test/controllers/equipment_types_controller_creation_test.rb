@@ -18,7 +18,7 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
   test "should do mass entry" do
     campaign = FactoryGirl.build(:campaign)
     assert_difference('EquipmentType.count', 1) do
-      post :do_mass_entry, {:equipment_category_id => "Weapons",
+      post :do_mass_entry, {:equipment_category_name => "Weapons",
                                          :campaign_id => campaign.id.to_s,
                                          :freeform_text => "\nBig Stick ($5.50; 2.1#)\n\n"}
       assert_response :found
@@ -33,7 +33,7 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
   test "should refuse to do mass entry" do
     campaign = FactoryGirl.build(:campaign)
     assert_no_difference('EquipmentType.count') do
-      post :do_mass_entry, {:equipment_category_id => "Weapons" + (Time.now.to_f * 1000).to_s,
+      post :do_mass_entry, {:equipment_category_name => "Weapons" + (Time.now.to_f * 1000).to_s,
                                          :campaign_id => campaign.id,
                                          :freeform_text => "Big Stick (2#)\nLittle Stick ($2)\n\n"}
       assert_equal "Unable to convert into equipment types: Errors exist.", flash[:notice]
@@ -47,7 +47,7 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
     assert_difference('EquipmentType.count') do
       post :create, equipment_type: { base_cost: equipment_type.base_cost,
                                       base_weight: equipment_type.base_weight,
-                                      equipment_category_id: equipment_type.equipment_category_name,
+                                      equipment_category_name: equipment_type.equipment_category_name,
                                       name: name, notes: equipment_type.notes }
     end
 

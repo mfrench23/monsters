@@ -34,7 +34,7 @@ class EquipmentTypesControllerTest < ActionController::TestCase
   end
 
   test "should update equipment_type" do
-    patch :update, id: @equipment_type, equipment_type: { base_cost_cents: @equipment_type.base_cost_cents, base_weight: @equipment_type.base_weight, equipment_category_id: @equipment_type.equipment_category_id, name: @equipment_type.name, notes: @equipment_type.notes }
+    patch :update, id: @equipment_type, equipment_type: { base_cost_cents: @equipment_type.base_cost_cents, base_weight: @equipment_type.base_weight, equipment_category_name: @equipment_type.equipment_category_name, name: @equipment_type.name, notes: @equipment_type.notes }
     assert_redirected_to @equipment_type
   end
 

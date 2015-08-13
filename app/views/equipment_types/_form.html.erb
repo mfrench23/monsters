@@ -16,6 +16,10 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :unit_of_measurement %><br>
+    <%= f.text_field :unit_of_measurement %>
+  </div>
+  <div class="field">
     <%= f.label :base_weight %><br>
     <%= f.text_field :base_weight %>
   </div>
@@ -25,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :equipment_category_id %><br>
-    <%= f.autocomplete_field :equipment_category_id, autocomplete_equipment_category_name_equipment_types_path %>
+    <%= f.autocomplete_field :equipment_category_name, autocomplete_equipment_category_name_equipment_types_path %>
   </div>
   <div class="field">
     <%= f.label :notes %><br>

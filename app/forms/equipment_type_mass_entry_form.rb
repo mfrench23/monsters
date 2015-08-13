@@ -46,6 +46,6 @@ class EquipmentTypeMassEntryForm < AbstractEquipmentTypeForm
   end
 
   def permitted_attributes
-    [ :freeform_text, :equipment_category_id, :campaign_id ]
+    [ :freeform_text, :equipment_category_id, :equipment_category_name, :campaign_id ]
   end
 end

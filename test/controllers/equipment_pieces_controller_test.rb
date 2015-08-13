@@ -4,7 +4,7 @@ class EquipmentPiecesControllerTest < ActionController::TestCase
   setup do
     @equipment_type = FactoryGirl.create(:equipment_type)
     @equipment_package = FactoryGirl.create(:equipment_package)
-    @equipment_piece = FactoryGirl.create(:equipment_piece, :equipment_type => @equipment_type, :owner => @equipment_package)
+    @equipment_piece = FactoryGirl.create(:equipment_piece, :equipment_type => @equipment_type, :quantity => 1, :owner => @equipment_package)
   end
 
   test "should get index" do

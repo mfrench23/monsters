@@ -20,8 +20,8 @@
   <div>The following parameters apply to all entered equipment types.</div>
   <br />
   <div class="field">
-    <%= label_tag :equipment_category_id %><br>
-    <%= autocomplete_field_tag :equipment_category_id, params[:equipment_category_id], autocomplete_equipment_category_name_equipment_types_path %>
+    <%= label_tag :equipment_category %><br>
+    <%= autocomplete_field_tag :equipment_category_name, params[:equipment_category_name], autocomplete_equipment_category_name_equipment_types_path %>
   </div>
   <div class="field">
     <%= label_tag :campaign_id %><br>

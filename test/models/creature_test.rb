@@ -52,8 +52,9 @@ class CreatureTest < ActiveSupport::TestCase
     # set up original
     equipment_type = FactoryGirl.create(:equipment_type)
     equipment_package = EquipmentPackage.new
-    equipment_package.equipment_pieces << EquipmentPiece.new(:equipment_type => equipment_type, 
-                                                            :equipment_modifiers => [EquipmentModifier.new(:name => "Heavy", :weight_mod => "x1.1")])
+    equipment_package.equipment_pieces << EquipmentPiece.new(:equipment_type => equipment_type,
+                                                             :quantity => 1,
+                                                             :equipment_modifiers => [EquipmentModifier.new(:name => "Heavy", :weight_mod => "x1.1")])
     @one.skills << Skill.new(:master_skill => MasterSkill.find_by(:name => "Brawling"), :modifier => 1 )
     @one.skills << Skill.new(:master_skill => MasterSkill.find_by(:name => "Stealth"), :modifier => 0 )
     @one.traits << Trait.new(:master_trait => MasterTrait.new( :name => "Combat Reflexes" ) )

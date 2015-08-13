@@ -4,6 +4,10 @@
   </div>
 
   <div class="controls">
+    <%= f.number_field :quantity, :size => 10, :value => (f.object.quantity || 1) %>
+  </div>
+
+  <div class="controls">
     <%= f.collection_select :equipment_type_id, EquipmentType.order_by_name, :id, :name, :include_blank => false %>
   </div>
 

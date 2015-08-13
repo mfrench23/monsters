@@ -23,15 +23,15 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def save_mass_entry_entities(form)
-    form.equipment_types.each do |et|
-      et.equipment_category_id = form.equipment_category_id
-      et.save!
+    form.equipment_types.each do |equipment_type|
+      equipment_type.equipment_category_id = form.equipment_category_id
+      equipment_type.save!
     end
   end
 
   def mass_entry_locals(form)
     additional_form_locals.merge({:freeform_text => form.params[:freeform_text],
-                                :equipment_category_id => form.params[:equipment_category_id],
+                                :equipment_category_name => form.params[:equipment_category_name],
                                 :campaign_id => form.params[:campaign_id],
                                 :error_messages => form.error_messages })
   end
