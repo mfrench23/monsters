@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= sortable "equipment_categories.name", EquipmentCategory, params, "Name" %></th>
+      <th>Number of<br />equipment types</th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% equipment_categories.each_with_index do |equipment_category, index| %>
       <tr class="tr<%= index % 2 %>">
         <td><%= link_to equipment_category.name, equipment_category %></td>
+        <td class="count"><%= equipment_category.equipment_types.count %></td>
         <%= render 'index_edit_destroy_links', target: equipment_category %>
       </tr>
     <% end %>

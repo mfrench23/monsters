@@ -32,7 +32,7 @@
           <td><%= content_tag :span, name, :title => name %></td>
         <% end %>
         <td><%= modifiers_span %></td>
-        <td><%= link_to(equipment_piece.final_owner.to_s, equipment_piece.final_owner, :title => equipment_piece.final_owner.to_s) if equipment_piece.final_owner.present? %></td>
+        <td><%= link_to(equipment_piece.final_owner.to_s, equipment_piece.final_owner, :title => equipment_piece.final_owner.to_s, :class => "quiet") if equipment_piece.final_owner.present? %></td>
         <td><%= content_tag :span, equipment_piece.equipment_category, :title => equipment_piece.equipment_category %></td>
         <td class="cash"><%= currency_symbol %><%= equipment_piece.cost %></td>
         <td class="count"><%= equipment_piece.weight %></td>
