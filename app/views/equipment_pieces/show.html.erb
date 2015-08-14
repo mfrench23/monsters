@@ -14,6 +14,11 @@
 </p>
 
 <p>
+  <strong>Owned by:</strong>
+  <%= link_to(equipment_piece.final_owner.to_s, equipment_piece.final_owner, :title => equipment_piece.final_owner.to_s, :class => "quiet") if equipment_piece.final_owner.present? %>
+</p>
+
+<p>
   <strong>Modifiers:</strong>
   <ul>
   <% equipment_piece.equipment_modifiers.each do |equipment_modifier| %>
