@@ -37,7 +37,8 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def additional_index_locals
-    {campaigns: all_campaigns_with_equipment_types.order_by_name}
+    {campaigns: all_campaigns_with_equipment_types.order_by_name,
+     equipment_categories: EquipmentCategory.all }
   end
 
   def additional_form_locals
@@ -57,6 +58,6 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def acceptable_filter_scopes
-    [:starting_with, :created_on, :updated_on, :in_campaign]
+    [:starting_with, :created_on, :updated_on, :in_campaign, :in_equipment_category]
   end
 end

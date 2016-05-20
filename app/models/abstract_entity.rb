@@ -12,7 +12,7 @@ class AbstractEntity < ActiveRecord::Base
 
   private
 
-  # If the given attribute is nil, try to populate it using 
+  # If the given attribute is nil, try to populate it using
   # method_to_populate; either way, return the value of the
   # attribute (either non-nil or populated).
   def calculate_dependant_value(attribute_name, method_to_populate)

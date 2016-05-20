@@ -64,6 +64,7 @@ class ModelBasedController < ApplicationController
       controlled_model_plural_symbol => filtered_sorted_paginated_results,
       :starts_with_tags => (filtered_results.respond_to?(:first_letters) ? filtered_results.first_letters.count.keys.sort : nil),
       :campaign_name => name_of_filtering_campaign,
+      :equipment_category_name => name_of_filtering_equipment_category,
       :filter_params => filter_params
     }.merge(additional_index_locals)
   end

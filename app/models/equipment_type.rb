@@ -15,6 +15,8 @@ class EquipmentType < AbstractEntity
 
   validates :equipment_category, presence: true
 
+  scope :in_equipment_category, -> (equipment_category_id) { where('equipment_category_id = ?', equipment_category_id) }
+
   def equipment_category_name
     equipment_category.name unless equipment_category.nil?
   end

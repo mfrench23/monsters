@@ -1,7 +1,7 @@
 <% campaign_name ||= nil %>
 <% filter_params.each do |filter| %>
   <%= "#{filter[0].titleize.downcase}" %>
-  <% display_param = (filter[0].to_s =~ /in_campaign/ ? campaign_name : filter[1]) %>
+  <% display_param = (filter[0].to_s =~ /in_campaign/ ? campaign_name : ((filter[0].to_s =~ /in_equipment_category/ ? equipment_category_name : filter[1]) )) %>
   <% if filter_params.count > 1 %>
     <% new_params = {filter[0] => filter[1]} %>
     <%= link_to "'#{display_param}'", new_params, :class => "quiet" %>

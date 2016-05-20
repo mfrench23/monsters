@@ -1,7 +1,7 @@
 <h1>Listing Equipment Types</h1>
 
 <h2>
-  <%= render "display_filter_params", filter_params: filter_params, campaign_name: campaign_name -%>
+  <%= render "display_filter_params", filter_params: filter_params, campaign_name: campaign_name, equipment_category_name: equipment_category_name -%>
 </h2>
 
 <%= page_entries_info equipment_types %>
@@ -55,6 +55,23 @@
   </table>
 </div>
 
+<div class="field">
+  <span class="filter-label">Filter by category</span>
+  <table class="fixed-table boxed-list">
+    <% equipment_categories.each_with_index do |category, index| %>
+      <%= render :layout => 'layouts/fixed_table_columns',
+          :locals => { :index => index, :number_of_columns => 5, :total_count => equipment_categories.count } do %>
+        <% if filter_params[:in_equipment_category].to_s == category.id.to_s %>
+          <%= "#{category.name}" %>
+        <% else %>
+          <%= link_to "#{category.name}",
+            equipment_types_path(filter_params.merge(:in_equipment_category => "#{category.id}")),
+            :title => category.name + " (" + pluralize(category.equipment_types.count, "equipment type") + ")" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+</div>
 
 <%= paginate equipment_types %>
 
