@@ -7,7 +7,7 @@ class EquipmentModifier < AbstractEntity
   end
 
   def to_s
-    "#{name} (" + modifiers_to_s + ")"
+    "#{name} (" + modifiers_to_s + notes_to_s + ")"
   end
 
   def base_cost_mod=(value)
@@ -35,6 +35,11 @@ class EquipmentModifier < AbstractEntity
   end
 
   private
+
+  def notes_to_s
+    return "; " + notes if notes.present?
+    ""
+  end
 
   def modifiers_to_s
     [base_cost_to_s, base_weight_to_s, cost_modifier_value_object.to_s, weight_to_s].reject{ |x| x.blank? }.join(", ")

@@ -27,7 +27,7 @@
   <%= render 'expanding_fieldset', f: f,
     id: "equipment_modifiers", collection: :equipment_modifiers,
     partial: 'equipment_modifier_fields', label: 'add modifier', header: "Modifiers",
-    header_list: [ :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod ], freeform: nil %>
+    header_list: [ :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod, :notes ], freeform: nil %>
 
   <div class="actions">
     <%= f.submit %>

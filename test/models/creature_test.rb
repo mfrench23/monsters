@@ -69,7 +69,8 @@ class CreatureTest < ActiveSupport::TestCase
     assert_equal true, @one.save
     assert_equal 10, @one.characteristic_monsters.first.score
     assert_equal "Brawling", @one.skills.first.master_skill.name
-    assert_equal 10, @one.equipment_packages.first.equipment_pieces.first.cost
+    assert_equal Money.new(1000), @one.equipment_packages.first.equipment_pieces.first.cost
+    assert_equal "10.00", @one.equipment_packages.first.equipment_pieces.first.cost.to_s
 
     # create the copy and modify it
     copy = @one.deep_copy
@@ -80,7 +81,7 @@ class CreatureTest < ActiveSupport::TestCase
     copy.parry_scores.first.weapon = "Kung Fu"
     copy.traits.first.level = 2
     copy.equipment_packages.first.equipment_pieces.first.equipment_modifiers << EquipmentModifier.new(:name => "Superfly", :cost_mod => "+$15")
-    assert_equal 25, copy.equipment_packages.first.equipment_pieces.first.cost
+    assert_equal "25.00", copy.equipment_packages.first.equipment_pieces.first.cost.to_s
     assert_no_difference('MasterSkill.count') do
       copy.skills.first.modifier = 2
       assert_equal "Brawling @DX+2=12", copy.skills.first.to_s
