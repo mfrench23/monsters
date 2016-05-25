@@ -57,19 +57,6 @@ class Monster < AbstractEntity
     ancestor_text.to_s + (ancestor_text.blank? || field_val.blank? ? "" : "\n\n" ) + field_val.to_s
   end
 
-  # required because cocoon uses reflect_on_association, which isn't fooled by actable
-  def build_monster_name
-    MonsterName.new
-  end
-
-  def build_movement_rate
-    MovementRate.new
-  end
-
-  def build_attack
-    Attack.new
-  end
-
   private
 
   def transform_into_variant_of(copy)

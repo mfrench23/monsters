@@ -1,4 +1,6 @@
 class EquipmentModifier < AbstractEntity
+  belongs_to :equipment_modifier_category
+
   def modifier_value_object(symbol)
     return base_cost_modifier_value_object if :base_cost == symbol
     return cost_modifier_value_object if :cost == symbol

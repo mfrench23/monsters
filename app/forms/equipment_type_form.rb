@@ -15,7 +15,9 @@ class EquipmentTypeForm < AbstractEquipmentTypeForm
      :equipment_category_name, :equipment_category_id, :notes,
      :unit_of_measurement,
      campaign_contents_attributes: [:id, :campaign_id, :_destroy],
-     page_references_attributes: [:id, :book_id, :pages, :_destroy]
+     page_references_attributes: [:id, :book_id, :pages, :_destroy],
+     equipment_modifier_categories_attributes: [:id, :name, :notes, :_destroy],
+     equipment_type_modifier_categories_attributes: [:id, :equipment_modifier_category_id, :_destroy]
      ]
   end
 end

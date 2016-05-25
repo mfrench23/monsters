@@ -5,7 +5,11 @@
 
 <p>
   <strong>Unit of measurement:</strong>
-  <%= equipment_type.unit_of_measurement %>
+  <% if equipment_type.unit_of_measurement? %>
+    <%= equipment_type.unit_of_measurement %>
+  <% else %>
+    -
+  <% end %>
 </p>
 
 <p>
@@ -23,10 +27,26 @@
   <%= link_to equipment_type.equipment_category, equipment_type.equipment_category, :class => "quiet" unless equipment_type.equipment_category.nil? %>
 </p>
 
-<p>
-  <strong>Notes:</strong>
-  <%= equipment_type.notes %>
-</p>
+<div class="field">
+  <span class="field-label show">Modifier Categories</span>
+  <table class="fixed-table boxed-list">
+    <% equipment_type.equipment_modifier_categories.order_by_name.each_with_index do |category, index| %>
+      <%= render :layout => 'layouts/fixed_table_columns',
+          :locals => { :index => index, :total_count => equipment_type.equipment_modifier_categories.count } do %>
+        <%= link_to category.name, category,
+            :class => "quiet",
+            :title => category.name %>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+
+<% if equipment_type.notes? %>
+  <p>
+    <strong>Notes:</strong>
+    <%= equipment_type.notes %>
+  </p>
+<% end %>
 
 <p>
   <%= render 'show_sources', m: equipment_type %>

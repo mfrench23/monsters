@@ -42,7 +42,7 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def additional_form_locals
-    {campaigns: all_campaigns, error_messages: []}
+    {campaigns: all_campaigns, equipment_modifier_categories: EquipmentModifierCategory.all, error_messages: []}
   end
 
   def all_campaigns_with_equipment_types

@@ -9,6 +9,11 @@ class EquipmentType < AbstractEntity
 
   belongs_to :equipment_category
 
+  has_many :equipment_type_modifier_categories, dependent: :destroy
+  accepts_nested_attributes_for :equipment_type_modifier_categories, allow_destroy: true
+  has_many :equipment_modifier_categories, through: :equipment_type_modifier_categories
+  has_many :equipment_modifiers, through: :equipment_modifier_categories
+
   monetize :base_cost_cents, :allow_nil => false, :numericality => { :greater_than_or_equal_to => 0 }
 
   delegate :name, to: :equipment_category, prefix: true

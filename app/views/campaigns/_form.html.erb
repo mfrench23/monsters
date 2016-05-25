@@ -16,7 +16,11 @@
     <%= f.text_field :name %>
   </div>
 
-  <%= render 'campaign_monster_fields', f: f, monsters: monsters %>
+  <%= render 'many_to_many_checkbox_table', f: f, available_intersection_list: monsters,
+    intersection_table: campaign.campaign_contents, intersection_field: :content,
+    member_name: :campaign_contents, intersected_table: Monster,
+    foreign_key_name: :content_id, foreign_key_type_name: :content_type,
+    number_of_columns: 5 %>
 
   <div class="actions">
     <%= f.submit %>

@@ -3,7 +3,7 @@ class CampaignsController < ModelBasedController
   private
 
   def additional_form_locals
-    { monsters: Monster.all }
+    { monsters: Monster.all.order_by_name }
   end
 
   def whitelisted_entity_params

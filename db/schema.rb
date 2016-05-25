@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522214727) do
+ActiveRecord::Schema.define(version: 20160525023153) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -38,9 +38,8 @@ ActiveRecord::Schema.define(version: 20160522214727) do
     t.integer  "campaign_id",  limit: 4
     t.integer  "content_id",   limit: 4
     t.string   "content_type", limit: 255
-    t.text     "notes",        limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "campaign_contents", ["campaign_id"], name: "index_campaign_contents_on_campaign_id", using: :btree
@@ -116,18 +115,32 @@ ActiveRecord::Schema.define(version: 20160522214727) do
 
   add_index "equipment_categories", ["name"], name: "index_equipment_categories_on_name", unique: true, using: :btree
 
-  create_table "equipment_modifiers", force: :cascade do |t|
-    t.string   "name",               limit: 255
-    t.string   "base_cost_mod",      limit: 255
-    t.string   "base_weight_mod",    limit: 255
-    t.string   "cost_mod",           limit: 255
-    t.string   "weight_mod",         limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "equipment_piece_id", limit: 4
-    t.text     "notes",              limit: 65535
+  create_table "equipment_modifier_categories", force: :cascade do |t|
+    t.string   "name",                           limit: 255
+    t.text     "notes",                          limit: 65535
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.integer  "equipment_modifier_category_id", limit: 4
   end
 
+  add_index "equipment_modifier_categories", ["equipment_modifier_category_id"], name: "eq_mod_cat_idx", using: :btree
+
+  create_table "equipment_modifiers", force: :cascade do |t|
+    t.string   "name",                           limit: 255
+    t.string   "base_cost_mod",                  limit: 255
+    t.string   "base_weight_mod",                limit: 255
+    t.string   "cost_mod",                       limit: 255
+    t.string   "weight_mod",                     limit: 255
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.integer  "equipment_piece_id",             limit: 4
+    t.text     "notes",                          limit: 65535
+    t.integer  "equipment_category_id",          limit: 4
+    t.integer  "equipment_modifier_category_id", limit: 4
+  end
+
+  add_index "equipment_modifiers", ["equipment_category_id"], name: "index_equipment_modifiers_on_equipment_category_id", using: :btree
+  add_index "equipment_modifiers", ["equipment_modifier_category_id"], name: "index_equipment_modifiers_on_equipment_modifier_category_id", using: :btree
   add_index "equipment_modifiers", ["equipment_piece_id"], name: "index_equipment_modifiers_on_equipment_piece_id", using: :btree
 
   create_table "equipment_packages", force: :cascade do |t|
@@ -156,6 +169,16 @@ ActiveRecord::Schema.define(version: 20160522214727) do
 
   add_index "equipment_pieces", ["equipment_type_id"], name: "index_equipment_pieces_on_equipment_type_id", using: :btree
   add_index "equipment_pieces", ["owner_type", "owner_id"], name: "index_equipment_pieces_on_owner_type_and_owner_id", using: :btree
+
+  create_table "equipment_type_modifier_categories", force: :cascade do |t|
+    t.integer  "equipment_type_id",              limit: 4
+    t.integer  "equipment_modifier_category_id", limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "equipment_type_modifier_categories", ["equipment_modifier_category_id"], name: "eq_type_mod_cat_mod_cat_idx", using: :btree
+  add_index "equipment_type_modifier_categories", ["equipment_type_id"], name: "eq_type_mod_cat_type_idx", using: :btree
 
   create_table "equipment_types", force: :cascade do |t|
     t.string   "name",                  limit: 255
@@ -341,9 +364,12 @@ ActiveRecord::Schema.define(version: 20160522214727) do
   add_foreign_key "damage_resistances", "creatures"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
+  add_foreign_key "equipment_modifiers", "equipment_modifier_categories"
   add_foreign_key "equipment_modifiers", "equipment_pieces"
   add_foreign_key "equipment_packages", "creatures"
   add_foreign_key "equipment_pieces", "equipment_types"
+  add_foreign_key "equipment_type_modifier_categories", "equipment_modifier_categories"
+  add_foreign_key "equipment_type_modifier_categories", "equipment_types"
   add_foreign_key "equipment_types", "equipment_categories"
   add_foreign_key "master_skills", "characteristics"
   add_foreign_key "monster_names", "monsters"

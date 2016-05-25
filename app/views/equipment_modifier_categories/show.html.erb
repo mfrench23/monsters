@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= equipment_modifier_category.name %>
+</p>
+
+<p>
+  <strong>Modifiers:</strong>
+  <ul>
+  <% equipment_modifier_category.equipment_modifiers.each do |equipment_modifier| %>
+    <li><%= equipment_modifier.to_s %></li>
+  <% end %>
+  </ul>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= equipment_modifier_category.notes %>
+</p>
+
+<%= link_to 'Edit', edit_equipment_modifier_category_path(equipment_modifier_category) %> |
+<%= link_to 'Back', equipment_modifier_categories_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :equipment_modifier_categories
+
   root 'welcome#index'
 
   # multiple table inheritance: monsters -> creatures and swarms
