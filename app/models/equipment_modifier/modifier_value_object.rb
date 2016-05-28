@@ -2,8 +2,8 @@
 # attached to; for example, a "x2" modifier would multiply the value it modifies by 2.
 class EquipmentModifier::ModifierValueObject
   def self.get_instance(text, is_money = false)
-    s = convert_fractions(text.to_s.strip)
-    get_cost_factor_modifier_value_object(s, is_money) || get_additive_modifier_value_object(s, is_money) || get_multiplicative_modifier_value_object(s) || EquipmentModifier::NoOpModifierValueObject.new
+    txt = convert_fractions(text.to_s.strip)
+    get_cost_factor_modifier_value_object(txt, is_money) || get_additive_modifier_value_object(txt, is_money) || get_multiplicative_modifier_value_object(txt) || EquipmentModifier::NoOpModifierValueObject.new
   end
 
   private
@@ -19,28 +19,27 @@ class EquipmentModifier::ModifierValueObject
   Regex_Multiplicative_Modifier = /^#{Regex_Multiplier} *(?<num>#{Regex_Number})$/
 
   def self.get_multiplicative_modifier_value_object(s)
-    if m = s.match( Regex_Multiplicative_Modifier )
-      EquipmentModifier::MultiplierModifierValueObject.new(m[:num])
+    if match = s.match( Regex_Multiplicative_Modifier )
+      EquipmentModifier::MultiplierModifierValueObject.new(match[:num])
     end
   end
 
-  def self.get_additive_modifier_value_object(s, is_money)
-    if m = s.match( Regex_Additive_Modifier )
-      EquipmentModifier::AdditiveModifierValueObject.new(m[:pm], m[:num], is_money)
+  def self.get_additive_modifier_value_object(text, is_money)
+    if match = text.match( Regex_Additive_Modifier )
+      EquipmentModifier::AdditiveModifierValueObject.new(match[:pm], match[:num], is_money)
     end
   end
 
-  def self.get_cost_factor_modifier_value_object(s, is_money)
-    if m = s.match( Regex_Cost_Factor_Modifier )
-      EquipmentModifier::CostFactorModifierValueObject.new(m[:pm], m[:num], is_money)
+  def self.get_cost_factor_modifier_value_object(text, is_money)
+    if match = text.match( Regex_Cost_Factor_Modifier )
+      EquipmentModifier::CostFactorModifierValueObject.new(match[:pm], match[:num], is_money)
     end
   end
 
   def self.convert_fractions(text)
-    if m = text.match(/(?<a>#{Regex_Number})\/(?<b>#{Regex_Number})/)
-      a = m[:a].to_d
-      b = m[:b].to_d
-      text.gsub(/#{m[:a]}\/#{m[:b]}/, (a/b).to_s)
+    if match = text.match(/(?<a>#{Regex_Number})\/(?<b>#{Regex_Number})/)
+      numerator, denominator = match[:a], match[:b]
+      text.gsub(/#{numerator}\/#{denominator}/, (numerator.to_d/denominator.to_d).to_s)
     else
       text
     end

@@ -26,34 +26,34 @@ class EquipmentModifierTest < ActiveSupport::TestCase
   end
 
   test "factor of 1 when not multiplying" do
-    assert_equal 1, @mod.modifier_value_object(:base_cost).factor
+    assert_equal 1, @mod.base_cost_modifier_value_object.factor
   end
 
   test "does math when handed a fractional factor" do
-    assert_equal 0.9, @mod.modifier_value_object(:weight).factor
+    assert_equal 0.9, @mod.weight_modifier_value_object.factor
   end
 
   test "additive modifiers" do
     original_base_cost = Money.new(5000)
-    assert_equal Money.new(10000), @mod.modifier_value_object(:base_cost).addition(original_base_cost)
+    assert_equal Money.new(10000), @mod.base_cost_modifier_value_object.addition(original_base_cost)
   end
 
   test "CF modifier" do
     original_base_cost = Money.new(5000)
-    assert_equal Money.new(7500), @mod.modifier_value_object(:cost).addition(original_base_cost)
+    assert_equal Money.new(7500), @mod.cost_modifier_value_object.addition(original_base_cost)
   end
 
   test "Money for money" do
     mod = EquipmentModifier.new(:name => "Empty")
-    assert_equal Money.new(0), mod.modifier_value_object(:base_cost).addition(nil)
-    assert_equal Money.new(0), mod.modifier_value_object(:cost).addition(nil)
+    assert_equal Money.new(0), mod.base_cost_modifier_value_object.addition(nil)
+    assert_equal Money.new(0), mod.cost_modifier_value_object.addition(nil)
     mod.base_cost_mod = mod.cost_mod = "+$100"
-    assert_equal Money.new(10000), mod.modifier_value_object(:base_cost).addition(nil)
-    assert_equal Money.new(10000), mod.modifier_value_object(:cost).addition(nil)
-    assert_equal "+$100.00", mod.modifier_value_object(:cost).to_s
+    assert_equal Money.new(10000), mod.base_cost_modifier_value_object.addition(nil)
+    assert_equal Money.new(10000), mod.cost_modifier_value_object.addition(nil)
+    assert_equal "+$100.00", mod.cost_modifier_value_object.to_s
     mod.base_cost_mod = mod.cost_mod = "+100"
-    assert_equal Money.new(10000), mod.modifier_value_object(:base_cost).addition(nil)
-    assert_equal Money.new(10000), mod.modifier_value_object(:cost).addition(nil)
-    assert_equal "+$100.00", mod.modifier_value_object(:cost).to_s
+    assert_equal Money.new(10000), mod.base_cost_modifier_value_object.addition(nil)
+    assert_equal Money.new(10000), mod.cost_modifier_value_object.addition(nil)
+    assert_equal "+$100.00", mod.cost_modifier_value_object.to_s
   end
 end

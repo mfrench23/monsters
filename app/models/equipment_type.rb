@@ -33,20 +33,20 @@ class EquipmentType < AbstractEntity
   private
 
   def self.extract_name(text)
-    if m = text.to_s.match( /^(.*) *\(/ )
-      m[1].strip
+    if matched = text.to_s.match( /^(.*) *\(/ )
+      matched[1].strip
     end
   end
 
   def self.extract_cost(text)
-    if m = text.to_s.match( /\$([\d,.]+)/ )
-      m[1].strip
+    if matched = text.to_s.match( /\$([\d,.]+)/ )
+      matched[1].strip
     end
   end
 
   def self.extract_weight(text)
-    if m = text.to_s.match( /([\d,.]+)#/ )
-      m[1].strip
+    if matched = text.to_s.match( /([\d,.]+)#/ )
+      matched[1].strip
     end
   end
 end

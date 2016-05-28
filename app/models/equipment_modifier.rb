@@ -2,11 +2,20 @@
 class EquipmentModifier < AbstractEntity
   belongs_to :equipment_modifier_category
 
-  def modifier_value_object(symbol)
-    return base_cost_modifier_value_object if :base_cost == symbol
-    return cost_modifier_value_object if :cost == symbol
-    return base_weight_modifier_value_object if :base_weight == symbol
-    return weight_modifier_value_object if :weight == symbol
+  def base_cost_modifier_value_object
+    @base_cost_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(base_cost_mod, true)
+  end
+
+  def cost_modifier_value_object
+    @cost_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(cost_mod, true)
+  end
+
+  def base_weight_modifier_value_object
+    @base_weight_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(base_weight_mod)
+  end
+
+  def weight_modifier_value_object
+    @weight_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(weight_mod)
   end
 
   def to_s
@@ -45,7 +54,7 @@ class EquipmentModifier < AbstractEntity
   end
 
   def modifiers_to_s
-    [base_cost_to_s, base_weight_to_s, cost_modifier_value_object.to_s, weight_to_s].reject{ |x| x.blank? }.join(", ")
+    [base_cost_to_s, base_weight_to_s, cost_modifier_value_object.to_s, weight_to_s].reject{ |member| member.blank? }.join(", ")
   end
 
   def weight_to_s
@@ -58,21 +67,5 @@ class EquipmentModifier < AbstractEntity
 
   def base_cost_to_s
     "base cost " + base_cost_modifier_value_object.to_s if base_cost_mod.present?
-  end
-
-  def base_cost_modifier_value_object
-    @base_cost_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(base_cost_mod, true)
-  end
-
-  def cost_modifier_value_object
-    @cost_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(cost_mod, true)
-  end
-
-  def base_weight_modifier_value_object
-    @base_weight_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(base_weight_mod)
-  end
-
-  def weight_modifier_value_object
-    @weight_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(weight_mod)
   end
 end

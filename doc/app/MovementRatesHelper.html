@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>module CharacteristicsHelper - Rails Application Documentation</title>
+<title>module MovementRatesHelper - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -63,7 +63,7 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-show_stat">#show_stat</a>
+    <li ><a href="#method-i-pretty_movement_rate">#pretty_movement_rate</a>
     
   </ul>
 </div>
@@ -71,9 +71,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="module-CharacteristicsHelper">
-  <h1 id="module-CharacteristicsHelper" class="module">
-    module CharacteristicsHelper
+<main role="main" aria-labelledby="module-MovementRatesHelper">
+  <h1 id="module-MovementRatesHelper" class="module">
+    module MovementRatesHelper
   </h1>
 
   <section class="description">
@@ -99,11 +99,11 @@
        </header>
 
     
-      <div id="method-i-show_stat" class="method-detail ">
+      <div id="method-i-pretty_movement_rate" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">show_stat</span><span
-            class="method-args">(val)</span>
+          <span class="method-name">pretty_movement_rate</span><span
+            class="method-args">(mv)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -117,10 +117,11 @@
           
 
           
-          <div class="method-source-code" id="show_stat-source">
-            <pre><span class="ruby-comment"># File app/helpers/characteristics_helper.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_stat</span>(<span class="ruby-identifier">val</span>)
-  <span class="ruby-identifier">val</span> <span class="ruby-operator">||</span> <span class="ruby-string">&#39;n/a&#39;</span>
+          <div class="method-source-code" id="pretty_movement_rate-source">
+            <pre><span class="ruby-comment"># File app/helpers/movement_rates_helper.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pretty_movement_rate</span>(<span class="ruby-identifier">mv</span>)
+  <span class="ruby-identifier">enh</span> = (<span class="ruby-identifier">mv</span>.<span class="ruby-identifier">enhanced_rate</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">mv</span>.<span class="ruby-identifier">enhanced_rate</span>.<span class="ruby-identifier">to_s</span>)
+  <span class="ruby-identifier">mv</span>.<span class="ruby-identifier">rate</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">enh</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; (&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">mv</span>.<span class="ruby-identifier">move_type_name</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;)&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

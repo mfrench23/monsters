@@ -49,7 +49,7 @@ class EquipmentPiece < AbstractEntity
   end
 
   def final_owner
-    owner.final_owner unless owner.nil?
+    owner.try(:final_owner)
   end
 
   def deep_copy
@@ -75,29 +75,28 @@ class EquipmentPiece < AbstractEntity
     calc_cost
   end
 
-  def perform_modifications(method, starting_base = nil)
-    starting_base ||= equipment_type.try(method)
+  def perform_modifications(method, starting_base)
     result = equipment_modifiers.reduce(starting_base) do |memo, mod|
-      memo += mod.modifier_value_object(method).addition(starting_base)
+      memo += mod.try(method).addition(starting_base)
     end
     return equipment_modifiers.reduce(result) do |memo, mod|
-      memo *= mod.modifier_value_object(method).factor
+      memo *= mod.try(method).factor
     end
   end
 
   def calc_base_cost
-    self.base_cost = perform_modifications(:base_cost)
+    self.base_cost = perform_modifications(:base_cost_modifier_value_object, equipment_type.try(:base_cost))
   end
 
   def calc_base_weight
-    self.base_weight = perform_modifications(:base_weight)
+    self.base_weight = perform_modifications(:base_weight_modifier_value_object, equipment_type.try(:base_weight))
   end
 
   def calc_weight
-    self.weight = perform_modifications(:weight, base_weight)
+    self.weight = perform_modifications(:weight_modifier_value_object, base_weight)
   end
 
   def calc_cost
-    self.cost = perform_modifications(:cost, base_cost)
+    self.cost = perform_modifications(:cost_modifier_value_object, base_cost)
   end
 end

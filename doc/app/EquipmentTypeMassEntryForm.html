@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class Creature - Rails Application Documentation</title>
+<title>class EquipmentTypeMassEntryForm - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -58,26 +58,11 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="AbstractEntity.html">AbstractEntity</a>
+  <p class="link"><a href="AbstractEquipmentTypeForm.html">AbstractEquipmentTypeForm</a>
   
 </div>
 
-    <div id="includes-section" class="nav-section">
-  <h3>Included Modules</h3>
-
-  <ul class="link-list">
-  
-  
-    <li><a class="include" href="Creature/TraitList.html">Creature::TraitList</a>
-  
-  
-  
-    <li><a class="include" href="NilBlankable.html">NilBlankable</a>
-  
-  
-  </ul>
-</div>
-
+    
     
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
@@ -85,11 +70,11 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-deep_copy">#deep_copy</a>
+    <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-i-freeform_trait_list-3D">#freeform_trait_list=</a>
+    <li ><a href="#method-i-equipment_category_id">#equipment_category_id</a>
     
-    <li ><a href="#method-i-to_s">#to_s</a>
+    <li ><a href="#method-i-ok-3F">#ok?</a>
     
   </ul>
 </div>
@@ -97,16 +82,13 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Creature">
-  <h1 id="class-Creature" class="class">
-    class Creature
+<main role="main" aria-labelledby="class-EquipmentTypeMassEntryForm">
+  <h1 id="class-EquipmentTypeMassEntryForm" class="class">
+    class EquipmentTypeMassEntryForm
   </h1>
 
   <section class="description">
     
-<p>Represents a <a href="Monster.html">Monster</a> that is treated as a single
-individual</p>
-
   </section>
 
   
@@ -126,9 +108,9 @@ individual</p>
       </header>
 
       
-      <div id="attribute-i-freeform_skill_list" class="method-detail">
+      <div id="attribute-i-equipment_types" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">freeform_skill_list</span><span
+          <span class="method-name">equipment_types</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
@@ -139,9 +121,9 @@ individual</p>
         </div>
       </div>
       
-      <div id="attribute-i-freeform_trait_list" class="method-detail">
+      <div id="attribute-i-error_messages" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">freeform_trait_list</span><span
+          <span class="method-name">error_messages</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
@@ -156,16 +138,61 @@ individual</p>
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(params=nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">whitelisted_params</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-ivar">@equipment_types</span> = []
+  <span class="ruby-ivar">@error_messages</span> = []
+  <span class="ruby-identifier">convert_new_equipment_category_name</span>
+  <span class="ruby-identifier">convert_freeform_text_to_equipment_types</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
        </header>
 
     
-      <div id="method-i-deep_copy" class="method-detail ">
+      <div id="method-i-equipment_category_id" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">deep_copy</span><span
+          <span class="method-name">equipment_category_id</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -180,13 +207,10 @@ individual</p>
           
 
           
-          <div class="method-source-code" id="deep_copy-source">
-            <pre><span class="ruby-comment"># File app/models/creature.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
-  <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
-  <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">monster</span> = <span class="ruby-identifier">monster</span>.<span class="ruby-identifier">deep_copy</span>
-  <span class="ruby-identifier">reference_list_attributes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">reference</span><span class="ruby-operator">|</span> <span class="ruby-identifier">deep_copy_reference</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">copy</span>) }
-  <span class="ruby-identifier">copy</span>
+          <div class="method-source-code" id="equipment_category_id-source">
+            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">equipment_category_id</span>
+  <span class="ruby-ivar">@params</span>[<span class="ruby-value">:equipment_category_id</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -198,45 +222,10 @@ individual</p>
       </div>
 
     
-      <div id="method-i-freeform_trait_list-3D" class="method-detail ">
+      <div id="method-i-ok-3F" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">freeform_trait_list=</span><span
-            class="method-args">(value)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="freeform_trait_list-3D-source">
-            <pre><span class="ruby-comment"># File app/models/creature.rb, line 37</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">freeform_trait_list=</span>(<span class="ruby-identifier">value</span>)
-  <span class="ruby-constant">TraitList</span><span class="ruby-operator">::</span><span class="ruby-constant">FreeformTraitList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">trait</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">traits</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">trait</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-to_s" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">to_s</span><span
+          <span class="method-name">ok?</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -251,10 +240,10 @@ individual</p>
           
 
           
-          <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/creature.rb, line 43</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">name</span>
+          <div class="method-source-code" id="ok-3F-source">
+            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ok?</span>
+  <span class="ruby-ivar">@error_messages</span>.<span class="ruby-identifier">empty?</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
