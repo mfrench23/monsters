@@ -1,3 +1,4 @@
+# One or more pages in a given Book
 class PageReference < AbstractEntity
   belongs_to :book
   belongs_to :referenceable, polymorphic: true, touch: true
@@ -6,7 +7,7 @@ class PageReference < AbstractEntity
     if not pages.blank?
       pg = "p. " + pages
     end
-    ( book.nil? ? pg.to_s : book.to_reference_s + " #{pg}" ).strip
+    ( book.try(:to_reference_s).to_s + " " + pg.to_s ).strip
   end
 
   def deep_copy

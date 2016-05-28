@@ -1,6 +1,8 @@
+# A general GURPS Skill, like Brawling or Chemistry
 class MasterSkill < AbstractEntity
   include Nameable
   include PageReferenceable
+  include NilBlankable
 
   belongs_to :characteristic
   before_validation :nil_blank_attributes
@@ -14,9 +16,7 @@ class MasterSkill < AbstractEntity
 
   private
 
-  def nil_blank_attributes
-    [:name, :notes].each do |attr|
-      self[attr] = nil if self[attr].blank?
-    end
+  def blankable_attributes
+    [:name, :notes]
   end
 end

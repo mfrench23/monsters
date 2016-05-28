@@ -1,3 +1,4 @@
+# A ModifierValueObject that multiplies that which is modifies (i.e., "x2")
 class EquipmentModifier::MultiplierModifierValueObject < EquipmentModifier::ModifierValueObject
   def initialize( num )
     @val = num.to_d

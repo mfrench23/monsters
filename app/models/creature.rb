@@ -1,5 +1,7 @@
+# Represents a Monster that is treated as a single individual
 class Creature < AbstractEntity
   include TraitList
+  include NilBlankable
 
   attr_accessor :freeform_trait_list
   attr_accessor :freeform_skill_list
@@ -48,9 +50,7 @@ class Creature < AbstractEntity
     [:damage_resistances, :skills, :traits, :parry_scores, :equipment_packages]
   end
 
-  def nil_blank_attributes
-    [:height, :weight, :parts_value_cents].each do |attr|
-      self[attr] = nil if self[attr].blank?
-    end
+  def blankable_attributes
+    [:height, :weight, :parts_value_cents]
   end
 end

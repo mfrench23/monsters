@@ -1,3 +1,5 @@
+# Intersection between Monster and Characteristic, determining all the characteristic scores
+# for a particular monster
 class CharacteristicMonster < AbstractEntity
   belongs_to :characteristic
   belongs_to :monster, touch: true

@@ -1,3 +1,7 @@
+# A list of items where a semicolon or comma is considered a delimiter unless it
+# falls inside a parenthetical phrase. For example, "one (1, 2); two (3; 5)" would
+# be parsed into two items, "one (1, 2)" and "two (3; 5)". Items may be split across
+# multiple lines of input.
 module Logical
   class FreeformList
     attr_accessor :list

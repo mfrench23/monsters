@@ -1,3 +1,4 @@
+# One rate of movement in a particular mode (ie, flying, walking, etc) for a given Monster
 class MovementRate < AbstractEntity
   belongs_to :monster, touch: true
   belongs_to :move_type

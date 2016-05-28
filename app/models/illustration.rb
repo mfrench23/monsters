@@ -1,3 +1,4 @@
+# A picture used to illustrate some other entity
 class Illustration < AbstractEntity
   belongs_to :illustratable, :polymorphic => true
 

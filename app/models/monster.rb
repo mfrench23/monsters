@@ -1,9 +1,13 @@
+# A single monster entry, in the "Monster Manual" sense, which may refer to
+# a single unique individual (the Tarrasque), a "species" of creatures (goblins,
+# unicorns), or a group of creatures acting in concert (a flock of birds)
 class Monster < AbstractEntity
   include CampaignContained
   include Dateable
   include Illustratable
   include Nameable
   include PageReferenceable
+  include NilBlankable
 
   after_initialize :populate_new_monster
   before_validation :nil_blank_attributes
@@ -70,10 +74,8 @@ class Monster < AbstractEntity
     [:page_references, :attacks, :movement_rates, :characteristic_monsters, :campaign_contents, :illustrations ]
   end
 
-  def nil_blank_attributes
-    [:description, :notes, :ancestry].each do |attr|
-      self[attr] = nil if self[attr].blank?
-    end
+  def blankable_attributes
+    [:description, :notes, :ancestry]
   end
 
   def populate_new_monster

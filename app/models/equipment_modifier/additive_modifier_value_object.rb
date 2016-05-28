@@ -1,3 +1,4 @@
+# A ModifierValueObject that adds a constant to the value it modifies
 class EquipmentModifier::AdditiveModifierValueObject < EquipmentModifier::ModifierValueObject
   def initialize( plus_or_minus, num, is_money )
     @is_money = is_money

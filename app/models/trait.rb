@@ -1,3 +1,4 @@
+# Connects a Creature to the MasterTraits it possesses.
 class Trait < AbstractEntity
   belongs_to :trait_owner, polymorphic: true, touch: true
   belongs_to :master_trait

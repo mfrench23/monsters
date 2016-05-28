@@ -1,3 +1,4 @@
+# A particular GURPS Characteristic, like ST or HT
 class Characteristic < AbstractEntity
   has_many  :characteristic_monsters, dependent: :destroy
   has_many  :characteristic_lists, dependent: :destroy

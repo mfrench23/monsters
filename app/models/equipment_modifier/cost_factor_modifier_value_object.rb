@@ -1,3 +1,5 @@
+# Applies the Cost Factor calculation, where +1 CF adds 100% of the unmodified value, so
+# a total +1 CF doubles the original price, +2 CF triples it, etc.
 class EquipmentModifier::CostFactorModifierValueObject < EquipmentModifier::ModifierValueObject
   def initialize( plus_or_minus, num, is_money )
     @is_money = is_money

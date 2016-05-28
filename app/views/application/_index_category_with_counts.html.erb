@@ -1,0 +1,36 @@
+<% header_title = klass.to_s.pluralize.titleize %>
+<% name_field = klass.to_s.titleize + ".name" %>
+<% counted ||= nil %>
+<% columns_to_count = [*counted] %>
+<h1>Listing <%= header_title %></h1>
+
+<%= page_entries_info list %>
+
+<table class="fixed-table" style="width: 60%;">
+  <thead>
+    <tr>
+      <th><%= sortable name_field, klass, params, "Name" %></th>
+      <% columns_to_count.each do |col| %>
+        <th style="width: 180px;">Number of <%= col.to_s.pluralize %></th>
+      <% end %>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% list.each_with_index do |list_member, index| %>
+      <tr class="tr<%= index % 2 %>">
+        <td><%= link_to list_member.name, list_member %></td>
+        <% columns_to_count.each do |col| %>
+          <td class="count"><%= list_member.try(col).count %></td>
+        <% end %>
+        <%= render 'index_edit_destroy_links', target: list_member %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= paginate list %>
+<%= link_to 'New ' + klass.to_s.titleize, new_polymorphic_path(klass) %>

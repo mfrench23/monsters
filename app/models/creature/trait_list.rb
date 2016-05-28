@@ -1,3 +1,4 @@
+# Represents (and parses) several Traits encoded into a single string of data and abbreviations
 module Creature::TraitList
   class FreeformTraitList
     attr_accessor :list

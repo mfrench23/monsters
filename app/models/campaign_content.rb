@@ -1,3 +1,4 @@
+# Intersection table that shows that an entity is restricted to one specified Campaign
 class CampaignContent < AbstractEntity
   belongs_to :campaign
   belongs_to :content, polymorphic: true, touch: true

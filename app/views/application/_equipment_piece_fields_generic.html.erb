@@ -1,0 +1,23 @@
+<% divclass ||= 'field' %>
+<% has_headers ||= false %>
+<div class="<%= divclass %>">
+  <%= f.label :name if has_headers -%>
+  <%= f.text_field :name, :size => 10 %>
+</div>
+
+<div class="<%= divclass %>">
+  <%= f.label :quantity if has_headers -%>
+  <%= f.number_field :quantity, :size => 10, :value => (f.object.quantity || 1) %>
+</div>
+
+<div class="<%= divclass %>">
+  <%= f.label :equipment_type_id if has_headers -%>
+  <%= f.collection_select :equipment_type_id, EquipmentType.order_by_name, :id, :name, :include_blank => false %>
+</div>
+
+<div class="<%= divclass %>">
+  <%= render 'expanding_fieldset', f: f,
+    id: "equipment_modifiers", collection: :equipment_modifiers,
+    partial: 'equipment_modifier_fields', label: 'add modifier', header: ( has_headers == true ? "Modifiers" : nil),
+    header_list: [ :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod ], freeform: nil %>
+</div>

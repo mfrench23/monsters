@@ -1,3 +1,4 @@
+# All the data for a single GURPS campaign
 class Campaign < AbstractEntity
   include Nameable
 

@@ -1,3 +1,4 @@
+# A GURPS hit location
 class Location < AbstractEntity
   include Nameable
 

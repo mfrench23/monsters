@@ -1,3 +1,4 @@
+# A GURPS equipment modifier, like "Cheap" or "Fine" or "Enchanted with..."
 class EquipmentModifier < AbstractEntity
   belongs_to :equipment_modifier_category
 

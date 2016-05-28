@@ -1,3 +1,5 @@
+# Represents a value object that can perform certain modifications on the value it is 
+# attached to; for example, a "x2" modifier would multiply the value it modifies by 2.
 class EquipmentModifier::ModifierValueObject
   def self.get_instance(text, is_money = false)
     s = convert_fractions(text.to_s.strip)

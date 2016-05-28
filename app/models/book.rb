@@ -1,3 +1,4 @@
+# Represents a book or other source of GURPS-related information
 class Book < AbstractEntity
   include Nameable
 

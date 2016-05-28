@@ -27,7 +27,7 @@
     <div>
       <span class="field-label show">Move</span>
       <% monster.movement_rates.each do |mv| %>
-	<%= mv.rate %><%= mv.enhanced_rate.nil? ? "" : "/" + mv.enhanced_rate.to_s %> (<%= mv.move_type_name %>)<br>
+	<%= pretty_movement_rate mv %><br>
       <% end %>
     </div>
     <div>

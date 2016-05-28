@@ -1,3 +1,4 @@
+# Represents all the Characteristics appropriate to a particular subclass of Monster
 class CharacteristicList < AbstractEntity
   belongs_to :characteristic
 

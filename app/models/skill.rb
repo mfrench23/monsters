@@ -1,3 +1,4 @@
+# Details concerning a GURPS Skill posessed by a particular Creature (particularly, skill level)
 class Skill < AbstractEntity
   belongs_to :creature, touch: true
   belongs_to :master_skill

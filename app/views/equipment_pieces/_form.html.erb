@@ -11,23 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :quantity %><br>
-    <%= f.number_field :quantity %>
-  </div>
-  <div class="field">
-    <%= f.label :equipment_type_id %><br>
-    <%= f.collection_select :equipment_type_id, EquipmentType.order_by_name, :id, :name, :include_blank => false %>
-  </div>
-
-  <%= render 'expanding_fieldset', f: f,
-    id: "equipment_modifiers", collection: :equipment_modifiers,
-    partial: 'equipment_modifier_fields', label: 'add modifier', header: "Modifiers",
-    header_list: [ :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod, :notes ], freeform: nil %>
+  <%= render 'equipment_piece_fields_generic', f: f, has_headers: true %>
 
   <div class="actions">
     <%= f.submit %>

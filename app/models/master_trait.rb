@@ -1,6 +1,8 @@
+# The general form of a GURPS Advantage, Disadvantage, Perk, Quirk, or the like.
 class MasterTrait < AbstractEntity
   include Nameable
   include PageReferenceable
+  include NilBlankable
 
   has_many :traits, dependent: :destroy
   accepts_nested_attributes_for :traits, allow_destroy: true
@@ -31,15 +33,13 @@ class MasterTrait < AbstractEntity
 
   private
 
+  def blankable_attributes
+    [:name, :notes]
+  end
+
   def update_granted_traits
     traits(true).each do |trait|
       trait.save # refreshing the list of granted traits
-    end
-  end
-
-  def nil_blank_attributes
-    [:name, :notes].each do |attr|
-      self[attr] = nil if self[attr].blank?
     end
   end
 end

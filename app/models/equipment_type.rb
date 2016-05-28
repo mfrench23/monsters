@@ -23,7 +23,7 @@ class EquipmentType < AbstractEntity
   scope :in_equipment_category, -> (equipment_category_id) { where('equipment_category_id = ?', equipment_category_id) }
 
   def equipment_category_name
-    equipment_category.name unless equipment_category.nil?
+    equipment_category.try(:name)
   end
 
   def self.parse(text, equipment_category_id)

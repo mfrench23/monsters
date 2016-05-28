@@ -1,3 +1,4 @@
+# Represents a GURPS swarm, like a swarm of bees or a horde of rats
 class Swarm < AbstractEntity
   acts_as :monster
   before_validation :nil_blank_attributes

@@ -1,3 +1,4 @@
+# A mode of movement, like "flying" or "swimming"
 class MoveType < AbstractEntity
   include Nameable
 
