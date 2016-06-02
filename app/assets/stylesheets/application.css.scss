@@ -195,21 +195,20 @@ a.quiet:active {
   color: white;
   text-decoration: underline;
 }
-
+// fixed-width table
 .fixed-table {
   table-layout: fixed;
   width: 95%;
   white-space: nowrap;
 }
-.boxed-list {
-  width: 80%; 
-  border: 1px solid grey;
-}
-
 .fixed-table td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.boxed-list {
+  width: 80%; 
+  border: 1px solid grey;
 }
 // expanding fieldset
 .remove_fields {

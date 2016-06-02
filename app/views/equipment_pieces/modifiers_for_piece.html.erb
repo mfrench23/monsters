@@ -1,0 +1,5 @@
+<%= render 'many_to_many_checkbox_table', available_intersection_list: available_intersection_list,
+  intersection_field: :equipment_modifier, target: target, base_id: base_id,
+  member_name: :equipment_piece_modifiers, intersected_table: EquipmentPieceModifier,
+  table_class: "", title: title,
+  number_of_columns: 5 %>

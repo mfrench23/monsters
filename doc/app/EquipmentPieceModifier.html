@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class EquipmentPiecesController - Rails Application Documentation</title>
+<title>class EquipmentPieceModifier - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -58,33 +58,26 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="ModelBasedController.html">ModelBasedController</a>
+  <p class="link"><a href="AbstractEntity.html">AbstractEntity</a>
   
 </div>
 
     
     
-    <!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-modifiers_for_piece">#modifiers_for_piece</a>
-    
-  </ul>
-</div>
-
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-EquipmentPiecesController">
-  <h1 id="class-EquipmentPiecesController" class="class">
-    class EquipmentPiecesController
+<main role="main" aria-labelledby="class-EquipmentPieceModifier">
+  <h1 id="class-EquipmentPieceModifier" class="class">
+    class EquipmentPieceModifier
   </h1>
 
   <section class="description">
     
+<p>Joins many EquipmentPieces to many EquipmentModifiers. Shows what modifiers
+are applied to a particular piece of equipment.</p>
+
   </section>
 
   
@@ -100,47 +93,6 @@
     
 
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-    
-      <div id="method-i-modifiers_for_piece" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">modifiers_for_piece</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="modifiers_for_piece-source">
-            <pre><span class="ruby-comment"># File app/controllers/equipment_pieces_controller.rb, line 3</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">modifiers_for_piece</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> <span class="ruby-identifier">modifiers_for_piece_local_hash</span>(<span class="ruby-identifier">params</span>), <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
-  
   </section>
 </main>
 

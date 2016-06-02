@@ -43,6 +43,7 @@ class CampaignsControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @campaign
     assert_response :success
+    assert_select "span", {:text => "Monsters"}
   end
 
   test "should update campaign" do

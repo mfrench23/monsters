@@ -6,4 +6,7 @@ class EquipmentModifier::NoOpModifierValueObject < EquipmentModifier::ModifierVa
   def factor
     return 1
   end
+  def to_s
+    nil
+  end
 end

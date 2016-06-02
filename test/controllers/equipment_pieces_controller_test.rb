@@ -40,4 +40,10 @@ class EquipmentPiecesControllerTest < ActionController::TestCase
 
     assert_redirected_to equipment_pieces_path
   end
+
+  test "can get modifier choices appropriate to an equipment_piece" do
+    get :modifiers_for_piece, {:equipment_piece_id => @equipment_piece.id, :equipment_type_id => @equipment_type.id, :title => "true" }
+    assert_response :success
+    assert_select "span", { :text => "Equipment Piece Modifiers" }
+  end
 end

@@ -22,3 +22,6 @@ coverage
 # Ignore environment-specific config
 /config/database.yml
 /config/secrets.yml
+
+# Ignore byebug history
+/.byebug_history

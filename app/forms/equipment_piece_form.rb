@@ -10,8 +10,8 @@ class EquipmentPieceForm < AbstractForm
   end
 
   def permitted_attributes
-    [:name, :equipment_type_id, :quantity,
-     equipment_modifiers_attributes: [:id, :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod, :notes, :_destroy]
+    [:id, :name, :equipment_type_id, :quantity,
+     equipment_piece_modifiers_attributes: [:id, :equipment_modifier_id, :notes, :_destroy]
     ]
   end
 end

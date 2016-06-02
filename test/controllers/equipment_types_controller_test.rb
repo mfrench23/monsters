@@ -31,6 +31,7 @@ class EquipmentTypesControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @equipment_type
     assert_response :success
+    assert_select "span", { :text => "Equipment Modifier Categories" }
   end
 
   test "should update equipment_type" do

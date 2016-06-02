@@ -1,21 +1,29 @@
-<% number_of_columns ||= 3 %>
-<% title ||= intersected_table.to_s.pluralize.titleize %>
+<% number_of_columns ||= 5 %>
 <% foreign_key_type_name ||= nil %>
+<% displayed_field ||= :name %>
+<% title_field ||= displayed_field %>
+<% foreign_key_name ||= (intersection_field.to_s + "_id").to_sym %>
+<% total_count = available_intersection_list.count %>
+
 <div class="field">
-  <span class="field-label"><%= title %></span>
+  <% if title.present? %>
+    <span class="field-label"><%= title %></span>
+  <% end %>
   <fieldset id="<%= member_name %>" class="expanding-fieldset-container">
-    <table class="fixed-table">
-      <%= f.fields_for member_name, available_intersection_list do |x| %>
-        <% intersected = x.object %>
-        <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => x.index, :number_of_columns => number_of_columns, :total_count => available_intersection_list.count } do %>
-          <% intersection_row = intersection_table.find{ |rw| (rw.try(intersection_field) == intersected) } %>
-          <%= x.hidden_field :id, :value => intersection_row.try(:id) %>
-          <%= x.hidden_field foreign_key_name, :value => intersected.id %>
+    <table class="<%= table_class %>">
+      <% available_intersection_list.each_with_index do |intersected, index| %>
+        <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :number_of_columns => number_of_columns, :total_count => total_count } do %>
+          <% intersection_row = target.try(member_name).find{ |rw| (rw.try(intersection_field) == intersected) } %>
+          <%= hidden_field_tag "#{base_id}[#{index}][id]", intersection_row.try(:id) %>
+          <%= hidden_field_tag "#{base_id}[#{index}][#{foreign_key_name}]", intersected[:id] %>
           <% if foreign_key_type_name.present? %>
-            <%= x.hidden_field foreign_key_type_name, :value => intersected_table.to_s %>
+            <%= hidden_field_tag "#{base_id}[#{index}][#{foreign_key_type_name}]", intersected_table.to_s %>
           <% end %>
-          <%= x.check_box "_destroy", { checked: intersection_row.present? }, "false", "true" %>
-          <span title="<%= intersected.name %>"><%= intersected.name %></span>
+          <%= hidden_field_tag "#{base_id}[#{index}][_destroy]", "true" %>
+          <%= check_box_tag "#{base_id}[#{index}][_destroy]", "false", intersection_row.present? %>
+          <span title="<%= intersected[title_field] %>">
+            <%= intersected[displayed_field] %>
+          </span>
         <% end %>
       <% end %>
     </table>

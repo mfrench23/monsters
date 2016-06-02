@@ -4,13 +4,12 @@
 class EquipmentPiece < AbstractEntity
   include Dateable
 
-  before_validation :calculate_dependant_values
-
   belongs_to :equipment_type
   belongs_to :owner, polymorphic: true
 
-  has_many :equipment_modifiers, dependent: :destroy, :after_add => :nil_dependant_values, :after_remove => :nil_dependant_values
-  accepts_nested_attributes_for :equipment_modifiers, allow_destroy: true, :reject_if => lambda { |x| x['name'].blank? }
+  has_many :equipment_piece_modifiers, dependent: :destroy
+  accepts_nested_attributes_for :equipment_piece_modifiers, allow_destroy: true
+  has_many :equipment_modifiers, :through => :equipment_piece_modifiers
 
   has_one :equipment_category, :through => :equipment_type
 
@@ -25,11 +24,13 @@ class EquipmentPiece < AbstractEntity
   validates :equipment_type, :quantity, presence: true
 
   def base_cost_cents
-    calculate_dependant_value(:base_cost_cents, :calc_base_cost)
+    calc_base_cost
+    read_attribute :base_cost_cents
   end
 
   def cost_cents
-    calculate_dependant_value(:cost_cents, :calc_cost)
+    calc_cost
+    read_attribute :cost_cents
   end
 
   def total_cost_cents
@@ -37,11 +38,13 @@ class EquipmentPiece < AbstractEntity
   end
 
   def base_weight
-    calculate_dependant_value(:base_weight, :calc_base_weight)
+    calc_base_weight
+    read_attribute :base_weight
   end
 
   def weight
-    calculate_dependant_value(:weight, :calc_weight)
+    calc_weight
+    read_attribute :weight
   end
 
   def total_weight
@@ -62,17 +65,6 @@ class EquipmentPiece < AbstractEntity
 
   def reference_list_attributes
     [:equipment_modifiers]
-  end
-
-  def nil_dependant_values(optional_modifier)
-    self.base_cost_cents = self.base_weight = self.cost_cents = self.weight = nil
-  end
-
-  def calculate_dependant_values
-    calc_base_cost
-    calc_base_weight
-    calc_weight
-    calc_cost
   end
 
   def perform_modifications(method, starting_base)

@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   end
   resources :equipment_pieces, :except => [:new, :create]
 
+  get "/fetch_equipment_modifiers" => 'equipment_pieces#modifiers_for_piece', as: 'fetch_equipment_modifiers'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

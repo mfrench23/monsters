@@ -1,45 +1,26 @@
 # A GURPS equipment modifier, like "Cheap" or "Fine" or "Enchanted with..."
 class EquipmentModifier < AbstractEntity
   belongs_to :equipment_modifier_category
+  has_many :equipment_piece_modifiers, dependent: :destroy
 
   def base_cost_modifier_value_object
-    @base_cost_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(base_cost_mod, true)
+    EquipmentModifier::ModifierValueObject.get_instance(base_cost_mod, true)
   end
 
   def cost_modifier_value_object
-    @cost_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(cost_mod, true)
+    EquipmentModifier::ModifierValueObject.get_instance(cost_mod, true)
   end
 
   def base_weight_modifier_value_object
-    @base_weight_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(base_weight_mod)
+    EquipmentModifier::ModifierValueObject.get_instance(base_weight_mod)
   end
 
   def weight_modifier_value_object
-    @weight_modifier_value_object ||= EquipmentModifier::ModifierValueObject.get_instance(weight_mod)
+    EquipmentModifier::ModifierValueObject.get_instance(weight_mod)
   end
 
   def to_s
     "#{name} (" + modifiers_to_s + notes_to_s + ")"
-  end
-
-  def base_cost_mod=(value)
-    @base_cost_modifier_value_object = nil
-    write_attribute(:base_cost_mod, value)
-  end
-
-  def cost_mod=(value)
-    @cost_modifier_value_object = nil
-    write_attribute(:cost_mod, value)
-  end
-
-  def base_weight_mod=(value)
-    @base_weight_modifier_value_object = nil
-    write_attribute(:base_weight_mod, value)
-  end
-
-  def weight_mod=(value)
-    @weight_modifier_value_object = nil
-    write_attribute(:weight_mod, value)
   end
 
   def deep_copy

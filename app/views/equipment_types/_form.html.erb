@@ -32,11 +32,11 @@
     <%= f.autocomplete_field :equipment_category_name, autocomplete_equipment_category_name_equipment_types_path %>
   </div>
 
-  <%= render 'many_to_many_checkbox_table', f: f, available_intersection_list: equipment_modifier_categories,
-    intersection_table: equipment_type.equipment_type_modifier_categories, intersection_field: :equipment_modifier_category,
+  <%= render 'many_to_many_checkbox_table', available_intersection_list: equipment_modifier_categories,
+    intersection_field: :equipment_modifier_category, target: equipment_type,
+    base_id: f.object_name.to_s + "[equipment_type_modifier_categories_attributes]",
     member_name: :equipment_type_modifier_categories, intersected_table: EquipmentModifierCategory,
-    foreign_key_name: :equipment_modifier_category_id,
-    number_of_columns: 5 %>
+    table_class: "fixed-table", title: "Equipment Modifier Categories" %>
 
   <div class="field">
     <%= f.label :notes %><br>

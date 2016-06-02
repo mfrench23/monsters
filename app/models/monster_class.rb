@@ -1,4 +1,4 @@
-# A general class of monsters sharing certain attributes, like "Elementals" 
+# A general class of monsters sharing certain attributes, like "Elementals"
 # or "Dire Animals".
 class MonsterClass < AbstractEntity
   include Nameable

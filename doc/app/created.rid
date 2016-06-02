@@ -1,4 +1,4 @@
-Sat, 28 May 2016 16:23:31 -0700
+Wed, 01 Jun 2016 17:27:08 -0700
 README.rdoc	Fri, 29 May 2015 09:03:57 -0700
 app/controllers/application_controller.rb	Fri, 27 May 2016 17:51:48 -0700
 app/controllers/books_controller.rb	Thu, 06 Aug 2015 05:25:33 -0700
@@ -7,7 +7,7 @@ app/controllers/concerns/result_set_returning.rb	Tue, 11 Aug 2015 12:35:05 -0700
 app/controllers/creatures_controller.rb	Thu, 06 Aug 2015 05:10:41 -0700
 app/controllers/equipment_categories_controller.rb	Thu, 06 Aug 2015 05:31:04 -0700
 app/controllers/equipment_modifier_categories_controller.rb	Tue, 24 May 2016 14:33:13 -0700
-app/controllers/equipment_pieces_controller.rb	Thu, 06 Aug 2015 05:31:08 -0700
+app/controllers/equipment_pieces_controller.rb	Wed, 01 Jun 2016 15:07:28 -0700
 app/controllers/equipment_types_controller.rb	Tue, 24 May 2016 14:51:16 -0700
 app/controllers/locations_controller.rb	Thu, 06 Aug 2015 05:34:46 -0700
 app/controllers/master_skills_controller.rb	Thu, 06 Aug 2015 05:34:51 -0700
@@ -20,8 +20,8 @@ app/controllers/swarms_controller.rb	Thu, 06 Aug 2015 05:12:43 -0700
 app/controllers/welcome_controller.rb	Tue, 11 Aug 2015 09:51:53 -0700
 app/forms/abstract_equipment_type_form.rb	Wed, 12 Aug 2015 12:11:26 -0700
 app/forms/abstract_form.rb	Fri, 07 Aug 2015 15:19:26 -0700
-app/forms/creature_form.rb	Wed, 12 Aug 2015 12:39:00 -0700
-app/forms/equipment_piece_form.rb	Fri, 27 May 2016 11:42:28 -0700
+app/forms/creature_form.rb	Wed, 01 Jun 2016 14:19:30 -0700
+app/forms/equipment_piece_form.rb	Wed, 01 Jun 2016 10:20:25 -0700
 app/forms/equipment_type_form.rb	Tue, 24 May 2016 14:33:55 -0700
 app/forms/equipment_type_mass_entry_form.rb	Wed, 12 Aug 2015 12:15:44 -0700
 app/forms/master_skill_form.rb	Fri, 07 Aug 2015 15:20:04 -0700
@@ -32,12 +32,12 @@ app/helpers/characteristics_helper.rb	Fri, 29 May 2015 15:23:32 -0700
 app/helpers/damage_resistances_helper.rb	Fri, 10 Jul 2015 11:03:52 -0700
 app/helpers/equipment_pieces_helper.rb	Wed, 12 Aug 2015 13:36:32 -0700
 app/helpers/javascript_variables_helper.rb	Wed, 05 Aug 2015 15:23:36 -0700
-app/helpers/monster_form_builder.rb	Fri, 22 May 2015 13:26:27 -0700
+app/helpers/monster_form_builder.rb	Wed, 01 Jun 2016 12:19:37 -0700
 app/helpers/monsters_helper.rb	Tue, 23 Jun 2015 21:45:53 -0700
 app/helpers/movement_rates_helper.rb	Fri, 27 May 2016 12:31:30 -0700
 app/helpers/sortable_helper.rb	Fri, 12 Jun 2015 20:33:51 -0700
 app/helpers/top_nav_helper.rb	Tue, 02 Jun 2015 07:48:07 -0700
-app/models/abstract_entity.rb	Fri, 20 May 2016 15:57:12 -0700
+app/models/abstract_entity.rb	Wed, 01 Jun 2016 14:01:13 -0700
 app/models/attack.rb	Fri, 27 May 2016 15:59:59 -0700
 app/models/book.rb	Fri, 27 May 2016 15:59:35 -0700
 app/models/campaign.rb	Fri, 27 May 2016 15:59:09 -0700
@@ -57,23 +57,24 @@ app/models/creature.rb	Fri, 27 May 2016 15:56:16 -0700
 app/models/creature/trait_list.rb	Fri, 27 May 2016 18:22:11 -0700
 app/models/damage_resistance.rb	Fri, 27 May 2016 15:53:28 -0700
 app/models/equipment_category.rb	Mon, 10 Aug 2015 13:07:35 -0700
-app/models/equipment_modifier.rb	Sat, 28 May 2016 16:17:50 -0700
+app/models/equipment_modifier.rb	Wed, 01 Jun 2016 14:26:49 -0700
 app/models/equipment_modifier/additive_modifier_value_object.rb	Fri, 27 May 2016 15:47:11 -0700
 app/models/equipment_modifier/cost_factor_modifier_value_object.rb	Fri, 27 May 2016 15:46:52 -0700
-app/models/equipment_modifier/modifier_value_object.rb	Sat, 28 May 2016 16:16:37 -0700
+app/models/equipment_modifier/modifier_value_object.rb	Wed, 01 Jun 2016 14:19:48 -0700
 app/models/equipment_modifier/multiplier_modifier_value_object.rb	Fri, 27 May 2016 15:43:34 -0700
-app/models/equipment_modifier/no_op_modifier_value_object.rb	Fri, 27 May 2016 15:42:53 -0700
-app/models/equipment_modifier_category.rb	Fri, 27 May 2016 15:42:08 -0700
+app/models/equipment_modifier/no_op_modifier_value_object.rb	Wed, 01 Jun 2016 15:34:55 -0700
+app/models/equipment_modifier_category.rb	Wed, 01 Jun 2016 14:12:28 -0700
 app/models/equipment_package.rb	Fri, 27 May 2016 15:40:50 -0700
-app/models/equipment_piece.rb	Sat, 28 May 2016 14:09:31 -0700
+app/models/equipment_piece.rb	Wed, 01 Jun 2016 14:06:48 -0700
+app/models/equipment_piece_modifier.rb	Wed, 01 Jun 2016 14:20:35 -0700
 app/models/equipment_type.rb	Sat, 28 May 2016 14:08:26 -0700
-app/models/equipment_type_modifier_category.rb	Fri, 27 May 2016 15:39:49 -0700
+app/models/equipment_type_modifier_category.rb	Wed, 01 Jun 2016 14:20:39 -0700
 app/models/illustration.rb	Fri, 27 May 2016 15:27:38 -0700
 app/models/location.rb	Fri, 27 May 2016 15:27:06 -0700
 app/models/master_skill.rb	Fri, 27 May 2016 15:26:43 -0700
 app/models/master_trait.rb	Fri, 27 May 2016 15:04:14 -0700
 app/models/monster.rb	Fri, 27 May 2016 15:26:05 -0700
-app/models/monster_class.rb	Fri, 27 May 2016 15:24:08 -0700
+app/models/monster_class.rb	Wed, 01 Jun 2016 14:21:15 -0700
 app/models/monster_name.rb	Fri, 27 May 2016 15:23:05 -0700
 app/models/move_type.rb	Fri, 27 May 2016 15:17:42 -0700
 app/models/movement_rate.rb	Fri, 27 May 2016 15:17:10 -0700
