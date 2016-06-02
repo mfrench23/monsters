@@ -22,7 +22,7 @@
   <tbody>
     <% equipment_types.each_with_index do |equipment_type, index| %>
       <tr class="tr<%= index % 2 %>">
-        <td><%= link_to equipment_type.name, equipment_type %></td>
+        <td><%= link_to equipment_type.name, equipment_type, :class => "quiet", :title => equipment_type.name %></td>
         <td><%= equipment_type.unit_of_measurement %></td>
         <td class="count"><%= equipment_type.base_weight %></td>
         <td class="cash"><%= currency_symbol %><%= equipment_type.base_cost %></td>

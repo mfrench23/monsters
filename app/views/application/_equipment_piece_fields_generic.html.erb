@@ -1,21 +1,21 @@
 <% divclass ||= 'field' %>
-<% has_headers ||= false %>
+<% expanded ||= false %>
 <div class="<%= divclass %>">
-  <%= f.label :name if has_headers -%>
-  <%= f.text_field :name, :size => 10 %>
+  <%= f.label :name if expanded -%>
+  <%= f.text_field :name, :size => (expanded ? 35 : 12) %>
 </div>
 
 <div class="<%= divclass %>">
-  <%= f.label :quantity if has_headers -%>
-  <%= f.number_field :quantity, :size => 10, :value => (f.object.quantity || 1) %>
+  <%= f.label :quantity if expanded -%>
+  <%= f.number_field :quantity, :size => 12, :value => (f.object.quantity || 1) %>
 </div>
 
 <div class="<%= divclass %>">
-  <%= f.label :equipment_type_id if has_headers -%>
-  <% call = "reloadEquipmentPieceModifiers(this, " + f.object.id.to_s + ", this.value, " + has_headers.to_s + ")" -%>
+  <%= f.label :equipment_type_id if expanded -%>
+  <% call = "reloadEquipmentPieceModifiers(this, " + f.object.id.to_s + ", this.value, " + expanded.to_s + ")" -%>
   <% data_id = f.object_name.to_s + "[equipment_piece_modifiers_attributes]" %>
   <%= f.collection_select :equipment_type_id, EquipmentType.order_by_name, :id, :name, {:include_blank => false}, {:onchange => call, 'data-id' => data_id } %>
 </div>
 
-<div class="<%= divclass %>" data-id="<%= data_id %>" data-title="<%= has_headers.to_s %>" data-equipment_type_id="<%= f.object.equipment_type_id %>" data-equipment_piece_id="<%= f.object.id %>" name="ajax-modifiers-for-equipment-piece">
+<div class="<%= divclass %>" data-id="<%= data_id %>" data-title="<%= expanded.to_s %>" data-equipment_type_id="<%= f.object.equipment_type_id %>" data-equipment_piece_id="<%= f.object.id %>" name="ajax-modifiers-for-equipment-piece">
 </div>

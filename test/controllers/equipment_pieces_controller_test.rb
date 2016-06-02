@@ -45,5 +45,6 @@ class EquipmentPiecesControllerTest < ActionController::TestCase
     get :modifiers_for_piece, {:equipment_piece_id => @equipment_piece.id, :equipment_type_id => @equipment_type.id, :title => "true" }
     assert_response :success
     assert_select "span", { :text => "Equipment Piece Modifiers" }
+    assert_select "span", { :text => "none applicable" }
   end
 end
