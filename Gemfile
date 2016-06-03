@@ -20,7 +20,7 @@ gem 'jquery-rails'
 # - causes issues with document ready events
 # gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+#gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 # cocoon for easy nested forms
@@ -74,6 +74,8 @@ group :development, :test do
   # detects N+1 queries while browsing in development
   gem "bullet"
 end
+
+gem 'test_after_commit', :group => :test
 
 group :test do
   gem 'simplecov', :require => false

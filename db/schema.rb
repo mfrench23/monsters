@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529203106) do
+ActiveRecord::Schema.define(version: 20160602214850) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -139,11 +139,13 @@ ActiveRecord::Schema.define(version: 20160529203106) do
   add_index "equipment_modifiers", ["equipment_modifier_category_id"], name: "index_equipment_modifiers_on_equipment_modifier_category_id", using: :btree
 
   create_table "equipment_packages", force: :cascade do |t|
-    t.integer  "creature_id", limit: 4
-    t.string   "name",        limit: 255
-    t.text     "notes",       limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "creature_id",      limit: 4
+    t.string   "name",             limit: 255
+    t.text     "notes",            limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.integer  "total_cost_cents", limit: 4
+    t.decimal  "total_weight",                   precision: 10, scale: 4
   end
 
   add_index "equipment_packages", ["creature_id"], name: "index_equipment_packages_on_creature_id", using: :btree

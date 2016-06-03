@@ -1,3 +1,4 @@
+# Generalized controller to handle one resource that is backed by an AbstractEntity
 class ModelBasedController < ApplicationController
   include ResultSetReturning
 

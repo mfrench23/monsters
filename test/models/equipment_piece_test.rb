@@ -20,4 +20,21 @@ class EquipmentPieceTest < ActiveSupport::TestCase
     assert_equal 5000, @piece.cost_cents
     assert_equal 50, @piece.cost.dollars.to_i
   end
+
+  test "values change when a modifier is changed" do
+    cat = FactoryGirl.create(:equipment_category)
+    type = EquipmentType.new(:name => "Garbage Type", :base_weight => 1, :base_cost_cents => 100, :equipment_category => cat)
+    type.save!
+    mod = EquipmentModifier.new(:name => "Fancy!", :cost_mod => "+49 CF")
+    mod.save!
+    piece = EquipmentPiece.new(:equipment_type => type, :quantity => 1)
+    piece.equipment_modifiers << mod
+    piece.save!
+    id = piece.id
+    assert_equal 50, piece.cost.dollars.to_i
+    mod.cost_mod = "+9 CF"
+    mod.save!
+    piece = EquipmentPiece.find(id)
+    assert_equal 10, piece.cost.dollars.to_i
+  end
 end

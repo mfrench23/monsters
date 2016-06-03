@@ -1,3 +1,4 @@
+# Controller functionality specific to the EquipmentType model
 class EquipmentTypesController < ModelBasedController
   autocomplete :equipment_category, :name, :full => true
 

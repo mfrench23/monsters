@@ -10,9 +10,8 @@
   <div class="controls">
     <%= render 'expanding_fieldset', f: f,
       id: "equipment_pieces", collection: :equipment_pieces,
-      partial: '/creatures/equipment_piece_fields', label: 'add equipment piece', header: nil,
-          header_list: [ :name, :quantity, :type, :modifiers ],
-          freeform: nil %>
+      partial: 'equipment_piece_fields', label: 'add equipment piece', header: nil,
+          header_list: [ :name, :quantity, :type, :modifiers ] %>
   </div>
 
   <div class="controls">

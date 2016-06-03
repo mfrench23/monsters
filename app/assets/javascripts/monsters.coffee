@@ -2,13 +2,23 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+$(document).bind 'cocoon:before-insert', (e, inserted_item) ->
+  if inserted_item.data().cocoon_row_id <= 0
+    new_id = new Date().getTime()
+    inserted_item.attr "data-cocoon_row_id", new_id
+  return
+
 $(document).bind 'cocoon:after-insert', (e, inserted_item) ->
+  # unhide, if inserted_item is the first object in the collection
   e.target.style.display = 'table-row'
   if $('#' + e.target.parentElement.id + ' ul > li:visible').length > 0
     e.target.firstElementChild.style.display = 'table-row'
+  # post-insert processing for specific elements that might be inserted
+  loadInitialEquipmentPieceModifiers(fnd) for fnd in $(inserted_item).find("div[name='ajax-modifiers-for-equipment-piece']")
   return
 
 $(document).bind 'cocoon:after-remove', (e) ->
+  # if there are no remaining items to display, hide the header row
   if $('#' + e.target.parentElement.id + ' ul > li:visible').length == 1
     e.target.firstElementChild.style.display = 'none'
     e.target.style.display = 'none'

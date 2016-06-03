@@ -22,6 +22,9 @@
       <li><%= link_to 'Mass Entry of Equipment Type', mass_entry_equipment_types_path %></li>
       <li><%= link_to "Equipment Instances", equipment_pieces_path %></li>
       <li><%= link_to "Equipment Modifier Categories", equipment_modifier_categories_path %></li>
+      <li>Packages
+        <%= entity_links :equipment_package %>
+      </li>
     </ul>
   </li>
   <li><span>Utility</span>

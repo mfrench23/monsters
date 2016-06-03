@@ -1,17 +1,26 @@
+# Controller functionality specific to the EquipmentPieces model
 class EquipmentPiecesController < ModelBasedController
 
   def modifiers_for_piece
-    render locals: modifiers_for_piece_local_hash(params), :layout => false
+    render locals: EquipmentPiecesController.modifiers_for_piece_local_hash(params), :layout => false
   end
 
   private
 
-  def modifiers_for_piece_local_hash(params)
-    eq_piece = EquipmentPiece.find(params[:equipment_piece_id])
-    eq_type = EquipmentType.find(params[:equipment_type_id])
-    mod_list = (eq_type.equipment_modifiers + eq_piece.equipment_modifiers).uniq
+  def self.modifiers_for_piece_local_hash(params)
+    param_piece_id, param_type_id, base_id, title = EquipmentPiecesController.modifiers_for_piece_local_hash_params(params)
+    eq_piece = EquipmentPiece.find(param_piece_id) if (param_piece_id.try(:to_i)) > 0
+    eq_type = EquipmentType.find(param_type_id)
+    mod_list = ([*eq_type.try(:equipment_modifiers)] + [*eq_piece.try(:equipment_modifiers)]).uniq
+    modifiers_for_piece_local_hash = {:available_intersection_list => mod_list, :target => eq_piece, :base_id => base_id, :title => title }
+  end
+
+  def self.modifiers_for_piece_local_hash_params(params)
+    param_piece_id = params[:equipment_piece_id]
+    param_type_id = params[:equipment_type_id]
+    base_id = params[:base_id]
     title = "Equipment Piece Modifiers" if ("true" == params[:title].to_s)
-    modifiers_for_piece_local_hash = {:available_intersection_list => mod_list, :target => eq_piece, :base_id => params[:base_id], :title => title }
+    return param_piece_id, param_type_id, base_id, title
   end
 
   def whitelisted_entity_params

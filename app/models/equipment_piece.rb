@@ -4,6 +4,9 @@
 class EquipmentPiece < AbstractEntity
   include Dateable
 
+  before_save :calculate_values
+  after_commit :update_owner
+
   belongs_to :equipment_type
   belongs_to :owner, polymorphic: true
 
@@ -24,12 +27,12 @@ class EquipmentPiece < AbstractEntity
   validates :equipment_type, :quantity, presence: true
 
   def base_cost_cents
-    calc_base_cost
+    self.base_cost = perform_modifications(:base_cost_modifier_value_object, equipment_type.try(:base_cost))
     read_attribute :base_cost_cents
   end
 
   def cost_cents
-    calc_cost
+    self.cost = perform_modifications(:cost_modifier_value_object, base_cost)
     read_attribute :cost_cents
   end
 
@@ -38,12 +41,12 @@ class EquipmentPiece < AbstractEntity
   end
 
   def base_weight
-    calc_base_weight
+    self.base_weight = perform_modifications(:base_weight_modifier_value_object, equipment_type.try(:base_weight))
     read_attribute :base_weight
   end
 
   def weight
-    calc_weight
+    self.weight = perform_modifications(:weight_modifier_value_object, base_weight)
     read_attribute :weight
   end
 
@@ -63,6 +66,20 @@ class EquipmentPiece < AbstractEntity
 
   private
 
+  def update_owner
+    return unless owner.present?
+    owner.touch
+    owner.save
+  end
+
+  def calculate_values
+    base_weight
+    weight
+    base_cost
+    cost
+    return
+  end
+
   def reference_list_attributes
     [:equipment_modifiers]
   end
@@ -74,21 +91,5 @@ class EquipmentPiece < AbstractEntity
     return equipment_modifiers.reduce(result) do |memo, mod|
       memo *= mod.try(method).factor
     end
-  end
-
-  def calc_base_cost
-    self.base_cost = perform_modifications(:base_cost_modifier_value_object, equipment_type.try(:base_cost))
-  end
-
-  def calc_base_weight
-    self.base_weight = perform_modifications(:base_weight_modifier_value_object, equipment_type.try(:base_weight))
-  end
-
-  def calc_weight
-    self.weight = perform_modifications(:weight_modifier_value_object, base_weight)
-  end
-
-  def calc_cost
-    self.cost = perform_modifications(:cost_modifier_value_object, base_cost)
   end
 end

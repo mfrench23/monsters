@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :equipment_packages
+
   resources :equipment_modifier_categories
 
   root 'welcome#index'

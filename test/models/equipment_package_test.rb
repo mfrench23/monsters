@@ -16,6 +16,7 @@ class EquipmentPackageTest < ActiveSupport::TestCase
   test "can build equipment" do
     assert_not_nil EquipmentPackage.new.build_equipment_piece
   end
+
 end
 
 class MockOwner < Creature

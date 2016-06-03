@@ -3,7 +3,10 @@
 class EquipmentPackage < AbstractEntity
   include EquipmentOwning
 
+  before_save :calculate_values
+
   belongs_to :creature
+  monetize :total_cost_cents, :numericality => { :greater_than_or_equal_to => 0 }
 
   def final_owner
     creature
@@ -15,7 +18,23 @@ class EquipmentPackage < AbstractEntity
     copy
   end
 
+  def total_cost_cents
+    self[:total_cost_cents] = equipment_pieces.sum(:cost_cents)
+    self[:total_cost_cents]
+  end
+
+  def total_weight
+    self[:total_weight] = equipment_pieces.sum(:weight)
+    self[:total_weight]
+  end
+
   private
+
+  def calculate_values
+    total_weight
+    total_cost_cents
+    return
+  end
 
   def reference_list_attributes
     [:equipment_pieces]

@@ -1,5 +1,6 @@
 <% list_array ||= f.object.send(collection) %>
 <% append_node_id = id + (Time.now.to_f * 1000).to_i.to_s %>
+<% freeform ||= nil %>
 <div class="field">
   <span class="field-label"><%= raw header %></span>
   <fieldset id=<%= id %> class="expanding-fieldset-container">

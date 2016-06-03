@@ -1,0 +1,37 @@
+<%= form_for(equipment_package) do |f| %>
+  <% if equipment_package.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(equipment_package.errors.count, "error") %> prohibited this equipment_package from being saved:</h2>
+
+      <ul>
+      <% equipment_package.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :creature_id %><br>
+    <%= f.collection_select :creature_id, Monster.where("actable_type='" + Creature.to_s + "'").order_by_name, :id, :name, {:include_blank => "-"} %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </div>
+
+  <div class="controls">
+    <%= render 'expanding_fieldset', f: f,
+      id: "equipment_pieces", collection: :equipment_pieces,
+      partial: 'equipment_piece_fields', label: 'add equipment piece', header: "Equipment Pieces",
+      header_list: [ :name, :quantity, :type, :modifiers ]  %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

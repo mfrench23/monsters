@@ -2,6 +2,9 @@
 class EquipmentModifier < AbstractEntity
   belongs_to :equipment_modifier_category
   has_many :equipment_piece_modifiers, dependent: :destroy
+  has_many :equipment_pieces, :through => :equipment_piece_modifiers
+
+  after_commit :update_modified
 
   def base_cost_modifier_value_object
     EquipmentModifier::ModifierValueObject.get_instance(base_cost_mod, true)
@@ -28,6 +31,13 @@ class EquipmentModifier < AbstractEntity
   end
 
   private
+
+  def update_modified
+    equipment_pieces.each do |equipment_piece|
+      equipment_piece.touch
+      equipment_piece.save
+    end
+  end
 
   def notes_to_s
     return "; " + notes if notes.present?

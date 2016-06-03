@@ -13,12 +13,12 @@ module SortableHelper
     col.split(",").map { |field| "#{field} #{dir}" }.join(",")
   end
 
+  private
+
   def is_acceptable_sort_column(klass, column)
     return false if column.blank?
     return is_acceptable_sort_list(klass, column) || is_acceptable_reference(klass, column) || klass.column_names.include?(column)
   end
-
-  private
 
   def is_acceptable_reference(klass, column)
     if m = column.match(/^(.*?)\.(.*)$/)

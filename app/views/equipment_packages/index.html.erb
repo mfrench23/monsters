@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Equipment Packages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sortable "equipment_packages.name", EquipmentPackage, params, "Name" %></th>
+      <th>Creature</th>
+      <th>Equipment Pieces</th>
+      <th>Distinct Equipment Types</th>
+      <th style="width: 100px;"><%= sortable "equipment_packages.total_cost_cents", EquipmentPackage, params, "Total Cost" %></th>
+      <th style="width: 100px;"><%= sortable "equipment_packages.total_weight", EquipmentPackage, params, "Total Weight (lbs.)" %></th>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% equipment_packages.each do |equipment_package| %>
+      <tr>
+        <% name = equipment_package.name? ? equipment_package.name : "(no name)" %>
+        <td><%= link_to name, equipment_package, :class => "quiet" + (equipment_package.name? ? "" : " equipment-package-name") %></td>
+        <td>
+          <% if equipment_package.creature.present? %>
+            <%= link_to equipment_package.creature, equipment_package.creature, :class => "quiet", :title => equipment_package.creature %>
+          <% else %>
+            <span>-</span>
+          <% end %>
+        </td>
+        <td class="count"><%= equipment_package.equipment_pieces.sum(:quantity) %></td>
+        <td class="count"><%= equipment_package.equipment_pieces.count(:equipment_type_id) %></td>
+        <td class="count"><%= currency_symbol %><%= equipment_package.total_cost %></td>
+        <td class="count"><%= equipment_package.total_weight %></td>
+        <%= render 'index_edit_destroy_links', target: equipment_package %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Equipment package', new_equipment_package_path %>

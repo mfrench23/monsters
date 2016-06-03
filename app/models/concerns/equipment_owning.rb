@@ -3,7 +3,7 @@ module EquipmentOwning
 
   included do
     has_many :equipment_pieces, as: :owner, dependent: :destroy
-    accepts_nested_attributes_for :equipment_pieces, allow_destroy: true, :reject_if => lambda { |x| x['equipment_type_id'].blank? }
+    accepts_nested_attributes_for :equipment_pieces, allow_destroy: true, :reject_if => lambda { |equipment_piece| equipment_piece['equipment_type_id'].blank? }
   end
 
   def build_equipment_piece

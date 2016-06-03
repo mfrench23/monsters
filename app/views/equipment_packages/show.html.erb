@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creature:</strong>
+  <% if equipment_package.creature.present? %>
+    <%= link_to equipment_package.creature, equipment_package.creature, :class => "quiet" %>
+  <% else %>
+    <span class="footnote">(no creature selected)</span>
+  <% end %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <% if equipment_package.name? %>
+    <%= equipment_package.name %>
+  <% else %>
+    <span class="footnote">(no name)</span>
+  <% end %>
+</p>
+
+<% if equipment_package.notes? %>
+  <p>
+    <strong>Notes:</strong>
+    <%= equipment_package.notes %>
+  </p>
+<% end %>
+
+<p>
+  <strong>Equipment Pieces:</strong>
+  <ul style="list-style-type: circle">
+  <% equipment_package.equipment_pieces.each do |equipment_piece| %>
+    <li><%= link_to pretty_print_equipment_piece(equipment_piece), equipment_piece, :class => "quiet" %></li>
+  <% end %>
+  </ul>
+</p>
+
+<p>
+  <strong>Total Cost:</strong>
+  <%= currency_symbol %><%= equipment_package.total_cost %>
+</p>
+
+<p>
+  <strong>Total Weight:</strong>
+  <%= equipment_package.total_weight %>
+</p>
+
+<%= link_to 'Edit', edit_equipment_package_path(equipment_package) %> |
+<%= link_to 'Index', equipment_packages_path %>
