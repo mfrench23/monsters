@@ -11,7 +11,9 @@
     </div>
   <% end %>
 
-  <%= render 'equipment_piece_fields_generic', f: f, expanded: true %>
+  <span data-cocoon_row_id>
+    <%= render 'equipment_piece_fields_generic', f: f, expanded: true %>
+  </span>
 
   <div class="actions">
     <%= f.submit %>
