@@ -4,6 +4,9 @@
 <% title_field ||= displayed_field %>
 <% foreign_key_name ||= (intersection_field.to_s + "_id").to_sym %>
 <% total_count = available_intersection_list.count %>
+<% subheader_field ||= nil %>
+<%# --- everything above this line is an optional parameter %>
+<% previous_subheader_value = nil %>
 
 <div class="field">
   <% if title.present? %>
@@ -13,8 +16,26 @@
     <table class="<%= table_class %>">
       <% if total_count > 0 %>
         <% intersections = target.try(member_name).to_a %>
+        <% display_index = nil %>
         <% available_intersection_list.each_with_index do |intersected, index| %>
-          <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :number_of_columns => number_of_columns, :total_count => total_count } do %>
+          <% if subheader_field.present? %>
+            <% display_index = (display_index.nil? ? 0 : display_index+1) %>
+            <% new_subheader = intersected.try(subheader_field) %>
+            <% toggle_link_key = base_id.gsub(/[\[\]]/, "_") + member_name.to_s + "_sub" + index.to_s %>
+            <% if new_subheader != previous_subheader_value %>
+              <tr>
+                <td colspan="<%= number_of_columns %>">
+                  <%= new_subheader %>
+                  <%= toggle_links(toggle_link_key, "+", "-") %>
+                </td>
+              </tr>
+              <% display_index = 0 %>
+              <% previous_subheader_value = new_subheader %>
+            <% end %>
+          <% else %>
+            <% display_index = index %>
+          <% end %>
+          <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => display_index, :number_of_columns => number_of_columns, :total_count => total_count, :row_options => { "data-toggle_id" => toggle_link_key, "style" => "display: none"} } do %>
             <% intersection_row = intersections.find{ |rw| (rw.try(intersection_field) == intersected) } %>
             <% intersections = intersections - [intersection_row] if intersection_row.present? %>
             <%= hidden_field_tag "#{base_id}[#{index}][id]", intersection_row.try(:id) %>

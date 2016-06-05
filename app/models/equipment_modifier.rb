@@ -4,6 +4,8 @@ class EquipmentModifier < AbstractEntity
   has_many :equipment_piece_modifiers, dependent: :destroy
   has_many :equipment_pieces, :through => :equipment_piece_modifiers
 
+  delegate :name, to: :equipment_modifier_category, prefix: true
+
   after_commit :update_modified
 
   def base_cost_modifier_value_object

@@ -1,1 +1,6 @@
-<% if granted_traits.any? %> <%= toggle_links( meta_id ) -%><span style="display: none;" class="concealed-detail <%= meta_id %>"><%= render "show_inline_trait_list", list: granted_traits -%></span><% end -%>
+<% if granted_traits.any? %>
+  <%= toggle_links( meta_id ) -%>
+  <span style="display: none;" class="concealed-detail" data-toggle_id="<%= meta_id %>">
+    <%= render "show_inline_trait_list", list: granted_traits -%>
+  </span>
+<% end -%>
