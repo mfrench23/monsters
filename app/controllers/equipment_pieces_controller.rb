@@ -1,4 +1,4 @@
-# Controller functionality specific to the EquipmentPieces model
+# Controller functionality specific to the EquipmentPiece model
 class EquipmentPiecesController < ModelBasedController
 
   def modifiers_for_piece

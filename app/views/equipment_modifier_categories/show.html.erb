@@ -9,7 +9,7 @@
   <strong>Modifiers:</strong>
   <ul>
   <% equipment_modifier_category.equipment_modifiers.each do |equipment_modifier| %>
-    <li><%= equipment_modifier.to_s %></li>
+    <li><%= link_to equipment_modifier.to_s, equipment_modifier, :class => "quiet" %></li>
   <% end %>
   </ul>
 </p>

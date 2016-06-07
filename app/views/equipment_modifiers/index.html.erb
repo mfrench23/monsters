@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Equipment Modifiers</h1>
+
+<%= page_entries_info equipment_modifiers %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sortable "equipment_modifiers.name", EquipmentModifier, params, "Name" %></th>
+      <th><%= sortable "equipment_modifier_categories.name", EquipmentModifier, params, "Equipment Modifier Category" %></th>
+      <th>Base cost mod</th>
+      <th>Base weight mod</th>
+      <th>Cost mod</th>
+      <th>Weight mod</th>
+      <th>Notes</th>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% equipment_modifiers.each do |equipment_modifier| %>
+      <tr>
+        <td><%= link_to equipment_modifier.name, equipment_modifier, :class => "quiet" %></td>
+        <td><%= link_to equipment_modifier.equipment_modifier_category, equipment_modifier.equipment_modifier_category, :class => "quiet" if equipment_modifier.equipment_modifier_category.present? %></td>
+        <td class="count"><%= equipment_modifier.base_cost_mod %></td>
+        <td class="count"><%= equipment_modifier.base_weight_mod %></td>
+        <td class="count"><%= equipment_modifier.cost_mod %></td>
+        <td class="count"><%= equipment_modifier.weight_mod %></td>
+        <td><%= equipment_modifier.notes %></td>
+        <%= render 'index_edit_destroy_links', target: equipment_modifier %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= paginate equipment_modifiers %>

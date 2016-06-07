@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  resources :equipment_packages
-
-  resources :equipment_modifier_categories
-
   root 'welcome#index'
 
   # multiple table inheritance: monsters -> creatures and swarms
@@ -41,6 +37,12 @@ Rails.application.routes.draw do
     end
   end
   resources :equipment_pieces, :except => [:new, :create]
+
+  resources :equipment_modifiers, :except => [:new, :create]
+
+  resources :equipment_packages
+
+  resources :equipment_modifier_categories
 
   get "/fetch_equipment_modifiers" => 'equipment_pieces#modifiers_for_piece', as: 'fetch_equipment_modifiers'
 

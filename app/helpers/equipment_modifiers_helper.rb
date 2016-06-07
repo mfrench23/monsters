@@ -1,0 +1,2 @@
+module EquipmentModifiersHelper
+end

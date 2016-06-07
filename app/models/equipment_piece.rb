@@ -60,7 +60,6 @@ class EquipmentPiece < AbstractEntity
 
   def deep_copy
     copy = dup
-    reference_list_attributes.each { |reference| deep_copy_reference(reference, copy) }
     copy
   end
 
@@ -78,10 +77,6 @@ class EquipmentPiece < AbstractEntity
     base_cost
     cost
     return
-  end
-
-  def reference_list_attributes
-    [:equipment_modifiers]
   end
 
   def perform_modifications(method, starting_base)

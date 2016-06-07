@@ -1,3 +1,4 @@
+# Controller functionality specific to the EquipmentCategory model
 class EquipmentCategoriesController < ModelBasedController
 
   private

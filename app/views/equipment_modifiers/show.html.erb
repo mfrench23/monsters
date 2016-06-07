@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= equipment_modifier.name %>
+</p>
+
+<p>
+  <strong>Equipment modifier category:</strong>
+  <%= equipment_modifier.equipment_modifier_category %>
+</p>
+
+<p>
+  <strong>Base cost mod:</strong>
+  <%= equipment_modifier.base_cost_mod %>
+</p>
+
+<p>
+  <strong>Base weight mod:</strong>
+  <%= equipment_modifier.base_weight_mod %>
+</p>
+
+<p>
+  <strong>Cost mod:</strong>
+  <%= equipment_modifier.cost_mod %>
+</p>
+
+<p>
+  <strong>Weight mod:</strong>
+  <%= equipment_modifier.weight_mod %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= equipment_modifier.notes %>
+</p>
+
+<p>
+  <strong>Mutually exclusive with:</strong>
+  <ul>
+    <% equipment_modifier.excluded_equipment_modifiers.each do |excluded| %>
+      <li><%= link_to excluded.to_s, excluded, :class => "quiet" %></li>
+    <% end %>
+  </ul>
+</p>
+
+<%= link_to 'Edit', edit_equipment_modifier_path(equipment_modifier) %> |
+<%= link_to 'Index', equipment_modifiers_path %>

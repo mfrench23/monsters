@@ -87,6 +87,9 @@
 
   <section class="description">
     
+<p>Controller functionality specific to the <a
+href="EquipmentType.html">EquipmentType</a> model</p>
+
   </section>
 
   
@@ -127,7 +130,7 @@
 
           
           <div class="method-source-code" id="do_mass_entry-source">
-            <pre><span class="ruby-comment"># File app/controllers/equipment_types_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/equipment_types_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">do_mass_entry</span>
   <span class="ruby-identifier">form</span> = <span class="ruby-constant">EquipmentTypeMassEntryForm</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-identifier">form</span>.<span class="ruby-identifier">ok?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">save_mass_entry_and_redirect_to_index</span>(<span class="ruby-identifier">form</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">render_mass_entry_page_with_error_messages</span>(<span class="ruby-identifier">form</span>)
@@ -161,7 +164,7 @@
 
           
           <div class="method-source-code" id="mass_entry-source">
-            <pre><span class="ruby-comment"># File app/controllers/equipment_types_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/equipment_types_controller.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mass_entry</span>
   <span class="ruby-identifier">render</span> <span class="ruby-value">:mass_entry</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> <span class="ruby-identifier">additional_form_locals</span>
 <span class="ruby-keyword">end</span></pre>

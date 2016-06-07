@@ -85,6 +85,10 @@
     
     <li ><a href="#method-i-final_owner">#final_owner</a>
     
+    <li ><a href="#method-i-total_cost_cents">#total_cost_cents</a>
+    
+    <li ><a href="#method-i-total_weight">#total_weight</a>
+    
   </ul>
 </div>
 
@@ -142,7 +146,7 @@ certain monster.</p>
 
           
           <div class="method-source-code" id="deep_copy-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_package.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_package.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
   <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
   <span class="ruby-identifier">reference_list_attributes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">reference</span><span class="ruby-operator">|</span> <span class="ruby-identifier">deep_copy_reference</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">copy</span>) }
@@ -177,9 +181,77 @@ certain monster.</p>
 
           
           <div class="method-source-code" id="final_owner-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_package.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_package.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">final_owner</span>
   <span class="ruby-identifier">creature</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-total_cost_cents" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">total_cost_cents</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="total_cost_cents-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_package.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">total_cost_cents</span>
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:total_cost_cents</span>] = <span class="ruby-identifier">equipment_pieces</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-value">:cost_cents</span>)
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:total_cost_cents</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-total_weight" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">total_weight</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="total_weight-source">
+            <pre><span class="ruby-comment"># File app/models/equipment_package.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">total_weight</span>
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:total_weight</span>] = <span class="ruby-identifier">equipment_pieces</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-value">:weight</span>)
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:total_weight</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

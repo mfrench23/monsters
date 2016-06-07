@@ -11,23 +11,6 @@ class EquipmentPackagesControllerTest < ActionController::TestCase
     assert_select "table tbody tr" # expect at least one row in the body of the table
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create equipment_package" do
-    name = "Random bag of random stuff " + (Time.now.to_i).to_s
-    assert_difference('EquipmentPackage.count') do
-      post :create, equipment_package: { name: name }
-    end
-
-    assert_response :found
-    equipment_package = EquipmentPackage.where(:name => name ).order("created_at desc").first
-    assert_not_nil equipment_package
-    assert_redirected_to equipment_package
-  end
-
   test "should show equipment_package" do
     get :show, id: @equipment_package
     assert_response :success

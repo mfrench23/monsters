@@ -2,4 +2,5 @@
   intersection_field: :equipment_modifier, target: target, base_id: base_id,
   member_name: :equipment_piece_modifiers, intersected_table: EquipmentPieceModifier,
   table_class: "", title: title, subheader_field: :equipment_modifier_category_name,
-  number_of_columns: 5 %>
+  on_click: 'disable_excluded_equipment_modifiers(this)',
+  other_hidden_fields: { :excluded_equipment_modifiers => nil }, number_of_columns: 5 %>

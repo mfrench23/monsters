@@ -82,10 +82,10 @@ class CreatureTest < ActiveSupport::TestCase
     copy.traits.first.level = 2
     copy.equipment_packages.first.equipment_pieces.first.equipment_modifiers << EquipmentModifier.new(:name => "Superfly", :cost_mod => "+$15")
     assert_equal "25.00", copy.equipment_packages.first.equipment_pieces.first.cost.to_s
-    assert_no_difference('MasterSkill.count') do
+    assert_no_difference('MasterSkill.count', 'Not expecting a new MasterSkill to be created') do
       copy.skills.first.modifier = 2
       assert_equal "Brawling @DX+2=12", copy.skills.first.to_s
-      assert_equal true, copy.save
+      copy.save!
     end
     assert_equal "Brawling", copy.skills.first.master_skill.name
     assert_equal @one, copy.parent.specific

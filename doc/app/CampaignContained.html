@@ -131,7 +131,7 @@
 
           
           <div class="method-source-code" id="build_campaign_content-source">
-            <pre><span class="ruby-comment"># File app/models/concerns/campaign_contained.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/models/concerns/campaign_contained.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">build_campaign_content</span>
   <span class="ruby-constant">CampaignContent</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -166,8 +166,9 @@
           <div class="method-source-code" id="in_campaign-3F-source">
             <pre><span class="ruby-comment"># File app/models/concerns/campaign_contained.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">in_campaign?</span>(<span class="ruby-identifier">campaign_id</span>)
-  <span class="ruby-identifier">table</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">tableize</span>
-  ( <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">where</span>(<span class="ruby-node">&quot;#{table}.id = #{self.id}&quot;</span>).<span class="ruby-identifier">in_campaign</span>(<span class="ruby-identifier">campaign_id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> )
+  <span class="ruby-identifier">klass</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>
+  <span class="ruby-identifier">table</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">tableize</span>
+  ( <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">where</span>(<span class="ruby-node">&quot;#{table}.id = #{self.id}&quot;</span>).<span class="ruby-identifier">in_campaign</span>(<span class="ruby-identifier">campaign_id</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> )
 <span class="ruby-keyword">end</span></pre>
           </div>
           

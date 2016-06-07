@@ -154,9 +154,9 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="base_cost_cents-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">base_cost_cents</span>
-  <span class="ruby-identifier">calc_base_cost</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">base_cost</span> = <span class="ruby-identifier">perform_modifications</span>(<span class="ruby-value">:base_cost_modifier_value_object</span>, <span class="ruby-identifier">equipment_type</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:base_cost</span>))
   <span class="ruby-identifier">read_attribute</span> <span class="ruby-value">:base_cost_cents</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -188,9 +188,9 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="base_weight-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 40</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">base_weight</span>
-  <span class="ruby-identifier">calc_base_weight</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">base_weight</span> = <span class="ruby-identifier">perform_modifications</span>(<span class="ruby-value">:base_weight_modifier_value_object</span>, <span class="ruby-identifier">equipment_type</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:base_weight</span>))
   <span class="ruby-identifier">read_attribute</span> <span class="ruby-value">:base_weight</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -222,9 +222,9 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="cost_cents-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cost_cents</span>
-  <span class="ruby-identifier">calc_cost</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">cost</span> = <span class="ruby-identifier">perform_modifications</span>(<span class="ruby-value">:cost_modifier_value_object</span>, <span class="ruby-identifier">base_cost</span>)
   <span class="ruby-identifier">read_attribute</span> <span class="ruby-value">:cost_cents</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -256,10 +256,9 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="deep_copy-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy</span>
   <span class="ruby-identifier">copy</span> = <span class="ruby-identifier">dup</span>
-  <span class="ruby-identifier">reference_list_attributes</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">reference</span><span class="ruby-operator">|</span> <span class="ruby-identifier">deep_copy_reference</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">copy</span>) }
   <span class="ruby-identifier">copy</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -291,7 +290,7 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="final_owner-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">final_owner</span>
   <span class="ruby-identifier">owner</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:final_owner</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -324,7 +323,7 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="total_cost_cents-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">total_cost_cents</span>
   <span class="ruby-identifier">cost_cents</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">quantity</span>
 <span class="ruby-keyword">end</span></pre>
@@ -357,7 +356,7 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="total_weight-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">total_weight</span>
   <span class="ruby-identifier">weight</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">quantity</span>
 <span class="ruby-keyword">end</span></pre>
@@ -390,9 +389,9 @@ enchanted broadsword behind the door in Room #37”.</p>
 
           
           <div class="method-source-code" id="weight-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">weight</span>
-  <span class="ruby-identifier">calc_weight</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">weight</span> = <span class="ruby-identifier">perform_modifications</span>(<span class="ruby-value">:weight_modifier_value_object</span>, <span class="ruby-identifier">base_weight</span>)
   <span class="ruby-identifier">read_attribute</span> <span class="ruby-value">:weight</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

@@ -226,3 +226,7 @@ a.quiet:active {
   font-size: 70%;
   font-style: italic;
 }
+span.disabled {
+  text-decoration: line-through;
+  color: grey
+}

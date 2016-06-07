@@ -5,6 +5,8 @@
 <% foreign_key_name ||= (intersection_field.to_s + "_id").to_sym %>
 <% total_count = available_intersection_list.count %>
 <% subheader_field ||= nil %>
+<% other_hidden_fields ||= nil %>
+<% on_click ||= nil %>
 <%# --- everything above this line is an optional parameter %>
 <% previous_subheader_value = nil %>
 
@@ -13,11 +15,25 @@
     <span class="field-label"><%= title %></span>
   <% end %>
   <fieldset id="<%= member_name %>" class="expanding-fieldset-container">
-    <table class="<%= table_class %>">
+    <table class="many_to_many_table <%= table_class %>">
       <% if total_count > 0 %>
         <% intersections = target.try(member_name).to_a %>
         <% display_index = nil %>
+        <% intersection_rows = [] %>
+        <% subheader_counts = {} %>
         <% available_intersection_list.each_with_index do |intersected, index| %>
+          <% intersection_row = intersections.find{ |rw| (rw.try(intersection_field) == intersected) } %>
+          <% intersection_rows << intersection_row %>
+          <% intersections = intersections - [intersection_row] %>
+          <% if subheader_field.present? %>
+            <% subheader = intersected.try(subheader_field) %>
+            <% count = subheader_counts[subheader] || 0 %>
+            <% count = count + 1 if intersection_row.present? %>
+            <% subheader_counts[subheader] = count %>
+          <% end %>
+        <% end %>
+        <% available_intersection_list.each_with_index do |intersected, index| %>
+          <% row_style_display = "" %>
           <% if subheader_field.present? %>
             <% display_index = (display_index.nil? ? 0 : display_index+1) %>
             <% new_subheader = intersected.try(subheader_field) %>
@@ -26,7 +42,13 @@
               <tr>
                 <td colspan="<%= number_of_columns %>">
                   <%= new_subheader %>
-                  <%= toggle_links(toggle_link_key, "+", "-") %>
+                  <% if subheader_counts[new_subheader] > 0 %>
+                    <%= toggle_links(toggle_link_key, "-", "+") %>
+                    <% row_style_display = "" %>
+                  <% else %>
+                    <%= toggle_links(toggle_link_key, "+", "-") %>
+                    <% row_style_display = "none" %>
+                  <% end %>
                 </td>
               </tr>
               <% display_index = 0 %>
@@ -35,19 +57,13 @@
           <% else %>
             <% display_index = index %>
           <% end %>
-          <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => display_index, :number_of_columns => number_of_columns, :total_count => total_count, :row_options => { "data-toggle_id" => toggle_link_key, "style" => "display: none"} } do %>
-            <% intersection_row = intersections.find{ |rw| (rw.try(intersection_field) == intersected) } %>
-            <% intersections = intersections - [intersection_row] if intersection_row.present? %>
-            <%= hidden_field_tag "#{base_id}[#{index}][id]", intersection_row.try(:id) %>
-            <%= hidden_field_tag "#{base_id}[#{index}][#{foreign_key_name}]", intersected[:id] %>
-            <% if foreign_key_type_name.present? %>
-              <%= hidden_field_tag "#{base_id}[#{index}][#{foreign_key_type_name}]", intersected_table.to_s %>
-            <% end %>
-            <%= hidden_field_tag "#{base_id}[#{index}][_destroy]", "true" %>
-            <%= check_box_tag "#{base_id}[#{index}][_destroy]", "false", intersection_row.present? %>
-            <span title="<%= intersected[title_field] %>">
-              <%= intersected[displayed_field] %>
-            </span>
+          <% row_options = { "data-toggle_id" => toggle_link_key, "style" => "display: " + (subheader_field.present? ? row_style_display : "") } %>
+          <% intersection_row = intersection_rows[index] %>
+          <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => display_index, :number_of_columns => number_of_columns, :total_count => total_count, :row_options => row_options } do %>
+            <%= render "many_to_many_checkbox_cell", :intersected => intersected, :intersected_table => intersected_table,
+                :intersection_row => intersection_row, :base_id => "#{base_id}[#{index}]",
+                :foreign_key_name => foreign_key_name, :other_hidden_fields => other_hidden_fields,
+                :title_field => title_field, :displayed_field => displayed_field, :on_click => on_click %>
           <% end %>
         <% end %>
       <% else %>

@@ -108,6 +108,9 @@
 
   <section class="description">
     
+<p>Generalized controller to handle one resource that is backed by an <a
+href="AbstractEntity.html">AbstractEntity</a></p>
+
   </section>
 
   
@@ -168,7 +171,7 @@ case of failure</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">entity</span> = <span class="ruby-identifier">controlled_model_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">whitelisted_entity_params</span>)
   <span class="ruby-identifier">did_save</span> = <span class="ruby-identifier">entity</span>.<span class="ruby-identifier">save</span>
@@ -203,7 +206,7 @@ case of failure</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">set_model_by_id</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -239,7 +242,7 @@ case of failure</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> <span class="ruby-identifier">locals_hash</span>(<span class="ruby-identifier">set_model_by_id</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -272,7 +275,7 @@ case of failure</p>
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> <span class="ruby-identifier">index_locals_hash</span>
 <span class="ruby-keyword">end</span></pre>
@@ -305,7 +308,7 @@ case of failure</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> <span class="ruby-identifier">locals_hash</span>(<span class="ruby-identifier">controlled_model_class</span>.<span class="ruby-identifier">new</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -338,7 +341,7 @@ case of failure</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">controlled_model_symbol</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">set_model_by_id</span> }
 <span class="ruby-keyword">end</span></pre>
@@ -371,7 +374,7 @@ case of failure</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">entity</span> = <span class="ruby-identifier">set_model_by_id</span>
   <span class="ruby-identifier">did_update</span> = <span class="ruby-identifier">entity</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">whitelisted_entity_params</span>)

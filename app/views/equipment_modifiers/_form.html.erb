@@ -1,0 +1,55 @@
+<%= form_for(equipment_modifier) do |f| %>
+  <% if equipment_modifier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(equipment_modifier.errors.count, "error") %> prohibited this equipment_modifier from being saved:</h2>
+
+      <ul>
+      <% equipment_modifier.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :equipment_modifier_category_id %><br>
+    <%= f.collection_select :equipment_modifier_category_id, EquipmentModifierCategory.order_by_name, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :base_cost_mod %><br>
+    <%= f.text_field :base_cost_mod %>
+  </div>
+  <div class="field">
+    <%= f.label :base_weight_mod %><br>
+    <%= f.text_field :base_weight_mod %>
+  </div>
+  <div class="field">
+    <%= f.label :cost_mod %><br>
+    <%= f.text_field :cost_mod %>
+  </div>
+  <div class="field">
+    <%= f.label :weight_mod %><br>
+    <%= f.text_field :weight_mod %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </div>
+
+  <div class="field">
+    <%= f.label :equipment_modifier_exclusions %><br>
+    <%= render 'many_to_many_checkbox_table', available_intersection_list: excludable_modifiers,
+      intersection_field: :excluded, target: equipment_modifier, base_id: f.object_name.to_s + "[equipment_modifier_exclusions_attributes]",
+      member_name: :equipment_modifier_exclusions, intersected_table: EquipmentModifierExclusion,
+      table_class: "", title: "Exclused Modifiers", subheader_field: :equipment_modifier_category_name,
+      number_of_columns: 5 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

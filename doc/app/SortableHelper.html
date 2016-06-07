@@ -63,8 +63,6 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-is_acceptable_sort_column">#is_acceptable_sort_column</a>
-    
     <li ><a href="#method-i-sort_param">#sort_param</a>
     
     <li ><a href="#method-i-sortable">#sortable</a>
@@ -101,40 +99,6 @@
        <header>
          <h3>Public Instance Methods</h3>
        </header>
-
-    
-      <div id="method-i-is_acceptable_sort_column" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">is_acceptable_sort_column</span><span
-            class="method-args">(klass, column)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="is_acceptable_sort_column-source">
-            <pre><span class="ruby-comment"># File app/helpers/sortable_helper.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_acceptable_sort_column</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">column</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">blank?</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">is_acceptable_sort_list</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">column</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">is_acceptable_reference</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">column</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">column_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">column</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
 
     
       <div id="method-i-sort_param" class="method-detail ">

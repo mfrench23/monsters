@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602214850) do
+ActiveRecord::Schema.define(version: 20160606182539) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -122,6 +122,16 @@ ActiveRecord::Schema.define(version: 20160602214850) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "equipment_modifier_exclusions", force: :cascade do |t|
+    t.integer  "equipment_modifier_id", limit: 4
+    t.integer  "excluded_id",           limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "equipment_modifier_exclusions", ["equipment_modifier_id"], name: "index_equipment_modifier_exclusions_on_equipment_modifier_id", using: :btree
+  add_index "equipment_modifier_exclusions", ["excluded_id"], name: "index_equipment_modifier_exclusions_on_excluded_id", using: :btree
+
   create_table "equipment_modifiers", force: :cascade do |t|
     t.string   "name",                           limit: 255
     t.string   "base_cost_mod",                  limit: 255
@@ -131,11 +141,9 @@ ActiveRecord::Schema.define(version: 20160602214850) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.text     "notes",                          limit: 65535
-    t.integer  "equipment_category_id",          limit: 4
     t.integer  "equipment_modifier_category_id", limit: 4
   end
 
-  add_index "equipment_modifiers", ["equipment_category_id"], name: "index_equipment_modifiers_on_equipment_category_id", using: :btree
   add_index "equipment_modifiers", ["equipment_modifier_category_id"], name: "index_equipment_modifiers_on_equipment_modifier_category_id", using: :btree
 
   create_table "equipment_packages", force: :cascade do |t|
@@ -372,6 +380,8 @@ ActiveRecord::Schema.define(version: 20160602214850) do
   add_foreign_key "damage_resistances", "creatures"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
+  add_foreign_key "equipment_modifier_exclusions", "equipment_modifiers"
+  add_foreign_key "equipment_modifier_exclusions", "equipment_modifiers", column: "excluded_id"
   add_foreign_key "equipment_modifiers", "equipment_modifier_categories"
   add_foreign_key "equipment_packages", "creatures"
   add_foreign_key "equipment_piece_modifiers", "equipment_modifiers"
