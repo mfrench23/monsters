@@ -14,7 +14,7 @@ module MonstersHelper
   private
 
   def toggle_link(target_id, text, hidden = false)
-    contents = link_to text, "#", :class => "quiet toggle-link", :name => target_id
+    contents = link_to text, "#", :class => "quiet toggle-link blue-highlight", :name => target_id
     content_tag( "span", contents, {:style => "display: " + (hidden ? "none" : "inline-block"), "data-toggle_id" => target_id} )
   end
 end

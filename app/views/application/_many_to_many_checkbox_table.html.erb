@@ -33,12 +33,15 @@
           <% end %>
         <% end %>
         <% row_style_display = "" %>
+        <% subheader_index = 0 %>
+        <% toggle_link_key = nil %>
         <% available_intersection_list.each_with_index do |intersected, index| %>
           <% if subheader_field.present? %>
             <% display_index = (display_index.nil? ? 0 : display_index+1) %>
             <% new_subheader = intersected.try(subheader_field) %>
-            <% toggle_link_key = base_id.gsub(/[\[\]]/, "_") + member_name.to_s + "_sub" + index.to_s %>
             <% if new_subheader != previous_subheader_value %>
+              <% subheader_index = subheader_index + 1 %>
+              <% toggle_link_key = base_id.gsub(/[\[\]]/, "_") + member_name.to_s + "_sub" + subheader_index.to_s %>
               <tr>
                 <td colspan="<%= number_of_columns %>">
                   <%= new_subheader %>
@@ -49,6 +52,8 @@
                     <%= toggle_links(toggle_link_key, "+", "-") %>
                     <% row_style_display = "display: none" %>
                   <% end %>
+                  <%= link_to "select all", "#", :class => "quiet blue-highlight", 'data-target_toggle_id' => toggle_link_key, 'data-select_all' => 1 %>
+                  <%= link_to "de-select all", "#", :class => "quiet blue-highlight", 'data-target_toggle_id' => toggle_link_key, 'data-select_all' => 0 %>
                 </td>
               </tr>
               <% display_index = 0 %>
