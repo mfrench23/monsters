@@ -1,4 +1,4 @@
-Tue, 07 Jun 2016 12:49:46 -0700
+Tue, 07 Jun 2016 15:07:28 -0700
 README.rdoc	Fri, 29 May 2015 09:03:57 -0700
 app/controllers/application_controller.rb	Fri, 27 May 2016 17:51:48 -0700
 app/controllers/books_controller.rb	Thu, 06 Aug 2015 05:25:33 -0700
@@ -6,7 +6,7 @@ app/controllers/campaigns_controller.rb	Tue, 24 May 2016 12:26:49 -0700
 app/controllers/concerns/result_set_returning.rb	Tue, 11 Aug 2015 12:35:05 -0700
 app/controllers/creatures_controller.rb	Thu, 06 Aug 2015 05:10:41 -0700
 app/controllers/equipment_categories_controller.rb	Mon, 06 Jun 2016 11:19:40 -0700
-app/controllers/equipment_modifier_categories_controller.rb	Tue, 24 May 2016 14:33:13 -0700
+app/controllers/equipment_modifier_categories_controller.rb	Tue, 07 Jun 2016 14:45:34 -0700
 app/controllers/equipment_modifiers_controller.rb	Tue, 07 Jun 2016 12:14:43 -0700
 app/controllers/equipment_packages_controller.rb	Thu, 02 Jun 2016 17:24:58 -0700
 app/controllers/equipment_pieces_controller.rb	Mon, 06 Jun 2016 12:55:31 -0700
@@ -66,12 +66,12 @@ app/models/equipment_modifier/cost_factor_modifier_value_object.rb	Fri, 27 May 2
 app/models/equipment_modifier/modifier_value_object.rb	Wed, 01 Jun 2016 14:19:48 -0700
 app/models/equipment_modifier/multiplier_modifier_value_object.rb	Fri, 27 May 2016 15:43:34 -0700
 app/models/equipment_modifier/no_op_modifier_value_object.rb	Wed, 01 Jun 2016 15:34:55 -0700
-app/models/equipment_modifier_category.rb	Wed, 01 Jun 2016 14:12:28 -0700
+app/models/equipment_modifier_category.rb	Tue, 07 Jun 2016 14:45:20 -0700
 app/models/equipment_modifier_exclusion.rb	Mon, 06 Jun 2016 14:14:34 -0700
 app/models/equipment_package.rb	Fri, 03 Jun 2016 14:40:26 -0700
 app/models/equipment_piece.rb	Mon, 06 Jun 2016 13:12:03 -0700
 app/models/equipment_piece_modifier.rb	Wed, 01 Jun 2016 14:20:35 -0700
-app/models/equipment_type.rb	Sat, 28 May 2016 14:08:26 -0700
+app/models/equipment_type.rb	Tue, 07 Jun 2016 14:28:46 -0700
 app/models/equipment_type_modifier_category.rb	Wed, 01 Jun 2016 14:20:39 -0700
 app/models/illustration.rb	Fri, 27 May 2016 15:27:38 -0700
 app/models/location.rb	Fri, 27 May 2016 15:27:06 -0700

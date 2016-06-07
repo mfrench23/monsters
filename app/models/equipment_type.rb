@@ -21,6 +21,7 @@ class EquipmentType < AbstractEntity
   validates :equipment_category, presence: true
 
   scope :in_equipment_category, -> (equipment_category_id) { where('equipment_category_id = ?', equipment_category_id) }
+  scope :order_by_category_and_name, -> { joins(:equipment_category).order('equipment_categories.name, equipment_types.name') }
 
   def equipment_category_name
     equipment_category.try(:name)

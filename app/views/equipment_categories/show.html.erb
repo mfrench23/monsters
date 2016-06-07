@@ -5,16 +5,7 @@
 
 <div class="field">
   <span class="field-label show">Equipment Types</span>
-  <table class="fixed-table boxed-list">
-    <% equipment_category.equipment_types.order_by_name.each_with_index do |equipment_type, index| %>
-      <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :total_count => equipment_category.equipment_types.count } do %>
-        <%= link_to equipment_type.name, equipment_type,
-            :class => "quiet",
-            :title => equipment_type.name.to_s + (equipment_type.notes? ? ": " + equipment_type.notes.to_s : "") %>
-      <% end %>
-    <% end %>
-  </table>
+  <%= render "boxed_list", list: equipment_category.equipment_types %>
 </div>
 
 <%= link_to 'Edit', edit_equipment_category_path(equipment_category) %> |

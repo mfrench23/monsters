@@ -19,5 +19,10 @@
   <%= equipment_modifier_category.notes %>
 </p>
 
+<div class="field">
+  <span class="field-label show">Modifying</span>
+  <%= render "boxed_list", list: equipment_modifier_category.equipment_types %>
+</div>
+
 <%= link_to 'Edit', edit_equipment_modifier_category_path(equipment_modifier_category) %> |
 <%= link_to 'Index', equipment_modifier_categories_path %>

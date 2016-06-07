@@ -2,32 +2,15 @@
   <span class="field-label" style="font-weight: bold;">Name</span>
   <span><%= campaign.name %></span>
 </div>
+
 <div class="field">
   <span class="field-label show">Monsters</span>
-  <table class="fixed-table boxed-list">
-    <% campaign.monsters.order_by_name.each_with_index do |monster, index| %>
-      <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :total_count => campaign.monsters.count } do %>
-        <%= link_to monster.name, monster.specific,
-            :class => "quiet",
-            :title => monster.name %>
-      <% end %>
-    <% end %>
-  </table>
+  <%= render "boxed_list", list: campaign.monsters %>
 </div>
 
 <div class="field">
   <span class="field-label show">Equipment</span>
-  <table class="fixed-table boxed-list">
-    <% campaign.equipment_types.order_by_name.each_with_index do |equipment_type, index| %>
-      <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :total_count => campaign.equipment_types.count } do %>
-        <%= link_to equipment_type.name, equipment_type,
-            :class => "quiet",
-            :title => equipment_type.name %>
-      <% end %>
-    <% end %>
-  </table>
+  <%= render "boxed_list", list: campaign.equipment_types %>
 </div>
 
 <%= link_to 'Edit', edit_campaign_path(campaign) %> |

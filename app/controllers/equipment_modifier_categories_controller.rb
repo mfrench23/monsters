@@ -8,4 +8,8 @@ class EquipmentModifierCategoriesController < ModelBasedController
           equipment_type_modifier_categories_attributes: [:id, :equipment_type_id, :_destroy]
       )
   end
+
+  def additional_form_locals
+    {equipment_types: EquipmentType.all.order_by_category_and_name, error_messages: []}
+  end
 end

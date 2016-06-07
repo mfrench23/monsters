@@ -25,6 +25,14 @@
     <%= f.label :notes %><br>
     <%= f.text_area :notes %>
   </div>
+
+  <%= render 'many_to_many_checkbox_table', available_intersection_list: equipment_types,
+    intersection_field: :equipment_type, target: equipment_modifier_category,
+    base_id: f.object_name.to_s + "[equipment_type_modifier_categories_attributes]",
+    member_name: :equipment_type_modifier_categories, intersected_table: EquipmentType,
+    subheader_field: :equipment_category_name,
+    table_class: "fixed-table", title: "Equipment Types" %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

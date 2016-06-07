@@ -32,8 +32,8 @@
             <% subheader_counts[subheader] = count %>
           <% end %>
         <% end %>
+        <% row_style_display = "" %>
         <% available_intersection_list.each_with_index do |intersected, index| %>
-          <% row_style_display = "" %>
           <% if subheader_field.present? %>
             <% display_index = (display_index.nil? ? 0 : display_index+1) %>
             <% new_subheader = intersected.try(subheader_field) %>
@@ -47,7 +47,7 @@
                     <% row_style_display = "" %>
                   <% else %>
                     <%= toggle_links(toggle_link_key, "+", "-") %>
-                    <% row_style_display = "none" %>
+                    <% row_style_display = "display: none" %>
                   <% end %>
                 </td>
               </tr>
@@ -56,8 +56,9 @@
             <% end %>
           <% else %>
             <% display_index = index %>
+            <% row_style_display = "" %>
           <% end %>
-          <% row_options = { "data-toggle_id" => toggle_link_key, "style" => "display: " + (subheader_field.present? ? row_style_display : "") } %>
+          <% row_options = { "data-toggle_id" => toggle_link_key, "style" => row_style_display } %>
           <% intersection_row = intersection_rows[index] %>
           <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => display_index, :number_of_columns => number_of_columns, :total_count => total_count, :row_options => row_options } do %>
             <%= render "many_to_many_checkbox_cell", :intersected => intersected, :intersected_table => intersected_table,

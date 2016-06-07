@@ -1,0 +1,13 @@
+<table class="fixed-table boxed-list">
+  <% if list.none? %>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+  <% else %>
+    <% list.order_by_name.each_with_index do |item, index| %>
+      <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :total_count => list.count } do %>
+        <%= link_to item.name, item, :class => "quiet", :title => item.name %>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>

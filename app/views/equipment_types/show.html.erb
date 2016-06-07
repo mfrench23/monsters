@@ -24,21 +24,25 @@
 
 <p>
   <strong>Equipment category:</strong>
-  <%= link_to equipment_type.equipment_category, equipment_type.equipment_category, :class => "quiet" unless equipment_type.equipment_category.nil? %>
+  <% prev_in_cat = EquipmentType.where(:equipment_category => equipment_type.equipment_category).where("name < ?", equipment_type.name).order_by_name.last %>
+  <% next_in_cat = EquipmentType.where(:equipment_category => equipment_type.equipment_category).where("name > ?", equipment_type.name).order_by_name.first %>
+  <span class="footnote">
+    <%= link_to "(#{prev_in_cat})", prev_in_cat, :class => "quiet" if prev_in_cat.present? %>
+    <%= "<-" if prev_in_cat.present? %>
+  </span>
+  <span>
+    <%= link_to equipment_type.equipment_category, equipment_type.equipment_category, :class => "quiet" unless equipment_type.equipment_category.nil? %>
+    <% "-" if equipment_type.equipment_category.nil? %>
+  <span>
+  <span class="footnote">
+    <%= "->" if next_in_cat.present? %>
+    <%= link_to "(#{next_in_cat})", next_in_cat, :class => "quiet" if next_in_cat.present? %>
+  </span>
 </p>
 
 <div class="field">
   <span class="field-label show">Modifier Categories</span>
-  <table class="fixed-table boxed-list">
-    <% equipment_type.equipment_modifier_categories.order_by_name.each_with_index do |category, index| %>
-      <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :total_count => equipment_type.equipment_modifier_categories.count } do %>
-        <%= link_to category.name, category,
-            :class => "quiet",
-            :title => category.name %>
-      <% end %>
-    <% end %>
-  </table>
+  <%= render "boxed_list", list: equipment_type.equipment_modifier_categories %>
 </div>
 
 <% if equipment_type.notes? %>
