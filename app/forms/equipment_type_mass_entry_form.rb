@@ -1,3 +1,5 @@
+# Organizes the collection of parameters for the mass entry and creation
+# of multiple instances of EquipmentType model
 class EquipmentTypeMassEntryForm < AbstractEquipmentTypeForm
   attr_accessor :equipment_types, :error_messages
 

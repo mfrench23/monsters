@@ -8,7 +8,7 @@ class MasterTrait < AbstractEntity
   accepts_nested_attributes_for :traits, allow_destroy: true
 
   has_many :traits_in_meta_trait, as: :trait_owner, :class_name => 'Trait', :dependent => :destroy
-  accepts_nested_attributes_for :traits_in_meta_trait, allow_destroy: true, :reject_if => lambda { |x| x['master_trait_id'].blank? }
+  accepts_nested_attributes_for :traits_in_meta_trait, allow_destroy: true, :reject_if => lambda { |trait| trait['master_trait_id'].blank? }
 
   before_validation :nil_blank_attributes
   after_save :update_granted_traits

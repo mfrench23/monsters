@@ -1,3 +1,4 @@
+# Controller functionality specific to the "welcome"/dashboard page
 class WelcomeController < ApplicationController
   def index
     javascript_variables({:countbyclassdata => class_series})
@@ -31,9 +32,9 @@ class WelcomeController < ApplicationController
   end
 
   def date_series(klass, date_field, scope)
-    klass.group("date(#{date_field})").count.reduce([]) do |memo, (k, v)|
-      url = send(klass.to_s.tableize + "_path", {scope => k})
-      memo << { :x => k.to_time.to_f * 1000, :y => v, :url => url }
+    klass.group("date(#{date_field})").count.reduce([]) do |memo, (date, count)|
+      url = send(klass.to_s.tableize + "_path", {scope => date})
+      memo << { :x => date.to_time.to_f * 1000, :y => count, :url => url }
     end
   end
 end

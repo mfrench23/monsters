@@ -85,6 +85,9 @@
 
   <section class="description">
     
+<p>Represents (and parses) several Traits encoded into a single string of data
+and abbreviations</p>
+
   </section>
 
   
@@ -193,7 +196,7 @@
             <pre><span class="ruby-comment"># File app/models/creature/trait_list.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">value</span>)
   <span class="ruby-identifier">out</span> = <span class="ruby-constant">Logical</span><span class="ruby-operator">::</span><span class="ruby-constant">FreeformList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">list</span>
-  <span class="ruby-ivar">@list</span> = <span class="ruby-identifier">out</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">string_to_trait</span>(<span class="ruby-identifier">line</span>) }.<span class="ruby-identifier">sort_by</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">trait</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">trait</span>.<span class="ruby-identifier">master_trait_name</span>, <span class="ruby-identifier">trait</span>.<span class="ruby-identifier">level</span>] }
+  <span class="ruby-ivar">@list</span> = <span class="ruby-identifier">out</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-constant">FreeformTraitList</span>.<span class="ruby-identifier">string_to_trait</span>(<span class="ruby-identifier">line</span>) }.<span class="ruby-identifier">sort_by</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">trait</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">trait</span>.<span class="ruby-identifier">master_trait_name</span>, <span class="ruby-identifier">trait</span>.<span class="ruby-identifier">level</span>] }
 <span class="ruby-keyword">end</span></pre>
           </div>
           

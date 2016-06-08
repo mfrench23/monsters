@@ -1,3 +1,4 @@
+# Organizes the collection of parameters for a single instance of the MasterSkill model
 class MasterSkillForm < AbstractForm
   def initialize(params=nil)
     @params = whitelisted_params(params)

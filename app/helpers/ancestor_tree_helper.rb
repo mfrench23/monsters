@@ -12,7 +12,7 @@ module AncestorTreeHelper
   end
 
   def child_tree(monster)
-    child_entries = sorted_children(monster).reduce("".html_safe) do |memo, child|
+    child_entries = AncestorTreeHelper.sorted_children(monster).reduce("".html_safe) do |memo, child|
       memo += content_tag(:li, format_show_link(child) + " (descendant)".html_safe, class: "rightsidebar" )
     end
     content_tag( :ul, child_entries )
@@ -20,8 +20,8 @@ module AncestorTreeHelper
 
   private
 
-  def sorted_children(monster)
-    monster.children.sort { |x,y| x.name.upcase <=> y.name.upcase }
+  def self.sorted_children(monster)
+    monster.children.sort { |the_one,the_other| the_one.name.upcase <=> the_other.name.upcase }
   end
 
   def ancestor_tree_contents(monster)

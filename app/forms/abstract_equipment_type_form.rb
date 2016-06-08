@@ -1,3 +1,4 @@
+# Encapsulated form functionality used across all forms for the EquipmentType model
 class AbstractEquipmentTypeForm < AbstractForm
 
   private
@@ -8,6 +9,6 @@ class AbstractEquipmentTypeForm < AbstractForm
   end
 
   def set_equipment_category_id equipment_category
-    @params[:equipment_category_id] = equipment_category.id unless equipment_category.nil?
+    @params[:equipment_category_id] = equipment_category.try(:id)
   end
 end

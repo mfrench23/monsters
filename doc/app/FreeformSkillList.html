@@ -85,6 +85,8 @@
 
   <section class="description">
     
+<p>Tries to parse user-entered freeform text into skill descriptions</p>
+
   </section>
 
   
@@ -159,11 +161,11 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/forms/creature_form.rb, line 67</span>
+            <pre><span class="ruby-comment"># File app/forms/creature_form.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">characteristics_hash</span>)
   <span class="ruby-ivar">@list</span> = []
-  <span class="ruby-identifier">array_of_remainders</span> = <span class="ruby-constant">Logical</span><span class="ruby-operator">::</span><span class="ruby-constant">FreeformList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">list</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">add_to_list_returning_remaining_text</span>(<span class="ruby-identifier">t</span>, <span class="ruby-identifier">characteristics_hash</span>) }
-  <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">array_of_remainders</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;;&quot;</span>).<span class="ruby-identifier">strip</span>
+  <span class="ruby-identifier">array_of_remainders</span> = <span class="ruby-constant">Logical</span><span class="ruby-operator">::</span><span class="ruby-constant">FreeformList</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">list</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-identifier">add_to_list_returning_remaining_text</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">characteristics_hash</span>) }
+  <span class="ruby-ivar">@text</span> = <span class="ruby-identifier">array_of_remainders</span>.<span class="ruby-identifier">reject</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:nil?</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;;&quot;</span>).<span class="ruby-identifier">strip</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

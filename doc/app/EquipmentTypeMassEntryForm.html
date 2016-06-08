@@ -89,6 +89,9 @@
 
   <section class="description">
     
+<p>Organizes the collection of parameters for the mass entry and creation of
+multiple instances of <a href="EquipmentType.html">EquipmentType</a> model</p>
+
   </section>
 
   
@@ -163,7 +166,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">whitelisted_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-ivar">@equipment_types</span> = []
@@ -208,7 +211,7 @@
 
           
           <div class="method-source-code" id="equipment_category_id-source">
-            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">equipment_category_id</span>
   <span class="ruby-ivar">@params</span>[<span class="ruby-value">:equipment_category_id</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -241,7 +244,7 @@
 
           
           <div class="method-source-code" id="ok-3F-source">
-            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ok?</span>
   <span class="ruby-ivar">@error_messages</span>.<span class="ruby-identifier">empty?</span>
 <span class="ruby-keyword">end</span></pre>

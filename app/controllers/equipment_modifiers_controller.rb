@@ -10,8 +10,9 @@ class EquipmentModifiersController < ModelBasedController
   end
 
   def additional_form_locals
+    id = params[:id]
     query = EquipmentModifier.all
-    query = query.where('equipment_modifiers.id != ' + params[:id].to_s) if params[:id].present?
+    query = query.where('equipment_modifiers.id != ' + id.to_s) if id.present?
     { excludable_modifiers: query.order_by_category_and_name }
   end
 

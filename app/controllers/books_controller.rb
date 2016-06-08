@@ -1,3 +1,4 @@
+# Controller functionality specific to the Book model
 class BooksController < ModelBasedController
 
   private

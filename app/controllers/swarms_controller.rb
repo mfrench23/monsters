@@ -1,3 +1,4 @@
+# Controller functionality specific to the Swarm model
 class SwarmsController < ModelBasedController
   def index
     redirect_to monsters_url

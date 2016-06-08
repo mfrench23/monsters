@@ -140,8 +140,8 @@
           <div class="method-source-code" id="deep_copy_reference-source">
             <pre><span class="ruby-comment"># File app/models/abstract_entity.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">deep_copy_reference</span>(<span class="ruby-identifier">field</span>, <span class="ruby-identifier">copy</span>)
-  <span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">deep_copy</span>
+  <span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">one_field</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">copy</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">one_field</span>.<span class="ruby-identifier">deep_copy</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

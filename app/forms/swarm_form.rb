@@ -1,3 +1,4 @@
+# Organizes the collection of parameters for a single instance of the Swarm model
 class SwarmForm < AbstractForm
   def initialize(params=nil)
     @params = monster_params(params)

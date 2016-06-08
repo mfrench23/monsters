@@ -87,6 +87,9 @@
 
   <section class="description">
     
+<p>Controller functionality specific to the <a
+href="Creature.html">Creature</a> model</p>
+
   </section>
 
   
@@ -127,7 +130,7 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 2</span>
+            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 3</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">monsters_url</span>
 <span class="ruby-keyword">end</span></pre>
@@ -160,7 +163,7 @@
 
           
           <div class="method-source-code" id="variant-source">
-            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/creatures_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">variant</span>
   <span class="ruby-identifier">creature</span> = <span class="ruby-identifier">set_model_by_id</span>.<span class="ruby-identifier">deep_copy</span>
   <span class="ruby-identifier">render</span> <span class="ruby-value">:new</span>, <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">creature</span><span class="ruby-operator">:</span> <span class="ruby-identifier">creature</span>, <span class="ruby-identifier">campaigns</span><span class="ruby-operator">:</span> <span class="ruby-identifier">all_campaigns</span> }

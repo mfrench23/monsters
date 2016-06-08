@@ -1,3 +1,4 @@
+# Controller functionality specific to the Monster model
 class MonstersController < ModelBasedController
 
   def show

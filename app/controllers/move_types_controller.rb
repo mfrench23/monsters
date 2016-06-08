@@ -1,3 +1,4 @@
+# Controller functionality specific to the MoveType model
 class MoveTypesController < ModelBasedController
 
   private

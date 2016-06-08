@@ -1,3 +1,4 @@
+# Controller functionality specific to the Creature model
 class CreaturesController < ModelBasedController
   def index
     redirect_to monsters_url

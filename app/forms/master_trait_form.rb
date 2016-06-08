@@ -1,3 +1,4 @@
+# Organizes the collection of parameters for a single instance of the MasterTrait model
 class MasterTraitForm < AbstractForm
   def initialize(params=nil)
     @params = whitelisted_params(params)

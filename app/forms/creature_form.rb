@@ -1,34 +1,38 @@
+# Organizes the collection of parameters for a single instance of the Creature model
 class CreatureForm < AbstractForm
   def initialize(params=nil)
-    paramlist = convert_freeform_skill_list(params)
+    paramlist = CreatureForm.convert_freeform_skill_list(params)
     @params = monster_params(paramlist)
   end
 
   private
 
-  def convert_freeform_skill_list(params)
-    return params if params[:creature][:freeform_skill_list ].nil?
-    sl = FreeformSkillList.new( freeform_skill_param(params), characteristics_param(params) )
-    sl.list.each do |skill_attributes|
-      merge_skill_attributes_into_params(params, skill_attributes)
-    end
-    params[:creature][:freeform_skill_list ] = sl.text
-    params
-  end
-
-  def characteristics_param(params)
+  def self.characteristics_param(params)
     params[:creature][:characteristic_monsters_attributes ]
   end
 
-  def freeform_skill_param(params)
+  def self.freeform_skill_param(params)
     params[:creature][:freeform_skill_list ]
   end
 
-  def merge_skill_attributes_into_params(params, skill_attributes)
-    params[:creature][:skills_attributes] ||= {}
-    idx = params[:creature][:skills_attributes].count.to_s
-    add_hash = { idx => skill_attributes }
-    params[:creature][:skills_attributes].merge! add_hash
+  def self.merge_converted_skill_list(params, skill_list)
+    skill_list.list.each do |skill_attributes|
+      CreatureForm.merge_skill_attributes_into_params(params, skill_attributes)
+    end
+    params[:creature][:freeform_skill_list ] = skill_list.text
+    params
+  end
+
+  def self.merge_skill_attributes_into_params(params, skill_attributes)
+    creature_params = params[:creature]
+    creature_params[:skills_attributes] ||= {}
+    creature_params[:skills_attributes].merge!({ creature_params[:skills_attributes].count.to_s => skill_attributes })
+  end
+
+  def self.convert_freeform_skill_list(params)
+    return params unless params[:creature][:freeform_skill_list ].present?
+    skill_list = FreeformSkillList.new( CreatureForm.freeform_skill_param(params), CreatureForm.characteristics_param(params) )
+    CreatureForm.merge_converted_skill_list(params, skill_list)
   end
 
   def monster_params(params)
@@ -60,29 +64,29 @@ class CreatureForm < AbstractForm
   end
 end
 
+# Tries to parse user-entered freeform text into skill descriptions
 class FreeformSkillList
   attr_accessor :list
   attr_accessor :text
 
   def initialize(value, characteristics_hash)
     @list = []
-    array_of_remainders = Logical::FreeformList.new(value).list.map { |t| add_to_list_returning_remaining_text(t, characteristics_hash) }
-    @text = array_of_remainders.reject { |x| x.nil? }.join(";").strip
+    array_of_remainders = Logical::FreeformList.new(value).list.map { |item| add_to_list_returning_remaining_text(item, characteristics_hash) }
+    @text = array_of_remainders.reject(&:nil?).join(";").strip
   end
 
   private
 
   def add_to_list_returning_remaining_text(text, characteristics_hash)
-      s = SkillText.new(text, characteristics_hash)
-
-      unless s.skill.nil?
-        @list << s.skill
-      end
-      s.remaining_text
+      skill_text = SkillText.new(text, characteristics_hash)
+      @list << skill_text.skill if skill_text.skill.present?
+      skill_text.remaining_text
   end
 
 end
 
+# Parses text representation of an instance of a GURPS Skill, as depicted on a
+# particular character sheet (i.e., "Brawling @ DX+1", or "Acting 14")
 class SkillText
   attr_accessor :remaining_text
   attr_accessor :skill
@@ -119,38 +123,37 @@ class SkillText
       arr[:characteristic_id].to_s == characteristic_id.to_s
     end
     ch = ch_arr.values.first
-    unless ch.nil?
-      score = ch[:score]
-    end
+    score = ch[:score] if ch.present?
     score
   end
 
   def pull_tech_level
-    @working_text.gsub!(/\/TL[\d]+/) { |m| @tech_level = m[3..-1]; "" }
+    @working_text.gsub!(/\/TL[\d]+/) { |match| @tech_level = match[3..-1]; "" }
   end
 
   def pull_characteristic_plus_modifier
-    @working_text.gsub!(/#{Regex_attribute}([+-]\d+)?/) do |m|
+    @working_text.gsub!(/#{Regex_attribute}([+-]\d+)?/) do |match|
       @characteristic = $1
-      @modifier_value = ( $2.nil? ? "0" : ($2).tr("+"," ").strip )
+      mod_val = $2 || "0"
+      @modifier_value = mod_val.tr("+"," ").strip
       ""
     end
   end
 
   def pull_skill_difficulty
-    @working_text.gsub!(/ \((E|A|H|VH)\)/) { |m| "" }
+    @working_text.gsub!(/ \((E|A|H|VH)\)/) { |match| "" }
   end
 
   def pull_skill_price
-    @working_text.gsub!(/ \[\d+\]/) { |m| "" }
+    @working_text.gsub!(/ \[\d+\]/) { |match| "" }
   end
 
   def pull_remainder
-    if m = @working_text.match(/^#{Regex_skill_name}#{Regex_actual_value}([^\w]+)?#{Regex_notes}$/)
-      @master_skill_name = m[:skill_name]
-      @actual_value = m[:actual_value]
-      @specialization = m[:specialization]
-      @notes = m[:notes]
+    if match = @working_text.match(/^#{Regex_skill_name}#{Regex_actual_value}([^\w]+)?#{Regex_notes}$/)
+      @master_skill_name = match[:skill_name]
+      @actual_value = match[:actual_value]
+      @specialization = match[:specialization]
+      @notes = match[:notes]
     end
   end
 
@@ -162,7 +165,7 @@ class SkillText
   end
 
   def populate_missing_modifier_value
-    return if @master_skill.nil?
+    return unless @master_skill.present?
     if @modifier_value.blank? && @actual_value.present?
       score = characteristic_score(@master_skill.characteristic.id)
       @modifier_value = @actual_value.to_i - score.to_i

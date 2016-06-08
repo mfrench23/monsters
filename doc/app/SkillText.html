@@ -85,6 +85,10 @@
 
   <section class="description">
     
+<p>Parses text representation of an instance of a GURPS <a
+href="Skill.html">Skill</a>, as depicted on a particular character sheet
+(i.e., “Brawling @ DX+1”, or “Acting 14”)</p>
+
   </section>
 
   
@@ -188,7 +192,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/forms/creature_form.rb, line 90</span>
+            <pre><span class="ruby-comment"># File app/forms/creature_form.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">raw_text</span>, <span class="ruby-identifier">characteristics_hash</span>)
   <span class="ruby-ivar">@remaining_text</span> = <span class="ruby-identifier">raw_text</span>
   <span class="ruby-ivar">@working_text</span> = <span class="ruby-identifier">raw_text</span>.<span class="ruby-identifier">strip</span>

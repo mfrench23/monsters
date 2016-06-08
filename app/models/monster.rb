@@ -16,13 +16,13 @@ class Monster < AbstractEntity
   has_ancestry :cache_depth => true # for determining which monsters are variants of others
 
   has_many :attacks, dependent: :destroy
-  accepts_nested_attributes_for :attacks, allow_destroy: true, :reject_if => lambda { |x| x['name'].blank? && x['skill'].blank? && x['description'].blank? }
+  accepts_nested_attributes_for :attacks, allow_destroy: true, :reject_if => lambda { |attack| attack['name'].blank? && attack['skill'].blank? && attack['description'].blank? }
   has_many  :movement_rates, dependent: :destroy
-  accepts_nested_attributes_for :movement_rates, allow_destroy: true, :reject_if => lambda { |x| x['rate'].blank? && x['move_type_id'].blank? }
+  accepts_nested_attributes_for :movement_rates, allow_destroy: true, :reject_if => lambda { |move| move['rate'].blank? && move['move_type_id'].blank? }
   has_many  :monster_names, dependent: :destroy
-  accepts_nested_attributes_for :monster_names, allow_destroy: true, :reject_if => lambda { |x| x['name'].blank? }
+  accepts_nested_attributes_for :monster_names, allow_destroy: true, :reject_if => lambda { |name| name['name'].blank? }
   has_many  :characteristic_monsters, dependent: :destroy
-  accepts_nested_attributes_for :characteristic_monsters, allow_destroy: true, :reject_if => lambda { |x| x['characteristic_id'].blank? }
+  accepts_nested_attributes_for :characteristic_monsters, allow_destroy: true, :reject_if => lambda { |char| char['characteristic_id'].blank? }
 
   has_many :characteristics, :through => :characteristic_monsters
 
@@ -36,13 +36,13 @@ class Monster < AbstractEntity
   end
 
   def characteristic_score(characteristic_name)
-    characteristic_monster(characteristic_name).try { |x| x.characteristic.normalize(x.score) }
+    characteristic_monster(characteristic_name).try { |characteristic_monster| characteristic_monster.characteristic.normalize(characteristic_monster.score) }
   end
 
   def combat_effectiveness_rating
     offensive_rating = characteristic_score "OR"
     protective_rating = characteristic_score "PR"
-    offensive_rating.nil? || protective_rating.nil? ? nil : offensive_rating.to_i + protective_rating.to_i
+    offensive_rating.to_i + protective_rating.to_i if (offensive_rating.present? && protective_rating.present?)
   end
 
   def deep_copy

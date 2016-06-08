@@ -1,3 +1,4 @@
+# Controller functionality specific to the MasterTrait model
 class MasterTraitsController < ModelBasedController
   # GET /master_traits/1/merge_into
   def merge_into

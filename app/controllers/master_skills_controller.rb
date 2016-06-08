@@ -1,3 +1,4 @@
+# Controller functionality specific to the MasterSkill model
 class MasterSkillsController < ModelBasedController
 
   private

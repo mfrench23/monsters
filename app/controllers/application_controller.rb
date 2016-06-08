@@ -12,11 +12,13 @@ class ApplicationController < ActionController::Base
   end
 
   def name_of_filtering_campaign
-    Campaign.find(params[:in_campaign]).name unless params[:in_campaign].nil?
+    in_campaign = params[:in_campaign]
+    Campaign.find(in_campaign).name if in_campaign.present?
   end
 
   def name_of_filtering_equipment_category
-    EquipmentCategory.find(params[:in_equipment_category]).name unless params[:in_equipment_category].nil?
+    in_cat = params[:in_equipment_category]
+    EquipmentCategory.find(in_cat).name if in_cat.present?
   end
 
   def all_campaigns

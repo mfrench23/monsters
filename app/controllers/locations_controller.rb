@@ -1,3 +1,4 @@
+# Controller functionality specific to the Location model
 class LocationsController < ModelBasedController
 
   private

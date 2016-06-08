@@ -1,3 +1,4 @@
+# Organizes the collection of parameters for a single instance of the EquipmentPiece model
 class EquipmentPieceForm < AbstractForm
   def initialize(params=nil)
     @params = whitelisted_params(params)

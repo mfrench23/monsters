@@ -87,6 +87,9 @@
 
   <section class="description">
     
+<p>Controller functionality specific to the <a
+href="MasterTrait.html">MasterTrait</a> model</p>
+
   </section>
 
   
@@ -127,7 +130,7 @@
 
           
           <div class="method-source-code" id="do_merge_into-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">do_merge_into</span>
   <span class="ruby-identifier">merge_into</span> = <span class="ruby-constant">MasterTrait</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:merge_into_trait_id</span>])
   <span class="ruby-identifier">redirect_after_merge</span> <span class="ruby-identifier">merge_into</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">set_model_by_id</span>), <span class="ruby-identifier">merge_into</span>
@@ -161,7 +164,7 @@
 
           
           <div class="method-source-code" id="merge_into-source">
-            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/controllers/master_traits_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">merge_into</span>
   <span class="ruby-identifier">display_merge_into_page</span>
 <span class="ruby-keyword">end</span></pre>

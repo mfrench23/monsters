@@ -1,3 +1,4 @@
+# Controller functionality specific to the MonsterClass model
 class MonsterClassesController < ModelBasedController
 
   private

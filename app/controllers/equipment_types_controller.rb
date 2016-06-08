@@ -31,9 +31,10 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def mass_entry_locals(form)
-    additional_form_locals.merge({:freeform_text => form.params[:freeform_text],
-                                :equipment_category_name => form.params[:equipment_category_name],
-                                :campaign_id => form.params[:campaign_id],
+    paramz = form.params
+    additional_form_locals.merge({:freeform_text => paramz[:freeform_text],
+                                :equipment_category_name => paramz[:equipment_category_name],
+                                :campaign_id => paramz[:campaign_id],
                                 :error_messages => form.error_messages })
   end
 

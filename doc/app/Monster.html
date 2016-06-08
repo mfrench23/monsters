@@ -239,7 +239,7 @@ birds)</p>
           <div class="method-source-code" id="characteristic_score-source">
             <pre><span class="ruby-comment"># File app/models/monster.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">characteristic_score</span>(<span class="ruby-identifier">characteristic_name</span>)
-  <span class="ruby-identifier">characteristic_monster</span>(<span class="ruby-identifier">characteristic_name</span>).<span class="ruby-identifier">try</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">characteristic</span>.<span class="ruby-identifier">normalize</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">score</span>) }
+  <span class="ruby-identifier">characteristic_monster</span>(<span class="ruby-identifier">characteristic_name</span>).<span class="ruby-identifier">try</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">characteristic_monster</span><span class="ruby-operator">|</span> <span class="ruby-identifier">characteristic_monster</span>.<span class="ruby-identifier">characteristic</span>.<span class="ruby-identifier">normalize</span>(<span class="ruby-identifier">characteristic_monster</span>.<span class="ruby-identifier">score</span>) }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -274,7 +274,7 @@ birds)</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">combat_effectiveness_rating</span>
   <span class="ruby-identifier">offensive_rating</span> = <span class="ruby-identifier">characteristic_score</span> <span class="ruby-string">&quot;OR&quot;</span>
   <span class="ruby-identifier">protective_rating</span> = <span class="ruby-identifier">characteristic_score</span> <span class="ruby-string">&quot;PR&quot;</span>
-  <span class="ruby-identifier">offensive_rating</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">protective_rating</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">offensive_rating</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">protective_rating</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">offensive_rating</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">protective_rating</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">offensive_rating</span>.<span class="ruby-identifier">present?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">protective_rating</span>.<span class="ruby-identifier">present?</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

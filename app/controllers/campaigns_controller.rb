@@ -1,3 +1,4 @@
+# Controller functionality specific to the Campaign model
 class CampaignsController < ModelBasedController
 
   private

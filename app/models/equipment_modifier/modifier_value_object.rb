@@ -18,8 +18,8 @@ class EquipmentModifier::ModifierValueObject
   Regex_Additive_Modifier = /^(?<pm>#{Regex_PlusOrMinus})[^\d]*(?<num>#{Regex_Number})[^\d]*$/
   Regex_Multiplicative_Modifier = /^#{Regex_Multiplier} *(?<num>#{Regex_Number})$/
 
-  def self.get_multiplicative_modifier_value_object(s)
-    if match = s.match( Regex_Multiplicative_Modifier )
+  def self.get_multiplicative_modifier_value_object(text)
+    if match = text.match( Regex_Multiplicative_Modifier )
       EquipmentModifier::MultiplierModifierValueObject.new(match[:num])
     end
   end
