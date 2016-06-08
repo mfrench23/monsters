@@ -1,0 +1,12 @@
+<span class="footnote">
+  <%= link_to "(#{predecessor})", predecessor, :class => "quiet" if predecessor.present? %>
+  <%= "<-" if predecessor.present? %>
+</span>
+<span>
+  <%= link_to target, target, :class => "quiet" if target.present? %>
+  <% "-" unless target.present? %>
+<span>
+<span class="footnote">
+  <%= "->" if successor.present? %>
+  <%= link_to "(#{successor})", successor, :class => "quiet" if successor.present? %>
+</span>

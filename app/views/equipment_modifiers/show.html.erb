@@ -1,48 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<div class="field">
   <strong>Name:</strong>
   <%= equipment_modifier.name %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <strong>Equipment modifier category:</strong>
-  <%= equipment_modifier.equipment_modifier_category %>
-</p>
+  <% prev = EquipmentModifier.where(:equipment_modifier_category => equipment_modifier.equipment_modifier_category).where("name < ?", equipment_modifier.name).order_by_name.last %>
+  <% nxt = EquipmentModifier.where(:equipment_modifier_category => equipment_modifier.equipment_modifier_category).where("name > ?", equipment_modifier.name).order_by_name.first %>
+  <%= render "link_with_next_and_previous_links", :target => equipment_modifier.equipment_modifier_category, :predecessor => prev, :successor => nxt %>
+</div>
 
-<p>
+<div class="field">
   <strong>Base cost mod:</strong>
   <%= equipment_modifier.base_cost_mod %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <strong>Base weight mod:</strong>
   <%= equipment_modifier.base_weight_mod %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <strong>Cost mod:</strong>
   <%= equipment_modifier.cost_mod %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <strong>Weight mod:</strong>
   <%= equipment_modifier.weight_mod %>
-</p>
+</div>
 
-<p>
+<div class="field">
   <strong>Notes:</strong>
   <%= equipment_modifier.notes %>
-</p>
+</div>
 
-<p>
-  <strong>Mutually exclusive with:</strong>
-  <ul>
-    <% equipment_modifier.excluded_equipment_modifiers.each do |excluded| %>
-      <li><%= link_to excluded.to_s, excluded, :class => "quiet" %></li>
-    <% end %>
-  </ul>
-</p>
+<div class="field">
+  <span class="field-label show">Mutually exclusive with:</span>
+  <%= render "boxed_list", list: equipment_modifier.excluded_equipment_modifiers %>
+</div>
 
 <%= link_to 'Edit', edit_equipment_modifier_path(equipment_modifier) %> |
 <%= link_to 'Index', equipment_modifiers_path %>
