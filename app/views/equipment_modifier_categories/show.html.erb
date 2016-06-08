@@ -6,23 +6,21 @@
 </p>
 
 <p>
-  <strong>Modifiers:</strong>
-  <ul>
-  <% equipment_modifier_category.equipment_modifiers.each do |equipment_modifier| %>
-    <li><%= link_to equipment_modifier.to_s, equipment_modifier, :class => "quiet" %></li>
-  <% end %>
-  </ul>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= equipment_modifier_category.notes %>
+  <span class="field-label show">Modifiers:</span>
+  <%= render "boxed_list", list: equipment_modifier_category.equipment_modifiers.order_by_name %>
 </p>
 
 <div class="field">
   <span class="field-label show">Modifying</span>
-  <%= render "boxed_list", list: equipment_modifier_category.equipment_types %>
+  <%= render "boxed_list", list: equipment_modifier_category.equipment_types.order_by_name %>
 </div>
+
+<% if equipment_modifier_category.notes? %>
+  <p>
+    <strong>Notes:</strong>
+    <%= equipment_modifier_category.notes %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_equipment_modifier_category_path(equipment_modifier_category) %> |
 <%= link_to 'Index', equipment_modifier_categories_path %>
