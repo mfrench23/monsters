@@ -9,6 +9,9 @@ class WelcomeController < ApplicationController
   def series_array
     series_array = created_on_and_updated_on_series_for(Monster)
     series_array += created_on_and_updated_on_series_for(EquipmentType)
+    series_array += created_on_and_updated_on_series_for(EquipmentModifier)
+    series_array += created_on_and_updated_on_series_for(EquipmentPiece)
+    series_array += created_on_and_updated_on_series_for(EquipmentModifierCategory)
   end
 
   def created_on_and_updated_on_series_for(klass)
