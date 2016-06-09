@@ -20,7 +20,7 @@
   <tbody>
     <% master_skills.each_with_index do |master_skill, index| %>
       <tr class="tr<%= index % 2 %>">
-        <td><%= link_to master_skill.name, master_skill %></td>
+        <td><%= link_to master_skill.name, master_skill, :class => "quiet" %></td>
         <td style="text-align: center;"><%= master_skill.requires_specialization ? "Y" : "" %></td>
         <td style="text-align: center;"><%= master_skill.requires_tech_level ? "Y" : "" %></td>
         <td style="text-align: center;"><%= master_skill.characteristic.to_s %></td>

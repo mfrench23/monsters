@@ -1,13 +1,26 @@
-<table class="fixed-table boxed-list">
-  <% if list.none? %>
-    <tr>
-      <td>&nbsp;</td>
-    </tr>
-  <% else %>
-    <% list.order_by_name.each_with_index do |item, index| %>
-      <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :total_count => list.count } do %>
-        <%= link_to item.name, item, :class => "quiet", :title => item.name %>
+<% row_style_display ||= "display: none" %>
+<%#----%>
+<% row_style_inverse = ( row_style_display.present? ? "" : "display: none") %>
+<% toggle_id = "boxed_list_" + (Time.now.to_f * 1000).to_i.to_s %>
+<% row_options = { "data-toggle_id" => toggle_id, "style" => row_style_display } %>
+<span>
+  <% if list.count > 0 %>
+    <span style="float: left"><%= toggle_links toggle_id, "+", "-" %></span>
+  <% end %>
+  <table class="fixed-table boxed-list">
+    <% if list.none? %>
+      <tr>
+        <td><span class="footnote">(<%= pluralize list.count, "item" %>)</span></td>
+      </tr>
+    <% else %>
+      <tr data-toggle_id="<%= toggle_id %>" style="<%= row_style_inverse %>">
+        <td><span class="footnote">(<%= pluralize list.count, "item" %>)</span></td>
+      </tr>
+      <% list.order_by_name.each_with_index do |item, index| %>
+        <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :total_count => list.count, :row_options => row_options } do %>
+          <%= link_to item.name, item, :class => "quiet", :title => item.name %>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-</table>
+  </table>
+</span>

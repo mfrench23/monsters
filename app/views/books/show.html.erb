@@ -13,18 +13,25 @@
   <table class="fixed-table boxed-list">
     <% index = 0 %>
     <% previous_type = nil %>
+    <% toggle_id = nil %>
+    <% row_options = {} %>
     <% book.page_references.sort_by{ |pg| [pg.referenceable_type, pg.referenceable.name] }.each do |reference| %>
       <% if reference.referenceable_type != previous_type %>
+        <% toggle_id = "referencesOfType" + reference.referenceable_type %>
+        <% row_options = { "data-toggle_id" => toggle_id } %>
         <% if index > 0 %>
           </tr>
         <% end %>
         <tr>
-          <th style="text-align: left;"><%= reference.referenceable_type.pluralize.titleize %></th>
+          <th style="text-align: left;">
+            <%= reference.referenceable_type.pluralize.titleize %>
+            <span><%= toggle_links toggle_id, "+", "-" %></span>
+          </th>
         </tr>
         <% index = 0 %>
       <% end %>
       <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :total_count => book.page_references.count } do %>
+          :locals => { :index => index, :total_count => book.page_references.count, :row_options => row_options } do %>
         <%= link_to reference.referenceable.to_s, reference.referenceable,
             :class => "quiet",
             :title => reference.referenceable.to_s %>

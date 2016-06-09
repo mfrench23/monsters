@@ -57,10 +57,16 @@
 
 <div class="field">
   <span class="filter-label">Filter by category</span>
+  <% toggle_id = "filterByCategory" %>
+  <% row_options = { "data-toggle_id" => toggle_id, "style" => "display: none" } %>
+  <span style="float: left"><%= toggle_links toggle_id, "+", "-" %></span>
   <table class="fixed-table boxed-list">
+    <tr data-toggle_id="<%= toggle_id %>">
+      <td><span class="footnote">(<%= pluralize equipment_categories.count, "category" %>)</span></td>
+    </tr>
     <% equipment_categories.each_with_index do |category, index| %>
       <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :number_of_columns => 5, :total_count => equipment_categories.count } do %>
+          :locals => { :index => index, :number_of_columns => 5, :total_count => equipment_categories.count, :row_options => row_options } do %>
         <% if filter_params[:in_equipment_category].to_s == category.id.to_s %>
           <%= "#{category.name}" %>
         <% else %>

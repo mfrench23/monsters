@@ -19,7 +19,7 @@
   <tbody>
     <% master_traits.each_with_index do |master_trait, index| %>
       <tr class="tr<%= index % 2 %>">
-        <td><%= link_to master_trait.name, master_trait %></td>
+        <td><%= link_to master_trait.name, master_trait, :class => "quiet" %></td>
         <td class="count">
           <span title="<%= master_trait.traits.creature_possessed.map{ |t| t.creature.name }.sort.join("; ") %>">
             <%= master_trait.traits.creature_possessed.count %>

@@ -14,7 +14,7 @@
       <% end %>
       <th>Modifiers</th>
       <th>Owner</th>
-      <th style="width: 80px;"><%= sortable "equipment_categories.name", EquipmentPiece, params, "Category" %></th>
+      <th style="width: 120px;"><%= sortable "equipment_categories.name", EquipmentPiece, params, "Category" %></th>
       <th style="width: 100px;"><%= sortable "equipment_pieces.cost_cents", EquipmentPiece, params, "Value" %></th>
       <th style="width: 100px;"><%= sortable "equipment_pieces.weight", EquipmentPiece, params, "Weight (lbs.)" %></th>
       <%= render 'index_edit_destroy_headers' %>
@@ -27,13 +27,13 @@
       <% modifiers_string = pretty_print_equipment_piece_modifiers equipment_piece -%>
       <% modifiers_span = content_tag( :span, modifiers_string, :title => modifiers_string ) -%>
       <tr class="tr<%= index % 2 %>">
-        <td><%= link_to equipment_piece.equipment_type, equipment_piece, :title => equipment_piece.equipment_type %></td>
+        <td><%= link_to equipment_piece.equipment_type, equipment_piece, :title => equipment_piece.equipment_type, :class => "quiet" %></td>
         <% if needs_name_column %>
           <td><%= content_tag :span, name, :title => name %></td>
         <% end %>
         <td><%= modifiers_span %></td>
         <td><%= link_to(equipment_piece.final_owner.to_s, equipment_piece.final_owner, :title => equipment_piece.final_owner.to_s, :class => "quiet") if equipment_piece.final_owner.present? %></td>
-        <td><%= content_tag :span, equipment_piece.equipment_category, :title => equipment_piece.equipment_category %></td>
+        <td><%= link_to equipment_piece.equipment_category, equipment_piece.equipment_category, :title => equipment_piece.equipment_category, :class => "quiet" %></td>
         <td class="cash"><%= currency_symbol %><%= equipment_piece.cost %></td>
         <td class="count"><%= equipment_piece.weight %></td>
         <%= render 'index_edit_destroy_links', target: equipment_piece %>
