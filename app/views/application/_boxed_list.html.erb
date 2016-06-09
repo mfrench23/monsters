@@ -1,11 +1,14 @@
 <% row_style_display ||= "display: none" %>
 <%#----%>
 <% row_style_inverse = ( row_style_display.present? ? "" : "display: none") %>
+<% row_style_inverse = ( row_style_display.present? ? "" : "display: none") %>
+<% starting_icon = ( row_style_display.present? ? "+" : "-") %>
+<% alternate_icon = ( row_style_display.present? ? "-" : "+") %>
 <% toggle_id = "boxed_list_" + (Time.now.to_f * 1000).to_i.to_s %>
 <% row_options = { "data-toggle_id" => toggle_id, "style" => row_style_display } %>
 <span>
   <% if list.count > 0 %>
-    <span style="float: left"><%= toggle_links toggle_id, "+", "-" %></span>
+    <span style="float: left"><%= toggle_links toggle_id, starting_icon, alternate_icon %></span>
   <% end %>
   <table class="fixed-table boxed-list">
     <% if list.none? %>

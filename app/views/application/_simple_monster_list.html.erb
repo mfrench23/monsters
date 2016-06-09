@@ -1,17 +1,12 @@
-<% includes_variants = false %>
-<ul>
-  <% monsters.sort { |x,y| x.name.upcase <=> y.name.upcase }.each do |monster| %>
-    <li>
-      <%= link_to monster.name, monster.specific %>
-      <% if ! monster.root? %>
-        <% includes_variants = true %>
-        *
-      <% end %>
-    </li>
+<% includes_variants = (monsters.select{ |monster| ! monster.root? }.length > 0) %>
+
+<p>
+  <span class="field-label show">Monsters:</span>
+  <%= render "boxed_list", list: monsters, row_style_display: "" %>
+  <% if includes_variants %>
+    <span class="field-label show">&nbsp;</span>
+    <span style="padding-left: 50px;">
+      * variant
+    </span>
   <% end %>
-</ul>
-<% if includes_variants %>
-  <p style="padding-left: 50px;">
-    * variant
-  </p>
-<% end %>
+</p>

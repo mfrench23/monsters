@@ -20,7 +20,7 @@
   <tbody>
     <% list.each_with_index do |list_member, index| %>
       <tr class="tr<%= index % 2 %>">
-        <td><%= link_to list_member.name, list_member %></td>
+        <td><%= link_to list_member.name, list_member, :class => "quiet" %></td>
         <% columns_to_count.each do |col| %>
           <td class="count"><%= list_member.try(col).count %></td>
         <% end %>
