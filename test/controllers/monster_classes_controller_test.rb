@@ -57,6 +57,7 @@ class MonsterClassesControllerTest < ActionController::TestCase
   end
 
   test "should destroy monster_class" do
+    @request.env['HTTP_REFERER'] = monster_classes_path
     assert_difference('MonsterClass.count', -1) do
       delete :destroy, id: @monster_class
     end

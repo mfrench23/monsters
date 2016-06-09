@@ -58,6 +58,7 @@ class BooksControllerTest < ActionController::TestCase
   end
 
   test "should destroy book" do
+    @request.env['HTTP_REFERER'] = books_path
     assert_difference('Book.count', -1) do
       delete :destroy, id: @book
     end

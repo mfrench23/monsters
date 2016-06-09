@@ -87,6 +87,7 @@ class MasterTraitsControllerTest < ActionController::TestCase
   end
 
   test "should destroy master_trait" do
+    @request.env['HTTP_REFERER'] = master_traits_path
     assert_difference('MasterTrait.count', -1) do
       delete :destroy, id: @master_trait
     end

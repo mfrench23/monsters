@@ -57,6 +57,7 @@ class MasterSkillsControllerTest < ActionController::TestCase
   end
 
   test "should destroy master_skill" do
+    @request.env['HTTP_REFERER'] = master_skills_path
     assert_difference('MasterSkill.count', -1) do
       delete :destroy, id: @master_skill
     end

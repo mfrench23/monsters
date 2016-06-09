@@ -27,6 +27,7 @@ class EquipmentPackagesControllerTest < ActionController::TestCase
   end
 
   test "should destroy equipment_package" do
+    @request.env['HTTP_REFERER'] = equipment_packages_path
     assert_difference('EquipmentPackage.count', -1) do
       delete :destroy, id: @equipment_package
     end

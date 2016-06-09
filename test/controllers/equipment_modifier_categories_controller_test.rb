@@ -46,6 +46,7 @@ class EquipmentModifierCategoriesControllerTest < ActionController::TestCase
   end
 
   test "should destroy equipment_modifier_category" do
+    @request.env['HTTP_REFERER'] = equipment_modifier_categories_path
     assert_difference('EquipmentModifierCategory.count', -1) do
       delete :destroy, id: @equipment_modifier_category
     end

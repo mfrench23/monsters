@@ -57,6 +57,7 @@ class CampaignsControllerTest < ActionController::TestCase
   end
 
   test "should destroy campaign" do
+    @request.env['HTTP_REFERER'] = campaigns_path
     assert_difference('Campaign.count', -1) do
       delete :destroy, id: @campaign
     end

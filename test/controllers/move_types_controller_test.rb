@@ -57,6 +57,7 @@ class MoveTypesControllerTest < ActionController::TestCase
   end
 
   test "should destroy move_type" do
+    @request.env['HTTP_REFERER'] = move_types_path
     assert_difference('MoveType.count', -1) do
       delete :destroy, id: @move_type
     end

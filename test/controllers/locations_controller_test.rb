@@ -57,6 +57,7 @@ class LocationsControllerTest < ActionController::TestCase
   end
 
   test "should destroy location" do
+    @request.env['HTTP_REFERER'] = locations_path
     assert_difference('Location.count', -1) do
       delete :destroy, id: @location
     end

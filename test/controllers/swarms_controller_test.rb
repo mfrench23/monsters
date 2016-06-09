@@ -64,6 +64,7 @@ class SwarmsControllerTest < ActionController::TestCase
   end
 
   test "should destroy swarm" do
+    @request.env['HTTP_REFERER'] = swarms_path
     assert_difference(['Monster.count', 'Swarm.count'], -1) do
       delete :destroy, id: @swarm
     end
