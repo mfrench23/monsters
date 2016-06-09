@@ -24,6 +24,9 @@
     req = $.ajax({url: "/fetch_equipment_modifiers", type: "GET", data: { equipment_piece_id: eq_p_id, equipment_type_id: equipment_type_id, base_id: html_id, title: title }, cache: false })
       .done((html)->
         $(target_div).append(html)
+        found = $(target_div).find("input:checkbox:first")
+        if( found.length > 0 )
+          disable_excluded_equipment_modifiers(found)
       )
   return
 
