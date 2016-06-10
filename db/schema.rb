@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606182539) do
+ActiveRecord::Schema.define(version: 20160610202638) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 20160606182539) do
     t.datetime "updated_at",                      null: false
   end
 
+  add_index "equipment_modifier_exclusions", ["equipment_modifier_id", "excluded_id"], name: "equipment_modifier_exclusions_uniq_idx", unique: true, using: :btree
   add_index "equipment_modifier_exclusions", ["equipment_modifier_id"], name: "index_equipment_modifier_exclusions_on_equipment_modifier_id", using: :btree
   add_index "equipment_modifier_exclusions", ["excluded_id"], name: "index_equipment_modifier_exclusions_on_excluded_id", using: :btree
 
