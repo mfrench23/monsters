@@ -4,16 +4,18 @@ class EquipmentModifiersController < ModelBasedController
   private
 
   def whitelisted_entity_params
-    params.require(:equipment_modifier).permit([:name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod, :notes, :equipment_modifier_category_id,
-                                               equipment_modifier_exclusions_attributes: [:id, :equipment_modifier_id, :excluded_id, :_destroy]
-                                              ])
+    EquipmentModifierForm.new(params).params
   end
 
   def additional_form_locals
+    { excludable_modifiers: all_modifiers_that_can_be_mutually_exclusive }
+  end
+
+  def all_modifiers_that_can_be_mutually_exclusive
     id = params[:id]
     query = EquipmentModifier.all
-    query = query.where('equipment_modifiers.id != ' + id.to_s) if id.present?
-    { excludable_modifiers: query.order_by_category_and_name }
+    query = query.where('equipment_modifiers.id != ' + id.to_s) if id.present? # exclude self
+    query.order_by_category_and_name
   end
 
   def includes_for_sorting

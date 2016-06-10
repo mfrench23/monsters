@@ -4,15 +4,16 @@ class EquipmentPieceForm < AbstractForm
     @params = whitelisted_params(params)
   end
 
+  def self.permitted_attributes
+    [:id, :name, :equipment_type_id, :quantity, :_destroy,
+     equipment_piece_modifiers_attributes: [:id, :equipment_modifier_id, :notes, :_destroy] ]
+  end
+
   private
 
   def whitelisted_params(params)
-    params.require(:equipment_piece).permit( permitted_attributes )
+    params.require(:equipment_piece).permit( EquipmentPieceForm.permitted_attributes )
   end
 
-  def permitted_attributes
-    [:id, :name, :equipment_type_id, :quantity,
-     equipment_piece_modifiers_attributes: [:id, :equipment_modifier_id, :notes, :_destroy]
-    ]
-  end
+
 end

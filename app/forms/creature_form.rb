@@ -53,11 +53,7 @@ class CreatureForm < AbstractForm
       damage_resistances_attributes: [:id, :location_id, :dr, :notes, :_destroy],
       page_references_attributes: [:id, :book_id, :pages, :_destroy],
       parry_scores_attributes: [:id, :weapon, :parry, :_destroy],
-      equipment_packages_attributes: [:id, :name, :_destroy, :name, :notes,
-                                      equipment_pieces_attributes: [:id, :_destroy, :name, :quantity, :equipment_type_id,
-                                                                    equipment_piece_modifiers_attributes: [:id, :equipment_modifier_id, :notes, :_destroy]
-                                                                    ]
-                                     ],
+      equipment_packages_attributes: EquipmentPackageForm.permitted_attributes,
       skills_attributes: [:id, :master_skill_id, :modifier, :specialization, :tech_level, :notes, :_destroy],
       traits_attributes: [:id, :master_trait_id, :level, :notes, :_destroy]
     ]
