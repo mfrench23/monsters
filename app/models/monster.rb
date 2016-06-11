@@ -5,7 +5,7 @@ class Monster < AbstractEntity
   include CampaignContained
   include Dateable
   include Illustratable
-  include Nameable
+  include UniquelyNameable
   include PageReferenceable
   include NilBlankable
 

@@ -5,7 +5,7 @@ class EquipmentModifierForm < AbstractForm
   end
 
   def self.permitted_attributes
-    [:id, :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod, 
+    [:id, :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod,
      :notes, :equipment_modifier_category_id, :mutually_exclusive,
      equipment_modifier_exclusions_attributes: [:id, :equipment_modifier_id, :excluded_id, :_destroy] ]
   end

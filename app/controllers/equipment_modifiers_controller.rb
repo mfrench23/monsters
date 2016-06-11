@@ -7,6 +7,10 @@ class EquipmentModifiersController < ModelBasedController
     EquipmentModifierForm.new(params).params
   end
 
+  def additional_index_locals
+    {equipment_modifier_categories: EquipmentModifierCategory.all }
+  end
+
   def additional_form_locals
     { excludable_modifiers: all_modifiers_that_can_be_mutually_exclusive }
   end
@@ -23,6 +27,6 @@ class EquipmentModifiersController < ModelBasedController
   end
 
   def acceptable_filter_scopes
-    [:created_on, :updated_on]
+    [:created_on, :updated_on, :in_modifier_category, :starting_with]
   end
 end

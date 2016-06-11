@@ -2,7 +2,7 @@
 class EquipmentType < AbstractEntity
   include CampaignContained
   include Dateable
-  include Nameable
+  include UniquelyNameable
   include PageReferenceable
 
   attr_accessor :equipment_category_name

@@ -1,6 +1,6 @@
 # The general form of a GURPS Advantage, Disadvantage, Perk, Quirk, or the like.
 class MasterTrait < AbstractEntity
-  include Nameable
+  include UniquelyNameable
   include PageReferenceable
   include NilBlankable
 

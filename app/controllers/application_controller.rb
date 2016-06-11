@@ -21,6 +21,11 @@ class ApplicationController < ActionController::Base
     EquipmentCategory.find(in_cat).name if in_cat.present?
   end
 
+  def name_of_filtering_modifier_category
+    in_cat = params[:in_modifier_category]
+    EquipmentModifierCategory.find(in_cat).name if in_cat.present?
+  end
+
   def all_campaigns
     Campaign.all
   end

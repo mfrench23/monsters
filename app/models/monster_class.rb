@@ -1,7 +1,7 @@
 # A general class of monsters sharing certain attributes, like "Elementals"
 # or "Dire Animals".
 class MonsterClass < AbstractEntity
-  include Nameable
+  include UniquelyNameable
 
   has_many :monsters, dependent: :destroy
 end

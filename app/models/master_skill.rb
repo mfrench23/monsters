@@ -1,6 +1,6 @@
 # A general GURPS Skill, like Brawling or Chemistry
 class MasterSkill < AbstractEntity
-  include Nameable
+  include UniquelyNameable
   include PageReferenceable
   include NilBlankable
 

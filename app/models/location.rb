@@ -1,6 +1,6 @@
 # A GURPS hit location
 class Location < AbstractEntity
-  include Nameable
+  include UniquelyNameable
 
   has_many  :damage_resistances, :dependent => :destroy
 end

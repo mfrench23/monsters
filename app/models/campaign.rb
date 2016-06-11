@@ -1,6 +1,6 @@
 # All the data for a single GURPS campaign
 class Campaign < AbstractEntity
-  include Nameable
+  include UniquelyNameable
 
   has_many :campaign_contents, dependent: :destroy, inverse_of: :campaign
   accepts_nested_attributes_for :campaign_contents, allow_destroy: true

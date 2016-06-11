@@ -6,15 +6,6 @@
       <li><%= link_to 'New Swarm', new_swarm_path %></li>
     </ul>
   </li>
-  <li><%= link_to 'Books', controller: 'books' %>
-    <%= entity_links :book %>
-  </li>
-  <li><%= link_to 'Skills', controller: 'master_skills' %>
-    <%= entity_links :master_skill %>
-  </li>
-  <li><%= link_to 'Traits', controller: 'master_traits' %>
-    <%= entity_links :master_trait %>
-  </li>
   <li><%= link_to 'Equipment', controller: 'equipment_types' %>
     <ul>
       <li><%= link_to 'List All Equipment Types', equipment_types_path %></li>
@@ -22,6 +13,9 @@
       <li><%= link_to 'Mass Entry of Equipment Type', mass_entry_equipment_types_path %></li>
       <li><%= link_to "Equipment Instances", equipment_pieces_path %></li>
       <li><%= link_to "Equipment Modifier Categories", equipment_modifier_categories_path %></li>
+      <li>
+        <%= link_to 'List All Equipment Modifiers', equipment_modifiers_path %>
+      </li>
       <li>Packages
         <%= entity_links :equipment_package %>
       </li>
@@ -29,17 +23,26 @@
   </li>
   <li><span>Utility</span>
     <ul>
+      <li><%= link_to 'Books', controller: 'books' %>
+        <%= entity_links :book %>
+      </li>
       <li><%= link_to 'Campaigns', controller: 'campaigns' %>
         <%= entity_links :campaign %>
-      </li>
-      <li><%= link_to 'Monster Classes', controller: 'monster_classes' %>
-        <%= entity_links :monster_class %>
       </li>
       <li><%= link_to 'Equipment Categories', controller: 'equipment_categories' %>
         <%= entity_links :equipment_category %>
       </li>
       <li><%= link_to 'Hit Locations', controller: 'locations' %>
         <%= entity_links :location %>
+      </li>
+      <li><%= link_to 'Master Skills', controller: 'master_skills' %>
+        <%= entity_links :master_skill %>
+      </li>
+      <li><%= link_to 'Master Traits', controller: 'master_traits' %>
+        <%= entity_links :master_trait %>
+      </li>
+      <li><%= link_to 'Monster Classes', controller: 'monster_classes' %>
+        <%= entity_links :monster_class %>
       </li>
       <li><%= link_to 'Move Types', controller: 'move_types' %>
         <%= entity_links :move_type %>

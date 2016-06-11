@@ -37,47 +37,9 @@
 <br>
 <%= render "filter_by_starting_letter", letters: starts_with_tags, filter_params: filter_params %>
 
-<div class="field">
-  <span class="filter-label">Filter by campaign</span>
-  <table class="fixed-table boxed-list">
-    <% campaigns.each_with_index do |campaign, index| %>
-      <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :number_of_columns => 5, :total_count => campaigns.count } do %>
-        <% if filter_params[:in_campaign].to_s == campaign.id.to_s %>
-          <%= "#{campaign.name}" %>
-        <% else %>
-          <%= link_to "#{campaign.name}",
-            equipment_types_path(filter_params.merge(:in_campaign => "#{campaign.id}")),
-            :title => campaign.name + " (" + pluralize(campaign.equipment_types.count, "equipment type") + ")" %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </table>
-</div>
+<%= render "filter_by_category_field", category_list: campaigns, filter_params: filter_params, category_name: "Campaign", start_expanded: true, filter_param_key: :in_campaign, callback: :equipment_types, klass: EquipmentType %>
 
-<div class="field">
-  <span class="filter-label">Filter by category</span>
-  <% toggle_id = "filterByCategory" %>
-  <% row_options = { "data-toggle_id" => toggle_id, "style" => "display: none" } %>
-  <span style="float: left"><%= toggle_links toggle_id, "+", "-" %></span>
-  <table class="fixed-table boxed-list">
-    <tr data-toggle_id="<%= toggle_id %>">
-      <td><span class="footnote">(<%= pluralize equipment_categories.count, "category" %>)</span></td>
-    </tr>
-    <% equipment_categories.each_with_index do |category, index| %>
-      <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :number_of_columns => 5, :total_count => equipment_categories.count, :row_options => row_options } do %>
-        <% if filter_params[:in_equipment_category].to_s == category.id.to_s %>
-          <%= "#{category.name}" %>
-        <% else %>
-          <%= link_to "#{category.name}",
-            equipment_types_path(filter_params.merge(:in_equipment_category => "#{category.id}")),
-            :title => category.name + " (" + pluralize(category.equipment_types.count, "equipment type") + ")" %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </table>
-</div>
+<%= render "filter_by_category_field", category_list: equipment_categories, filter_params: filter_params, category_name: "Category", filter_param_key: :in_equipment_category, callback: :equipment_types, klass: EquipmentType %>
 
 <%= paginate equipment_types %>
 

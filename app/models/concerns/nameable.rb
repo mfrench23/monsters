@@ -7,7 +7,6 @@ module Nameable
     scope :starting_with, -> (name) { where("upper(name) like ?", "#{name}%")}
 
     validates :name, presence: true
-    validates_uniqueness_of :name
     validates :name, length: { minimum: 2 }
   end
 

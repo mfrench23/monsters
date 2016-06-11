@@ -48,23 +48,7 @@
 <br>
 <%= render "filter_by_starting_letter", letters: starts_with_tags, filter_params: filter_params %>
 
-<div class="field">
-  <span class="filter-label">Filter by campaign</span>
-  <table class="fixed-table boxed-list">
-    <% campaigns.each_with_index do |campaign, index| %>
-      <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :number_of_columns => 5, :total_count => monsters.count } do %>
-        <% if filter_params[:in_campaign].to_s == campaign.id.to_s %>
-          <%= "#{campaign.name}" %>
-        <% else %>
-          <%= link_to "#{campaign.name}",
-            monsters_path(filter_params.merge(:in_campaign => "#{campaign.id}")),
-            :title => campaign.name + " (" + pluralize(campaign.monsters.count, "monster") + ")" %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </table>
-</div>
+<%= render "filter_by_category_field", category_list: campaigns, filter_params: filter_params, category_name: "Campaign", start_expanded: true, filter_param_key: :in_campaign, callback: :monsters, klass: Monster %>
 
 
 <%= paginate monsters %>

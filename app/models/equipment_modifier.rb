@@ -1,5 +1,7 @@
 # A GURPS equipment modifier, like "Cheap" or "Fine" or "Enchanted with..."
 class EquipmentModifier < AbstractEntity
+  include Nameable
+
   belongs_to :equipment_modifier_category
   has_many :equipment_modifier_exclusions, dependent: :destroy
   accepts_nested_attributes_for :equipment_modifier_exclusions, allow_destroy: true
@@ -13,12 +15,10 @@ class EquipmentModifier < AbstractEntity
 
   after_commit :update_modified
 
-  scope :order_by_name, -> { order(:name) }
   scope :order_by_category_and_name, -> { joins(:equipment_modifier_category).order('equipment_modifier_categories.name, equipment_modifiers.name') }
+  scope :in_modifier_category, -> (modifier_category_id) { where('equipment_modifier_category_id = ?', modifier_category_id) }
 
-  validates :name, presence: true
   validates_uniqueness_of :name, scope: :equipment_modifier_category_id
-  validates :name, length: { minimum: 2 }
 
   def base_cost_modifier_value_object
     EquipmentModifier::ModifierValueObject.get_instance(base_cost_mod, true)
