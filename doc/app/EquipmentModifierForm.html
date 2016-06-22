@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class EquipmentPieceForm - Rails Application Documentation</title>
+<title>class EquipmentModifierForm - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -80,15 +80,15 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-EquipmentPieceForm">
-  <h1 id="class-EquipmentPieceForm" class="class">
-    class EquipmentPieceForm
+<main role="main" aria-labelledby="class-EquipmentModifierForm">
+  <h1 id="class-EquipmentModifierForm" class="class">
+    class EquipmentModifierForm
   </h1>
 
   <section class="description">
     
 <p>Organizes the collection of parameters for a single instance of the <a
-href="EquipmentPiece.html">EquipmentPiece</a> model</p>
+href="EquipmentModifier.html">EquipmentModifier</a> model</p>
 
   </section>
 
@@ -130,7 +130,7 @@ href="EquipmentPiece.html">EquipmentPiece</a> model</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/forms/equipment_piece_form.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/forms/equipment_modifier_form.rb, line 3</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">whitelisted_params</span>(<span class="ruby-identifier">params</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -163,10 +163,11 @@ href="EquipmentPiece.html">EquipmentPiece</a> model</p>
 
           
           <div class="method-source-code" id="permitted_attributes-source">
-            <pre><span class="ruby-comment"># File app/forms/equipment_piece_form.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/forms/equipment_modifier_form.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">permitted_attributes</span>
-  [<span class="ruby-value">:id</span>, <span class="ruby-value">:name</span>, <span class="ruby-value">:equipment_type_id</span>, <span class="ruby-value">:quantity</span>, <span class="ruby-value">:_destroy</span>,
-   <span class="ruby-identifier">equipment_piece_modifiers_attributes</span><span class="ruby-operator">:</span> [<span class="ruby-value">:id</span>, <span class="ruby-value">:equipment_modifier_id</span>, <span class="ruby-value">:notes</span>, <span class="ruby-value">:_destroy</span>] ]
+  [<span class="ruby-value">:id</span>, <span class="ruby-value">:name</span>, <span class="ruby-value">:base_cost_mod</span>, <span class="ruby-value">:base_weight_mod</span>, <span class="ruby-value">:cost_mod</span>, <span class="ruby-value">:weight_mod</span>,
+   <span class="ruby-value">:notes</span>, <span class="ruby-value">:equipment_modifier_category_id</span>, <span class="ruby-value">:mutually_exclusive</span>,
+   <span class="ruby-identifier">equipment_modifier_exclusions_attributes</span><span class="ruby-operator">:</span> [<span class="ruby-value">:id</span>, <span class="ruby-value">:equipment_modifier_id</span>, <span class="ruby-value">:excluded_id</span>, <span class="ruby-value">:_destroy</span>] ]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

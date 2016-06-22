@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Equipment Modifier Supercategories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Notes</th>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% equipment_modifier_supercategories.each do |equipment_modifier_supercategory| %>
+      <tr>
+        <td><%= link_to equipment_modifier_supercategory.name, equipment_modifier_supercategory, :class => "quiet" %></td>
+        <td><%= equipment_modifier_supercategory.notes %></td>
+        <%= render 'index_edit_destroy_links', target: equipment_modifier_supercategory %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Equipment modifier supercategory', new_equipment_modifier_supercategory_path %>

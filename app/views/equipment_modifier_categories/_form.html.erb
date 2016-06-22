@@ -16,6 +16,11 @@
     <%= f.text_field :name, :size => 80 %>
   </div>
 
+  <div class="field">
+    <%= f.label :equipment_modifier_supercategory_id %><br>
+    <%= f.collection_select :equipment_modifier_supercategory_id, EquipmentModifierSupercategory.order_by_name, :id, :to_s, {:include_blank => "-"} %>
+  </div>
+
   <%= render 'expanding_fieldset', f: f,
     id: "equipment_modifiers", collection: :equipment_modifiers,
     partial: 'equipment_modifier_fields', label: 'add modifier', header: "Modifiers",

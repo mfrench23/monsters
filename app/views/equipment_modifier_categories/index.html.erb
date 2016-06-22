@@ -7,7 +7,8 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th><%= sortable "equipment_modifier_categories.name", EquipmentModifierCategory, params, "Name" %></th>
+      <th><%= sortable "equipment_modifier_supercategories.name", EquipmentModifierCategory, params, "Super-Category" %></th>
       <th>Notes</th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
@@ -17,6 +18,11 @@
     <% equipment_modifier_categories.each do |equipment_modifier_category| %>
       <tr>
         <td><%= link_to equipment_modifier_category.name, equipment_modifier_category, :class => "quiet" %></td>
+        <td>
+          <% if equipment_modifier_category.equipment_modifier_supercategory %>
+            <%= link_to equipment_modifier_category.equipment_modifier_supercategory, equipment_modifier_category.equipment_modifier_supercategory, :class => "quiet" %>
+          <% end %>
+        </td>
         <td><%= equipment_modifier_category.notes %></td>
         <%= render 'index_edit_destroy_links', target: equipment_modifier_category %>
       </tr>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610202638) do
+ActiveRecord::Schema.define(version: 20160622181209) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -116,11 +116,14 @@ ActiveRecord::Schema.define(version: 20160610202638) do
   add_index "equipment_categories", ["name"], name: "index_equipment_categories_on_name", unique: true, using: :btree
 
   create_table "equipment_modifier_categories", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.text     "notes",      limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "name",                                limit: 255
+    t.text     "notes",                               limit: 65535
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.integer  "equipment_modifier_supercategory_id", limit: 4
   end
+
+  add_index "equipment_modifier_categories", ["equipment_modifier_supercategory_id"], name: "eq_mod_cat_supercat_idx", using: :btree
 
   create_table "equipment_modifier_exclusions", force: :cascade do |t|
     t.integer  "equipment_modifier_id", limit: 4
@@ -132,6 +135,13 @@ ActiveRecord::Schema.define(version: 20160610202638) do
   add_index "equipment_modifier_exclusions", ["equipment_modifier_id", "excluded_id"], name: "equipment_modifier_exclusions_uniq_idx", unique: true, using: :btree
   add_index "equipment_modifier_exclusions", ["equipment_modifier_id"], name: "index_equipment_modifier_exclusions_on_equipment_modifier_id", using: :btree
   add_index "equipment_modifier_exclusions", ["excluded_id"], name: "index_equipment_modifier_exclusions_on_excluded_id", using: :btree
+
+  create_table "equipment_modifier_supercategories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.text     "notes",      limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "equipment_modifiers", force: :cascade do |t|
     t.string   "name",                           limit: 255
@@ -381,6 +391,7 @@ ActiveRecord::Schema.define(version: 20160610202638) do
   add_foreign_key "damage_resistances", "creatures"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
+  add_foreign_key "equipment_modifier_categories", "equipment_modifier_supercategories"
   add_foreign_key "equipment_modifier_exclusions", "equipment_modifiers"
   add_foreign_key "equipment_modifier_exclusions", "equipment_modifiers", column: "excluded_id"
   add_foreign_key "equipment_modifiers", "equipment_modifier_categories"

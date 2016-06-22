@@ -1,0 +1,2 @@
+module EquipmentModifierSupercategoriesHelper
+end

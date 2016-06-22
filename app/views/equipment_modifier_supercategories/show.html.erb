@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= equipment_modifier_supercategory.name %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= equipment_modifier_supercategory.notes %>
+</p>
+
+<div class="field">
+  <span class="field-label show">Included categories</span>
+  <%= render "boxed_list", list: equipment_modifier_supercategory.equipment_modifier_categories.order_by_name %>
+</div>
+
+<%= link_to 'Edit', edit_equipment_modifier_supercategory_path(equipment_modifier_supercategory) %> |
+<%= link_to 'Index', equipment_modifier_supercategories_path %>

@@ -6,6 +6,12 @@
 </p>
 
 <p>
+  <strong>Super-Category:</strong>
+  <%= "n/a" unless equipment_modifier_category.equipment_modifier_supercategory_id.present? %>
+  <%= link_to equipment_modifier_category.equipment_modifier_supercategory, equipment_modifier_category.equipment_modifier_supercategory, :class => "quiet" if equipment_modifier_category.equipment_modifier_supercategory_id.present? %>
+</p>
+
+<p>
   <span class="field-label show">Modifiers:</span>
   <%= render "boxed_list", list: equipment_modifier_category.equipment_modifiers.order_by_name, row_style_display: "" %>
 </p>
