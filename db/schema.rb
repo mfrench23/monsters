@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622181209) do
+ActiveRecord::Schema.define(version: 20160624184551) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -346,6 +346,27 @@ ActiveRecord::Schema.define(version: 20160622181209) do
 
   add_index "parry_scores", ["creature_id"], name: "fk_rails_7faaccd889", using: :btree
 
+  create_table "random_eq_profile_line_items", force: :cascade do |t|
+    t.integer  "random_eq_profile_id",                limit: 4
+    t.integer  "equipment_modifier_supercategory_id", limit: 4
+    t.integer  "quantity",                            limit: 4
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "random_eq_profile_line_items", ["equipment_modifier_supercategory_id"], name: "rand_eq_prof_line_eq_sprcat_idx", using: :btree
+  add_index "random_eq_profile_line_items", ["random_eq_profile_id"], name: "rand_eq_prof_line_idx", using: :btree
+
+  create_table "random_eq_profiles", force: :cascade do |t|
+    t.integer  "equipment_type_id",     limit: 4
+    t.integer  "equipment_category_id", limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "random_eq_profiles", ["equipment_category_id"], name: "index_random_eq_profiles_on_equipment_category_id", using: :btree
+  add_index "random_eq_profiles", ["equipment_type_id"], name: "index_random_eq_profiles_on_equipment_type_id", using: :btree
+
   create_table "skills", force: :cascade do |t|
     t.integer  "modifier",        limit: 4,     null: false
     t.datetime "created_at",                    null: false
@@ -409,6 +430,10 @@ ActiveRecord::Schema.define(version: 20160622181209) do
   add_foreign_key "movement_rates", "move_types"
   add_foreign_key "page_references", "books"
   add_foreign_key "parry_scores", "creatures"
+  add_foreign_key "random_eq_profile_line_items", "equipment_modifier_supercategories"
+  add_foreign_key "random_eq_profile_line_items", "random_eq_profiles"
+  add_foreign_key "random_eq_profiles", "equipment_categories"
+  add_foreign_key "random_eq_profiles", "equipment_types"
   add_foreign_key "skills", "creatures"
   add_foreign_key "skills", "master_skills"
   add_foreign_key "traits", "creatures"

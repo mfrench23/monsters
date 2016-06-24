@@ -1,0 +1,12 @@
+<div class="field">
+  <span class="field-label show">Random Equipment<br>Profiles</span>
+  <span class="boxed-list" style="display:inline-block">
+    <ul>
+      <% parent.random_eq_profiles.each do |random_eq_profile| %>
+        <li>
+          <%= random_eq_profile.random_eq_profile_line_items.join(", ") %>
+        </li>
+      <% end %>
+    </ul>
+  </span>
+</div>

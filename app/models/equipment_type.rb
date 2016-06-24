@@ -13,6 +13,8 @@ class EquipmentType < AbstractEntity
   accepts_nested_attributes_for :equipment_type_modifier_categories, allow_destroy: true
   has_many :equipment_modifier_categories, through: :equipment_type_modifier_categories
   has_many :equipment_modifiers, through: :equipment_modifier_categories
+  has_many :random_eq_profiles, dependent: :destroy
+  accepts_nested_attributes_for :random_eq_profiles, allow_destroy: true
 
   monetize :base_cost_cents, :allow_nil => false, :numericality => { :greater_than_or_equal_to => 0 }
 

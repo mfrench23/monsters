@@ -11,7 +11,7 @@
     <tr>
       <th><%= sortable name_field, klass, params, "Name" %></th>
       <% columns_to_count.each do |col| %>
-        <th style="width: 180px;">Number of <%= col.to_s.pluralize %></th>
+        <th style="width: 180px;">Number of <%= col.to_s.titleize.pluralize %></th>
       <% end %>
       <%= render 'index_edit_destroy_headers' %>
     </tr>

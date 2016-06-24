@@ -42,6 +42,9 @@
     <%= f.label :notes %><br>
     <%= f.text_area :notes %>
   </div>
+
+  <%= render "expanding_random_eq_profiles_fields", f: f, parent: equipment_type, equipment_modifier_supercategories: equipment_modifier_supercategories %>
+
   <%= render 'form_page_reference_entry', f: f %>
 
   <%= render 'form_campaign_chooser', f: f, campaigns: campaigns %>

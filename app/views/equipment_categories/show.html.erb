@@ -8,5 +8,7 @@
   <%= render "boxed_list", list: equipment_category.equipment_types, row_style_display: "" %>
 </div>
 
+<%= render "show_random_eq_profiles", parent: equipment_category %>
+
 <%= link_to 'Edit', edit_equipment_category_path(equipment_category) %> |
 <%= link_to 'Index', equipment_categories_path %>

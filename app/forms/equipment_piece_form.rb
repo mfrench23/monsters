@@ -14,6 +14,4 @@ class EquipmentPieceForm < AbstractForm
   def whitelisted_params(params)
     params.require(:equipment_piece).permit( EquipmentPieceForm.permitted_attributes )
   end
-
-
 end

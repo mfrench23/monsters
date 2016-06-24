@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class EquipmentTypeForm - Rails Application Documentation</title>
+<title>class RandomEqProfileForm - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -80,9 +80,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-EquipmentTypeForm">
-  <h1 id="class-EquipmentTypeForm" class="class">
-    class EquipmentTypeForm
+<main role="main" aria-labelledby="class-RandomEqProfileForm">
+  <h1 id="class-RandomEqProfileForm" class="class">
+    class RandomEqProfileForm
   </h1>
 
   <section class="description">
@@ -130,10 +130,9 @@ href="EquipmentType.html">EquipmentType</a> model</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/forms/equipment_type_form.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/forms/random_eq_profile_form.rb, line 3</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>)
   <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">whitelisted_params</span>(<span class="ruby-identifier">params</span>)
-  <span class="ruby-identifier">convert_new_equipment_category_name</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -164,17 +163,10 @@ href="EquipmentType.html">EquipmentType</a> model</p>
 
           
           <div class="method-source-code" id="permitted_attributes-source">
-            <pre><span class="ruby-comment"># File app/forms/equipment_type_form.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/forms/random_eq_profile_form.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">permitted_attributes</span>
-  [<span class="ruby-value">:name</span>, <span class="ruby-value">:base_weight</span>, <span class="ruby-value">:base_cost</span>,
-   <span class="ruby-value">:equipment_category_name</span>, <span class="ruby-value">:equipment_category_id</span>, <span class="ruby-value">:notes</span>,
-   <span class="ruby-value">:unit_of_measurement</span>,
-   <span class="ruby-identifier">campaign_contents_attributes</span><span class="ruby-operator">:</span> [<span class="ruby-value">:id</span>, <span class="ruby-value">:campaign_id</span>, <span class="ruby-value">:_destroy</span>],
-   <span class="ruby-identifier">page_references_attributes</span><span class="ruby-operator">:</span> [<span class="ruby-value">:id</span>, <span class="ruby-value">:book_id</span>, <span class="ruby-value">:pages</span>, <span class="ruby-value">:_destroy</span>],
-   <span class="ruby-identifier">equipment_modifier_categories_attributes</span><span class="ruby-operator">:</span> [<span class="ruby-value">:id</span>, <span class="ruby-value">:name</span>, <span class="ruby-value">:notes</span>, <span class="ruby-value">:_destroy</span>],
-   <span class="ruby-identifier">equipment_type_modifier_categories_attributes</span><span class="ruby-operator">:</span> [<span class="ruby-value">:id</span>, <span class="ruby-value">:equipment_modifier_category_id</span>, <span class="ruby-value">:_destroy</span>],
-   <span class="ruby-identifier">random_eq_profiles_attributes</span><span class="ruby-operator">:</span> <span class="ruby-constant">RandomEqProfileForm</span>.<span class="ruby-identifier">permitted_attributes</span>
-   ]
+  [<span class="ruby-value">:id</span>, <span class="ruby-value">:equipment_type_id</span>, <span class="ruby-value">:equipment_category_id</span>, <span class="ruby-value">:_destroy</span>,
+   <span class="ruby-identifier">random_eq_profile_line_items_attributes</span><span class="ruby-operator">:</span> [<span class="ruby-value">:id</span>, <span class="ruby-value">:equipment_modifier_supercategory_id</span>, <span class="ruby-value">:quantity</span>, <span class="ruby-value">:_destroy</span>]]
 <span class="ruby-keyword">end</span></pre>
           </div>
           
