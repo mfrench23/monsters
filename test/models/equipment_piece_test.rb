@@ -23,9 +23,9 @@ class EquipmentPieceTest < ActiveSupport::TestCase
 
   test "values change when a modifier is changed" do
     cat = FactoryGirl.create(:equipment_category)
-    type = EquipmentType.new(:name => "Garbage Type", :base_weight => 1, :base_cost_cents => 100, :equipment_category => cat)
+    type = EquipmentType.new(:name => "Garbage Type", :base_weight => 1, :base_cost_cents => 100, :equipment_category => cat, :random_weight => 1)
     type.save!
-    mod = EquipmentModifier.new(:name => "Fancy!", :cost_mod => "+49 CF")
+    mod = EquipmentModifier.new(:name => "Fancy!", :cost_mod => "+49 CF", :random_weight => 1)
     mod.save!
     piece = EquipmentPiece.new(:equipment_type => type, :quantity => 1)
     piece.equipment_modifiers << mod

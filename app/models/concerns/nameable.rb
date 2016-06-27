@@ -1,3 +1,4 @@
+# A thing with a name
 module Nameable
   extend ActiveSupport::Concern
 

@@ -1,5 +1,5 @@
 # Links two EquipmentModifier instances to show that the first is incompatible with the second
-class EquipmentModifierExclusion < ActiveRecord::Base
+class EquipmentModifierExclusion < AbstractEntity
   after_save :update_reciprocal
   after_destroy :destroy_reciprocal
 

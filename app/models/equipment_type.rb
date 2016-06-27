@@ -4,6 +4,7 @@ class EquipmentType < AbstractEntity
   include Dateable
   include UniquelyNameable
   include PageReferenceable
+  include RandomlyOrderable
 
   attr_accessor :equipment_category_name
 
@@ -30,7 +31,7 @@ class EquipmentType < AbstractEntity
   end
 
   def self.parse(text, equipment_category_id)
-    EquipmentType.new( :name => extract_name(text), :base_cost => extract_cost(text), :base_weight => extract_weight(text), :equipment_category_id => equipment_category_id)
+    EquipmentType.new( :name => extract_name(text), :base_cost => extract_cost(text), :base_weight => extract_weight(text), :equipment_category_id => equipment_category_id, :random_weight => 1)
   end
 
   private

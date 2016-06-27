@@ -32,6 +32,11 @@
     <%= f.autocomplete_field :equipment_category_name, autocomplete_equipment_category_name_equipment_types_path %>
   </div>
 
+  <div class="field">
+    <%= f.label :random_weight %><br>
+    <%= f.select :random_weight, (1..10) %>
+  </div>
+
   <%= render 'many_to_many_checkbox_table', available_intersection_list: equipment_modifier_categories,
     intersection_field: :equipment_modifier_category, target: equipment_type,
     base_id: f.object_name.to_s + "[equipment_type_modifier_categories_attributes]",

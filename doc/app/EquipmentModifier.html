@@ -71,6 +71,10 @@
     <li><a class="include" href="Nameable.html">Nameable</a>
   
   
+  
+    <li><a class="include" href="RandomlyOrderable.html">RandomlyOrderable</a>
+  
+  
   </ul>
 </div>
 
@@ -146,7 +150,7 @@
 
           
           <div class="method-source-code" id="base_cost_modifier_value_object-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 23</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">base_cost_modifier_value_object</span>
   <span class="ruby-constant">EquipmentModifier</span><span class="ruby-operator">::</span><span class="ruby-constant">ModifierValueObject</span>.<span class="ruby-identifier">get_instance</span>(<span class="ruby-identifier">base_cost_mod</span>, <span class="ruby-keyword">true</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -179,7 +183,7 @@
 
           
           <div class="method-source-code" id="base_weight_modifier_value_object-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">base_weight_modifier_value_object</span>
   <span class="ruby-constant">EquipmentModifier</span><span class="ruby-operator">::</span><span class="ruby-constant">ModifierValueObject</span>.<span class="ruby-identifier">get_instance</span>(<span class="ruby-identifier">base_weight_mod</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -212,7 +216,7 @@
 
           
           <div class="method-source-code" id="cost_modifier_value_object-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cost_modifier_value_object</span>
   <span class="ruby-constant">EquipmentModifier</span><span class="ruby-operator">::</span><span class="ruby-constant">ModifierValueObject</span>.<span class="ruby-identifier">get_instance</span>(<span class="ruby-identifier">cost_mod</span>, <span class="ruby-keyword">true</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -245,7 +249,7 @@
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 39</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-node">&quot;#{name} (&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">modifiers_to_s</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">notes_to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;)&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -278,7 +282,7 @@
 
           
           <div class="method-source-code" id="weight_modifier_value_object-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 35</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_modifier.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">weight_modifier_value_object</span>
   <span class="ruby-constant">EquipmentModifier</span><span class="ruby-operator">::</span><span class="ruby-constant">ModifierValueObject</span>.<span class="ruby-identifier">get_instance</span>(<span class="ruby-identifier">weight_mod</span>)
 <span class="ruby-keyword">end</span></pre>

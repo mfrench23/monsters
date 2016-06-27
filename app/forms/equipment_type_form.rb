@@ -8,7 +8,7 @@ class EquipmentTypeForm < AbstractEquipmentTypeForm
   def self.permitted_attributes
     [:name, :base_weight, :base_cost,
      :equipment_category_name, :equipment_category_id, :notes,
-     :unit_of_measurement,
+     :unit_of_measurement, :random_weight,
      campaign_contents_attributes: [:id, :campaign_id, :_destroy],
      page_references_attributes: [:id, :book_id, :pages, :_destroy],
      equipment_modifier_categories_attributes: [:id, :name, :notes, :_destroy],

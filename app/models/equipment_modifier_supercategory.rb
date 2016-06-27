@@ -1,3 +1,5 @@
+# A grouping of EquipmentModifierCategories, like "Quality" (including "Quality, Armor", "Quality,
+# Weapons" and "Quality, Other stuff")
 class EquipmentModifierSupercategory < AbstractEntity
   include Nameable
 

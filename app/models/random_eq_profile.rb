@@ -1,4 +1,6 @@
 class RandomEqProfile < ActiveRecord::Base
+  include RandomlyOrderable
+
   belongs_to :equipment_type
   belongs_to :equipment_category
 

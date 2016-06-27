@@ -5,7 +5,7 @@ class RandomEqProfileForm < AbstractEquipmentTypeForm
   end
 
   def self.permitted_attributes
-    [:id, :equipment_type_id, :equipment_category_id, :_destroy,
+    [:id, :equipment_type_id, :equipment_category_id, :random_weight, :_destroy,
      random_eq_profile_line_items_attributes: [:id, :equipment_modifier_supercategory_id, :quantity, :_destroy]]
   end
 

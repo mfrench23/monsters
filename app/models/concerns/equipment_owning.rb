@@ -1,3 +1,4 @@
+# An entity that can own many EquipmentPieces
 module EquipmentOwning
   extend ActiveSupport::Concern
 

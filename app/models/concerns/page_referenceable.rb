@@ -1,3 +1,4 @@
+# An entity that includes many page references
 module PageReferenceable
   extend ActiveSupport::Concern
 

@@ -29,6 +29,11 @@
   <%= render "link_with_next_and_previous_links", :target => equipment_type.equipment_category, :predecessor => prev_in_cat, :successor => next_in_cat %>
 </p>
 
+<p>
+  <strong>Random weight:</strong>
+  <%= equipment_type.random_weight %>
+</p>
+
 <div class="field">
   <span class="field-label show">Modifier Categories</span>
   <%= render "boxed_list", list: equipment_type.equipment_modifier_categories %>

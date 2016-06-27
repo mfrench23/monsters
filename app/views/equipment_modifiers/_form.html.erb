@@ -35,6 +35,12 @@
     <%= f.label :weight_mod %><br>
     <%= f.text_field :weight_mod %>
   </div>
+
+  <div class="field">
+    <%= f.label :random_weight %><br>
+    <%= f.select :random_weight, (1..10) %>
+  </div>
+
   <div class="field">
     <%= f.label :notes %><br>
     <%= f.text_area :notes %>

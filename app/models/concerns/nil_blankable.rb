@@ -1,3 +1,5 @@
+# An entity which will set a list of attributes to nil if they are blank, to avoid
+# future worries over different "empty field" values
 module NilBlankable
   private
 

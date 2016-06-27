@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624184551) do
+ActiveRecord::Schema.define(version: 20160627203421) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -149,10 +149,11 @@ ActiveRecord::Schema.define(version: 20160624184551) do
     t.string   "base_weight_mod",                limit: 255
     t.string   "cost_mod",                       limit: 255
     t.string   "weight_mod",                     limit: 255
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
     t.text     "notes",                          limit: 65535
     t.integer  "equipment_modifier_category_id", limit: 4
+    t.integer  "random_weight",                  limit: 4,     default: 1
   end
 
   add_index "equipment_modifiers", ["equipment_modifier_category_id"], name: "index_equipment_modifiers_on_equipment_modifier_category_id", using: :btree
@@ -213,9 +214,10 @@ ActiveRecord::Schema.define(version: 20160624184551) do
     t.integer  "base_cost_cents",       limit: 4
     t.integer  "equipment_category_id", limit: 4
     t.text     "notes",                 limit: 65535
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at",                                                               null: false
+    t.datetime "updated_at",                                                               null: false
     t.string   "unit_of_measurement",   limit: 255
+    t.integer  "random_weight",         limit: 4,                              default: 1
   end
 
   add_index "equipment_types", ["equipment_category_id"], name: "index_equipment_types_on_equipment_category_id", using: :btree
@@ -360,8 +362,9 @@ ActiveRecord::Schema.define(version: 20160624184551) do
   create_table "random_eq_profiles", force: :cascade do |t|
     t.integer  "equipment_type_id",     limit: 4
     t.integer  "equipment_category_id", limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "random_weight",         limit: 4, default: 1
   end
 
   add_index "random_eq_profiles", ["equipment_category_id"], name: "index_random_eq_profiles_on_equipment_category_id", using: :btree

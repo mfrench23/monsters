@@ -1,3 +1,4 @@
+# An entity which can be filtered by a list of scopes
 module Filterable
   extend ActiveSupport::Concern
 

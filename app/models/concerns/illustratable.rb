@@ -1,3 +1,4 @@
+# An entity that can be illustrated by one or more images
 module Illustratable
   extend ActiveSupport::Concern
 

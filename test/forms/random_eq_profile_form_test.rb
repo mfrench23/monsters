@@ -6,6 +6,7 @@ class RandomEqProfileFormTest < ActionView::TestCase
     params = ActionController::Parameters.new(
       {:random_eq_profile =>
        {:bogusValue => "Bogus",
+        :random_weight => 1,
         :random_eq_profile_line_items_attributes => 
           { "0" => {:quantity => 2, :equipment_modifier_supercategory_id => supercat.id} }
        }

@@ -5,6 +5,9 @@
       <% parent.random_eq_profiles.each do |random_eq_profile| %>
         <li>
           <%= random_eq_profile.random_eq_profile_line_items.join(", ") %>
+          <% if random_eq_profile.random_weight.to_i > 1 %>
+            (random weight: <%= random_eq_profile.random_weight %>)
+          <% end %>
         </li>
       <% end %>
     </ul>

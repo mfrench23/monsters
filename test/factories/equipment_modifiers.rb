@@ -6,6 +6,7 @@ FactoryGirl.define do
     cost_mod nil
     weight_mod nil
     association :equipment_modifier_category
+    random_weight 1
   end
 
 end

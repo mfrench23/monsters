@@ -48,7 +48,8 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
       post :create, equipment_type: { base_cost: equipment_type.base_cost,
                                       base_weight: equipment_type.base_weight,
                                       equipment_category_name: equipment_type.equipment_category_name,
-                                      name: name, notes: equipment_type.notes }
+                                      name: name, notes: equipment_type.notes,
+                                      random_weight: equipment_type.random_weight}
     end
 
     assert_response :found

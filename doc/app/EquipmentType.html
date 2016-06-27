@@ -83,6 +83,10 @@
     <li><a class="include" href="PageReferenceable.html">PageReferenceable</a>
   
   
+  
+    <li><a class="include" href="RandomlyOrderable.html">RandomlyOrderable</a>
+  
+  
   </ul>
 </div>
 
@@ -171,9 +175,9 @@
 
           
           <div class="method-source-code" id="parse-source">
-            <pre><span class="ruby-comment"># File app/models/equipment_type.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/models/equipment_type.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">equipment_category_id</span>)
-  <span class="ruby-constant">EquipmentType</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">extract_name</span>(<span class="ruby-identifier">text</span>), <span class="ruby-value">:base_cost</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">extract_cost</span>(<span class="ruby-identifier">text</span>), <span class="ruby-value">:base_weight</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">extract_weight</span>(<span class="ruby-identifier">text</span>), <span class="ruby-value">:equipment_category_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">equipment_category_id</span>)
+  <span class="ruby-constant">EquipmentType</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">extract_name</span>(<span class="ruby-identifier">text</span>), <span class="ruby-value">:base_cost</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">extract_cost</span>(<span class="ruby-identifier">text</span>), <span class="ruby-value">:base_weight</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">extract_weight</span>(<span class="ruby-identifier">text</span>), <span class="ruby-value">:equipment_category_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">equipment_category_id</span>, <span class="ruby-value">:random_weight</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -54,7 +54,7 @@ class CreatureTest < ActiveSupport::TestCase
     equipment_package = EquipmentPackage.new
     equipment_package.equipment_pieces << EquipmentPiece.new(:equipment_type => equipment_type,
                                                              :quantity => 1,
-                                                             :equipment_modifiers => [EquipmentModifier.new(:name => "Heavy", :weight_mod => "x1.1")])
+                                                             :equipment_modifiers => [EquipmentModifier.new(:name => "Heavy", :weight_mod => "x1.1", :random_weight => 1)])
     @one.skills << Skill.new(:master_skill => MasterSkill.find_by(:name => "Brawling"), :modifier => 1 )
     @one.skills << Skill.new(:master_skill => MasterSkill.find_by(:name => "Stealth"), :modifier => 0 )
     @one.traits << Trait.new(:master_trait => MasterTrait.new( :name => "Combat Reflexes" ) )
@@ -80,7 +80,7 @@ class CreatureTest < ActiveSupport::TestCase
     assert_equal 20, (copy.characteristic_score "DX")
     copy.parry_scores.first.weapon = "Kung Fu"
     copy.traits.first.level = 2
-    copy.equipment_packages.first.equipment_pieces.first.equipment_modifiers << EquipmentModifier.new(:name => "Superfly", :cost_mod => "+$15")
+    copy.equipment_packages.first.equipment_pieces.first.equipment_modifiers << EquipmentModifier.new(:name => "Superfly", :cost_mod => "+$15", :random_weight => 1)
     assert_equal "25.00", copy.equipment_packages.first.equipment_pieces.first.cost.to_s
     assert_no_difference('MasterSkill.count', 'Not expecting a new MasterSkill to be created') do
       copy.skills.first.modifier = 2

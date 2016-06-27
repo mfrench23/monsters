@@ -1,4 +1,4 @@
-# A group of EquipmentModifiers, like "Quality" (including "Cheap", "Good" and "Fine")
+# A group of EquipmentModifiers, like "Quality, Armor" (including "Cheap", "Good" and "Fine")
 class EquipmentModifierCategory < AbstractEntity
   include Nameable
 
