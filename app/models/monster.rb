@@ -71,7 +71,7 @@ class Monster < AbstractEntity
   end
 
   def reference_list_attributes
-    [:page_references, :attacks, :movement_rates, :characteristic_monsters, :campaign_contents, :illustrations ]
+    [:page_references, :attacks, :movement_rates, :characteristic_monsters, :illustrations ]
   end
 
   def blankable_attributes

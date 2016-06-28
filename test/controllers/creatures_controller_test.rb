@@ -3,6 +3,8 @@ require 'test_helper'
 class CreaturesControllerTest < ActionController::TestCase
   setup do
     @creature = FactoryGirl.build(:creature)
+    cookies[:selected_campaign] = @creature.campaign_id.to_s
+
     @creature.monster_names << MonsterName.new(:name => "Timmy")
     @creature.traits << FactoryGirl.build(:trait)
     @creature.save

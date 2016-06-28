@@ -43,7 +43,7 @@ class CampaignsControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @campaign
     assert_response :success
-    assert_select "span", {:text => "Monsters"}
+    assert_select "label", {:text => "Name"}
   end
 
   test "should update campaign" do
@@ -63,5 +63,10 @@ class CampaignsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to campaigns_path
+  end
+
+  test "should set selected campaign" do
+    get :set_selected_campaign, campaign_id: @campaign.id
+    assert_equal @campaign.id.to_s, cookies[:selected_campaign] #starts as nil
   end
 end

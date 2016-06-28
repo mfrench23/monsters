@@ -64,7 +64,17 @@
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-set_selected_campaign">#set_selected_campaign</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -93,6 +103,49 @@ href="Campaign.html">Campaign</a> model</p>
     
 
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-set_selected_campaign" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_selected_campaign</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_selected_campaign-source">
+            <pre><span class="ruby-comment"># File app/controllers/campaigns_controller.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_selected_campaign</span>
+  <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:campaign_id</span>]
+  <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:selected_campaign</span>] = <span class="ruby-identifier">id</span>
+  <span class="ruby-identifier">head</span> <span class="ruby-value">:ok</span>, <span class="ruby-identifier">content_type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;text/html&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

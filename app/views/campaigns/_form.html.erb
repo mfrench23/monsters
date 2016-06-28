@@ -16,11 +16,7 @@
     <%= f.text_field :name, :size => 80 %>
   </div>
 
-  <%= render 'many_to_many_checkbox_table', available_intersection_list: monsters,
-    intersection_field: :content, target: campaign, base_id: f.object_name.to_s + "[campaign_contents_attributes]",
-    member_name: :campaign_contents, intersected_table: Monster, title: "Monsters",
-    other_hidden_fields: { :content_type => Monster.to_s },
-    table_class: "fixed-table" %>
+  <%# TODO Option to clone entities from one campaign to another in large numbers %>
 
   <div class="actions">
     <%= f.submit %>

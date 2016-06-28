@@ -24,7 +24,9 @@ class ModelBasedController < ApplicationController
   end
 
   def new
-    render locals: locals_hash(controlled_model_class.new)
+    instance = controlled_model_class.new
+    instance.campaign_id = selected_campaign_id if instance.respond_to? :campaign_id
+    render locals: locals_hash(instance)
   end
 
   def show

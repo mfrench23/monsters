@@ -3,6 +3,7 @@ require 'test_helper'
 class EquipmentTypesControllerTest < ActionController::TestCase
   setup do
     @equipment_type = FactoryGirl.create(:equipment_type)
+    cookies[:selected_campaign] = @equipment_type.campaign_id.to_s
   end
 
   test "should get index" do

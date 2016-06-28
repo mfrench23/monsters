@@ -29,4 +29,8 @@ class ApplicationController < ActionController::Base
   def all_campaigns
     Campaign.all
   end
+
+  def selected_campaign_id
+    cookies[:selected_campaign]
+  end
 end

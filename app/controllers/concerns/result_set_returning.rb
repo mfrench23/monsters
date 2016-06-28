@@ -25,7 +25,7 @@ module ResultSetReturning
   end
 
   def filter_params
-    params.slice(*acceptable_filter_scopes)
+    params.merge({:in_campaign => selected_campaign_id}).slice(*acceptable_filter_scopes)
   end
 
   # A list of scopes that are allowed to be used as filters.

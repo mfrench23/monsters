@@ -28,7 +28,8 @@ class MonsterTest < ActiveSupport::TestCase
   end
 
   test "ancestor's text fields accumulate" do
-    one = Monster.new(:name => "Tommy", :monster_class => MonsterClass.find_by(:name => "Undead"))
+    campaign = FactoryGirl.create(:campaign)
+    one = Monster.new(:name => "Tommy", :monster_class => MonsterClass.find_by(:name => "Undead"), :campaign => campaign)
     one.description = "One."
     one.notes = "A"
     one.save!
@@ -45,9 +46,5 @@ class MonsterTest < ActiveSupport::TestCase
     assert_equal "One.\n\nTwo.\n\nThree.", three.expanded_field(:description)
     assert_equal "A\n\nB\n\nC", three.expanded_field(:notes)
     assert_equal "A", one.expanded_field(:notes)
-  end
-
-  test "can build campaign_content" do
-    assert_not_nil Monster.new.build_campaign_content
   end
 end

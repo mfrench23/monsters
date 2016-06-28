@@ -2,16 +2,17 @@ require 'test_helper'
 
 class AncestorTreeHelperTest < ActionView::TestCase
   test "should build a tree with parents and alphabetized children" do
+    campaign = FactoryGirl.create(:campaign)
     mc = MonsterClass.first
-    monster_a = Swarm.new(:name => "AAA", :monster_class => mc)
+    monster_a = Swarm.new(:name => "AAA", :monster_class => mc, :campaign => campaign)
     assert_equal true, monster_a.save
-    monster_b = Swarm.new(:name => "BBB", :parent => monster_a, :monster_class => mc)
+    monster_b = Swarm.new(:name => "BBB", :parent => monster_a, :monster_class => mc, :campaign => campaign)
     assert_equal true, monster_b.save
-    monster_bz = Swarm.new(:name => "BBBZ", :parent => monster_b, :monster_class => mc )
+    monster_bz = Swarm.new(:name => "BBBZ", :parent => monster_b, :monster_class => mc, :campaign => campaign )
     assert_equal true, monster_bz.save
-    monster_bm = Swarm.new(:name => "BBBM", :parent => monster_b, :monster_class => mc )
+    monster_bm = Swarm.new(:name => "BBBM", :parent => monster_b, :monster_class => mc, :campaign => campaign )
     assert_equal true, monster_bm.save
-    monster_ba = Swarm.new(:name => "BBBA", :parent => monster_b, :monster_class => mc )
+    monster_ba = Swarm.new(:name => "BBBA", :parent => monster_b, :monster_class => mc, :campaign => campaign )
     assert_equal true, monster_ba.save
 
     result = ancestor_tree(monster_b)

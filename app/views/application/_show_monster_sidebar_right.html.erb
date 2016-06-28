@@ -7,14 +7,13 @@
       <% end %>
     </div>
   <% end %>
-  <% if m.campaign_contents.any? %>
-    <div class="nested-header rightsidebar" style="padding-top: 20px;">Campaigns</div>
-    <ul class="rightsidebar">
-      <% m.campaign_contents.each do |cm| %>
-        <li class="rightsidebar"><%= link_to cm.campaign_name, cm.campaign -%></li>
-      <% end %>
-    </ul>
-  <% end %>
+
+  <div class="nested-header rightsidebar" style="padding-top: 20px;">Campaign</div>
+  <ul class="rightsidebar">
+    <li class="rightsidebar"><%= link_to m.campaign_name, m.campaign -%></li>
+    <%# TODO Show campaigns where variants appear? %>
+  </ul>
+
   <% if !(m.root? && m.is_childless?) %>
     <div class="nested-header rightsidebar" style="padding-top: 20px;">Monster Variants</div>
     <%= ancestor_tree(m) %>

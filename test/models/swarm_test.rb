@@ -9,7 +9,8 @@ class SwarmTest < ActiveSupport::TestCase
   end
 
   test "can deep_copy" do
-    one = Swarm.new(:name => "Swarm of Fnords", :monster_class => MonsterClass.first)
+    campaign = FactoryGirl.create(:campaign)
+    one = Swarm.new(:name => "Swarm of Fnords", :monster_class => MonsterClass.first, :campaign => campaign)
     one.characteristic_monsters << CharacteristicMonster.new(:characteristic => Characteristic.find_by(:name => "HT"))
     one.characteristic_monsters.first.score = 10
     assert_equal true, one.root?

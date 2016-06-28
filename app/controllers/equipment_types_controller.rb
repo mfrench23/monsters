@@ -7,7 +7,7 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def do_mass_entry
-    form = EquipmentTypeMassEntryForm.new(params)
+    form = EquipmentTypeMassEntryForm.new(params.merge({:campaign_id => selected_campaign_id}))
     form.ok? ? save_mass_entry_and_redirect_to_index(form) : render_mass_entry_page_with_error_messages(form)
   end
 
@@ -34,24 +34,17 @@ class EquipmentTypesController < ModelBasedController
     paramz = form.params
     additional_form_locals.merge({:freeform_text => paramz[:freeform_text],
                                 :equipment_category_name => paramz[:equipment_category_name],
-                                :campaign_id => paramz[:campaign_id],
                                 :error_messages => form.error_messages })
   end
 
   def additional_index_locals
-    {campaigns: all_campaigns_with_equipment_types.order_by_name,
-     equipment_categories: EquipmentCategory.all }
+    {equipment_categories: EquipmentCategory.all }
   end
 
   def additional_form_locals
-    {campaigns: all_campaigns,
-     equipment_modifier_categories: EquipmentModifierCategory.all,
+    {equipment_modifier_categories: EquipmentModifierCategory.all,
      equipment_modifier_supercategories: EquipmentModifierSupercategory.all, #TODO Limit by campaign
      error_messages: []}
-  end
-
-  def all_campaigns_with_equipment_types
-    Campaign.has_contents(EquipmentType.to_s)
   end
 
   def includes_for_sorting
@@ -59,7 +52,7 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def whitelisted_entity_params
-    EquipmentTypeForm.new(params).params
+    EquipmentTypeForm.new(params).params.merge({:campaign_id => selected_campaign_id})
   end
 
   def acceptable_filter_scopes

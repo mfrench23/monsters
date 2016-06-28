@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   resources :equipment_modifier_categories
 
   get "/fetch_equipment_modifiers" => 'equipment_pieces#modifiers_for_piece', as: 'fetch_equipment_modifiers'
+  get "/set_selected_campaign" => 'campaigns#set_selected_campaign'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

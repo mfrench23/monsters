@@ -1,6 +1,10 @@
 <ul class="nav">
   <li><%= link_to 'Home', root_path %></li>
   <%= render 'layouts/navigation_links' %>
+  <li style="float:right">
+    Campaign:
+    <%= select_tag :selected_campaign, options_from_collection_for_select(Campaign.all.order_by_name, :id, :name, cookies[:selected_campaign]), {:onchange => "setSelectedCampaign(this)"} %>
+  </li>
 </ul>
 
 

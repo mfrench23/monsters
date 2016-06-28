@@ -23,7 +23,7 @@ class EquipmentTypeMassEntryForm < AbstractEquipmentTypeForm
 
   def convert_one_line_to_equipment_type(line)
     eq = EquipmentType.parse(line, @params[:equipment_category_id] )
-    eq.campaign_contents << CampaignContent.new(:campaign_id => @params[:campaign_id])
+    eq.campaign_id = @params[:campaign_id]
     @equipment_types << eq
     add_any_error_messages line, eq
   end

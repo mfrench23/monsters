@@ -65,12 +65,8 @@
 <%= render "show_random_eq_profiles", parent: equipment_type %>
 
 <p>
-  <strong>Campaigns:</strong>
-  <ul>
-    <% equipment_type.campaign_contents.each do |campaign_content| %>
-      <li><%= link_to campaign_content.campaign_name, campaign_content.campaign %></li>
-    <% end %>
-  </ul>
+  <strong>Campaign:</strong>
+  <%= equipment_type.campaign %>
 </p>
 
 <%= link_to 'Edit', edit_equipment_type_path(equipment_type) %> |

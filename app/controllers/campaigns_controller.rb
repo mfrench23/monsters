@@ -1,6 +1,12 @@
 # Controller functionality specific to the Campaign model
 class CampaignsController < ModelBasedController
 
+  def set_selected_campaign
+    id = params[:campaign_id]
+    cookies.permanent[:selected_campaign] = id
+    head :ok, content_type: "text/html"
+  end
+
   private
 
   def additional_form_locals
@@ -8,7 +14,6 @@ class CampaignsController < ModelBasedController
   end
 
   def whitelisted_entity_params
-    params.require(:campaign).permit(:name,
-                                      campaign_contents_attributes: [:id, :content_id, :content_type, :_destroy])
+    params.require(:campaign).permit(:name)
   end
 end

@@ -23,10 +23,6 @@
     <%= label_tag :equipment_category %><br>
     <%= autocomplete_field_tag :equipment_category_name, params[:equipment_category_name], autocomplete_equipment_category_name_equipment_types_path %>
   </div>
-  <div class="field">
-    <%= label_tag :campaign_id %><br>
-    <%= select_tag :campaign_id, options_from_collection_for_select(campaigns, :id, :name, params[:campaign_id]) %>
-  </div>
 
   <div class="actions">
     <%= submit_tag "Create equipment types" %>

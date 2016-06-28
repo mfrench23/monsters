@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160627203421) do
+ActiveRecord::Schema.define(version: 20160628162805) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -33,17 +33,6 @@ ActiveRecord::Schema.define(version: 20160627203421) do
   end
 
   add_index "books", ["name"], name: "index_books_on_name", unique: true, using: :btree
-
-  create_table "campaign_contents", force: :cascade do |t|
-    t.integer  "campaign_id",  limit: 4
-    t.integer  "content_id",   limit: 4
-    t.string   "content_type", limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "campaign_contents", ["campaign_id"], name: "index_campaign_contents_on_campaign_id", using: :btree
-  add_index "campaign_contents", ["content_type", "content_id"], name: "index_campaign_contents_on_content_type_and_content_id", using: :btree
 
   create_table "campaigns", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -218,8 +207,10 @@ ActiveRecord::Schema.define(version: 20160627203421) do
     t.datetime "updated_at",                                                               null: false
     t.string   "unit_of_measurement",   limit: 255
     t.integer  "random_weight",         limit: 4,                              default: 1
+    t.integer  "campaign_id",           limit: 4
   end
 
+  add_index "equipment_types", ["campaign_id"], name: "index_equipment_types_on_campaign_id", using: :btree
   add_index "equipment_types", ["equipment_category_id"], name: "index_equipment_types_on_equipment_category_id", using: :btree
   add_index "equipment_types", ["name"], name: "index_equipment_types_on_name", unique: true, using: :btree
 
@@ -299,10 +290,12 @@ ActiveRecord::Schema.define(version: 20160627203421) do
     t.string   "actable_type",     limit: 255
     t.string   "ancestry",         limit: 255
     t.integer  "ancestry_depth",   limit: 4,     default: 0
+    t.integer  "campaign_id",      limit: 4
   end
 
   add_index "monsters", ["actable_type", "actable_id"], name: "index_monsters_on_actable_type_and_actable_id", unique: true, using: :btree
   add_index "monsters", ["ancestry"], name: "index_monsters_on_ancestry", using: :btree
+  add_index "monsters", ["campaign_id"], name: "index_monsters_on_campaign_id", using: :btree
   add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree
   add_index "monsters", ["name"], name: "index_monsters_on_name", unique: true, using: :btree
 
@@ -408,7 +401,6 @@ ActiveRecord::Schema.define(version: 20160627203421) do
   add_index "traits", ["trait_owner_id", "trait_owner_type"], name: "index_traits_on_trait_owner_id_and_trait_owner_type", using: :btree
 
   add_foreign_key "attacks", "monsters"
-  add_foreign_key "campaign_contents", "campaigns"
   add_foreign_key "characteristic_lists", "characteristics"
   add_foreign_key "characteristic_monsters", "characteristics"
   add_foreign_key "characteristic_monsters", "monsters"
@@ -425,9 +417,11 @@ ActiveRecord::Schema.define(version: 20160627203421) do
   add_foreign_key "equipment_pieces", "equipment_types"
   add_foreign_key "equipment_type_modifier_categories", "equipment_modifier_categories"
   add_foreign_key "equipment_type_modifier_categories", "equipment_types"
+  add_foreign_key "equipment_types", "campaigns"
   add_foreign_key "equipment_types", "equipment_categories"
   add_foreign_key "master_skills", "characteristics"
   add_foreign_key "monster_names", "monsters"
+  add_foreign_key "monsters", "campaigns"
   add_foreign_key "monsters", "monster_classes"
   add_foreign_key "movement_rates", "monsters"
   add_foreign_key "movement_rates", "move_types"

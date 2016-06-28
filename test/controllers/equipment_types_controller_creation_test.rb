@@ -3,6 +3,9 @@ require 'test_helper'
 class EquipmentTypesControllerCreationTest < ActionController::TestCase
   setup do
     @controller = EquipmentTypesController.new
+    @equipment_type = FactoryGirl.create(:equipment_type)
+    @campaign = @equipment_type.campaign
+    cookies[:selected_campaign] = @campaign.id.to_s
   end
 
   test "should get new" do
@@ -16,40 +19,35 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
   end
 
   test "should do mass entry" do
-    campaign = FactoryGirl.build(:campaign)
     assert_difference('EquipmentType.count', 1) do
       post :do_mass_entry, {:equipment_category_name => "Weapons",
-                                         :campaign_id => campaign.id.to_s,
-                                         :freeform_text => "\nBig Stick ($5.50; 2.1#)\n\n"}
+                              :freeform_text => "\nBig Stick ($5.50; 2.1#)\n\n"}
       assert_response :found
     end
     type = EquipmentType.find_by(:name => "Big Stick")
     assert_equal "5.50", type.base_cost.to_s
     assert_equal "2.1", "%g" % type.base_weight
     assert_equal "Weapons", type.equipment_category_name
-    assert_equal true, type.in_campaign?(campaign.id)
+    assert_equal @campaign.id, type.campaign_id
   end
 
   test "should refuse to do mass entry" do
-    campaign = FactoryGirl.build(:campaign)
     assert_no_difference('EquipmentType.count') do
       post :do_mass_entry, {:equipment_category_name => "Weapons" + (Time.now.to_f * 1000).to_s,
-                                         :campaign_id => campaign.id,
-                                         :freeform_text => "Big Stick (2#)\nLittle Stick ($2)\n\n"}
+                              :freeform_text => "Big Stick (2#)\nLittle Stick ($2)\n\n"}
       assert_equal "Unable to convert into equipment types: Errors exist.", flash[:notice]
       assert_response :ok
     end
   end
 
   test "should create equipment_type" do
-    equipment_type = FactoryGirl.build(:equipment_type)
-    name = equipment_type.name + " Too"
+    name = @equipment_type.name + " Too"
     assert_difference('EquipmentType.count') do
-      post :create, equipment_type: { base_cost: equipment_type.base_cost,
-                                      base_weight: equipment_type.base_weight,
-                                      equipment_category_name: equipment_type.equipment_category_name,
-                                      name: name, notes: equipment_type.notes,
-                                      random_weight: equipment_type.random_weight}
+      post :create, equipment_type: { base_cost: @equipment_type.base_cost,
+                                      base_weight: @equipment_type.base_weight,
+                                      equipment_category_name: @equipment_type.equipment_category_name,
+                                      name: name, notes: @equipment_type.notes,
+                                      random_weight: @equipment_type.random_weight}
     end
 
     assert_response :found

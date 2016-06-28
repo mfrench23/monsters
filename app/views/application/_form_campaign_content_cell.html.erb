@@ -1,5 +1,0 @@
-<% campaign_content = owner.campaign_contents.select{ |cm| cm.campaign_id == campaign.id }.first %>
-<%= f.hidden_field :id, :value => campaign_content.try(:id) %>
-<%= f.hidden_field :campaign_id, :value => campaign.id %>
-<%= f.check_box "_destroy", { checked: campaign_content.present? }, "false", "true" %>
-<%= campaign.name %>

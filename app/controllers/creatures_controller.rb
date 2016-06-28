@@ -12,7 +12,7 @@ class CreaturesController < ModelBasedController
   private
 
   def whitelisted_entity_params
-    CreatureForm.new(params).params
+    CreatureForm.new(params).params.merge({:campaign_id => selected_campaign_id})
   end
 
   def additional_form_locals

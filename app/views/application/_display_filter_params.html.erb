@@ -1,9 +1,9 @@
-<% campaign_name ||= nil %>
 <% filter_params.each do |filter| %>
-  <%= "#{filter[0].titleize.downcase}" %>
   <% if filter[0].to_s =~ /in_campaign/ %>
-    <% display_param = campaign_name %>
-  <% elsif filter[0].to_s =~ /in_equipment_category/ %>
+    <% next %><%# skip any mention of the filtering by selected campaign %>
+  <% end %>
+  <%= "#{filter[0].titleize.downcase}" %>
+  <% if filter[0].to_s =~ /in_equipment_category/ %>
     <% display_param = equipment_category_name %>
   <% elsif filter[0].to_s =~ /in_modifier_category/ %>
     <% display_param = equipment_modifier_category_name %>

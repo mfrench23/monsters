@@ -3,6 +3,7 @@ require 'test_helper'
 class SwarmsControllerTest < ActionController::TestCase
  setup do
     @swarm = FactoryGirl.create(:swarm)
+    cookies[:selected_campaign] = @swarm.campaign_id.to_s
   end
 
   test "index should redirect to monsters controller" do
@@ -20,7 +21,7 @@ class SwarmsControllerTest < ActionController::TestCase
     assert_difference(['Monster.count', 'Swarm.count']) do
       post :create, swarm: { description: @swarm.description,
                                monster_class_id: @swarm.monster_class_id, name: name, 
-                               notes: @swarm.notes, 
+                               notes: @swarm.notes,
                                characteristic_monsters: @swarm.characteristic_monsters }
     end
 
