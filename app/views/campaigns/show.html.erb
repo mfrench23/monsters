@@ -1,3 +1,5 @@
+<% link_data_attributes = {"data-reset_campaign_id" => campaign.id} %>
+
 <div class="field">
   <span class="field-label" style="font-weight: bold;">Name</span>
   <span><%= campaign.name %></span>
@@ -5,12 +7,17 @@
 
 <div class="field">
   <span class="field-label show">Monsters</span>
-  <%= render "boxed_list", list: campaign.monsters %>
+  <%= render "boxed_list", list: campaign.monsters, link_data_attributes: link_data_attributes %>
+</div>
+
+<div class="field">
+  <span class="field-label show">Equipment Categories</span>
+  <%= render "boxed_list", list: campaign.equipment_categories, link_data_attributes: link_data_attributes %>
 </div>
 
 <div class="field">
   <span class="field-label show">Equipment</span>
-  <%= render "boxed_list", list: campaign.equipment_types %>
+  <%= render "boxed_list", list: campaign.equipment_types, link_data_attributes: link_data_attributes %>
 </div>
 
 <%= link_to 'Edit', edit_campaign_path(campaign) %> |

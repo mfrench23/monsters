@@ -9,3 +9,9 @@
         return
       )
   return
+
+# for links that implicitly change the selected campaign
+$(document).on 'click', 'a[data-reset_campaign_id]', (e) ->
+  campaign_id = $(e.currentTarget).data().reset_campaign_id
+  document.cookie = "selected_campaign=" + campaign_id + "; path=/"
+  return

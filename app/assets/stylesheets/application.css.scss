@@ -59,8 +59,8 @@ tr.tr0 {
 .field-label {
   clear: both;
   float: left;
-  min-width: 75px;
-  padding-right: 5px;
+  width: 12%;
+  padding-right: 3px;
 }
 
 .field-label.show {
@@ -209,6 +209,7 @@ a.quiet:active {
 .boxed-list {
   width: 80%; 
   border: 1px solid grey;
+  padding-bottom: 5px;
 }
 // expanding fieldset
 .remove_fields {

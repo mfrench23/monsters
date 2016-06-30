@@ -1,4 +1,5 @@
 <% row_style_display ||= "display: none" %>
+<% link_data_attributes ||= {} %>
 <%#----%>
 <% row_style_inverse = ( row_style_display.present? ? "" : "display: none") %>
 <% row_style_inverse = ( row_style_display.present? ? "" : "display: none") %>
@@ -6,6 +7,12 @@
 <% alternate_icon = ( row_style_display.present? ? "-" : "+") %>
 <% toggle_id = "boxed_list_" + (Time.now.to_f * 1000).to_i.to_s %>
 <% row_options = { "data-toggle_id" => toggle_id, "style" => row_style_display } %>
+<%# ------------------- %>
+<% extra_html_options = {} %>
+<% link_data_attributes.each do |key, value| %>
+  <% extra_html_options[key] = value %>
+<% end %>
+<%# ------------------- %>
 <span>
   <% if list.count > 0 %>
     <span style="float: left"><%= toggle_links toggle_id, starting_icon, alternate_icon %></span>
@@ -20,8 +27,9 @@
         <td><span class="footnote">(<%= pluralize list.count, "item" %>)</span></td>
       </tr>
       <% list.order_by_name.each_with_index do |item, index| %>
+        <% link_html_options = {:class => "quiet", :title => item.name}.merge(extra_html_options) %>
         <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :total_count => list.count, :row_options => row_options } do %>
-          <%= link_to item.name, item, :class => "quiet", :title => item.name %>
+          <%= link_to item.name, item, link_html_options %>
         <% end %>
       <% end %>
     <% end %>
