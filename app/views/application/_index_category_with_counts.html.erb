@@ -6,12 +6,15 @@
 
 <%= page_entries_info list %>
 
-<table class="fixed-table" style="width: 60%;">
+<table class="fixed-table">
   <thead>
     <tr>
       <th><%= sortable name_field, klass, params, "Name" %></th>
       <% columns_to_count.each do |col| %>
-        <th style="width: 180px;">Number of <%= col.to_s.titleize.pluralize %></th>
+        <th>
+          <div>Number of</div>
+          <div><%= col.to_s.titleize.pluralize %></div>
+        </th>
       <% end %>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
