@@ -2,7 +2,10 @@ require 'test_helper'
 
 class EquipmentCategoriesControllerTest < ActionController::TestCase
   setup do
-    @equipment_category = FactoryGirl.create(:equipment_category)
+    @campaign = FactoryGirl.create(:campaign)
+    @equipment_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign )
+    @equipment_category.save!
+    cookies[:selected_campaign] = @campaign.id.to_s
   end
 
   test "should get index" do
@@ -48,7 +51,7 @@ class EquipmentCategoriesControllerTest < ActionController::TestCase
   end
 
   test "should update equipment_category" do
-    patch :update, id: @equipment_category, equipment_category: { name: @equipment_category.name }
+    patch :update, id: @equipment_category, equipment_category: { name: @equipment_category.name, campaign_id: @equipment_category.campaign.id }
     assert_redirected_to @equipment_category
   end
 

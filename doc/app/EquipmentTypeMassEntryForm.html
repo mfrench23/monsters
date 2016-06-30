@@ -151,7 +151,7 @@ multiple instances of <a href="EquipmentType.html">EquipmentType</a> model</p>
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(params=nil)</span>
+            class="method-args">(params=nil, campaign_id)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -167,10 +167,11 @@ multiple instances of <a href="EquipmentType.html">EquipmentType</a> model</p>
           
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">campaign_id</span>)
   <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">whitelisted_params</span>(<span class="ruby-identifier">params</span>)
   <span class="ruby-ivar">@equipment_types</span> = []
   <span class="ruby-ivar">@error_messages</span> = []
+  <span class="ruby-ivar">@selected_campaign_id</span> = <span class="ruby-identifier">campaign_id</span>
   <span class="ruby-identifier">convert_new_equipment_category_name</span>
   <span class="ruby-identifier">convert_freeform_text_to_equipment_types</span>
 <span class="ruby-keyword">end</span></pre>
@@ -211,7 +212,7 @@ multiple instances of <a href="EquipmentType.html">EquipmentType</a> model</p>
 
           
           <div class="method-source-code" id="equipment_category_id-source">
-            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">equipment_category_id</span>
   <span class="ruby-ivar">@params</span>[<span class="ruby-value">:equipment_category_id</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -244,7 +245,7 @@ multiple instances of <a href="EquipmentType.html">EquipmentType</a> model</p>
 
           
           <div class="method-source-code" id="ok-3F-source">
-            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 14</span>
+            <pre><span class="ruby-comment"># File app/forms/equipment_type_mass_entry_form.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ok?</span>
   <span class="ruby-ivar">@error_messages</span>.<span class="ruby-identifier">empty?</span>
 <span class="ruby-keyword">end</span></pre>

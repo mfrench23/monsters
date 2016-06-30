@@ -2,7 +2,7 @@
 class EquipmentType < AbstractEntity
   include CampaignContained
   include Dateable
-  include UniquelyNameable
+  include Nameable
   include PageReferenceable
   include RandomlyOrderable
 
@@ -22,6 +22,7 @@ class EquipmentType < AbstractEntity
   delegate :name, to: :equipment_category, prefix: true
 
   validates :equipment_category, presence: true
+  validates_uniqueness_of :name, :scope => :campaign_id
 
   scope :in_equipment_category, -> (equipment_category_id) { where('equipment_category_id = ?', equipment_category_id) }
   scope :order_by_category_and_name, -> { joins(:equipment_category).order('equipment_categories.name, equipment_types.name') }

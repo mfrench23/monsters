@@ -68,7 +68,7 @@
   <ul class="link-list">
   
   
-    <li><a class="include" href="UniquelyNameable.html">UniquelyNameable</a>
+    <li><a class="include" href="Nameable.html">Nameable</a>
   
   
   </ul>
@@ -138,7 +138,7 @@
 
           
           <div class="method-source-code" id="has_contents-source">
-            <pre><span class="ruby-comment"># File app/models/campaign.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/models/campaign.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">has_contents</span>(<span class="ruby-identifier">klass</span>)
   <span class="ruby-constant">Campaign</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:campaign_id</span>))
 <span class="ruby-keyword">end</span></pre>

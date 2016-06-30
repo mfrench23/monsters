@@ -2,6 +2,9 @@ require 'test_helper'
 
 class EquipmentPieceTest < ActiveSupport::TestCase
   setup do
+    @campaign = FactoryGirl.create(:campaign)
+    @eq_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign)
+    @eq_category.save!
     @type = EquipmentType.new(:name => "Kinda Narrow Sword", :base_weight => 9.99, :base_cost_cents => 1000)
     @piece = EquipmentPiece.new(:name => "Test piece", :equipment_type => @type)
   end
@@ -22,9 +25,7 @@ class EquipmentPieceTest < ActiveSupport::TestCase
   end
 
   test "values change when a modifier is changed" do
-    campaign = FactoryGirl.create(:campaign)
-    cat = FactoryGirl.create(:equipment_category)
-    type = EquipmentType.new(:name => "Garbage Type", :base_weight => 1, :base_cost_cents => 100, :equipment_category => cat, :random_weight => 1, :campaign => campaign)
+    type = EquipmentType.new(:name => "Garbage Type", :base_weight => 1, :base_cost_cents => 100, :equipment_category => @eq_category, :random_weight => 1, :campaign => @campaign)
     type.save!
     mod = EquipmentModifier.new(:name => "Fancy!", :cost_mod => "+49 CF", :random_weight => 1)
     mod.save!

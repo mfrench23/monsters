@@ -3,10 +3,11 @@
 class EquipmentTypeMassEntryForm < AbstractEquipmentTypeForm
   attr_accessor :equipment_types, :error_messages
 
-  def initialize(params=nil)
+  def initialize(params=nil, campaign_id)
     @params = whitelisted_params(params)
     @equipment_types = []
     @error_messages = []
+    @selected_campaign_id = campaign_id
     convert_new_equipment_category_name
     convert_freeform_text_to_equipment_types
   end
@@ -23,7 +24,7 @@ class EquipmentTypeMassEntryForm < AbstractEquipmentTypeForm
 
   def convert_one_line_to_equipment_type(line)
     eq = EquipmentType.parse(line, @params[:equipment_category_id] )
-    eq.campaign_id = @params[:campaign_id]
+    eq.campaign_id = @selected_campaign_id
     @equipment_types << eq
     add_any_error_messages line, eq
   end

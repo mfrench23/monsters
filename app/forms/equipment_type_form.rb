@@ -1,7 +1,8 @@
 # Organizes the collection of parameters for a single instance of the EquipmentType model
 class EquipmentTypeForm < AbstractEquipmentTypeForm
-  def initialize(params=nil)
+  def initialize(params=nil, campaign_id)
     @params = whitelisted_params(params)
+    @selected_campaign_id = campaign_id
     convert_new_equipment_category_name
   end
 

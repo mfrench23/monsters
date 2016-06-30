@@ -3,7 +3,9 @@ require 'test_helper'
 class MonstersControllerTest < ActionController::TestCase
   setup do
     @monster = FactoryGirl.create(:creature)
-    @other_monster = Creature.new(:name => "Robert", :monster_class => MonsterClass.find_by(:name => "Undead"), :campaign_id => @monster.campaign_id)
+    cookies[:selected_campaign] = @monster.campaign_id.to_s
+    @other_monster = Creature.new(:name => "Robert", :monster_class => MonsterClass.find_by(:name => "Undead"), 
+                                  :campaign_id => @monster.campaign_id)
     @other_monster.monster_names << MonsterName.new(:name => "Bob")
     @other_monster.monster_names << MonsterName.new(:name => "Dick")
     @other_monster.save!

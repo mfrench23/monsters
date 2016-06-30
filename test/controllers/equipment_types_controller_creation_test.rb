@@ -3,8 +3,13 @@ require 'test_helper'
 class EquipmentTypesControllerCreationTest < ActionController::TestCase
   setup do
     @controller = EquipmentTypesController.new
-    @equipment_type = FactoryGirl.create(:equipment_type)
-    @campaign = @equipment_type.campaign
+    @campaign = FactoryGirl.create(:campaign)
+    eq_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign)
+    eq_category.save!
+    @equipment_type = EquipmentType.new(:name => "Rather Narrow Sword", :base_cost_cents => 1000, 
+                                        :base_weight => 9.99, :random_weight => 1, :campaign => @campaign,
+                                        :equipment_category => eq_category)
+    @equipment_type.save!
     cookies[:selected_campaign] = @campaign.id.to_s
   end
 
@@ -21,6 +26,7 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
   test "should do mass entry" do
     assert_difference('EquipmentType.count', 1) do
       post :do_mass_entry, {:equipment_category_name => "Weapons",
+                              :campaign_id => @campaign.id,
                               :freeform_text => "\nBig Stick ($5.50; 2.1#)\n\n"}
       assert_response :found
     end
@@ -48,9 +54,8 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
                                       equipment_category_name: @equipment_type.equipment_category_name,
                                       name: name, notes: @equipment_type.notes,
                                       random_weight: @equipment_type.random_weight}
+      assert_response :found
     end
-
-    assert_response :found
     equipment_type = EquipmentType.where(:name => name ).order("created_at desc").first
     assert_not_nil equipment_type
     assert_redirected_to equipment_type

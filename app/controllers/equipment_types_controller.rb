@@ -7,11 +7,15 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def do_mass_entry
-    form = EquipmentTypeMassEntryForm.new(params.merge({:campaign_id => selected_campaign_id}))
+    form = EquipmentTypeMassEntryForm.new(params, selected_campaign_id)
     form.ok? ? save_mass_entry_and_redirect_to_index(form) : render_mass_entry_page_with_error_messages(form)
   end
 
   private
+
+  def get_autocomplete_items(parameters)
+    super(parameters).where(:campaign_id => selected_campaign_id)
+  end
 
   def render_mass_entry_page_with_error_messages(form)
     flash[:notice] = "Unable to convert into equipment types: Errors exist."
@@ -38,7 +42,7 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def additional_index_locals
-    {equipment_categories: EquipmentCategory.all }
+    {equipment_categories: EquipmentCategory.in_campaign(selected_campaign_id) }
   end
 
   def additional_form_locals
@@ -52,7 +56,7 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def whitelisted_entity_params
-    EquipmentTypeForm.new(params).params.merge({:campaign_id => selected_campaign_id})
+    EquipmentTypeForm.new(params, selected_campaign_id).params.merge({:campaign_id => selected_campaign_id})
   end
 
   def acceptable_filter_scopes

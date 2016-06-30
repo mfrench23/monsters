@@ -2,7 +2,13 @@ require 'test_helper'
 
 class EquipmentPiecesControllerTest < ActionController::TestCase
   setup do
-    @equipment_type = FactoryGirl.create(:equipment_type)
+    @campaign = FactoryGirl.create(:campaign)
+    eq_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign)
+    eq_category.save!
+    @equipment_type = EquipmentType.new(:name => "Rather Narrow Sword", :base_cost_cents => 1000, 
+                                        :base_weight => 9.99, :random_weight => 1, :campaign => @campaign,
+                                        :equipment_category => eq_category)
+    @equipment_type.save!
     @equipment_piece = FactoryGirl.create(:equipment_piece, :equipment_type => @equipment_type, :quantity => 1)
   end
 

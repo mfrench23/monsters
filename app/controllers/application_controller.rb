@@ -31,6 +31,6 @@ class ApplicationController < ActionController::Base
   end
 
   def selected_campaign_id
-    cookies[:selected_campaign]
+    cookies[:selected_campaign] || Campaign.first.id
   end
 end

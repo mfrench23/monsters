@@ -115,7 +115,7 @@ href="EquipmentType.html">EquipmentType</a> model</p>
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(params=nil)</span>
+            class="method-args">(params=nil, campaign_id)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -131,8 +131,9 @@ href="EquipmentType.html">EquipmentType</a> model</p>
           
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File app/forms/equipment_type_form.rb, line 3</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">campaign_id</span>)
   <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">whitelisted_params</span>(<span class="ruby-identifier">params</span>)
+  <span class="ruby-ivar">@selected_campaign_id</span> = <span class="ruby-identifier">campaign_id</span>
   <span class="ruby-identifier">convert_new_equipment_category_name</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -164,7 +165,7 @@ href="EquipmentType.html">EquipmentType</a> model</p>
 
           
           <div class="method-source-code" id="permitted_attributes-source">
-            <pre><span class="ruby-comment"># File app/forms/equipment_type_form.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/forms/equipment_type_form.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">permitted_attributes</span>
   [<span class="ruby-value">:name</span>, <span class="ruby-value">:base_weight</span>, <span class="ruby-value">:base_cost</span>,
    <span class="ruby-value">:equipment_category_name</span>, <span class="ruby-value">:equipment_category_id</span>, <span class="ruby-value">:notes</span>,

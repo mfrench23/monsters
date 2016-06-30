@@ -5,8 +5,8 @@ FactoryGirl.define do
     base_cost_cents 1000
     notes nil
     random_weight 1
-    association :equipment_category
-    association :campaign
+    equipment_category
+    campaign
   end
 
 end

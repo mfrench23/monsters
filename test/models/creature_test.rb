@@ -3,8 +3,13 @@ require 'test_helper'
 class CreatureTest < ActiveSupport::TestCase
   setup do
     dx = Characteristic.find_by(name: "DX")
-    @equipment_type = FactoryGirl.create(:equipment_type)
-    @campaign = @equipment_type.campaign
+    @campaign = FactoryGirl.create(:campaign)
+    eq_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign)
+    eq_category.save!
+    @equipment_type = EquipmentType.new(:name => "Rather Narrow Sword", :base_cost_cents => 1000, 
+                                        :base_weight => 9.99, :random_weight => 1, :campaign => @campaign,
+                                        :equipment_category => eq_category)
+    @equipment_type.save!
     @one = Creature.new(:name => "Boris the Test Monster", :monster_class => MonsterClass.find_by(name: "Undead"),
                         :characteristic_monsters => [CharacteristicMonster.new(:characteristic => dx, :score => 10)],
                         :campaign => @campaign )

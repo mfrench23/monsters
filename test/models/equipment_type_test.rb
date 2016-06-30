@@ -3,7 +3,7 @@ require 'test_helper'
 class EquipmentTypeTest < ActiveSupport::TestCase
   setup do
     @equipment_category = FactoryGirl.create(:equipment_category)
-    @campaign = FactoryGirl.create(:campaign)
+    @campaign = @equipment_category.campaign
   end
 
   test "should parse bad input as an invalid instance" do

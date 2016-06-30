@@ -16,7 +16,12 @@ class ModelBasedController < ApplicationController
   end
 
   def edit
-    render locals: locals_hash(set_model_by_id)
+    entity = set_model_by_id
+    if entity.try(:campaign_id) && entity.campaign_id.to_s != selected_campaign_id
+      redirect_to :index
+    else
+      render locals: locals_hash(entity)
+    end
   end
 
   def index
@@ -30,7 +35,12 @@ class ModelBasedController < ApplicationController
   end
 
   def show
-    render locals: { controlled_model_symbol => set_model_by_id }
+    entity = set_model_by_id
+    if entity.try(:campaign_id) && entity.campaign_id.to_s != selected_campaign_id
+      redirect_to :index
+    else
+      render locals: { controlled_model_symbol => entity }
+    end
   end
 
   def update
