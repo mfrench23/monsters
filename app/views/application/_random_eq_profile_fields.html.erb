@@ -1,19 +1,8 @@
-<% line_item_hash = {} %>
-<% f.object.random_eq_profile_line_items.each do |line_item| %>
-  <% line_item_hash[line_item.equipment_modifier_supercategory] = line_item %>
-<% end %>
 <li class="control-group nested-fields">
-  <% equipment_modifier_supercategories.each_with_index do |supercat, index| %>
-    <div class="controls">
-      <% line_item = line_item_hash[supercat] %>
-
-      <% name = f.object_name + "[random_eq_profile_line_items_attributes][" + index.to_s + "]" %>
-
-      <%= hidden_field_tag name + "[id]", line_item.try(:id) %>
-      <%= number_field_tag name + "[quantity]", line_item.try(:quantity) %>
-      <%= hidden_field_tag name + "[equipment_modifier_supercategory_id]", supercat.id %>
-    </div>
-  <% end %>
+  <%= render 'expanding_fieldset', f: f,
+    id: "random_eq_profile_line_items", collection: :random_eq_profile_line_items,
+    header: nil, header_list: [ :supercategory, :category, :quantity ],
+    partial: 'random_eq_profile_line_item_fields', label: 'add line item' %>
 
   <div class="controls">
     <%= f.select :random_weight, (1..10) %>

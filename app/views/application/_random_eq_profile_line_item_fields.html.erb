@@ -1,0 +1,20 @@
+<li class="control-group nested-fields">
+  <div class="controls">
+    <% locals_hash = local_assigns[:locals] %>
+    <% equipment_modifier_supercategories = EquipmentModifierSupercategory.order_by_name %><%# TODO filter by campaign %>
+    <%= f.collection_select :equipment_modifier_supercategory_id, equipment_modifier_supercategories, :id, :name, {include_blank: true}, {:onchange => "toggle_control_group(this)", "data-control_group_toggle" => 1 } %>
+  </div>
+
+  <div class="controls">
+    <%= f.collection_select :equipment_modifier_category_id, EquipmentModifierCategory.where('equipment_modifier_supercategory_id is null').order_by_name, :id, :name, {include_blank: true}, {:onchange => "toggle_control_group(this)", "data-control_group_toggle" => 2 } %>
+  </div>
+
+  <div class="controls">
+    <%= f.hidden_field :id %>
+    <%= f.number_field :quantity %>
+  </div>
+
+  <div class="controls">
+    <%= link_to_remove_association "remove", f %>
+  </div>
+</li>

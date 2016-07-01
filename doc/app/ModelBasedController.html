@@ -244,7 +244,7 @@ case of failure</p>
           <div class="method-source-code" id="edit-source">
             <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> <span class="ruby-identifier">locals_hash</span>(<span class="ruby-identifier">set_model_by_id</span>)
+  <span class="ruby-identifier">render_or_redirect</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -345,7 +345,7 @@ case of failure</p>
           <div class="method-source-code" id="show-source">
             <pre><span class="ruby-comment"># File app/controllers/model_based_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-identifier">locals</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">controlled_model_symbol</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">set_model_by_id</span> }
+  <span class="ruby-identifier">render_or_redirect</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

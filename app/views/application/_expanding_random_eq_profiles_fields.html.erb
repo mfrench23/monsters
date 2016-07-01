@@ -3,20 +3,13 @@
   <span class="field-label">Random Equipment Profiles</span>
   <fieldset id="random_eq_profiles" class="expanding-fieldset-container">
     <ul id="<%= append_node_id %>" class="nested-fields" style="display: <%= (parent.random_eq_profiles.any? ? "table-row" : "none" ) %>;">
-      <li class="control-group nested-fields nested-header">
-        <% equipment_modifier_supercategories.each do |header_item| %>
-            <span class="controls" style="background-color:lightgrey;"><%= f.label header_item %></span>
-        <% end %>
-        <span class="controls"><%= f.label "Random weight" %></span>
-      </li>
       <%= f.fields_for :random_eq_profiles do |x| %>
-        <%= render 'random_eq_profile_fields', f: x, equipment_modifier_supercategories: equipment_modifier_supercategories %>
+        <%= render 'random_eq_profile_fields', f: x %>
       <% end %>
     </ul>
     <%= link_to_add_association 'add random equipment profile', f, :random_eq_profiles,
       'data-association-insertion-method' => "append",
-      'data-association-insertion-node' => "#" + append_node_id,
-      render_options: {locals: {equipment_modifier_supercategories: equipment_modifier_supercategories}}
+      'data-association-insertion-node' => "#" + append_node_id
     %>
   </fieldset>
 </div>

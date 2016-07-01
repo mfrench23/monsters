@@ -47,7 +47,6 @@ class EquipmentTypesController < ModelBasedController
 
   def additional_form_locals
     {equipment_modifier_categories: EquipmentModifierCategory.all,
-     equipment_modifier_supercategories: EquipmentModifierSupercategory.all, #TODO Limit by campaign
      error_messages: []}
   end
 

@@ -11,7 +11,7 @@ class EquipmentCategoriesController < ModelBasedController
 
   # Hash of locals required by _form view
   def additional_form_locals
-    {equipment_modifier_supercategories: EquipmentModifierSupercategory.order_by_name} #TODO Restrict by campaign
+    {}
   end
 
   def acceptable_filter_scopes

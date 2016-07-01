@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630002102) do
+ActiveRecord::Schema.define(version: 20160630180506) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -349,8 +349,10 @@ ActiveRecord::Schema.define(version: 20160630002102) do
     t.integer  "quantity",                            limit: 4
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
+    t.integer  "equipment_modifier_category_id",      limit: 4
   end
 
+  add_index "random_eq_profile_line_items", ["equipment_modifier_category_id"], name: "rnd_eq_prof_line_itm_cat_idx", using: :btree
   add_index "random_eq_profile_line_items", ["equipment_modifier_supercategory_id"], name: "rand_eq_prof_line_eq_sprcat_idx", using: :btree
   add_index "random_eq_profile_line_items", ["random_eq_profile_id"], name: "rand_eq_prof_line_idx", using: :btree
 
@@ -430,6 +432,7 @@ ActiveRecord::Schema.define(version: 20160630002102) do
   add_foreign_key "movement_rates", "move_types"
   add_foreign_key "page_references", "books"
   add_foreign_key "parry_scores", "creatures"
+  add_foreign_key "random_eq_profile_line_items", "equipment_modifier_categories"
   add_foreign_key "random_eq_profile_line_items", "equipment_modifier_supercategories"
   add_foreign_key "random_eq_profile_line_items", "random_eq_profiles"
   add_foreign_key "random_eq_profiles", "equipment_categories"

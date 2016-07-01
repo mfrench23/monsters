@@ -8,8 +8,7 @@ class EquipmentTypeMassEntryForm < AbstractEquipmentTypeForm
     @equipment_types = []
     @error_messages = []
     @selected_campaign_id = campaign_id
-    convert_new_equipment_category_name
-    convert_freeform_text_to_equipment_types
+    perform_conversion
   end
 
   def ok?
@@ -21,6 +20,11 @@ class EquipmentTypeMassEntryForm < AbstractEquipmentTypeForm
   end
 
   private
+
+  def perform_conversion
+    convert_new_equipment_category_name
+    convert_freeform_text_to_equipment_types
+  end
 
   def convert_one_line_to_equipment_type(line)
     eq = EquipmentType.parse(line, @params[:equipment_category_id] )

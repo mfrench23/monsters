@@ -16,12 +16,7 @@ class ModelBasedController < ApplicationController
   end
 
   def edit
-    entity = set_model_by_id
-    if entity.try(:campaign_id) && entity.campaign_id.to_s != selected_campaign_id
-      redirect_to :index
-    else
-      render locals: locals_hash(entity)
-    end
+    render_or_redirect
   end
 
   def index
@@ -35,12 +30,7 @@ class ModelBasedController < ApplicationController
   end
 
   def show
-    entity = set_model_by_id
-    if entity.try(:campaign_id) && entity.campaign_id.to_s != selected_campaign_id
-      redirect_to :index
-    else
-      render locals: { controlled_model_symbol => entity }
-    end
+    render_or_redirect
   end
 
   def update
@@ -98,5 +88,14 @@ class ModelBasedController < ApplicationController
 
   def set_model_by_id
     controlled_model_class.find(params[:id])
+  end
+
+  def render_or_redirect
+    entity = set_model_by_id
+    if entity.try(:campaign_id) && entity.campaign_id.to_s != selected_campaign_id
+      redirect_to :index
+    else
+      render locals: locals_hash(entity)
+    end
   end
 end

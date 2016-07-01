@@ -70,6 +70,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-modifier_source">#modifier_source</a>
+    
     <li ><a href="#method-i-to_s">#to_s</a>
     
   </ul>
@@ -106,6 +108,39 @@
        </header>
 
     
+      <div id="method-i-modifier_source" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">modifier_source</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="modifier_source-source">
+            <pre><span class="ruby-comment"># File app/models/random_eq_profile_line_item.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">modifier_source</span>
+  <span class="ruby-identifier">equipment_modifier_supercategory</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">equipment_modifier_category</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-to_s" class="method-detail ">
         
         <div class="method-heading">
@@ -125,9 +160,9 @@
 
           
           <div class="method-source-code" id="to_s-source">
-            <pre><span class="ruby-comment"># File app/models/random_eq_profile_line_item.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/models/random_eq_profile_line_item.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">quantity</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">equipment_modifier_supercategory</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">pluralize</span>(<span class="ruby-identifier">quantity</span>)
+  <span class="ruby-identifier">quantity</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">modifier_source</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">pluralize</span>(<span class="ruby-identifier">quantity</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

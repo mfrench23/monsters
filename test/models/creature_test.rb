@@ -49,13 +49,6 @@ class CreatureTest < ActiveSupport::TestCase
     assert_equal "Arglebargle", @one.traits.first.master_trait.name
   end
 
-  test "new creature starts with basic characteristics" do
-    m = Creature.new
-    assert_not_nil m.characteristic_monster("DX")
-    assert_nil m.characteristic_monster("Fake Characteristic")
-    assert_equal 10, m.characteristic_score("DX")
-  end
-
   test "can deep_copy" do
     # set up original
     equipment_package = EquipmentPackage.new

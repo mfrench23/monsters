@@ -1,27 +1,27 @@
-Tue, 28 Jun 2016 15:28:01 -0700
+Thu, 30 Jun 2016 17:58:39 -0700
 README.rdoc	Fri, 29 May 2015 09:03:57 -0700
-app/controllers/application_controller.rb	Tue, 28 Jun 2016 09:47:53 -0700
+app/controllers/application_controller.rb	Thu, 30 Jun 2016 08:07:34 -0700
 app/controllers/books_controller.rb	Wed, 08 Jun 2016 10:43:52 -0700
 app/controllers/campaigns_controller.rb	Tue, 28 Jun 2016 09:05:24 -0700
 app/controllers/concerns/result_set_returning.rb	Tue, 28 Jun 2016 12:15:31 -0700
 app/controllers/creatures_controller.rb	Tue, 28 Jun 2016 11:42:21 -0700
-app/controllers/equipment_categories_controller.rb	Tue, 28 Jun 2016 13:44:38 -0700
+app/controllers/equipment_categories_controller.rb	Thu, 30 Jun 2016 15:12:58 -0700
 app/controllers/equipment_modifier_categories_controller.rb	Wed, 22 Jun 2016 12:31:29 -0700
 app/controllers/equipment_modifier_supercategories_controller.rb	Wed, 22 Jun 2016 11:39:58 -0700
 app/controllers/equipment_modifiers_controller.rb	Fri, 10 Jun 2016 17:03:59 -0700
 app/controllers/equipment_packages_controller.rb	Fri, 10 Jun 2016 11:34:21 -0700
 app/controllers/equipment_pieces_controller.rb	Wed, 08 Jun 2016 10:49:39 -0700
-app/controllers/equipment_types_controller.rb	Tue, 28 Jun 2016 15:21:26 -0700
+app/controllers/equipment_types_controller.rb	Thu, 30 Jun 2016 15:12:44 -0700
 app/controllers/locations_controller.rb	Wed, 08 Jun 2016 10:44:33 -0700
 app/controllers/master_skills_controller.rb	Wed, 08 Jun 2016 10:44:42 -0700
 app/controllers/master_traits_controller.rb	Wed, 08 Jun 2016 10:44:53 -0700
-app/controllers/model_based_controller.rb	Tue, 28 Jun 2016 09:59:40 -0700
+app/controllers/model_based_controller.rb	Thu, 30 Jun 2016 17:38:11 -0700
 app/controllers/monster_classes_controller.rb	Wed, 08 Jun 2016 10:45:15 -0700
 app/controllers/monsters_controller.rb	Tue, 28 Jun 2016 11:41:52 -0700
 app/controllers/move_types_controller.rb	Wed, 08 Jun 2016 10:45:31 -0700
 app/controllers/swarms_controller.rb	Tue, 28 Jun 2016 11:42:16 -0700
 app/controllers/welcome_controller.rb	Wed, 08 Jun 2016 10:56:01 -0700
-app/forms/abstract_equipment_type_form.rb	Tue, 28 Jun 2016 15:19:10 -0700
+app/forms/abstract_equipment_type_form.rb	Thu, 30 Jun 2016 07:49:45 -0700
 app/forms/abstract_form.rb	Wed, 08 Jun 2016 11:02:15 -0700
 app/forms/creature_form.rb	Tue, 28 Jun 2016 11:25:57 -0700
 app/forms/equipment_modifier_category_form.rb	Wed, 22 Jun 2016 12:30:57 -0700
@@ -29,10 +29,10 @@ app/forms/equipment_modifier_form.rb	Mon, 27 Jun 2016 12:51:24 -0700
 app/forms/equipment_package_form.rb	Fri, 10 Jun 2016 11:34:01 -0700
 app/forms/equipment_piece_form.rb	Fri, 24 Jun 2016 13:35:28 -0700
 app/forms/equipment_type_form.rb	Tue, 28 Jun 2016 15:18:46 -0700
-app/forms/equipment_type_mass_entry_form.rb	Tue, 28 Jun 2016 15:26:28 -0700
+app/forms/equipment_type_mass_entry_form.rb	Thu, 30 Jun 2016 17:57:51 -0700
 app/forms/master_skill_form.rb	Wed, 08 Jun 2016 11:03:13 -0700
 app/forms/master_trait_form.rb	Wed, 08 Jun 2016 11:03:23 -0700
-app/forms/random_eq_profile_form.rb	Mon, 27 Jun 2016 11:58:59 -0700
+app/forms/random_eq_profile_form.rb	Thu, 30 Jun 2016 13:38:38 -0700
 app/forms/swarm_form.rb	Tue, 28 Jun 2016 11:25:46 -0700
 app/helpers/ancestor_tree_helper.rb	Wed, 08 Jun 2016 11:42:40 -0700
 app/helpers/characteristics_helper.rb	Fri, 29 May 2015 15:23:32 -0700
@@ -64,7 +64,7 @@ app/models/concerns/uniquely_nameable.rb	Mon, 27 Jun 2016 13:15:57 -0700
 app/models/creature.rb	Fri, 27 May 2016 15:56:16 -0700
 app/models/creature/trait_list.rb	Wed, 08 Jun 2016 12:07:45 -0700
 app/models/damage_resistance.rb	Fri, 27 May 2016 15:53:28 -0700
-app/models/equipment_category.rb	Tue, 28 Jun 2016 13:29:41 -0700
+app/models/equipment_category.rb	Wed, 29 Jun 2016 17:18:21 -0700
 app/models/equipment_modifier.rb	Mon, 27 Jun 2016 12:05:44 -0700
 app/models/equipment_modifier/additive_modifier_value_object.rb	Sat, 11 Jun 2016 14:10:45 -0700
 app/models/equipment_modifier/cost_factor_modifier_value_object.rb	Sat, 11 Jun 2016 14:10:45 -0700
@@ -91,7 +91,7 @@ app/models/movement_rate.rb	Fri, 27 May 2016 15:17:10 -0700
 app/models/page_reference.rb	Fri, 27 May 2016 15:35:03 -0700
 app/models/parry_score.rb	Fri, 27 May 2016 15:16:10 -0700
 app/models/random_eq_profile.rb	Mon, 27 Jun 2016 11:11:39 -0700
-app/models/random_eq_profile_line_item.rb	Fri, 24 Jun 2016 16:11:42 -0700
+app/models/random_eq_profile_line_item.rb	Thu, 30 Jun 2016 11:42:21 -0700
 app/models/skill.rb	Fri, 27 May 2016 15:14:01 -0700
 app/models/skill/modifier.rb	Fri, 27 May 2016 15:32:18 -0700
 app/models/swarm.rb	Fri, 27 May 2016 15:13:05 -0700
