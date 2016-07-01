@@ -2,6 +2,13 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
+# set insertion node for starting "add_fields" links
+$(document).ready ->
+  $('a.add_fields').data('association-insertion-position', 'append').data 'association-insertion-node', (link) ->
+    @getCocoonInsertNode(link)
+  return
+
 $(document).bind 'cocoon:before-insert', (e, inserted_item) ->
   if inserted_item.data().cocoon_row_id <= 0
     new_id = new Date().getTime()
@@ -15,6 +22,9 @@ $(document).bind 'cocoon:after-insert', (e, inserted_item) ->
     e.target.firstElementChild.style.display = 'table-row'
   # post-insert processing for specific elements that might be inserted
   loadInitialEquipmentPieceModifiers(fnd) for fnd in $(inserted_item).find("div[name='ajax-modifiers-for-equipment-piece']")
+  # set insertion node for any inserted "add_fields" links
+  $(inserted_item).find('a.add_fields').data('association-insertion-position', 'append').data 'association-insertion-node', (link) ->
+    @getCocoonInsertNode(link)
   return
 
 $(document).bind 'cocoon:after-remove', (e) ->
@@ -23,6 +33,9 @@ $(document).bind 'cocoon:after-remove', (e) ->
     e.target.firstElementChild.style.display = 'none'
     e.target.style.display = 'none'
   return
+
+@getCocoonInsertNode = (link) ->
+  return link.prev()
 
 @updateThumb = (source) ->
   files = source.files

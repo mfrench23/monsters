@@ -1,15 +1,12 @@
 <% append_node_id = "random_eq_profiles" + (Time.now.to_f * 1000).to_i.to_s %>
 <div class="field">
   <span class="field-label">Random Equipment Profiles</span>
-  <fieldset id="random_eq_profiles" class="expanding-fieldset-container">
+  <fieldset id="random_eq_profiles[<%= (Time.now.to_f * 1000).to_i.to_s %>]" class="expanding-fieldset-container">
     <ul id="<%= append_node_id %>" class="nested-fields" style="display: <%= (parent.random_eq_profiles.any? ? "table-row" : "none" ) %>;">
       <%= f.fields_for :random_eq_profiles do |x| %>
         <%= render 'random_eq_profile_fields', f: x %>
       <% end %>
     </ul>
-    <%= link_to_add_association 'add random equipment profile', f, :random_eq_profiles,
-      'data-association-insertion-method' => "append",
-      'data-association-insertion-node' => "#" + append_node_id
-    %>
+    <%= link_to_add_association 'add random equipment profile', f, :random_eq_profiles %>
   </fieldset>
 </div>

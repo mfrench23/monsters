@@ -5,7 +5,7 @@
 <% locals ||= [] %>
 <div class="field">
   <span class="field-label"><%= raw header %></span>
-  <fieldset id=<%= id %> class="expanding-fieldset-container">
+  <fieldset id="<%= id %>[<%= (Time.now.to_f * 1000).to_i.to_s %>]" class="expanding-fieldset-container">
     <% if not freeform.blank? %>
       <div class="field">
         <%= f.label freeform %>
@@ -25,10 +25,7 @@
       <% end %>
     </ul>
     <% if label.present? %>
-      <%= link_to_add_association label, f, collection,
-        'data-association-insertion-method' => "append",
-        'data-association-insertion-node' => "#" + append_node_id
-      %>
+      <%= link_to_add_association label, f, collection %>
     <% end %>
   </fieldset>
 </div>
