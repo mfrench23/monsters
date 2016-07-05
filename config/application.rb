@@ -24,6 +24,7 @@ module Monsters
     config.active_record.raise_in_transactional_callbacks = true
 
     config.autoload_paths += %W(#{config.root}/forms)
+    config.autoload_paths += %W(#{config.root}/services)
 
     Rack::Utils.multipart_part_limit = 0 # temporary until fix in Rack 1.7
   end

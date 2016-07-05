@@ -1,4 +1,8 @@
 <li class="control-group nested-fields">
+  <div class="controls">
+    <%= f.text_field :quantity %>
+  </div>
+
   <%= render 'expanding_fieldset', f: f,
     id: "random_eq_profile_line_items", collection: :random_eq_profile_line_items,
     header: nil, header_list: [ :supercategory, :category, :quantity ],

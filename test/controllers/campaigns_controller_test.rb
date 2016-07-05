@@ -3,6 +3,7 @@ require 'test_helper'
 class CampaignsControllerTest < ActionController::TestCase
   setup do
     @campaign = FactoryGirl.create(:campaign)
+    cookies[:selected_campaign] = @campaign.id.to_s
   end
 
   test "should get index" do
@@ -14,6 +15,12 @@ class CampaignsControllerTest < ActionController::TestCase
   test "should get new" do
     get :new
     assert_response :success
+  end
+
+  test "should get no randomized equipment without random_eq_profile definitions" do
+    @request.env['HTTP_REFERER'] = campaigns_path
+    get :randomize
+    assert_response :found
   end
 
   test "should create campaign" do

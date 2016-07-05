@@ -6,6 +6,8 @@ class Campaign < AbstractEntity
   has_many :equipment_types
   has_many :equipment_categories
 
+  has_many :random_eq_profiles, :through => :equipment_categories
+
   validates_uniqueness_of :name
 
   def self.has_contents(klass)

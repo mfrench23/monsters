@@ -3,6 +3,11 @@
   <span class="field-label">Random Equipment Profiles</span>
   <fieldset id="random_eq_profiles[<%= (Time.now.to_f * 1000).to_i.to_s %>]" class="expanding-fieldset-container">
     <ul id="<%= append_node_id %>" class="nested-fields" style="display: <%= (parent.random_eq_profiles.any? ? "table-row" : "none" ) %>;">
+      <li class="control-group nested-fields nested-header">
+        <span class="controls" title="Defaults to 1 if left blank. Accepts numbers or die roll formulas.">Count of Items*</span>
+        <span class="controls">Profile Line Items</span>
+        <span class="controls">Random Weight</span>
+      </li>
       <%= f.fields_for :random_eq_profiles do |x| %>
         <%= render 'random_eq_profile_fields', f: x %>
       <% end %>

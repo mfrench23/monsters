@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630180506) do
+ActiveRecord::Schema.define(version: 20160701212328) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -359,9 +359,10 @@ ActiveRecord::Schema.define(version: 20160630180506) do
   create_table "random_eq_profiles", force: :cascade do |t|
     t.integer  "equipment_type_id",     limit: 4
     t.integer  "equipment_category_id", limit: 4
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.integer  "random_weight",         limit: 4, default: 1
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.integer  "random_weight",         limit: 4,   default: 1
+    t.string   "quantity",              limit: 255
   end
 
   add_index "random_eq_profiles", ["equipment_category_id"], name: "index_random_eq_profiles_on_equipment_category_id", using: :btree
