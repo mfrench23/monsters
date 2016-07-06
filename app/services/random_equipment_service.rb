@@ -41,20 +41,20 @@ class RandomEquipmentService
     # get a random_eq_profile from the type, if it offers any
     detailed_profile = random_profile_from_collection(equipment_type.try(:random_eq_profiles))
     # combine the random_eq_profile instances to get a list of equipment_modifier_categories and counts, then select modifiers
-    get_random_modifiers([*profile.try(:random_eq_profile_line_items)] + [*detailed_profile.try(:random_eq_profile_line_items)])
+    get_random_modifiers(equipment_type, [*profile.try(:random_eq_profile_line_items)] + [*detailed_profile.try(:random_eq_profile_line_items)])
   end
 
   def modifier_source(line_item)
     line_item.try(:equipment_modifier_supercategory) || line_item.try(:equipment_modifier_category)
   end
 
-  def get_random_modifiers(array_of_line_items)
+  def get_random_modifiers(equipment_type, array_of_line_items)
     list = []
     array_of_line_items.each do |line_item|
       source = modifier_source(line_item)
       excluded_ids = []
       (1..line_item.quantity).each do |counter|
-        item = source.equipment_modifiers.where.not(:id => excluded_ids).order_by_rand.first
+        item = source.equipment_modifiers.where.not(:id => excluded_ids).merge( equipment_type.equipment_modifiers ).order_by_rand.first
         if item.present?
           list << item
           excluded_ids << item.id

@@ -10,9 +10,9 @@ class EquipmentPiecesHelperTest < ActionView::TestCase
     ep.equipment_modifiers << EquipmentModifier.new(:name => "Fine", :cost_mod => "+1 CF")
     assert_equal "Mini-Excalibur: Knife (Fine; 1#, $10.00)", pretty_print_equipment_piece(ep)
     ep.equipment_modifiers << EquipmentModifier.new(:name => "Extra-Fine", :cost_mod => "+1 CF")
-    assert_equal "Mini-Excalibur: Knife (Fine, Extra-Fine; 1#, $15.00)", pretty_print_equipment_piece(ep)
+    assert_equal "Mini-Excalibur: Knife (Fine; Extra-Fine; 1#, $15.00)", pretty_print_equipment_piece(ep)
     ep.quantity = 3
-    assert_equal "Mini-Excalibur: 3 Knives (Fine, Extra-Fine; each 1#, $15.00; total 3#, $45.00)", pretty_print_equipment_piece(ep)
+    assert_equal "Mini-Excalibur: 3 Knives (Fine; Extra-Fine; each 1#, $15.00; total 3#, $45.00)", pretty_print_equipment_piece(ep)
   end
 
   test "should correctly format groups of items" do

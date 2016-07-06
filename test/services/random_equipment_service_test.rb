@@ -15,10 +15,22 @@ class RandomEquipmentServiceTest < ActionController::TestCase
     @equipment_modifier_category = EquipmentModifierCategory.new(:name => "Portlandian",
                                                                  :equipment_modifier_supercategory => @equipment_modifier_supercategory)
     @equipment_modifier_category.save!
+    # to prove that modifiers that don't apply to the equipment_type don't interfere
+    other_equipment_modifier_category = EquipmentModifierCategory.new(:name => "Narnian",
+                                                                 :equipment_modifier_supercategory => @equipment_modifier_supercategory)
+    other_equipment_modifier_category.save!
+    @equipment_type.equipment_modifier_categories << @equipment_modifier_category
+    @equipment_type.save!
     @equipment_modifier = EquipmentModifier.new(:name => "A bird put on it",
                                                 :cost_mod => "+1CF", :weight_mod => "x3",
                                                 :equipment_modifier_category => @equipment_modifier_category)
     @equipment_modifier.save!
+
+    other_equipment_modifier = EquipmentModifier.new(:name => "Covered in gold leaf",
+                                                :cost_mod => "+9CF", :weight_mod => "x1",
+                                                :equipment_modifier_category => other_equipment_modifier_category)
+    other_equipment_modifier.save!
+
     @random_eq_profile = RandomEqProfile.new(:equipment_category => @equipment_category)
     @random_eq_line_item = RandomEqProfileLineItem.new(:quantity => 1, :equipment_modifier_supercategory => @equipment_modifier_supercategory )
     @random_eq_profile.random_eq_profile_line_items << @random_eq_line_item
