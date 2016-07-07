@@ -24,7 +24,7 @@
   <%= render 'expanding_fieldset', f: f,
     id: "equipment_modifiers", collection: :equipment_modifiers,
     partial: 'equipment_modifier_fields', label: 'add modifier', header: "Modifiers",
-    header_list: [ :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod, :notes ], freeform: nil %>
+    header_list: [ :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod, :random_weight, :notes ], freeform: nil %>
 
   <%= render 'many_to_many_checkbox_table', available_intersection_list: equipment_types,
     intersection_field: :equipment_type, target: equipment_modifier_category,
