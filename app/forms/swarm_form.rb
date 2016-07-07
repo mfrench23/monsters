@@ -7,7 +7,7 @@ class SwarmForm < AbstractForm
   private
 
   def monster_params(params)
-    params.require(:swarm).permit( permitted_attributes )
+    params.fetch(:swarm, {}).permit( permitted_attributes )
   end
 
   def permitted_attributes

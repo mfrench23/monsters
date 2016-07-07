@@ -21,6 +21,6 @@ class CampaignsController < ModelBasedController
   end
 
   def whitelisted_entity_params
-    params.require(:campaign).permit(:name)
+    params.fetch(:campaign, {}).permit(:name)
   end
 end

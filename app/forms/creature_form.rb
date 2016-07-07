@@ -30,13 +30,13 @@ class CreatureForm < AbstractForm
   end
 
   def self.convert_freeform_skill_list(params)
-    return params unless params[:creature][:freeform_skill_list ].present?
+    return params unless params.present? && params[:creature].present? && params[:creature][:freeform_skill_list ].present?
     skill_list = FreeformSkillList.new( CreatureForm.freeform_skill_param(params), CreatureForm.characteristics_param(params) )
     CreatureForm.merge_converted_skill_list(params, skill_list)
   end
 
   def monster_params(params)
-    params.require(:creature).permit( permitted_attributes )
+    params.fetch(:creature, {}).permit( permitted_attributes )
   end
 
   def permitted_attributes

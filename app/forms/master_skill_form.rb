@@ -7,7 +7,7 @@ class MasterSkillForm < AbstractForm
   private
 
   def whitelisted_params(params)
-    params.require(:master_skill).permit( permitted_attributes )
+    params.fetch(:master_skill, {}).permit( permitted_attributes )
   end
 
   def permitted_attributes

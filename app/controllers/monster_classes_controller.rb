@@ -4,6 +4,6 @@ class MonsterClassesController < ModelBasedController
   private
 
   def whitelisted_entity_params
-    params.require(:monster_class).permit(:name)
+    params.fetch(:monster_class, {}).permit(:name)
   end
 end

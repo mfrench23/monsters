@@ -24,7 +24,7 @@ class ModelBasedController < ApplicationController
   end
 
   def new
-    instance = controlled_model_class.new
+    instance = controlled_model_class.new(whitelisted_entity_params)
     instance.campaign_id = selected_campaign_id if instance.respond_to? :campaign_id
     render locals: locals_hash(instance)
   end

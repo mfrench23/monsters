@@ -13,6 +13,6 @@ class EquipmentModifierCategoryForm < AbstractForm
   private
 
   def whitelisted_params(params)
-    params.require(:equipment_modifier_category).permit(EquipmentModifierCategoryForm.permitted_attributes)
+    params.fetch(:equipment_modifier_category, {}).permit(EquipmentModifierCategoryForm.permitted_attributes)
   end
 end

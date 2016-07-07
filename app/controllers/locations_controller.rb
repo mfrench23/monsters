@@ -4,6 +4,6 @@ class LocationsController < ModelBasedController
   private
 
   def whitelisted_entity_params
-    params.require(:location).permit(:name)
+    params.fetch(:location, {}).permit(:name)
   end
 end

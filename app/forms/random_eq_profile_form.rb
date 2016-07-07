@@ -14,6 +14,6 @@ class RandomEqProfileForm < AbstractEquipmentTypeForm
   private
 
   def whitelisted_params(params)
-    params.require(:random_eq_profile).permit( RandomEqProfileForm.permitted_attributes )
+    params.fetch(:random_eq_profile, {}).permit( RandomEqProfileForm.permitted_attributes )
   end
 end

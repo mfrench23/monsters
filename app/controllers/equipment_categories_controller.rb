@@ -4,7 +4,7 @@ class EquipmentCategoriesController < ModelBasedController
   private
 
   def whitelisted_entity_params
-    params.require(:equipment_category)
+    params.fetch(:equipment_category, {})
       .permit(:name, random_eq_profiles_attributes: RandomEqProfileForm.permitted_attributes)
       .merge({:campaign_id => selected_campaign_id})
   end

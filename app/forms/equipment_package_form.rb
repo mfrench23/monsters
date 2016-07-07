@@ -12,6 +12,6 @@ class EquipmentPackageForm < AbstractForm
   private
 
   def whitelisted_params(params)
-    params.require(:equipment_package).permit( EquipmentPackageForm.permitted_attributes )
+    params.fetch(:equipment_package, {}).permit( EquipmentPackageForm.permitted_attributes )
   end
 end
