@@ -12,7 +12,7 @@ class EquipmentModifier < AbstractEntity
   has_many :equipment_pieces, :through => :equipment_piece_modifiers
   has_many :excluded_equipment_modifiers, :through => :equipment_modifier_exclusions, :source => :excluded
 
-  delegate :name, to: :equipment_modifier_category, prefix: true
+  delegate :name, to: :equipment_modifier_category, prefix: true, allow_nil: true
 
   after_commit :update_modified
 

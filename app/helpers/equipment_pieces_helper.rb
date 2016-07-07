@@ -6,7 +6,7 @@ module EquipmentPiecesHelper
 
   def pretty_print_equipment_piece_modifiers equipment_piece
     return nil unless equipment_piece.equipment_modifiers.any?
-    equipment_piece.equipment_modifiers.map { |em| em.name }.join("; ")
+    equipment_piece.equipment_modifiers.sort_by{ |item| [item.equipment_modifier_category_name, item.name] }.map(&:name).join("; ")
   end
 
   private
