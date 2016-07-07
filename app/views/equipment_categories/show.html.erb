@@ -4,7 +4,10 @@
 </p>
 
 <div class="field">
-  <span class="field-label show">Equipment Types</span>
+  <span class="field-label show">
+    Equipment Types
+    <%= link_to "(create new)", new_equipment_type_path(:equipment_type => {:equipment_category_name => equipment_category.name}), :class => "quiet blue-highlight footnote" %>
+  </span>
   <%= render "boxed_list", list: equipment_category.equipment_types, row_style_display: "" %>
 </div>
 
