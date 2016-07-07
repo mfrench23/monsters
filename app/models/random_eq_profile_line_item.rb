@@ -17,8 +17,7 @@ class RandomEqProfileLineItem < ActiveRecord::Base
   private
 
   def points_to_modifiers
-    pointer_count = (equipment_modifier_category ? 1 : 0) + (equipment_modifier_supercategory ? 1 : 0)
-    if pointer_count != 1
+    unless (equipment_modifier_category.blank? ^ equipment_modifier_supercategory.blank?)
       errors.add(:random_eq_profile_line_item, "must point to either a Modifier Category, or a Modifier Super-Category, but not both")
     end
   end
