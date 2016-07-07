@@ -44,7 +44,11 @@
               <% toggle_link_key = base_id.gsub(/[\[\]]/, "_") + member_name.to_s + "_sub" + subheader_index.to_s %>
               <tr>
                 <td colspan="<%= number_of_columns %>">
-                  <%= new_subheader %>
+                  <% if new_subheader.blank? %>
+                    <span class="footnote">(n/a) </span>
+                  <% else %>
+                    <%= new_subheader %>
+                  <% end %>
                   <% if subheader_counts[new_subheader] > 0 %>
                     <%= toggle_links(toggle_link_key, "-", "+") %>
                     <% row_style_display = "" %>

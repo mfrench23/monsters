@@ -12,4 +12,6 @@ class EquipmentModifierCategory < AbstractEntity
 
   has_many :equipment_type_modifier_categories, dependent: :destroy
   has_many :equipment_types, through: :equipment_type_modifier_categories
+
+  delegate :name, to: :equipment_modifier_supercategory, prefix: true, allow_nil: true
 end

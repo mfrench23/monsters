@@ -41,6 +41,7 @@
     intersection_field: :equipment_modifier_category, target: equipment_type,
     base_id: f.object_name.to_s + "[equipment_type_modifier_categories_attributes]",
     member_name: :equipment_type_modifier_categories, intersected_table: EquipmentModifierCategory,
+    subheader_field: :equipment_modifier_supercategory,
     table_class: "fixed-table", title: "Equipment Modifier Categories" %>
 
   <div class="field">

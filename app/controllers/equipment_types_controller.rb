@@ -46,8 +46,9 @@ class EquipmentTypesController < ModelBasedController
   end
 
   def additional_form_locals
-    {equipment_modifier_categories: EquipmentModifierCategory.all,
-     error_messages: []}
+    # TODO Limit by campaign
+    categories = EquipmentModifierCategory.all.sort_by{|item| [(item.equipment_modifier_supercategory_name || 'zzzzz').to_s, item.name] }
+    {equipment_modifier_categories: categories, error_messages: []}
   end
 
   def includes_for_sorting
