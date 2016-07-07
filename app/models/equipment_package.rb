@@ -19,12 +19,12 @@ class EquipmentPackage < AbstractEntity
   end
 
   def total_cost_cents
-    self[:total_cost_cents] = equipment_pieces.sum(:cost_cents)
+    self[:total_cost_cents] = equipment_pieces.map(&:total_cost_cents).inject(&:+) || 0
     self[:total_cost_cents]
   end
 
   def total_weight
-    self[:total_weight] = equipment_pieces.sum(:weight)
+    self[:total_weight] = equipment_pieces.map(&:total_weight).inject(&:+) || 0
     self[:total_weight]
   end
 

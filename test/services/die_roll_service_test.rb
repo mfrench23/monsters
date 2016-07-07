@@ -31,6 +31,10 @@ class DieRollServiceTest < ActionView::TestCase
     assert_not_nil roll
     assert_equal roll.to_i, roll
     assert_equal true, (1 <= roll && roll <= 4), roll
+    roll = @service.roll("20d3")
+    assert_not_nil roll
+    assert_equal roll.to_i, roll
+    assert_equal true, (20 <= roll && roll <= 60), roll
   end
 
   test "can add" do
@@ -38,6 +42,10 @@ class DieRollServiceTest < ActionView::TestCase
     assert_not_nil roll
     assert_equal roll.to_i, roll
     assert_equal true, (7 <= roll && roll <= 12), roll
+    roll = @service.roll("1d+106")
+    assert_not_nil roll
+    assert_equal roll.to_i, roll
+    assert_equal true, (107 <= roll && roll <= 112), roll
   end
 
   test "can subtract" do
@@ -45,6 +53,10 @@ class DieRollServiceTest < ActionView::TestCase
     assert_not_nil roll
     assert_equal roll.to_i, roll
     assert_equal true, (-2 <= roll && roll <= 4), roll
+    roll = @service.roll("1d-13")
+    assert_not_nil roll
+    assert_equal roll.to_i, roll
+    assert_equal true, (-12 <= roll && roll <= -7), roll
   end
 
   test "can add dice" do
@@ -59,6 +71,10 @@ class DieRollServiceTest < ActionView::TestCase
     assert_not_nil roll
     assert_equal roll.to_i, roll
     assert_equal true, [3,6,9,12,15,18].include?(roll), roll
+    roll = @service.roll("1d*30")
+    assert_not_nil roll
+    assert_equal roll.to_i, roll
+    assert_equal true, [30,60,90,120,150,180].include?(roll), roll
   end
 
   test "can perform integer division" do
@@ -66,5 +82,14 @@ class DieRollServiceTest < ActionView::TestCase
     assert_not_nil roll
     assert_equal roll.to_i, roll
     assert_equal true, [1,2,3].include?(roll), roll
+    roll = @service.roll("10/2")
+    assert_equal 5, roll
+  end
+
+  test "respects parens" do
+    roll = @service.roll("3*(1+4)")
+    assert_equal 15, roll
+    roll = @service.roll("3*(1+2*(1+1))")
+    assert_equal 15, roll
   end
 end

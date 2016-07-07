@@ -25,9 +25,16 @@ class RandomEquipmentService
 
   def select_modifiers_and_quantity_based_on_profile_and_equipment_type(profile, equipment_type)
     return nil if equipment_type.nil? || profile.nil?
-    quantity = @die_roll_service.roll(profile.quantity, 1)
-    modifier_list = get_modifier_list(equipment_type, profile)
+    # get a random_eq_profile from the type, if it offers any
+    detailed_profile = random_profile_from_collection(equipment_type.try(:random_eq_profiles))
+    quantity = @die_roll_service.roll(combined_quantity(profile, detailed_profile), 1)
+    modifier_list = get_modifier_list(equipment_type, profile, detailed_profile)
     generate_equipment_piece(equipment_type, modifier_list, quantity)
+  end
+
+  # quantity value from one profile times the quantity value from the other
+  def combined_quantity(profile, detailed_profile)
+    "(" + (profile.try(:quantity) || "1") + ")*(" + (detailed_profile.try(:quantity) || "1") + ")"
   end
 
   def generate_equipment_piece(equipment_type, modifier_list, quantity)
@@ -37,9 +44,7 @@ class RandomEquipmentService
     package
   end
 
-  def get_modifier_list(equipment_type, profile)
-    # get a random_eq_profile from the type, if it offers any
-    detailed_profile = random_profile_from_collection(equipment_type.try(:random_eq_profiles))
+  def get_modifier_list(equipment_type, profile, detailed_profile)
     # combine the random_eq_profile instances to get a list of equipment_modifier_categories and counts, then select modifiers
     get_random_modifiers(equipment_type, [*profile.try(:random_eq_profile_line_items)] + [*detailed_profile.try(:random_eq_profile_line_items)])
   end

@@ -80,6 +80,18 @@ class RandomEquipmentServiceTest < ActionController::TestCase
     assert_equal 3.0, result.total_weight
   end
 
+  test "should combine quantities if applying two random_eq_profiles" do
+    random_eq_profile = RandomEqProfile.new(:quantity => "3")
+    @equipment_type.random_eq_profiles << random_eq_profile
+    @equipment_type.save!
+    result = @service.randomize(@campaign)
+    result.save!
+    assert_equal 3, result.equipment_pieces.first.quantity
+    assert_equal 6000, result.equipment_pieces.first.total_cost_cents
+    assert_equal 6000, result.total_cost_cents
+    assert_equal 9.0, result.total_weight
+  end
+
   test "should get randomized equipment" do
     @request.env['HTTP_REFERER'] = "localhost"
     assert_difference('EquipmentPackage.count') do
