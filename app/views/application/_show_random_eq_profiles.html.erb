@@ -4,10 +4,14 @@
     <ul>
       <% parent.random_eq_profiles.each do |random_eq_profile| %>
         <li>
-          <% random_eq_profile.random_eq_profile_line_items.each_with_index do |line_item, index| %>
-            <% last = index == (random_eq_profile.random_eq_profile_line_items.count-1) %>
-            <%= line_item.quantity %>
-            <%= link_to line_item.modifier_source.to_s + (last ? "" : ", "), line_item.modifier_source, :class => "quiet" %>
+          <% if random_eq_profile.random_eq_profile_line_items.count > 0 %>
+            <% random_eq_profile.random_eq_profile_line_items.each_with_index do |line_item, index| %>
+              <% last = index == (random_eq_profile.random_eq_profile_line_items.count-1) %>
+              <%= line_item.quantity %>
+              <%= link_to line_item.modifier_source.to_s + (last ? "" : ", "), line_item.modifier_source, :class => "quiet" %>
+            <% end %>
+          <% else %>
+            Unmodified
           <% end %>
           <% if random_eq_profile.random_weight.to_i > 1 %>
             (random weight: <%= random_eq_profile.random_weight %>)
