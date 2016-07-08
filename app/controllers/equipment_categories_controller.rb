@@ -1,5 +1,10 @@
 # Controller functionality specific to the EquipmentCategory model
 class EquipmentCategoriesController < ModelBasedController
+  include Randomizable
+
+  def randomize
+    randomize_from(set_model_by_id)
+  end
 
   private
 

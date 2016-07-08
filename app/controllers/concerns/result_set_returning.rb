@@ -1,3 +1,4 @@
+# Filtering and sorting functionality for controllers
 module ResultSetReturning
   extend ActiveSupport::Concern
 

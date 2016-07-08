@@ -68,4 +68,10 @@ class EquipmentCategoriesControllerTest < ActionController::TestCase
 
     assert_redirected_to equipment_categories_path
   end
+
+  test "should get no randomized equipment without random_eq_profile definitions" do
+    @request.env['HTTP_REFERER'] = equipment_categories_path
+    get :randomize, id: @equipment_category
+    assert_response :found
+  end
 end

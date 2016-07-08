@@ -35,7 +35,12 @@ Rails.application.routes.draw do
   resources :move_types
   resources :locations
 
-  resources :equipment_categories
+  resources :equipment_categories do
+    member do
+      get 'randomize'
+    end
+  end
+
   resources :equipment_types do
     collection do
       get :autocomplete_equipment_category_name

@@ -15,3 +15,7 @@
 
 <%= link_to 'Edit', edit_equipment_category_path(equipment_category) %> |
 <%= link_to 'Index', equipment_categories_path %>
+<% if equipment_category.random_eq_profiles.any? %>
+  |
+  <%= link_to 'Randomize', randomize_equipment_category_path(equipment_category) %>
+<% end %>

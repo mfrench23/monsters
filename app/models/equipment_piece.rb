@@ -41,7 +41,7 @@ class EquipmentPiece < AbstractEntity
   end
 
   def base_weight
-    self.base_weight = perform_modifications(:base_weight_modifier_value_object, equipment_type.try(:base_weight))
+    self.base_weight = perform_modifications(:base_weight_modifier_value_object, (equipment_type.try(:base_weight) || 0))
     read_attribute :base_weight
   end
 
