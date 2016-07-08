@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701212328) do
+ActiveRecord::Schema.define(version: 20160708190334) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -103,8 +103,8 @@ ActiveRecord::Schema.define(version: 20160701212328) do
     t.integer  "campaign_id", limit: 4
   end
 
+  add_index "equipment_categories", ["campaign_id", "name"], name: "index_equipment_categories_on_name_and_campaign_id", using: :btree
   add_index "equipment_categories", ["campaign_id"], name: "index_equipment_categories_on_campaign_id", using: :btree
-  add_index "equipment_categories", ["name", "campaign_id"], name: "index_equipment_categories_on_name_and_campaign_id", unique: true, using: :btree
 
   create_table "equipment_modifier_categories", force: :cascade do |t|
     t.string   "name",                                limit: 255
@@ -212,9 +212,9 @@ ActiveRecord::Schema.define(version: 20160701212328) do
     t.integer  "campaign_id",           limit: 4
   end
 
+  add_index "equipment_types", ["campaign_id", "name"], name: "idx_equipment_types_on_name_and_campaign", using: :btree
   add_index "equipment_types", ["campaign_id"], name: "index_equipment_types_on_campaign_id", using: :btree
   add_index "equipment_types", ["equipment_category_id"], name: "index_equipment_types_on_equipment_category_id", using: :btree
-  add_index "equipment_types", ["name"], name: "index_equipment_types_on_name", unique: true, using: :btree
 
   create_table "illustrations", force: :cascade do |t|
     t.integer  "illustratable_id",   limit: 4
