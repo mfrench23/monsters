@@ -1,17 +1,4 @@
-<p>
-  <strong>Name:</strong>
-  <%= equipment_category.name %>
-</p>
-
-<div class="field">
-  <span class="field-label show">
-    Equipment Types
-    <%= link_to "(create new)", new_equipment_type_path(:equipment_type => {:equipment_category_name => equipment_category.name}), :class => "quiet blue-highlight footnote" %>
-  </span>
-  <%= render "boxed_list", list: equipment_category.equipment_types, row_style_display: "" %>
-</div>
-
-<%= render "show_random_eq_profiles", parent: equipment_category %>
+<%= render 'show', equipment_category: equipment_category %>
 
 <%= link_to 'Edit', edit_equipment_category_path(equipment_category) %> |
 <%= link_to 'Index', equipment_categories_path %>
@@ -19,3 +6,4 @@
   |
   <%= link_to 'Randomize', randomize_equipment_category_path(equipment_category) %>
 <% end %>
+| <%= link_to 'Merge into another category', merge_into_equipment_category_path(equipment_category) %>

@@ -50,6 +50,29 @@ class EquipmentCategoriesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get merge" do
+    get :merge_into, id: @equipment_category
+    assert_response :success
+  end
+
+  test "should merge duplicate into equipment_category" do
+    dupe = EquipmentCategory.new(name: @equipment_category.name + (Time.now.to_f * 1000).to_i.to_s, campaign: @campaign)
+    dupe.save!
+    assert_difference('EquipmentCategory.count', -1) do
+      post :do_merge_into, { merge_into_equipment_category_id: @equipment_category.id, id: dupe.id }
+    end
+
+    assert_redirected_to @equipment_category
+  end
+
+  test "should fail to merge a category into itself" do
+    assert_no_difference('EquipmentCategory.count') do
+      post :do_merge_into, { merge_into_equipment_category_id: @equipment_category.id, id: @equipment_category.id }
+    end
+
+    assert_response :ok
+  end
+
   test "should update equipment_category" do
     patch :update, id: @equipment_category, equipment_category: { name: @equipment_category.name, campaign_id: @equipment_category.campaign.id }
     assert_redirected_to @equipment_category

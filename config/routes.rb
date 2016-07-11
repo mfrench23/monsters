@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   resources :equipment_categories do
     member do
       get 'randomize'
+      get 'merge_into'
+      post 'do_merge_into'
     end
   end
 
