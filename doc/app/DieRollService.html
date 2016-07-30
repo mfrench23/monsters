@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class RandomEqProfileForm - Rails Application Documentation</title>
+<title>class DieRollService - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -58,7 +58,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="AbstractEquipmentTypeForm.html">AbstractEquipmentTypeForm</a>
+  <p class="link"><a href="Object.html">Object</a>
   
 </div>
 
@@ -72,7 +72,7 @@
     
     <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-c-permitted_attributes">::permitted_attributes</a>
+    <li ><a href="#method-i-roll">#roll</a>
     
   </ul>
 </div>
@@ -80,16 +80,13 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-RandomEqProfileForm">
-  <h1 id="class-RandomEqProfileForm" class="class">
-    class RandomEqProfileForm
+<main role="main" aria-labelledby="class-DieRollService">
+  <h1 id="class-DieRollService" class="class">
+    class DieRollService
   </h1>
 
   <section class="description">
     
-<p>Organizes the collection of parameters for a single instance of the <a
-href="EquipmentType.html">EquipmentType</a> model</p>
-
   </section>
 
   
@@ -100,6 +97,35 @@ href="EquipmentType.html">EquipmentType</a> model</p>
 
     
 
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="Regex_Add_Or_Subtract">Regex_Add_Or_Subtract
+        
+        <dd>
+        
+      
+        <dt id="Regex_Die_Roll">Regex_Die_Roll
+        
+        <dd>
+        
+      
+        <dt id="Regex_Multiply_Or_Divide">Regex_Multiply_Or_Divide
+        
+        <dd>
+        
+      
+        <dt id="Regex_Parenthetical_Phrase">Regex_Parenthetical_Phrase
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
     
 
     
@@ -115,39 +141,6 @@ href="EquipmentType.html">EquipmentType</a> model</p>
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(params=nil)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/forms/random_eq_profile_form.rb, line 3</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>)
-  <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">whitelisted_params</span>(<span class="ruby-identifier">params</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-permitted_attributes" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">permitted_attributes</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -162,13 +155,53 @@ href="EquipmentType.html">EquipmentType</a> model</p>
           
 
           
-          <div class="method-source-code" id="permitted_attributes-source">
-            <pre><span class="ruby-comment"># File app/forms/random_eq_profile_form.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">permitted_attributes</span>
-  [<span class="ruby-value">:id</span>, <span class="ruby-value">:equipment_type_id</span>, <span class="ruby-value">:equipment_category_id</span>,
-   <span class="ruby-value">:random_weight</span>, <span class="ruby-value">:quantity</span>,
-   <span class="ruby-value">:_destroy</span>,
-   <span class="ruby-identifier">random_eq_profile_line_items_attributes</span><span class="ruby-operator">:</span> [<span class="ruby-value">:id</span>, <span class="ruby-value">:equipment_modifier_supercategory_id</span>, <span class="ruby-value">:equipment_modifier_category_id</span>, <span class="ruby-value">:quantity</span>, <span class="ruby-value">:_destroy</span>]]
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/services/die_roll_service.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-roll" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">roll</span><span
+            class="method-args">(formula_string, min = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>given a die roll formula (like “2d” or “1d/3” or “1d4+1d10”), “roll the
+dice” and return the result</p>
+          
+          
+
+          
+          <div class="method-source-code" id="roll-source">
+            <pre><span class="ruby-comment"># File app/services/die_roll_service.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">roll</span>(<span class="ruby-identifier">formula_string</span>, <span class="ruby-identifier">min</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">formula</span> = <span class="ruby-identifier">formula_string</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/ /</span>, <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-identifier">result</span> = (<span class="ruby-identifier">formula</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">calculate_results</span>(<span class="ruby-identifier">formula</span>).<span class="ruby-identifier">to_i</span>)
+  <span class="ruby-identifier">min</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">result</span> <span class="ruby-operator">:</span> ( <span class="ruby-identifier">min</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">result</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">min</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">result</span> )
 <span class="ruby-keyword">end</span></pre>
           </div>
           

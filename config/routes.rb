@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :rpm_effects
+
   resources :equipment_modifier_supercategories
 
   root 'welcome#index'

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= rpm_effect.name %>
+</p>
+
+<p>
+  <strong>Cost:</strong>
+  <%= rpm_effect.cost %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= rpm_effect.notes %>
+</p>
+
+<p>
+  <strong>Campaign:</strong>
+  <%= rpm_effect.campaign %>
+</p>
+
+<%= link_to 'Edit', edit_rpm_effect_path(rpm_effect) %> |
+<%= link_to 'Index', rpm_effects_path %>

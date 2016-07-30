@@ -190,7 +190,7 @@ enchanted broadsword behind the door in Room #37”.</p>
           <div class="method-source-code" id="base_weight-source">
             <pre><span class="ruby-comment"># File app/models/equipment_piece.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">base_weight</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">base_weight</span> = <span class="ruby-identifier">perform_modifications</span>(<span class="ruby-value">:base_weight_modifier_value_object</span>, <span class="ruby-identifier">equipment_type</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:base_weight</span>))
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">base_weight</span> = <span class="ruby-identifier">perform_modifications</span>(<span class="ruby-value">:base_weight_modifier_value_object</span>, (<span class="ruby-identifier">equipment_type</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:base_weight</span>) <span class="ruby-operator">||</span> <span class="ruby-value">0</span>))
   <span class="ruby-identifier">read_attribute</span> <span class="ruby-value">:base_weight</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

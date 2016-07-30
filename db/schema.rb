@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708190334) do
+ActiveRecord::Schema.define(version: 20160729220513) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -368,6 +368,18 @@ ActiveRecord::Schema.define(version: 20160708190334) do
   add_index "random_eq_profiles", ["equipment_category_id"], name: "index_random_eq_profiles_on_equipment_category_id", using: :btree
   add_index "random_eq_profiles", ["equipment_type_id"], name: "index_random_eq_profiles_on_equipment_type_id", using: :btree
 
+  create_table "rpm_effects", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.integer  "cost",        limit: 4
+    t.text     "notes",       limit: 65535
+    t.integer  "campaign_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "rpm_effects", ["campaign_id", "name"], name: "idx_rpm_effects_on_name_and_campaign", using: :btree
+  add_index "rpm_effects", ["campaign_id"], name: "index_rpm_effects_on_campaign_id", using: :btree
+
   create_table "skills", force: :cascade do |t|
     t.integer  "modifier",        limit: 4,     null: false
     t.datetime "created_at",                    null: false
@@ -438,6 +450,7 @@ ActiveRecord::Schema.define(version: 20160708190334) do
   add_foreign_key "random_eq_profile_line_items", "random_eq_profiles"
   add_foreign_key "random_eq_profiles", "equipment_categories"
   add_foreign_key "random_eq_profiles", "equipment_types"
+  add_foreign_key "rpm_effects", "campaigns"
   add_foreign_key "skills", "creatures"
   add_foreign_key "skills", "master_skills"
   add_foreign_key "traits", "creatures"

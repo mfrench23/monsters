@@ -216,7 +216,7 @@ certain monster.</p>
           <div class="method-source-code" id="total_cost_cents-source">
             <pre><span class="ruby-comment"># File app/models/equipment_package.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">total_cost_cents</span>
-  <span class="ruby-keyword">self</span>[<span class="ruby-value">:total_cost_cents</span>] = <span class="ruby-identifier">equipment_pieces</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-value">:cost_cents</span>)
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:total_cost_cents</span>] = <span class="ruby-identifier">equipment_pieces</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:total_cost_cents</span>).<span class="ruby-identifier">inject</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:+</span>) <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
   <span class="ruby-keyword">self</span>[<span class="ruby-value">:total_cost_cents</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -250,7 +250,7 @@ certain monster.</p>
           <div class="method-source-code" id="total_weight-source">
             <pre><span class="ruby-comment"># File app/models/equipment_package.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">total_weight</span>
-  <span class="ruby-keyword">self</span>[<span class="ruby-value">:total_weight</span>] = <span class="ruby-identifier">equipment_pieces</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-value">:weight</span>)
+  <span class="ruby-keyword">self</span>[<span class="ruby-value">:total_weight</span>] = <span class="ruby-identifier">equipment_pieces</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:total_weight</span>).<span class="ruby-identifier">inject</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:+</span>) <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
   <span class="ruby-keyword">self</span>[<span class="ruby-value">:total_weight</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>

@@ -62,9 +62,34 @@
   
 </div>
 
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Randomizable.html">Randomizable</a>
+  
+  
+  </ul>
+</div>
+
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-do_merge_into">#do_merge_into</a>
     
+    <li ><a href="#method-i-merge_into">#merge_into</a>
+    
+    <li ><a href="#method-i-randomize">#randomize</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -93,6 +118,114 @@ href="EquipmentCategory.html">EquipmentCategory</a> model</p>
     
 
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-do_merge_into" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">do_merge_into</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="do_merge_into-source">
+            <pre><span class="ruby-comment"># File app/controllers/equipment_categories_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">do_merge_into</span>
+  <span class="ruby-identifier">merge_into</span> = <span class="ruby-constant">EquipmentCategory</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:merge_into_equipment_category_id</span>])
+  <span class="ruby-identifier">redirect_after_merge</span> <span class="ruby-identifier">merge_into</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">set_model_by_id</span>), <span class="ruby-identifier">merge_into</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-merge_into" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">merge_into</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="merge_into-source">
+            <pre><span class="ruby-comment"># File app/controllers/equipment_categories_controller.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">merge_into</span>
+  <span class="ruby-identifier">display_merge_into_page</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-randomize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="randomize-source">
+            <pre><span class="ruby-comment"># File app/controllers/equipment_categories_controller.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">randomize</span>
+  <span class="ruby-identifier">randomize_from</span>(<span class="ruby-identifier">set_model_by_id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

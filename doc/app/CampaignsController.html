@@ -62,13 +62,26 @@
   
 </div>
 
-    
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Randomizable.html">Randomizable</a>
+  
+  
+  </ul>
+</div>
+
     
     <!-- Method Quickref -->
 <div id="method-list-section" class="nav-section">
   <h3>Methods</h3>
 
   <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-randomize">#randomize</a>
     
     <li ><a href="#method-i-set_selected_campaign">#set_selected_campaign</a>
     
@@ -109,6 +122,39 @@ href="Campaign.html">Campaign</a> model</p>
        </header>
 
     
+      <div id="method-i-randomize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">randomize</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="randomize-source">
+            <pre><span class="ruby-comment"># File app/controllers/campaigns_controller.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">randomize</span>
+  <span class="ruby-identifier">randomize_from</span>(<span class="ruby-constant">Campaign</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">selected_campaign_id</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-set_selected_campaign" class="method-detail ">
         
         <div class="method-heading">
@@ -128,7 +174,7 @@ href="Campaign.html">Campaign</a> model</p>
 
           
           <div class="method-source-code" id="set_selected_campaign-source">
-            <pre><span class="ruby-comment"># File app/controllers/campaigns_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/campaigns_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_selected_campaign</span>
   <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:campaign_id</span>]
   <span class="ruby-identifier">cookies</span>.<span class="ruby-identifier">permanent</span>[<span class="ruby-value">:selected_campaign</span>] = <span class="ruby-identifier">id</span>
