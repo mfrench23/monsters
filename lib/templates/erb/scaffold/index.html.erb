@@ -1,0 +1,33 @@
+<p id="notice"><%%= notice %></p>
+
+<h1>Listing <%= plural_table_name.titleize %></h1>
+
+<table>
+  <thead>
+    <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+<% if "Name" == attribute.human_name -%>
+      <th><%%= sortable "<%= singular_table_name.tableize %>.name", <%= singular_table_name.classify %>, params, "Name" %></th>
+<% else -%>
+      <th><%= attribute.human_name %></th>
+<% end -%>
+<% end -%>
+      <%%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%% <%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+<% end -%>
+        <%%= render 'index_edit_destroy_links', target: <%= singular_table_name %> %>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %>

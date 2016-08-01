@@ -26,6 +26,12 @@ module Monsters
     config.autoload_paths += %W(#{config.root}/forms)
     config.autoload_paths += %W(#{config.root}/services)
 
+    config.generators do |g|
+      g.orm :active_record
+      g.template_engine :erb
+      g.test_framework :test_unit
+    end
+
     Rack::Utils.multipart_part_limit = 0 # temporary until fix in Rack 1.7
   end
 end
