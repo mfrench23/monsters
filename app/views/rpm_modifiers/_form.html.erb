@@ -21,6 +21,11 @@
     partial: 'rpm_modifier_level_fields', label: 'add level', header: "Levels",
     header_list: [ :description, :cost, :include_notes_in_summary, :accepts_enhancements ] %>
 
+  <%= render 'expanding_fieldset', f: f,
+    id: "rpm_modifier_subtypes", collection: :rpm_modifier_subtypes,
+    partial: 'rpm_modifier_subtype_fields', label: 'add subtype', header: "Subtypes",
+    header_list: [ :name, :multiplier ] %>
+
   <div class="field">
     <%= f.label :notes %><br>
     <%= f.text_area :notes %>

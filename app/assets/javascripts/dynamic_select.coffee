@@ -15,7 +15,8 @@
             opts = opts.attr('selected', 'selected')
           child.append opts
           return
-        child.change()
+        child.change() # fire any onchange event for the child
+        child.toggle( data.length > 0 ) # hide empty selects
       )
     return
   return

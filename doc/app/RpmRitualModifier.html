@@ -129,9 +129,10 @@
 
           
           <div class="method-source-code" id="cost-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cost</span>
-  <span class="ruby-identifier">rpm_modifier_level</span>.<span class="ruby-identifier">cost</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">enhancement_addition</span>
+  <span class="ruby-identifier">base</span> = (<span class="ruby-identifier">rpm_modifier_level</span>.<span class="ruby-identifier">cost</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">subtype_factor</span>).<span class="ruby-identifier">ceil</span>
+  <span class="ruby-identifier">base</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">enhancement_addition</span>(<span class="ruby-identifier">base</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -162,9 +163,9 @@
 
           
           <div class="method-source-code" id="to_long_s-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_long_s</span>
-  <span class="ruby-node">&quot;#{to_short_s}, #{rpm_modifier_level_description}#{filtered_notes}#{enhancements} (#{cost})&quot;</span>
+  <span class="ruby-node">&quot;#{to_short_s} #{rpm_modifier_subtype_name} #{rpm_modifier_level_description}#{filtered_notes}#{enhancements} (#{cost})&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -195,7 +196,7 @@
 
           
           <div class="method-source-code" id="to_short_s-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 13</span>
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_short_s</span>
   <span class="ruby-identifier">rpm_modifier</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

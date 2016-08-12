@@ -26,6 +26,21 @@
   <% end %>
 </p>
 
+<p>
+  <strong>Subtypes:</strong>
+  <% if rpm_modifier.rpm_modifier_subtypes.any? %>
+    <ul>
+      <% rpm_modifier.rpm_modifier_subtypes.each do |subtype| %>
+        <li>
+          <%= subtype.name %> (x<%= subtype.multiplier %>)
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+      <em>none</em>
+  <% end %>
+</p>
+
 <% if rpm_modifier.notes.present? %>
   <p>
     <strong>Notes:</strong>

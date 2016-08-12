@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803184952) do
+ActiveRecord::Schema.define(version: 20160812154408) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -392,6 +392,16 @@ ActiveRecord::Schema.define(version: 20160803184952) do
 
   add_index "rpm_modifier_levels", ["rpm_modifier_id"], name: "index_rpm_modifier_levels_on_rpm_modifier_id", using: :btree
 
+  create_table "rpm_modifier_subtypes", force: :cascade do |t|
+    t.integer  "rpm_modifier_id", limit: 4
+    t.string   "name",            limit: 255
+    t.decimal  "multiplier",                  precision: 5, scale: 2
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+  end
+
+  add_index "rpm_modifier_subtypes", ["rpm_modifier_id"], name: "index_rpm_modifier_subtypes_on_rpm_modifier_id", using: :btree
+
   create_table "rpm_modifiers", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "notes",       limit: 65535
@@ -425,17 +435,19 @@ ActiveRecord::Schema.define(version: 20160803184952) do
   add_index "rpm_potencies", ["campaign_id"], name: "index_rpm_potencies_on_campaign_id", using: :btree
 
   create_table "rpm_ritual_modifiers", force: :cascade do |t|
-    t.integer  "rpm_ritual_id",          limit: 4
-    t.integer  "rpm_modifier_level_id",  limit: 4
-    t.text     "notes",                  limit: 65535
-    t.integer  "enhancement_percentage", limit: 4
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.boolean  "inherent",               limit: 1
-    t.text     "enhancement_notes",      limit: 65535
+    t.integer  "rpm_ritual_id",           limit: 4
+    t.integer  "rpm_modifier_level_id",   limit: 4
+    t.text     "notes",                   limit: 65535
+    t.integer  "enhancement_percentage",  limit: 4
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "inherent",                limit: 1
+    t.text     "enhancement_notes",       limit: 65535
+    t.integer  "rpm_modifier_subtype_id", limit: 4
   end
 
   add_index "rpm_ritual_modifiers", ["rpm_modifier_level_id"], name: "index_rpm_ritual_modifiers_on_rpm_modifier_level_id", using: :btree
+  add_index "rpm_ritual_modifiers", ["rpm_modifier_subtype_id"], name: "index_rpm_ritual_modifiers_on_rpm_modifier_subtype_id", using: :btree
   add_index "rpm_ritual_modifiers", ["rpm_ritual_id"], name: "index_rpm_ritual_modifiers_on_rpm_ritual_id", using: :btree
 
   create_table "rpm_rituals", force: :cascade do |t|
@@ -537,10 +549,12 @@ ActiveRecord::Schema.define(version: 20160803184952) do
   add_foreign_key "random_eq_profiles", "equipment_types"
   add_foreign_key "rpm_effects", "campaigns"
   add_foreign_key "rpm_modifier_levels", "rpm_modifiers"
+  add_foreign_key "rpm_modifier_subtypes", "rpm_modifiers"
   add_foreign_key "rpm_modifiers", "campaigns"
   add_foreign_key "rpm_paths", "campaigns"
   add_foreign_key "rpm_potencies", "campaigns"
   add_foreign_key "rpm_ritual_modifiers", "rpm_modifier_levels"
+  add_foreign_key "rpm_ritual_modifiers", "rpm_modifier_subtypes"
   add_foreign_key "rpm_ritual_modifiers", "rpm_rituals"
   add_foreign_key "rpm_rituals", "campaigns"
   add_foreign_key "rpm_spell_effects", "rpm_effects"

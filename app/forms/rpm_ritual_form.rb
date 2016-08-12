@@ -8,7 +8,7 @@ class RpmRitualForm < AbstractForm
   def self.permitted_attributes
     [:name, :description, :campaign_id,
         rpm_spell_effects_attributes: [:id, :rpm_potency_id, :rpm_effect_id, :rpm_path_id, :notes, :inherent, :_destroy],
-        rpm_ritual_modifiers_attributes: [:id, :rpm_modifier_level_id, :notes, :inherent, :enhancement_percentage, :enhancement_notes, :_destroy] ]
+        rpm_ritual_modifiers_attributes: [:id, :rpm_modifier_level_id, :rpm_modifier_subtype_id, :notes, :inherent, :enhancement_percentage, :enhancement_notes, :_destroy] ]
   end
 
   private

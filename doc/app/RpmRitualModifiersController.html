@@ -70,7 +70,9 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-show">#show</a>
+    <li ><a href="#method-i-levels">#levels</a>
+    
+    <li ><a href="#method-i-subtypes">#subtypes</a>
     
   </ul>
 </div>
@@ -106,10 +108,10 @@
        </header>
 
     
-      <div id="method-i-show" class="method-detail ">
+      <div id="method-i-levels" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">show</span><span
+          <span class="method-name">levels</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -124,12 +126,48 @@
           
 
           
-          <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/rpm_ritual_modifiers_controller.rb, line 2</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+          <div class="method-source-code" id="levels-source">
+            <pre><span class="ruby-comment"># File app/controllers/rpm_ritual_modifiers_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">levels</span>
   <span class="ruby-identifier">rpm_modifier</span> = <span class="ruby-constant">RpmModifier</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">rpm_modifier</span>.<span class="ruby-identifier">rpm_modifier_levels</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">rpm_modifier</span>.<span class="ruby-identifier">rpm_modifier_levels</span>.<span class="ruby-identifier">order_by_cost</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-subtypes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">subtypes</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="subtypes-source">
+            <pre><span class="ruby-comment"># File app/controllers/rpm_ritual_modifiers_controller.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">subtypes</span>
+  <span class="ruby-identifier">rpm_modifier</span> = <span class="ruby-constant">RpmModifier</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-identifier">rpm_modifier</span>.<span class="ruby-identifier">rpm_modifier_subtypes</span>.<span class="ruby-identifier">order_by_name</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

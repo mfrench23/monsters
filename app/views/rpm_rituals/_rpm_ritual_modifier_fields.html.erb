@@ -8,6 +8,19 @@
   </div>
 
   <div class="controls">
+    <% options = f.object.rpm_modifier.try(:rpm_modifier_subtypes) || {} %>
+    <% if options.any? %>
+      <% options = options.order_by_name.collect{ |opt| [ opt.name, opt.id ] } %>
+    <% end %>
+    <%= f.select :rpm_modifier_subtype_id, options, {},
+        {"data-dynamic_select_original_selection" => f.object.rpm_modifier_subtype_id,
+        "data-dynamic_select_child" => "rpm_modifier_id",
+        "data-dynamic_select_data_source" => "/rpm_ritual_modifier_subtypes",
+        "data-dynamic_select_value_method" => "name",
+        :style => "display: " + (options.any? ? "inline" : "none") } %>
+  </div>
+
+  <div class="controls">
     <% options = f.object.rpm_modifier.try(:rpm_modifier_levels) || {} %>
     <% if options.any? %>
       <% options = options.collect{ |opt| [ opt.description, opt.id ] } %>
