@@ -7,6 +7,12 @@ class RpmRitualsControllerTest < ActionController::TestCase
     @rpm_ritual = FactoryGirl.create(:rpm_ritual, :campaign => @campaign)
   end
 
+  test "should set up static data for standard RPM" do
+    get :standard_rpm
+    assert_response :found
+    assert_redirected_to new_rpm_ritual_path
+  end
+
   test "should get index" do
     get :index
     assert_response :success

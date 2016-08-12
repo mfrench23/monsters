@@ -1,6 +1,11 @@
 # Controller functionality specific to the RpmRitual model
 class RpmRitualsController < ModelBasedController
 
+  def standard_rpm
+    RpmInitializerService.new.standardize(selected_campaign_id)
+    redirect_to new_rpm_ritual_path
+  end
+
   private
 
   def additional_form_locals

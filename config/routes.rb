@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'rpm_ritual_modifiers/:id' => "rpm_ritual_modifiers#levels", :format => :json
   get 'rpm_ritual_modifier_subtypes/:id' => "rpm_ritual_modifiers#subtypes", :format => :json
+  get 'standard_rpm' => "rpm_rituals#standard_rpm"
 
   resources :rpm_modifiers
 

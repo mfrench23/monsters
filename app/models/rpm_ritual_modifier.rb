@@ -8,7 +8,6 @@ class RpmRitualModifier < ActiveRecord::Base
   delegate :name, to: :rpm_modifier_subtype, prefix: true, allow_nil: true
   scope :inherent_only, -> { where(:inherent => true)}
 
-  validates :rpm_ritual, presence: true
   validates :rpm_modifier_level, presence: true
 
   def to_short_s

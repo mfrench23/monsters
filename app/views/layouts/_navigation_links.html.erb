@@ -20,12 +20,17 @@
       </li>
       <li>Packages
         <%= entity_links :equipment_package %>
-      </li>
     </ul>
   </li>
+<% if cookies[:selected_campaign].present? -%>
   <li><%= link_to 'Ritual Path Magic', controller: 'rpm_rituals' %>
+  <% if Campaign.find(cookies[:selected_campaign]).try(:rpm_potencies).try(:count).to_i > 0 -%>
     <%= entity_links :rpm_ritual %>  
+  <% else -%>
+    <ul><li><%= link_to 'Standard RPM setup', standard_rpm_path %></li></ul>
+  <% end %>
   </li>
+<% end -%>
   <li><span>Utility</span>
     <ul>
       <li><%= link_to 'Books', controller: 'books' %>

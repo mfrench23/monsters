@@ -5,6 +5,9 @@ class Campaign < AbstractEntity
   has_many :monsters
   has_many :equipment_types
   has_many :equipment_categories
+  has_many :rpm_potencies
+  has_many :rpm_effects
+  has_many :rpm_paths
 
   has_many :random_eq_profiles, :through => :equipment_categories
 
