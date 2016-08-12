@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Rpm Modifiers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sortable "rpm_modifiers.name", RpmModifier, params, "Name" %></th>
+      <th>Levels</th>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% rpm_modifiers.each do |rpm_modifier| %>
+      <tr>
+        <td><%= link_to rpm_modifier.name, rpm_modifier, { :class => "quiet" } %></td>
+        <td class="count"><%= rpm_modifier.level_count %></td>
+        <%= render 'index_edit_destroy_links', target: rpm_modifier %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rpm modifier', new_rpm_modifier_path %>

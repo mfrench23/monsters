@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Rpm Potencies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sortable "rpm_potencies.name", RpmPotency, params, "Name" %></th>
+      <th>Cost Factor</th>
+      <th>Notes</th>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% rpm_potencies.each do |rpm_potency| %>
+      <tr>
+        <td><%= link_to rpm_potency.name, rpm_potency_path(rpm_potency), { :class => "quiet" } %></td>
+        <td style="text-align: center">+<%= rpm_potency.cost_factor %></td>
+        <td><%= rpm_potency.notes %></td>
+        <%= render 'index_edit_destroy_links', target: rpm_potency %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rpm potency', new_rpm_potency_path %>

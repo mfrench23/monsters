@@ -1,0 +1,2 @@
+module RpmPotenciesHelper
+end

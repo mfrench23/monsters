@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Rpm Rituals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sortable "rpm_rituals.name", RpmRitual, params, "Name" %></th>
+      <th>Inherent Effects</th>
+      <th>Typical cost</th>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% rpm_rituals.each do |rpm_ritual| %>
+      <tr>
+        <td><%= link_to rpm_ritual.name, rpm_ritual_path(rpm_ritual), { :class => "quiet" } %></td>
+        <td><%= rpm_ritual.rpm_spell_effects.inherent_only.collect(&:to_short_s).sort.join(", ") %></td>
+        <td class="count"><%= rpm_ritual.typical_cost %></td>
+        <%= render 'index_edit_destroy_links', target: rpm_ritual %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rpm ritual', new_rpm_ritual_path %>

@@ -1,8 +1,7 @@
 # Controller functionality specific to the "welcome"/dashboard page
 class WelcomeController < ApplicationController
   def index
-    javascript_variables({:countbyclassdata => class_series})
-    javascript_variables({:raw_series => series_array})
+    javascript_variables({:countbyclassdata => class_series, :raw_series => series_array})
   end
 
   private

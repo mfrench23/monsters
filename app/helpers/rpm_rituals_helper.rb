@@ -1,0 +1,2 @@
+module RpmRitualsHelper
+end

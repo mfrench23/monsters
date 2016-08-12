@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= rpm_modifier.name %>
+</p>
+
+<p>
+  <strong>Levels:</strong>
+  <% if rpm_modifier.rpm_modifier_levels.any? %>
+    <ul>
+      <% rpm_modifier.rpm_modifier_levels.each do |level| %>
+        <li>
+          <%= level.description %> (cost: <%= level.cost %>)
+          <% if level.include_notes_in_summary? %>
+            <span class="footnote">&diams; include notes</span>
+          <% end -%>
+          <% if level.accepts_enhancements? %>
+            <span class="footnote">&diams; accepts enhancements</span>
+          <% end -%>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+      <em>none</em>
+  <% end %>
+</p>
+
+<% if rpm_modifier.notes.present? %>
+  <p>
+    <strong>Notes:</strong>
+    <%= rpm_modifier.notes %>
+  </p>
+<% end -%>
+
+<%= link_to 'Edit', edit_rpm_modifier_path(rpm_modifier) %> |
+<%= link_to 'Index', rpm_modifiers_path %>

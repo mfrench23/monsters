@@ -8,7 +8,6 @@
       <th><%= sortable "rpm_effects.name", RpmEffect, params, "Name" %></th>
       <th>Cost</th>
       <th>Notes</th>
-      <th>Campaign</th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
@@ -16,10 +15,9 @@
   <tbody>
     <% rpm_effects.each do |rpm_effect| %>
       <tr>
-        <td><%= rpm_effect.name %></td>
+        <td><%= link_to rpm_effect.name, rpm_effect_path(rpm_effect), { :class => "quiet" } %></td>
         <td><%= rpm_effect.cost %></td>
         <td><%= rpm_effect.notes %></td>
-        <td><%= rpm_effect.campaign %></td>
         <%= render 'index_edit_destroy_links', target: rpm_effect %>
       </tr>
     <% end %>

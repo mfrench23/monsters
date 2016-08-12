@@ -1,0 +1,34 @@
+<%= form_for(rpm_modifier) do |f| %>
+  <% if rpm_modifier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rpm_modifier.errors.count, "error") %> prohibited this rpm_modifier from being saved:</h2>
+
+      <ul>
+      <% rpm_modifier.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "rpm_modifier_levels", collection: :rpm_modifier_levels,
+    partial: 'rpm_modifier_level_fields', label: 'add level', header: "Levels",
+    header_list: [ :description, :cost, :include_notes_in_summary, :accepts_enhancements ] %>
+
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_area :notes %>
+  </div>
+
+  <%= f.hidden_field :campaign_id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

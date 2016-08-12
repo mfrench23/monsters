@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Rpm Paths</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= sortable "rpm_paths.name", RpmPath, params, "Name" %></th>
+      <th>Notes</th>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% rpm_paths.each do |rpm_path| %>
+      <tr>
+        <td><%= link_to rpm_path.name, rpm_path_path(rpm_path), { :class => "quiet" } %></td>
+        <td><%= rpm_path.notes %></td>
+        <%= render 'index_edit_destroy_links', target: rpm_path %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rpm path', new_rpm_path_path %>

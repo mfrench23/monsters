@@ -1,0 +1,39 @@
+<%= form_for(rpm_ritual) do |f| %>
+  <% if rpm_ritual.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rpm_ritual.errors.count, "error") %> prohibited this rpm_ritual from being saved:</h2>
+
+      <ul>
+      <% rpm_ritual.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "rpm_spell_effects", collection: :rpm_spell_effects,
+    partial: 'rpm_spell_effect_fields', label: 'add spell effect', header: "Spell Effects",
+    header_list: [ :effect, :notes, :inherent ] %>
+
+  <%= render 'expanding_fieldset', f: f,
+    id: "rpm_ritual_modifiers", collection: :rpm_ritual_modifiers,
+    partial: 'rpm_ritual_modifier_fields', label: 'add modifier', header: "Spell Modifiers",
+    header_list: [ :modifier, :level, :notes, :inherent, :enhancements ], locals: {rpm_modifiers: rpm_modifiers, rpm_modifier_levels_accepting_enhancements: rpm_modifier_levels_accepting_enhancements} %>
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+
+  <%= f.hidden_field :campaign_id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

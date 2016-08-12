@@ -1,0 +1,43 @@
+<% mod_id = f.object.rpm_modifier.try(:id).to_i -%>
+<% accepts_enhancements = f.object.rpm_modifier_level.try(:accepts_enhancements) %>
+<li class="control-group nested-fields">
+  <div class="controls">
+    <%= select_tag :rpm_modifier_id, options_from_collection_for_select(locals[:rpm_modifiers], "id", "name", mod_id),
+        {"data-dynamic_select_parent" => "rpm_modifier_id",
+        :onchange => "updateDynamicSelect(this);"} %>
+  </div>
+
+  <div class="controls">
+    <% options = f.object.rpm_modifier.try(:rpm_modifier_levels) || {} %>
+    <% if options.any? %>
+      <% options = options.collect{ |opt| [ opt.description, opt.id ] } %>
+    <% end %>
+    <% on_change_javascript = "var el = $(this).parents('.control-group:first').find('[data-enhancement_field_controller]'); var idval = $(el).find(':selected').val(); $(this).parents('.control-group:first').find('[data-rpm_enhancement_fields]').toggle(" + locals[:rpm_modifier_levels_accepting_enhancements].to_s + ".includes( parseInt(idval) ) );" -%>
+    <%= f.select :rpm_modifier_level_id, options, {},
+        {"data-dynamic_select_original_selection" => f.object.rpm_modifier_level_id,
+        "data-dynamic_select_child" => "rpm_modifier_id",
+        "data-dynamic_select_data_source" => "/rpm_ritual_modifiers",
+        "data-dynamic_select_value_method" => "description",
+        "data-enhancement_field_controller" => "Y",
+        :onchange => on_change_javascript} %>
+  </div>
+
+  <div class="controls">
+    <%= f.text_area :notes %>
+  </div>
+
+  <div class="controls">
+    <%= f.check_box :inherent %>
+  </div>
+
+  <div class="controls">
+    <span data-rpm_enhancement_fields style="display: <%= accepts_enhancements ? "inline" : "none" %>">
+      <%= f.number_field :enhancement_percentage %>% for
+      <%= f.text_field :enhancement_notes %>
+    </span>
+  </div>
+
+  <div class="controls">
+    <%= link_to_remove_association "remove", f %>
+  </div>
+</li>

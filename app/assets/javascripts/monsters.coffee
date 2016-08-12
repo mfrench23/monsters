@@ -22,6 +22,7 @@ $(document).bind 'cocoon:after-insert', (e, inserted_item) ->
     e.target.firstElementChild.style.display = 'table-row'
   # post-insert processing for specific elements that might be inserted
   loadInitialEquipmentPieceModifiers(fnd) for fnd in $(inserted_item).find("div[name='ajax-modifiers-for-equipment-piece']")
+  updateDynamicSelect(fnd) for fnd in $(inserted_item).find("select[data-dynamic_select_parent]")
   # set insertion node for any inserted "add_fields" links
   $(inserted_item).find('a.add_fields').data('association-insertion-position', 'append').data 'association-insertion-node', (link) ->
     @getCocoonInsertNode(link)

@@ -23,6 +23,9 @@
       </li>
     </ul>
   </li>
+  <li><%= link_to 'Ritual Path Magic', controller: 'rpm_rituals' %>
+    <%= entity_links :rpm_ritual %>  
+  </li>
   <li><span>Utility</span>
     <ul>
       <li><%= link_to 'Books', controller: 'books' %>
@@ -49,8 +52,17 @@
       <li><%= link_to 'Move Types', controller: 'move_types' %>
         <%= entity_links :move_type %>
       </li>
+      <li><%= link_to 'Ritual Path Magic Potencies', controller: 'rpm_potencies' %>
+        <%= entity_links :rpm_potency %>
+      </li>
       <li><%= link_to 'Ritual Path Magic Effects', controller: 'rpm_effects' %>
         <%= entity_links :rpm_effect %>
+      </li>
+      <li><%= link_to 'Ritual Path Magic Paths', controller: 'rpm_paths' %>
+        <%= entity_links :rpm_path %>
+      </li>
+      <li><%= link_to 'Ritual Path Magic Modifiers', controller: 'rpm_modifiers' %>
+        <%= entity_links :rpm_modifier %>
       </li>
     </ul>
   </li>

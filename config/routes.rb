@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'rpm_ritual_modifiers/:id' => "rpm_ritual_modifiers#show", :format => :json
+
+  resources :rpm_modifiers
+
+  resources :rpm_rituals
+
+  resources :rpm_potencies
+
+  resources :rpm_paths
+
   resources :rpm_effects
 
   resources :equipment_modifier_supercategories

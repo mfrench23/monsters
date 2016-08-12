@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= rpm_potency.name %>
+</p>
+
+<p>
+  <strong>Cost Factor:</strong>
+  +<%= rpm_potency.cost_factor %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= rpm_potency.notes %>
+</p>
+
+<%= link_to 'Edit', edit_rpm_potency_path(rpm_potency) %> |
+<%= link_to 'Index', rpm_potencies_path %>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class="rpm_ritual_title"><%= rpm_ritual.name %></div>
+
+<div>
+  <span class="rpm_ritual_label">Spell Effects: </span>
+  <%= rpm_ritual.rpm_spell_effects.inherent_only.collect(&:to_short_s).join(" + ") %>
+</div>
+
+<div>
+  <span class="rpm_ritual_label">Inherent Modifiers: </span>
+  <%= rpm_ritual.rpm_ritual_modifiers.inherent_only.collect(&:to_short_s).join(" + ") %>
+</div>
+
+<div>
+  <span class="rpm_ritual_label">Greater Effects: </span>
+  <%= rpm_ritual.rpm_spell_effects.inherent_only.greater_effect.count %> 
+  (x<%= rpm_ritual.inherent_cost_factor %>)
+</div>
+
+
+<div style="padding: 15px;">
+  <%= rpm_ritual.description %>
+</div>
+
+<div>
+  <span class="rpm_ritual_label">Typical Casting: </span>
+  <%= rpm_ritual.all_elements.collect(&:to_long_s).join(" + ") %>.
+  <span style="font-style: italic;">
+    <%= rpm_ritual.typical_cost %> energy (<%= rpm_ritual.base_cost %> x <%= rpm_ritual.overall_cost_factor %>). 
+  </span>
+</div>
+
+
+<%= link_to 'Edit', edit_rpm_ritual_path(rpm_ritual) %> |
+<%= link_to 'Index', rpm_rituals_path %>

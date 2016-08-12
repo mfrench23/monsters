@@ -19,7 +19,7 @@ class RpmEffectsControllerTest < ActionController::TestCase
   end
 
   test "should create rpm_effect" do
-    name = "Greater Transform Snowflake"
+    name = "Modify"
     assert_difference('RpmEffect.count') do
       post :create, rpm_effect: { campaign_id: @rpm_effect.campaign_id, cost: @rpm_effect.cost, name: name, notes: @rpm_effect.notes }
     end

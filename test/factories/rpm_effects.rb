@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :rpm_effect do
-    name "Lesser Summon Fnord"
+    name "Move"
     cost 10
-    notes "Used to summon fnords."
   end
 end

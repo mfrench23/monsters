@@ -1,4 +1,4 @@
-Fri, 29 Jul 2016 16:20:06 -0700
+Thu, 11 Aug 2016 17:30:51 -0700
 README.rdoc	Fri, 29 May 2015 09:03:57 -0700
 app/controllers/application_controller.rb	Thu, 30 Jun 2016 08:07:34 -0700
 app/controllers/books_controller.rb	Thu, 07 Jul 2016 11:32:17 -0700
@@ -20,9 +20,14 @@ app/controllers/model_based_controller.rb	Thu, 07 Jul 2016 11:09:07 -0700
 app/controllers/monster_classes_controller.rb	Thu, 07 Jul 2016 11:32:30 -0700
 app/controllers/monsters_controller.rb	Tue, 28 Jun 2016 11:41:52 -0700
 app/controllers/move_types_controller.rb	Thu, 07 Jul 2016 11:31:29 -0700
-app/controllers/rpm_effects_controller.rb	Fri, 29 Jul 2016 16:02:07 -0700
+app/controllers/rpm_effects_controller.rb	Fri, 29 Jul 2016 17:20:14 -0700
+app/controllers/rpm_modifiers_controller.rb	Tue, 02 Aug 2016 10:53:40 -0700
+app/controllers/rpm_paths_controller.rb	Mon, 01 Aug 2016 14:44:20 -0700
+app/controllers/rpm_potencies_controller.rb	Mon, 01 Aug 2016 15:21:13 -0700
+app/controllers/rpm_ritual_modifiers_controller.rb	Wed, 03 Aug 2016 11:45:45 -0700
+app/controllers/rpm_rituals_controller.rb	Thu, 11 Aug 2016 13:01:36 -0700
 app/controllers/swarms_controller.rb	Tue, 28 Jun 2016 11:42:16 -0700
-app/controllers/welcome_controller.rb	Wed, 08 Jun 2016 10:56:01 -0700
+app/controllers/welcome_controller.rb	Wed, 03 Aug 2016 12:35:38 -0700
 app/forms/abstract_equipment_type_form.rb	Thu, 30 Jun 2016 07:49:45 -0700
 app/forms/abstract_form.rb	Wed, 08 Jun 2016 11:02:15 -0700
 app/forms/creature_form.rb	Thu, 07 Jul 2016 11:29:54 -0700
@@ -35,6 +40,7 @@ app/forms/equipment_type_mass_entry_form.rb	Thu, 30 Jun 2016 17:57:51 -0700
 app/forms/master_skill_form.rb	Thu, 07 Jul 2016 11:23:59 -0700
 app/forms/master_trait_form.rb	Thu, 07 Jul 2016 11:24:08 -0700
 app/forms/random_eq_profile_form.rb	Thu, 07 Jul 2016 14:17:25 -0700
+app/forms/rpm_ritual_form.rb	Thu, 11 Aug 2016 13:38:52 -0700
 app/forms/swarm_form.rb	Thu, 07 Jul 2016 11:22:38 -0700
 app/helpers/ancestor_tree_helper.rb	Wed, 08 Jun 2016 11:42:40 -0700
 app/helpers/characteristics_helper.rb	Fri, 29 May 2015 15:23:32 -0700
@@ -44,7 +50,12 @@ app/helpers/javascript_variables_helper.rb	Wed, 05 Aug 2015 15:23:36 -0700
 app/helpers/monster_form_builder.rb	Wed, 01 Jun 2016 12:19:37 -0700
 app/helpers/monsters_helper.rb	Tue, 07 Jun 2016 15:50:30 -0700
 app/helpers/movement_rates_helper.rb	Fri, 27 May 2016 12:31:30 -0700
-app/helpers/rpm_effects_helper.rb	Fri, 29 Jul 2016 15:05:13 -0700
+app/helpers/rpm_effects_helper.rb	Fri, 29 Jul 2016 16:32:27 -0700
+app/helpers/rpm_modifiers_helper.rb	Tue, 02 Aug 2016 09:41:18 -0700
+app/helpers/rpm_paths_helper.rb	Mon, 01 Aug 2016 13:30:12 -0700
+app/helpers/rpm_potencies_helper.rb	Mon, 01 Aug 2016 14:03:44 -0700
+app/helpers/rpm_ritual_modifiers_helper.rb	Tue, 02 Aug 2016 14:35:33 -0700
+app/helpers/rpm_rituals_helper.rb	Mon, 01 Aug 2016 19:18:27 -0700
 app/helpers/sortable_helper.rb	Thu, 02 Jun 2016 15:00:17 -0700
 app/helpers/top_nav_helper.rb	Tue, 02 Jun 2015 07:48:07 -0700
 app/models/abstract_entity.rb	Mon, 27 Jun 2016 11:02:57 -0700
@@ -95,10 +106,20 @@ app/models/page_reference.rb	Fri, 27 May 2016 15:35:03 -0700
 app/models/parry_score.rb	Fri, 27 May 2016 15:16:10 -0700
 app/models/random_eq_profile.rb	Thu, 07 Jul 2016 13:09:59 -0700
 app/models/random_eq_profile_line_item.rb	Thu, 07 Jul 2016 14:15:52 -0700
-app/models/rpm_effect.rb	Fri, 29 Jul 2016 15:24:59 -0700
+app/models/rpm_effect.rb	Fri, 29 Jul 2016 16:32:55 -0700
+app/models/rpm_modifier.rb	Tue, 02 Aug 2016 13:10:40 -0700
+app/models/rpm_modifier_level.rb	Mon, 08 Aug 2016 12:03:09 -0700
+app/models/rpm_path.rb	Tue, 02 Aug 2016 09:42:45 -0700
+app/models/rpm_potency.rb	Thu, 11 Aug 2016 14:26:26 -0700
+app/models/rpm_ritual.rb	Thu, 11 Aug 2016 15:45:34 -0700
+app/models/rpm_ritual_modifier.rb	Thu, 11 Aug 2016 17:22:10 -0700
+app/models/rpm_spell_effect.rb	Thu, 11 Aug 2016 15:36:33 -0700
 app/models/skill.rb	Fri, 27 May 2016 15:14:01 -0700
 app/models/skill/modifier.rb	Fri, 27 May 2016 15:32:18 -0700
 app/models/swarm.rb	Fri, 27 May 2016 15:13:05 -0700
 app/models/trait.rb	Fri, 27 May 2016 15:11:44 -0700
 app/services/die_roll_service.rb	Thu, 07 Jul 2016 16:49:23 -0700
 app/services/random_equipment_service.rb	Thu, 07 Jul 2016 15:20:43 -0700
+lib/templates/active_record/model/model.rb	Mon, 01 Aug 2016 13:48:47 -0700
+lib/templates/rails/scaffold_controller/controller.rb	Fri, 29 Jul 2016 17:01:21 -0700
+lib/templates/test_unit/scaffold/functional_test.rb	Fri, 29 Jul 2016 17:20:10 -0700

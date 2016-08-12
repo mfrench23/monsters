@@ -1,0 +1,19 @@
+<li class="control-group nested-fields">
+  <div class="controls">
+    <%= f.collection_select :rpm_potency_id, RpmPotency.order_by_name, :id, :name %>
+    <%= f.collection_select :rpm_effect_id, RpmEffect.order_by_name, :id, :name %>
+    <%= f.collection_select :rpm_path_id, RpmPath.order_by_name, :id, :name %>
+  </div>
+
+  <div class="controls">
+    <%= f.text_area :notes %>
+  </div>
+
+  <div class="controls">
+    <%= f.check_box :inherent %>
+  </div>
+
+  <div class="controls">
+    <%= link_to_remove_association "remove", f %>
+  </div>
+</li>

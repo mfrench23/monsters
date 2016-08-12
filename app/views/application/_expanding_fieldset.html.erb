@@ -2,7 +2,7 @@
 <% append_node_id = id + (Time.now.to_f * 1000).to_i.to_s %>
 <% freeform ||= nil %>
 <% header_list ||= nil %>
-<% locals ||= [] %>
+<% locals ||= {} %>
 <div class="field">
   <span class="field-label"><%= raw header %></span>
   <fieldset id="<%= id %>[<%= (Time.now.to_f * 1000).to_i.to_s %>]" class="expanding-fieldset-container">
@@ -16,16 +16,16 @@
       <% if (not header_list.nil?) %>
         <li class="control-group nested-fields nested-header">
           <% header_list.each do |header_item| %>
-              <span class="controls"><%= f.label header_item %></span>
+              <span class="controls"><%= header_item.to_s.titleize %></span>
           <% end %>
         </li>
       <% end %>
       <%= f.fields_for collection, list_array do |x| %>
-        <%= render partial, f: x %>
+        <%= render partial, f: x, locals: locals %>
       <% end %>
     </ul>
     <% if label.present? %>
-      <%= link_to_add_association label, f, collection %>
+      <%= link_to_add_association label, f, collection, {:render_options => {:locals => {locals: locals}}} %>
     <% end %>
   </fieldset>
 </div>

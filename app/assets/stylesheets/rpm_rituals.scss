@@ -1,0 +1,15 @@
+// Place all the styles related to the rpm_rituals controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.rpm_ritual_title {
+  font-size: 140%;
+  font-weight: bold;
+  font-style: italic;
+  padding-bottom: 10px;
+}
+.rpm_ritual_label {
+  padding: 5px;
+  padding-left: 15px;
+  font-style: italic;
+}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729220513) do
+ActiveRecord::Schema.define(version: 20160803184952) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -380,6 +380,91 @@ ActiveRecord::Schema.define(version: 20160729220513) do
   add_index "rpm_effects", ["campaign_id", "name"], name: "idx_rpm_effects_on_name_and_campaign", using: :btree
   add_index "rpm_effects", ["campaign_id"], name: "index_rpm_effects_on_campaign_id", using: :btree
 
+  create_table "rpm_modifier_levels", force: :cascade do |t|
+    t.integer  "rpm_modifier_id",          limit: 4
+    t.string   "description",              limit: 255
+    t.integer  "cost",                     limit: 4
+    t.boolean  "include_notes_in_summary", limit: 1
+    t.boolean  "accepts_enhancements",     limit: 1
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "rpm_modifier_levels", ["rpm_modifier_id"], name: "index_rpm_modifier_levels_on_rpm_modifier_id", using: :btree
+
+  create_table "rpm_modifiers", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "notes",       limit: 65535
+    t.integer  "campaign_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "rpm_modifiers", ["campaign_id"], name: "index_rpm_modifiers_on_campaign_id", using: :btree
+
+  create_table "rpm_paths", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.text     "notes",       limit: 65535
+    t.integer  "campaign_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "rpm_paths", ["campaign_id"], name: "index_rpm_paths_on_campaign_id", using: :btree
+
+  create_table "rpm_potencies", force: :cascade do |t|
+    t.string   "rpm_potency", limit: 255
+    t.string   "name",        limit: 255
+    t.text     "notes",       limit: 65535
+    t.integer  "campaign_id", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "cost_factor", limit: 4
+  end
+
+  add_index "rpm_potencies", ["campaign_id"], name: "index_rpm_potencies_on_campaign_id", using: :btree
+
+  create_table "rpm_ritual_modifiers", force: :cascade do |t|
+    t.integer  "rpm_ritual_id",          limit: 4
+    t.integer  "rpm_modifier_level_id",  limit: 4
+    t.text     "notes",                  limit: 65535
+    t.integer  "enhancement_percentage", limit: 4
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "inherent",               limit: 1
+    t.text     "enhancement_notes",      limit: 65535
+  end
+
+  add_index "rpm_ritual_modifiers", ["rpm_modifier_level_id"], name: "index_rpm_ritual_modifiers_on_rpm_modifier_level_id", using: :btree
+  add_index "rpm_ritual_modifiers", ["rpm_ritual_id"], name: "index_rpm_ritual_modifiers_on_rpm_ritual_id", using: :btree
+
+  create_table "rpm_rituals", force: :cascade do |t|
+    t.string   "name",         limit: 255
+    t.text     "description",  limit: 65535
+    t.integer  "typical_cost", limit: 4
+    t.integer  "campaign_id",  limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "rpm_rituals", ["campaign_id"], name: "index_rpm_rituals_on_campaign_id", using: :btree
+
+  create_table "rpm_spell_effects", force: :cascade do |t|
+    t.integer  "rpm_ritual_id",  limit: 4
+    t.integer  "rpm_potency_id", limit: 4
+    t.integer  "rpm_effect_id",  limit: 4
+    t.integer  "rpm_path_id",    limit: 4
+    t.text     "notes",          limit: 65535
+    t.boolean  "inherent",       limit: 1
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "rpm_spell_effects", ["rpm_effect_id"], name: "index_rpm_spell_effects_on_rpm_effect_id", using: :btree
+  add_index "rpm_spell_effects", ["rpm_path_id"], name: "index_rpm_spell_effects_on_rpm_path_id", using: :btree
+  add_index "rpm_spell_effects", ["rpm_potency_id"], name: "index_rpm_spell_effects_on_rpm_potency_id", using: :btree
+  add_index "rpm_spell_effects", ["rpm_ritual_id", "inherent"], name: "index_rpm_spell_effects_on_rpm_ritual_id_and_inherent", using: :btree
+
   create_table "skills", force: :cascade do |t|
     t.integer  "modifier",        limit: 4,     null: false
     t.datetime "created_at",                    null: false
@@ -451,6 +536,17 @@ ActiveRecord::Schema.define(version: 20160729220513) do
   add_foreign_key "random_eq_profiles", "equipment_categories"
   add_foreign_key "random_eq_profiles", "equipment_types"
   add_foreign_key "rpm_effects", "campaigns"
+  add_foreign_key "rpm_modifier_levels", "rpm_modifiers"
+  add_foreign_key "rpm_modifiers", "campaigns"
+  add_foreign_key "rpm_paths", "campaigns"
+  add_foreign_key "rpm_potencies", "campaigns"
+  add_foreign_key "rpm_ritual_modifiers", "rpm_modifier_levels"
+  add_foreign_key "rpm_ritual_modifiers", "rpm_rituals"
+  add_foreign_key "rpm_rituals", "campaigns"
+  add_foreign_key "rpm_spell_effects", "rpm_effects"
+  add_foreign_key "rpm_spell_effects", "rpm_paths"
+  add_foreign_key "rpm_spell_effects", "rpm_potencies"
+  add_foreign_key "rpm_spell_effects", "rpm_rituals"
   add_foreign_key "skills", "creatures"
   add_foreign_key "skills", "master_skills"
   add_foreign_key "traits", "creatures"
