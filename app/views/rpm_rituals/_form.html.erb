@@ -31,6 +31,8 @@
     <%= f.text_area :description %>
   </div>
 
+  <%= render 'form_page_reference_entry', f: f %>
+
   <%= f.hidden_field :campaign_id %>
 
   <div class="actions">

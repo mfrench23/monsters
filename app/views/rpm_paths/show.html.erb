@@ -10,5 +10,7 @@
   <%= rpm_path.notes %>
 </p>
 
+ <%= render 'show_sources', m: rpm_path %>
+
 <%= link_to 'Edit', edit_rpm_path_path(rpm_path) %> |
 <%= link_to 'Index', rpm_paths_path %>

@@ -15,5 +15,7 @@
   <%= rpm_effect.notes %>
 </p>
 
+<%= render 'show_sources', m: rpm_effect %>
+
 <%= link_to 'Edit', edit_rpm_effect_path(rpm_effect) %> |
 <%= link_to 'Index', rpm_effects_path %>

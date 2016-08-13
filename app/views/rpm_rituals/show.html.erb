@@ -31,6 +31,16 @@
   </span>
 </div>
 
+<% if rpm_ritual.page_references.any? %>
+  <div style="padding-top: 15px;">
+    <span class="rpm_ritual_label">Sources:</span>
+    <span>
+      <%= page_references_compact(rpm_ritual) %>
+    <span>
+  </div>
+<% end %>
 
-<%= link_to 'Edit', edit_rpm_ritual_path(rpm_ritual) %> |
-<%= link_to 'Index', rpm_rituals_path %>
+<div style="padding-top: 15px;">
+  <%= link_to 'Edit', edit_rpm_ritual_path(rpm_ritual) %> |
+  <%= link_to 'Index', rpm_rituals_path %>
+</div>

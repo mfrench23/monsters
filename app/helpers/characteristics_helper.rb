@@ -1,5 +1,6 @@
 module CharacteristicsHelper
   def show_stat(val)
-    val || 'n/a'
+    value = val || 'n/a'
+    content_tag( :span, value )
   end
 end

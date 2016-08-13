@@ -3,6 +3,8 @@
 # produce a single magical effect at a cost based on its elements.
 class RpmRitual < AbstractEntity
   include CampaignContained
+  include PageReferenceable
+  include Nameable
 
   belongs_to :campaign
 
@@ -13,6 +15,8 @@ class RpmRitual < AbstractEntity
   accepts_nested_attributes_for :rpm_ritual_modifiers, allow_destroy: true
 
   after_save :calculate_cost
+
+  validates_uniqueness_of :name, :scope => :campaign_id
 
   def inherent_cost_factor
     RpmRitual.sum_cost_factor(rpm_spell_effects.inherent_only)

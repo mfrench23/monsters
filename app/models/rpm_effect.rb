@@ -1,6 +1,7 @@
 class RpmEffect < AbstractEntity
   include CampaignContained
   include Nameable
+  include PageReferenceable
 
   belongs_to :campaign
 
