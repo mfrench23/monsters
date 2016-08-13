@@ -15,7 +15,7 @@ class RpmInitializerService
   private
 
   def add_potencies(campaign_id)
-    RpmPotency.new(:campaign_id => campaign_id, :name => "Lesser", :cost_factor => 1).save!
+    RpmPotency.new(:campaign_id => campaign_id, :name => "Lesser", :cost_factor => 0).save!
     RpmPotency.new(:campaign_id => campaign_id, :name => "Greater", :cost_factor => 2).save!
   end
 
