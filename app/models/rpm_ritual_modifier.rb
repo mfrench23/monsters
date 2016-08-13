@@ -1,5 +1,5 @@
 class RpmRitualModifier < ActiveRecord::Base
-  belongs_to :rpm_ritual
+  belongs_to :rpm_ritual, :touch => true
   belongs_to :rpm_modifier_level
   belongs_to :rpm_modifier_subtype
   has_one :rpm_modifier, :through => :rpm_modifier_level

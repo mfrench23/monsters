@@ -7,7 +7,8 @@
     <tr>
       <th><%= sortable "rpm_rituals.name", RpmRitual, params, "Name" %></th>
       <th>Inherent Effects</th>
-      <th>Typical cost</th>
+      <th style="width: 50px;">Inherent Casting Cost</th>
+      <th style="width: 50px;">Typical Casting Cost</th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
       <tr>
         <td><%= link_to rpm_ritual.name, rpm_ritual_path(rpm_ritual), { :class => "quiet" } %></td>
         <td><%= rpm_ritual.rpm_spell_effects.inherent_only.collect(&:to_short_s).sort.join(", ") %></td>
+        <td class="count"><%= rpm_ritual.inherent_cost %></td>
         <td class="count"><%= rpm_ritual.typical_cost %></td>
         <%= render 'index_edit_destroy_links', target: rpm_ritual %>
       </tr>

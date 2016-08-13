@@ -1,5 +1,5 @@
 class RpmSpellEffect < ActiveRecord::Base
-  belongs_to :rpm_ritual
+  belongs_to :rpm_ritual, :touch => true
   belongs_to :rpm_potency
   belongs_to :rpm_effect
   belongs_to :rpm_path
