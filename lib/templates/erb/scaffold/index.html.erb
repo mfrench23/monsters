@@ -2,6 +2,12 @@
 
 <h1>Listing <%= plural_table_name.titleize %></h1>
 
+<h2>
+  <%%= render "display_filter_params", filter_params: filter_params -%>
+</h2>
+
+<%%= page_entries_info <%= plural_table_name%> %>
+
 <table>
   <thead>
     <tr>
@@ -29,5 +35,7 @@
 </table>
 
 <br>
+
+<%%= paginate <%= plural_table_name%> %>
 
 <%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %>

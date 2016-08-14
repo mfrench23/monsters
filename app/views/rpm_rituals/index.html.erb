@@ -2,6 +2,12 @@
 
 <h1>Listing Rpm Rituals</h1>
 
+<h2>
+  <%= render "display_filter_params", filter_params: filter_params -%>
+</h2>
+
+<%= page_entries_info rpm_rituals %>
+
 <table>
   <thead>
     <tr>
@@ -27,5 +33,8 @@
 </table>
 
 <br>
+<%= render "filter_by_starting_letter", letters: starts_with_tags, filter_params: filter_params %>
+
+<%= paginate rpm_rituals %>
 
 <%= link_to 'New Rpm ritual', new_rpm_ritual_path %>
