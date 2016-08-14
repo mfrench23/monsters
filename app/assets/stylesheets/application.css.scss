@@ -232,3 +232,8 @@ span.disabled {
   text-decoration: line-through;
   color: grey
 }
+//
+.multiline-description {
+  padding: 15px;
+  white-space: pre-wrap;
+}

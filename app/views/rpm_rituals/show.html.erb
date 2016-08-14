@@ -19,13 +19,11 @@
 </div>
 
 
-<div style="padding: 15px;">
-  <%= rpm_ritual.description %>
-</div>
+<div class="multiline-description"><%= rpm_ritual.description %></div>
 
 <div>
   <span class="rpm_ritual_label">Typical Casting: </span>
-  <%= rpm_ritual.all_elements.collect(&:to_long_s).join(" + ") %>.
+  <span><%= rpm_ritual.all_elements.collect(&:to_long_s).join(" + ") %>.</span>
   <span style="font-style: italic;">
     <%= rpm_ritual.typical_cost %> energy (<%= rpm_ritual.base_cost %> x <%= rpm_ritual.overall_cost_factor %>). 
   </span>
