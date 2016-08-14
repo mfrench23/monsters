@@ -31,13 +31,13 @@ class RpmRitualModifier < ActiveRecord::Base
   end
 
   def enhancement_addition(base)
-    return 0 unless rpm_modifier_level.accepts_enhancements && enhancement_percentage.to_i > 0
+    return 0 unless rpm_modifier_level.accepts_enhancements && enhancement_percentage.present?
     return one_per_five_percent if base <= 20
     apply_enhancement_percentage(base)
   end
 
   def apply_enhancement_percentage(base)
-    ( base.to_f * (enhancement_percentage.to_f/100) ).ceil
+    [1, ( base.to_f * (enhancement_percentage.to_f/100) ).ceil].max
   end
 
   def one_per_five_percent

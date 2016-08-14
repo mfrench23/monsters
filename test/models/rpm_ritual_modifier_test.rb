@@ -11,12 +11,17 @@ class RpmRitualModifierTest < ActiveSupport::TestCase
     # vanilla modifier, with no enhancements
     assert_equal "Fnordian Strength Variable ST 10 (15)", ritual_mod.to_long_s
     # with enhancements, where cost < 20
-    ritual_mod.enhancement_percentage = 25
     ritual_mod.enhancement_notes = "Piercing, +25%"
+    ritual_mod.enhancement_percentage = 0
+    assert_equal "Fnordian Strength Variable ST 10 (Piercing, +25%) (16)", ritual_mod.to_long_s
+    ritual_mod.enhancement_percentage = 25
     assert_equal "Fnordian Strength Variable ST 10 (Piercing, +25%) (20)", ritual_mod.to_long_s
     # with enhancements, where cost > 20
     level.cost = 100
     level.save!
     assert_equal "Fnordian Strength Variable ST 10 (Piercing, +25%) (188)", ritual_mod.to_long_s
+    # with an enhancement of 0%
+    ritual_mod.enhancement_percentage = 0
+    assert_equal "Fnordian Strength Variable ST 10 (Piercing, +25%) (151)", ritual_mod.to_long_s
   end
 end
