@@ -9,6 +9,7 @@ class RpmSpellEffect < ActiveRecord::Base
 
   scope :inherent_only, -> { where(:inherent => true)}
   scope :greater_effect, -> { joins(:rpm_potency).where("rpm_potencies.cost_factor > 0") }
+  scope :sorted, -> { joins([:rpm_potency, :rpm_effect, :rpm_path]).order("rpm_potencies.name, rpm_effects.name, rpm_paths.name") }
 
   def to_short_s
     rpm_potency.to_s + " " + rpm_effect.to_s + " " + rpm_path.to_s

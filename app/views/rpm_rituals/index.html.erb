@@ -13,8 +13,8 @@
     <tr>
       <th><%= sortable "rpm_rituals.name", RpmRitual, params, "Name" %></th>
       <th>Inherent Effects</th>
-      <th style="width: 50px;">Inherent Casting Cost</th>
-      <th style="width: 50px;">Typical Casting Cost</th>
+      <th style="width: 50px;"><%= sortable "rpm_rituals.inherent_cost", RpmRitual, params, "Inherent Casting Cost" %></th>
+      <th style="width: 50px;"><%= sortable "rpm_rituals.typical_cost", RpmRitual, params, "Typical Casting Cost" %></th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
