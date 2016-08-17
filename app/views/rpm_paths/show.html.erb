@@ -16,7 +16,7 @@
   <p>
     <strong>Rituals:</strong>
     <ul>
-  <% rpm_path.rpm_rituals.order_by_name.each do |ritual| %>
+  <% rpm_path.rpm_rituals.order_by_name.uniq.each do |ritual| %>
     <% popup = ritual.rpm_spell_effects.sorted.collect(&:to_short_s).uniq.join(", ") %>
     <li><%= link_to ritual.name, ritual, :class => "quiet", :title => popup %> <span style="font-style: italic; padding-left: 15px;">(inherent <%= ritual.inherent_cost %>/typical <%= ritual.typical_cost %>)</span></li>
   <% end -%>

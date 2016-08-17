@@ -4,7 +4,7 @@
 
 <div>
   <span class="rpm_ritual_label">Spell Effects: </span>
-  <%= rpm_ritual.rpm_spell_effects.inherent_only.collect(&:to_short_s).join(" + ") %>
+  <%= rpm_inherent_spell_effects_text rpm_ritual %>
 </div>
 
 <div>
