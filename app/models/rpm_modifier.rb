@@ -16,4 +16,9 @@ class RpmModifier < AbstractEntity
   def level_count
     rpm_modifier_levels.count
   end
+
+  def to_short_s
+    return short_name if short_name.present?
+    name
+  end
 end

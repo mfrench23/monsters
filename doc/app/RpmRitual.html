@@ -71,6 +71,14 @@
     <li><a class="include" href="CampaignContained.html">CampaignContained</a>
   
   
+  
+    <li><a class="include" href="PageReferenceable.html">PageReferenceable</a>
+  
+  
+  
+    <li><a class="include" href="Nameable.html">Nameable</a>
+  
+  
   </ul>
 </div>
 
@@ -179,7 +187,7 @@ produce a single magical effect at a cost based on its elements.</p>
 
           
           <div class="method-source-code" id="base_cost-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">base_cost</span>
   <span class="ruby-identifier">all_elements</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:cost</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -212,7 +220,7 @@ produce a single magical effect at a cost based on its elements.</p>
 
           
           <div class="method-source-code" id="inherent_cost_factor-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">inherent_cost_factor</span>
   <span class="ruby-constant">RpmRitual</span>.<span class="ruby-identifier">sum_cost_factor</span>(<span class="ruby-identifier">rpm_spell_effects</span>.<span class="ruby-identifier">inherent_only</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -245,7 +253,7 @@ produce a single magical effect at a cost based on its elements.</p>
 
           
           <div class="method-source-code" id="overall_cost_factor-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">overall_cost_factor</span>
   [<span class="ruby-value">1</span>, <span class="ruby-constant">RpmRitual</span>.<span class="ruby-identifier">sum_cost_factor</span>(<span class="ruby-identifier">rpm_spell_effects</span>)].<span class="ruby-identifier">max</span>
 <span class="ruby-keyword">end</span></pre>

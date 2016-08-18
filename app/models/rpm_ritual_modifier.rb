@@ -4,18 +4,16 @@ class RpmRitualModifier < ActiveRecord::Base
   belongs_to :rpm_modifier_subtype
   has_one :rpm_modifier, :through => :rpm_modifier_level
 
-  delegate :description, to: :rpm_modifier_level, prefix: true
-  delegate :name, to: :rpm_modifier_subtype, prefix: true, allow_nil: true
   scope :inherent_only, -> { where(:inherent => true)}
 
   validates :rpm_modifier_level, presence: true
 
   def to_short_s
-    rpm_modifier.to_s
+    "#{rpm_modifier.to_short_s}#{name_extension(false)}"
   end
 
   def to_long_s
-    "#{to_short_s} #{rpm_modifier_subtype_name} #{rpm_modifier_level_description}#{filtered_notes}#{enhancements} (#{cost})"
+    "#{rpm_modifier.to_short_s}#{name_extension} (#{cost})"
   end
 
   def cost
@@ -24,6 +22,22 @@ class RpmRitualModifier < ActiveRecord::Base
   end
 
   private
+
+  def name_extension(with_level=true)
+    ", #{name_extension_text(with_level)}" unless name_extension_text(with_level).blank?
+  end
+
+  def name_extension_text(with_level)
+    "#{rpm_modifier_subtype_name}#{rpm_modifier_level_description(with_level)}#{filtered_notes}#{enhancements}"
+  end
+
+  def rpm_modifier_subtype_name
+    "#{rpm_modifier_subtype.name}" unless rpm_modifier_subtype.blank?
+  end
+
+  def rpm_modifier_level_description(with_level)
+    return " #{rpm_modifier_level.description}" unless rpm_modifier.exclude_level_from_summary || (! with_level)
+  end
 
   def subtype_factor
     return 1 unless rpm_modifier_subtype.present?
@@ -45,7 +59,7 @@ class RpmRitualModifier < ActiveRecord::Base
   end
 
   def filtered_notes
-    notes if rpm_modifier_level.include_notes_in_summary
+    " #{notes}" if rpm_modifier_level.include_notes_in_summary && notes.present?
   end
 
   def enhancements

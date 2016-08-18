@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= sortable "rpm_modifiers.name", RpmModifier, params, "Name" %></th>
+      <th><%= sortable "rpm_modifiers.short_name", RpmModifier, params, "Short Name" %></th>
       <th>Levels</th>
       <th>Subtypes</th>
       <%= render 'index_edit_destroy_headers' %>
@@ -16,6 +17,7 @@
     <% rpm_modifiers.each do |rpm_modifier| %>
       <tr>
         <td><%= link_to rpm_modifier.name, rpm_modifier, { :class => "quiet" } %></td>
+        <td><%= rpm_modifier.short_name %></td>
         <td class="count"><%= rpm_modifier.level_count %></td>
         <td class="count"><%= rpm_modifier.rpm_modifier_subtypes.count %></td>
         <%= render 'index_edit_destroy_links', target: rpm_modifier %>

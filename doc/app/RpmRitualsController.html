@@ -64,7 +64,17 @@
 
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-standard_rpm">#standard_rpm</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -93,6 +103,48 @@ href="RpmRitual.html">RpmRitual</a> model</p>
     
 
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-standard_rpm" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">standard_rpm</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="standard_rpm-source">
+            <pre><span class="ruby-comment"># File app/controllers/rpm_rituals_controller.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">standard_rpm</span>
+  <span class="ruby-constant">RpmInitializerService</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">standardize</span>(<span class="ruby-identifier">selected_campaign_id</span>)
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">new_rpm_ritual_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

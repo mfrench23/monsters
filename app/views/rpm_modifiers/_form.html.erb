@@ -16,6 +16,16 @@
     <%= f.text_field :name %>
   </div>
 
+  <div class="field">
+    <%= f.label :short_name %><br>
+    <%= f.text_field :short_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :exclude_level_from_summary %>
+    <%= f.check_box :exclude_level_from_summary %>
+  </div>
+
   <%= render 'expanding_fieldset', f: f,
     id: "rpm_modifier_levels", collection: :rpm_modifier_levels,
     partial: 'rpm_modifier_level_fields', label: 'add level', header: "Levels",

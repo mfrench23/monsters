@@ -8,6 +8,10 @@ class RpmRitualsController < ModelBasedController
 
   private
 
+  def acceptable_filter_scopes
+    [:starting_with]
+  end
+
   def additional_form_locals
     campaign_id = selected_campaign_id
     { rpm_modifiers: RpmModifier.in_campaign(campaign_id).order_by_name,

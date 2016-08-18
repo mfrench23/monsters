@@ -165,7 +165,7 @@ href="RpmModifierForm.html">RpmModifierForm</a> model</p>
           <div class="method-source-code" id="permitted_attributes-source">
             <pre><span class="ruby-comment"># File app/forms/rpm_modifier_form.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">permitted_attributes</span>
-  [<span class="ruby-value">:name</span>, <span class="ruby-value">:notes</span>, <span class="ruby-value">:campaign_id</span>,
+  [<span class="ruby-value">:name</span>, <span class="ruby-value">:short_name</span>, <span class="ruby-value">:notes</span>, <span class="ruby-value">:campaign_id</span>, <span class="ruby-value">:exclude_level_from_summary</span>,
       <span class="ruby-identifier">rpm_modifier_subtypes_attributes</span><span class="ruby-operator">:</span> [<span class="ruby-value">:id</span>, <span class="ruby-value">:name</span>, <span class="ruby-value">:multiplier</span>, <span class="ruby-value">:_destroy</span>],
       <span class="ruby-identifier">rpm_modifier_levels_attributes</span><span class="ruby-operator">:</span> [<span class="ruby-value">:id</span>, <span class="ruby-value">:description</span>, <span class="ruby-value">:cost</span>, <span class="ruby-value">:include_notes_in_summary</span>, <span class="ruby-value">:accepts_enhancements</span>, <span class="ruby-value">:_destroy</span>]]
 <span class="ruby-keyword">end</span></pre>

@@ -87,6 +87,8 @@
     
     <li ><a href="#method-i-level_count">#level_count</a>
     
+    <li ><a href="#method-i-to_short_s">#to_short_s</a>
+    
   </ul>
 </div>
 
@@ -146,6 +148,40 @@
             <pre><span class="ruby-comment"># File app/models/rpm_modifier.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">level_count</span>
   <span class="ruby-identifier">rpm_modifier_levels</span>.<span class="ruby-identifier">count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_short_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_short_s</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_short_s-source">
+            <pre><span class="ruby-comment"># File app/models/rpm_modifier.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_short_s</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">short_name</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">short_name</span>.<span class="ruby-identifier">present?</span>
+  <span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class RpmRitualModifier - Rails Application Documentation</title>
+<title>class RpmInitializerService - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -58,7 +58,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link">ActiveRecord::Base
+  <p class="link"><a href="Object.html">Object</a>
   
 </div>
 
@@ -70,11 +70,9 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-i-cost">#cost</a>
+    <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-i-to_long_s">#to_long_s</a>
-    
-    <li ><a href="#method-i-to_short_s">#to_short_s</a>
+    <li ><a href="#method-i-standardize">#standardize</a>
     
   </ul>
 </div>
@@ -82,9 +80,9 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-RpmRitualModifier">
-  <h1 id="class-RpmRitualModifier" class="class">
-    class RpmRitualModifier
+<main role="main" aria-labelledby="class-RpmInitializerService">
+  <h1 id="class-RpmInitializerService" class="class">
+    class RpmInitializerService
   </h1>
 
   <section class="description">
@@ -104,17 +102,57 @@
     
 
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/services/rpm_initializer_service.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
        <header>
          <h3>Public Instance Methods</h3>
        </header>
 
     
-      <div id="method-i-cost" class="method-detail ">
+      <div id="method-i-standardize" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">cost</span><span
-            class="method-args">()</span>
+          <span class="method-name">standardize</span><span
+            class="method-args">(campaign_id)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -123,82 +161,21 @@
 
         <div class="method-description">
           
-          
-          
-          
-
-          
-          <div class="method-source-code" id="cost-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">cost</span>
-  <span class="ruby-identifier">base</span> = (<span class="ruby-identifier">rpm_modifier_level</span>.<span class="ruby-identifier">cost</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">subtype_factor</span>).<span class="ruby-identifier">ceil</span>
-  <span class="ruby-identifier">base</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">enhancement_addition</span>(<span class="ruby-identifier">base</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-to_long_s" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">to_long_s</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
+          <p>Given a campaign id, set that campaign up with the standard static data for
+the off-the-shelf RPM magic system from “GURPS Thaumatology: Ritual Path
+Magic”</p>
           
           
 
           
-          <div class="method-source-code" id="to_long_s-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_long_s</span>
-  <span class="ruby-node">&quot;#{rpm_modifier.to_short_s}#{name_extension} (#{cost})&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-to_short_s" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">to_short_s</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="to_short_s-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 11</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_short_s</span>
-  <span class="ruby-node">&quot;#{rpm_modifier.to_short_s}#{name_extension(false)}&quot;</span>
+          <div class="method-source-code" id="standardize-source">
+            <pre><span class="ruby-comment"># File app/services/rpm_initializer_service.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">standardize</span>(<span class="ruby-identifier">campaign_id</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">RpmPotency</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:campaign_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">campaign_id</span>).<span class="ruby-identifier">any?</span> <span class="ruby-operator">||</span> <span class="ruby-constant">RpmEffect</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:campaign_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">campaign_id</span>).<span class="ruby-identifier">any?</span> <span class="ruby-operator">||</span> <span class="ruby-constant">RpmPath</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:campaign_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">campaign_id</span>).<span class="ruby-identifier">any?</span>
+  <span class="ruby-identifier">add_potencies</span>(<span class="ruby-identifier">campaign_id</span>)
+  <span class="ruby-identifier">add_effects</span>(<span class="ruby-identifier">campaign_id</span>)
+  <span class="ruby-identifier">add_paths</span>(<span class="ruby-identifier">campaign_id</span>)
+  <span class="ruby-identifier">add_modifiers</span>(<span class="ruby-identifier">campaign_id</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

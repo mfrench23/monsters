@@ -57,7 +57,17 @@
     
     
     
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
     
+    <li ><a href="#method-i-rpm_inherent_spell_effects_text">#rpm_inherent_spell_effects_text</a>
+    
+  </ul>
+</div>
+
   </div>
 </nav>
 
@@ -83,6 +93,47 @@
     
 
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-rpm_inherent_spell_effects_text" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rpm_inherent_spell_effects_text</span><span
+            class="method-args">(rpm_ritual)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="rpm_inherent_spell_effects_text-source">
+            <pre><span class="ruby-comment"># File app/helpers/rpm_rituals_helper.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rpm_inherent_spell_effects_text</span>(<span class="ruby-identifier">rpm_ritual</span>)
+  <span class="ruby-identifier">collapse_like_effects</span>(<span class="ruby-identifier">rpm_ritual</span>.<span class="ruby-identifier">rpm_spell_effects</span>.<span class="ruby-identifier">inherent_only</span>.<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:to_short_s</span>)).<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; + &quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
   </section>
 </main>
 

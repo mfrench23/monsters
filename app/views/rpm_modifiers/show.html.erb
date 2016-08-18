@@ -5,6 +5,18 @@
   <%= rpm_modifier.name %>
 </p>
 
+<% if rpm_modifier.short_name? -%>
+<p>
+  <strong>Short Name:</strong>
+  <%= rpm_modifier.short_name %>
+</p>
+<% end -%>
+
+<p>
+  <strong>Exclude Level From Summary:</strong>
+  <%= rpm_modifier.exclude_level_from_summary ? "Yes" : "No" %>
+</p>
+
 <p>
   <strong>Levels:</strong>
   <% if rpm_modifier.rpm_modifier_levels.any? %>
