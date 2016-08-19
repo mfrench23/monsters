@@ -2,6 +2,12 @@
 
 <h1>Listing Rpm Potencies</h1>
 
+<h2>
+  <%= render "display_filter_params", filter_params: filter_params -%>
+</h2>
+
+<%= page_entries_info rpm_potencies %>
+
 <table>
   <thead>
     <tr>
@@ -25,5 +31,9 @@
 </table>
 
 <br>
+
+<%= render "filter_by_starting_letter", letters: starts_with_tags, filter_params: filter_params %>
+
+<%= paginate rpm_potencies %>
 
 <%= link_to 'New Rpm potency', new_rpm_potency_path %>

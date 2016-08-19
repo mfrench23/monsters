@@ -9,7 +9,7 @@ class RpmRitualsController < ModelBasedController
   private
 
   def acceptable_filter_scopes
-    [:starting_with]
+    [:starting_with, :in_campaign]
   end
 
   def additional_form_locals

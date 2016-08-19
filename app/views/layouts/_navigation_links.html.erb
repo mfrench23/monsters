@@ -33,41 +33,49 @@
 <% end -%>
   <li><span>Utility</span>
     <ul>
-      <li><%= link_to 'Books', controller: 'books' %>
-        <%= entity_links :book %>
-      </li>
       <li><%= link_to 'Campaigns', controller: 'campaigns' %>
         <%= entity_links :campaign %>
+      </li>
+      <li><%= link_to 'Books', controller: 'books' %>
+        <%= entity_links :book %>
       </li>
       <li><%= link_to 'Equipment Categories', controller: 'equipment_categories' %>
         <%= entity_links :equipment_category %>
       </li>
-      <li><%= link_to 'Hit Locations', controller: 'locations' %>
-        <%= entity_links :location %>
+      <li>GURPS Campaign Elements
+        <ul>
+          <li><%= link_to 'Hit Locations', controller: 'locations' %>
+            <%= entity_links :location %>
+          </li>
+          <li><%= link_to 'Master Skills', controller: 'master_skills' %>
+            <%= entity_links :master_skill %>
+          </li>
+          <li><%= link_to 'Master Traits', controller: 'master_traits' %>
+            <%= entity_links :master_trait %>
+          </li>
+          <li><%= link_to 'Monster Classes', controller: 'monster_classes' %>
+            <%= entity_links :monster_class %>
+          </li>
+          <li><%= link_to 'Move Types', controller: 'move_types' %>
+            <%= entity_links :move_type %>
+          </li>
+        </ul>
       </li>
-      <li><%= link_to 'Master Skills', controller: 'master_skills' %>
-        <%= entity_links :master_skill %>
-      </li>
-      <li><%= link_to 'Master Traits', controller: 'master_traits' %>
-        <%= entity_links :master_trait %>
-      </li>
-      <li><%= link_to 'Monster Classes', controller: 'monster_classes' %>
-        <%= entity_links :monster_class %>
-      </li>
-      <li><%= link_to 'Move Types', controller: 'move_types' %>
-        <%= entity_links :move_type %>
-      </li>
-      <li><%= link_to 'Ritual Path Magic Potencies', controller: 'rpm_potencies' %>
-        <%= entity_links :rpm_potency %>
-      </li>
-      <li><%= link_to 'Ritual Path Magic Effects', controller: 'rpm_effects' %>
-        <%= entity_links :rpm_effect %>
-      </li>
-      <li><%= link_to 'Ritual Path Magic Paths', controller: 'rpm_paths' %>
-        <%= entity_links :rpm_path %>
-      </li>
-      <li><%= link_to 'Ritual Path Magic Modifiers', controller: 'rpm_modifiers' %>
-        <%= entity_links :rpm_modifier %>
+      <li>Ritual Path Magic Elements
+        <ul>
+          <li><%= link_to 'Ritual Path Magic Potencies', controller: 'rpm_potencies' %>
+            <%= entity_links :rpm_potency %>
+          </li>
+          <li><%= link_to 'Ritual Path Magic Effects', controller: 'rpm_effects' %>
+            <%= entity_links :rpm_effect %>
+          </li>
+          <li><%= link_to 'Ritual Path Magic Paths', controller: 'rpm_paths' %>
+            <%= entity_links :rpm_path %>
+          </li>
+          <li><%= link_to 'Ritual Path Magic Modifiers', controller: 'rpm_modifiers' %>
+            <%= entity_links :rpm_modifier %>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>

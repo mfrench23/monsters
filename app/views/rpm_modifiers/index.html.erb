@@ -34,6 +34,8 @@
 
 <br>
 
+<%= render "filter_by_starting_letter", letters: starts_with_tags, filter_params: filter_params %>
+
 <%= paginate rpm_modifiers %>
 
 <%= link_to 'New Rpm modifier', new_rpm_modifier_path %>

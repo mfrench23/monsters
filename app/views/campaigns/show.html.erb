@@ -20,5 +20,10 @@
   <%= render "boxed_list", list: campaign.equipment_types, link_data_attributes: link_data_attributes %>
 </div>
 
+<div class="field">
+  <span class="field-label show">RPM Rituals</span>
+  <%= render "boxed_list", list: campaign.rpm_rituals, link_data_attributes: link_data_attributes %>
+</div>
+
 <%= link_to 'Edit', edit_campaign_path(campaign) %> |
 <%= link_to 'Index', campaigns_path %>

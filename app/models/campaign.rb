@@ -8,6 +8,7 @@ class Campaign < AbstractEntity
   has_many :rpm_potencies
   has_many :rpm_effects
   has_many :rpm_paths
+  has_many :rpm_rituals
 
   has_many :random_eq_profiles, :through => :equipment_categories
 
