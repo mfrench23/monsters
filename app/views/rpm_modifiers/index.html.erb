@@ -2,6 +2,12 @@
 
 <h1>Listing Rpm Modifiers</h1>
 
+<h2>
+  <%= render "display_filter_params", filter_params: filter_params -%>
+</h2>
+
+<%= page_entries_info rpm_modifiers %>
+
 <table>
   <thead>
     <tr>
@@ -27,5 +33,7 @@
 </table>
 
 <br>
+
+<%= paginate rpm_modifiers %>
 
 <%= link_to 'New Rpm modifier', new_rpm_modifier_path %>
