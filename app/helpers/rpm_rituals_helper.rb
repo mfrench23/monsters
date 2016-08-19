@@ -1,19 +1,19 @@
 module RpmRitualsHelper
-  def rpm_inherent_spell_effects_text(rpm_ritual)
+  def rpm_inherent_spell_effects_text(rpm_ritual, join_text = " + ")
     inherent_mods = rpm_ritual.rpm_spell_effects.inherent_only
-    text_for inherent_mods
+    text_for inherent_mods, join_text
   end
 
-  def rpm_inherent_spell_modifiers_text(rpm_ritual)
+  def rpm_inherent_spell_modifiers_text(rpm_ritual, join_text = " + ")
     inherent_mods = rpm_ritual.rpm_ritual_modifiers.inherent_only
-    text_for inherent_mods
+    text_for inherent_mods, join_text
   end
 
   private
 
-  def text_for(mods)
+  def text_for(mods, join_text)
     return "None." unless mods.any?
-    collapse_like_effects(mods).join(" + ")
+    collapse_like_effects(mods).join(join_text)
   end
 
   def collapse_like_effects(arr)

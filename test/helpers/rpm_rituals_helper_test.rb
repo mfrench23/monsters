@@ -24,5 +24,6 @@ class RpmRitualsHelperTest < ActionView::TestCase
     rpm_ritual.rpm_spell_effects << RpmSpellEffect.new(:rpm_potency => pot2, :rpm_effect => eff, :rpm_path => path, :inherent => true)
     rpm_ritual.save!
     assert_equal "Greater Control Nachos x2 + Greater Create Nachos + Lesser Create Nachos x2", rpm_inherent_spell_effects_text(rpm_ritual)
+    assert_equal "Greater Control Nachos x2, Greater Create Nachos, Lesser Create Nachos x2", rpm_inherent_spell_effects_text(rpm_ritual, ", ")
   end
 end

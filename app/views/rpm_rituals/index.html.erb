@@ -8,22 +8,26 @@
 
 <%= page_entries_info rpm_rituals %>
 
-<table>
+<table class="fixed-table">
   <thead>
     <tr>
-      <th><%= sortable "rpm_rituals.name", RpmRitual, params, "Name" %></th>
-      <th>Inherent Effects</th>
-      <th style="width: 50px;"><%= sortable "rpm_rituals.inherent_cost", RpmRitual, params, "Inherent Casting Cost" %></th>
-      <th style="width: 50px;"><%= sortable "rpm_rituals.typical_cost", RpmRitual, params, "Typical Casting Cost" %></th>
+      <th style="width: 20%; white-space: normal;"><%= sortable "rpm_rituals.name", RpmRitual, params, "Name" %></th>
+      <th style="width: 25%; white-space: normal;">Inherent Effects</th>
+      <th style="width: 25%; white-space: normal;">Inherent Modifiers</th>
+      <th style="width: 50px; white-space: normal;"><%= sortable "rpm_rituals.inherent_cost", RpmRitual, params, "Inherent Casting Cost" %></th>
+      <th style="width: 50px; white-space: normal;"><%= sortable "rpm_rituals.typical_cost", RpmRitual, params, "Typical Casting Cost" %></th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
 
   <tbody>
     <% rpm_rituals.each do |rpm_ritual| %>
+      <% effects = rpm_inherent_spell_effects_text(rpm_ritual, ", ") -%>
+      <% mods = rpm_inherent_spell_modifiers_text(rpm_ritual, ", ") -%>
       <tr>
         <td><%= link_to rpm_ritual.name, rpm_ritual_path(rpm_ritual), { :class => "quiet" } %></td>
-        <td><%= rpm_ritual.rpm_spell_effects.inherent_only.collect(&:to_short_s).sort.join(", ") %></td>
+        <td><%= content_tag :span, effects, :title => effects, :class => "hover-highlight" %></td>
+        <td><%= content_tag :span, mods, :title => mods, :class => "hover-highlight" %></td>
         <td class="count"><%= rpm_ritual.inherent_cost %></td>
         <td class="count"><%= rpm_ritual.typical_cost %></td>
         <%= render 'index_edit_destroy_links', target: rpm_ritual %>

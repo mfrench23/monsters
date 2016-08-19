@@ -15,7 +15,7 @@
  *= require_self
  */
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 td {
   padding: 0 1em 0 0;
@@ -236,4 +236,8 @@ span.disabled {
 .multiline-description {
   padding: 15px;
   white-space: pre-wrap;
+}
+.hover-highlight:hover {
+  background-color: darkblue;
+  color: white;
 }
