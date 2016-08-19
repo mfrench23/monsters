@@ -9,7 +9,7 @@
 
 <div>
   <span class="rpm_ritual_label">Inherent Modifiers: </span>
-  <%= rpm_ritual.rpm_ritual_modifiers.inherent_only.collect(&:to_short_s).join(" + ") %>
+  <%= rpm_inherent_spell_modifiers_text rpm_ritual %>
 </div>
 
 <div>

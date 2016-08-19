@@ -9,6 +9,8 @@ class RpmRitualsHelperTest < ActionView::TestCase
     eff2 = FactoryGirl.create(:rpm_effect, :campaign => campaign, :name => "Control")
     path = FactoryGirl.create(:rpm_path, :campaign => campaign, :name => "Nachos")
     rpm_ritual = RpmRitual.new(:name => "Flying Pig Ritual", :campaign => campaign )
+    rpm_ritual.save!
+    assert_equal "None.", rpm_inherent_spell_effects_text(rpm_ritual)
     rpm_ritual.rpm_spell_effects << RpmSpellEffect.new(:rpm_potency => pot2, :rpm_effect => eff2, :rpm_path => path, :inherent => true)
     rpm_ritual.rpm_spell_effects << RpmSpellEffect.new(:rpm_potency => pot2, :rpm_effect => eff2, :rpm_path => path, :inherent => true)
     rpm_ritual.save!
