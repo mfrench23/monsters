@@ -7,6 +7,8 @@
     <% display_param = equipment_category_name %>
   <% elsif filter[0].to_s =~ /in_modifier_category/ %>
     <% display_param = equipment_modifier_category_name %>
+  <% elsif filter[0].to_s =~ /with_path/ %>
+    <% display_param = rpm_path_name %>
   <% else %>
     <% display_param = filter[1] %>
   <% end %>

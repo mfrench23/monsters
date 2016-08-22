@@ -69,6 +69,7 @@ class ModelBasedController < ApplicationController
       :campaign_name => name_of_filtering_campaign,
       :equipment_category_name => name_of_filtering_equipment_category,
       :equipment_modifier_category_name => name_of_filtering_modifier_category,
+      :rpm_path_name => name_of_filtering_rpm_path,
       :filter_params => filter_params
     }.merge(additional_index_locals)
   end

@@ -18,6 +18,8 @@ class RpmRitual < AbstractEntity
 
   validates_uniqueness_of :name, :scope => :campaign_id
 
+  scope :with_path, -> (path_id) { where(:id => RpmSpellEffect.where(:rpm_path => RpmPath.where(:id => path_id)).pluck(:rpm_ritual_id)) }
+
   def inherent_cost_factor
     RpmRitual.sum_cost_factor(rpm_spell_effects.inherent_only)
   end

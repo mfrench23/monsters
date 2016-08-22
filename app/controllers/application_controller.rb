@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
     EquipmentModifierCategory.find(in_cat).name if in_cat.present?
   end
 
+  def name_of_filtering_rpm_path
+    id = params[:with_path]
+    RpmPath.find(id).name if id.present?
+  end
+
   def all_campaigns
     Campaign.all
   end

@@ -9,7 +9,11 @@ class RpmRitualsController < ModelBasedController
   private
 
   def acceptable_filter_scopes
-    [:starting_with, :in_campaign]
+    [:starting_with, :in_campaign, :with_path]
+  end
+
+  def additional_index_locals
+    {rpm_paths: RpmPath.in_campaign(selected_campaign_id).order_by_name }
   end
 
   def additional_form_locals
