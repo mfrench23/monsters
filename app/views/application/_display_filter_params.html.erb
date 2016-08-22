@@ -2,6 +2,9 @@
   <% if filter[0].to_s =~ /in_campaign/ %>
     <% next %><%# skip any mention of the filtering by selected campaign %>
   <% end %>
+  <% if filter[0].to_s =~ /inherent_only/ %>
+    <% next %><%# skip any mention of filtering RPMSpellEffect by "inherent" %>
+  <% end %>
   <%= "#{filter[0].titleize.downcase}" %>
   <% if filter[0].to_s =~ /in_equipment_category/ %>
     <% display_param = equipment_category_name %>
@@ -9,6 +12,10 @@
     <% display_param = equipment_modifier_category_name %>
   <% elsif filter[0].to_s =~ /with_path/ %>
     <% display_param = rpm_path_name %>
+  <% elsif filter[0].to_s =~ /with_effect/ %>
+    <% display_param = rpm_effect_name %>
+  <% elsif filter[0].to_s =~ /with_potency/ %>
+    <% display_param = rpm_potency_name %>
   <% else %>
     <% display_param = filter[1] %>
   <% end %>

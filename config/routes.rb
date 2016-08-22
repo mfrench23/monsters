@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :rpm_spell_effects, :only => [:index]
+
   get 'rpm_ritual_modifiers/:id' => "rpm_ritual_modifiers#levels", :format => :json
   get 'rpm_ritual_modifier_subtypes/:id' => "rpm_ritual_modifiers#subtypes", :format => :json
   get 'standard_rpm' => "rpm_rituals#standard_rpm"

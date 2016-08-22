@@ -25,7 +25,12 @@
 <% if cookies[:selected_campaign].present? -%>
   <li><%= link_to 'Ritual Path Magic', controller: 'rpm_rituals' %>
   <% if Campaign.find(cookies[:selected_campaign]).try(:rpm_potencies).try(:count).to_i > 0 -%>
-    <%= entity_links :rpm_ritual %>  
+    <%= entity_links :rpm_ritual %>
+    <ul>
+      <li><%= link_to 'List All RPM Rituals', rpm_rituals_path %></li>
+      <li><%= link_to 'New RPM Ritual', new_rpm_ritual_path %></li>
+      <li><%= link_to 'Rituals by Spell Effect', rpm_spell_effects_path %></li>
+    </ul>
   <% else -%>
     <ul><li><%= link_to 'Standard RPM setup', standard_rpm_path %></li></ul>
   <% end %>

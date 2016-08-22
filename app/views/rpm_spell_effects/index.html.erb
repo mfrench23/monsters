@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Rpm Spell Effects</h1>
+
+<h2>
+  <%= render "display_filter_params", filter_params: filter_params, rpm_path_name: rpm_path_name, rpm_effect_name: rpm_effect_name, rpm_potency_name: rpm_potency_name -%>
+</h2>
+
+<%= page_entries_info rpm_spell_effects %>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 12%;"><%= sortable "rpm_potencies.name", RpmSpellEffect, params, "Potency" %></th>
+      <th style="width: 12%;"><%= sortable "rpm_effects.name", RpmSpellEffect, params, "Effect" %></th>
+      <th style="width: 12%;"><%= sortable "rpm_paths.name", RpmSpellEffect, params, "Path" %></th>
+      <th style="width: 20%;"><%= sortable "rpm_rituals.name", RpmSpellEffect, params, "Ritual" %></th>
+      <th><%= sortable "rpm_rituals.inherent_cost", RpmSpellEffect, params, "Inherent Cost" %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% rpm_spell_effects.each do |rpm_spell_effect| %>
+      <tr>
+        <td class="count"><%= link_to rpm_spell_effect.rpm_potency, rpm_spell_effect.rpm_potency, :class => "quiet" %></td>
+        <td class="count"><%= link_to rpm_spell_effect.rpm_effect, rpm_spell_effect.rpm_effect, :class => "quiet" %></td>
+        <td class="count"><%= link_to rpm_spell_effect.rpm_path, rpm_spell_effect.rpm_path, :class => "quiet" %></td>
+        <td>
+          <% popup = rpm_inherent_elements_text rpm_spell_effect.rpm_ritual, ", " -%>
+          <%= link_to rpm_spell_effect.rpm_ritual, rpm_spell_effect.rpm_ritual, :class => "quiet", :title => popup %>
+        </td>
+        <td class="count"><%= rpm_spell_effect.rpm_ritual_inherent_cost %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= paginate rpm_spell_effects %>
+
+<br>
+
+<%= render "filter_by_category_field", category_list: rpm_potencies, filter_params: filter_params, category_name: "Potency", start_expanded: true, filter_param_key: :with_potency, callback: :rpm_spell_effects, klass: RpmSpellEffect %>
+
+<%= render "filter_by_category_field", category_list: rpm_effects, filter_params: filter_params, category_name: "Effect", start_expanded: true, filter_param_key: :with_effect, callback: :rpm_spell_effects, klass: RpmSpellEffect %>
+
+<%= render "filter_by_category_field", category_list: rpm_paths, filter_params: filter_params, category_name: "Path", start_expanded: true, filter_param_key: :with_path, callback: :rpm_spell_effects, klass: RpmSpellEffect %>
