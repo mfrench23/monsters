@@ -30,6 +30,10 @@ class RpmRitual < AbstractEntity
     (rpm_spell_effects + rpm_ritual_modifiers)
   end
 
+  def all_inherent_elements
+    (rpm_spell_effects.inherent_only + rpm_ritual_modifiers.inherent_only)
+  end
+
   def base_cost
     all_elements.sum(&:cost)
   end
@@ -37,7 +41,7 @@ class RpmRitual < AbstractEntity
   private
 
   def calc_inherent_base_cost
-    (rpm_spell_effects.inherent_only + rpm_ritual_modifiers.inherent_only).sum(&:cost)
+    all_inherent_elements.sum(&:cost)
   end
 
   def self.sum_cost_factor(mods)

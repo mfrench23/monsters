@@ -4,12 +4,14 @@
 
 <div>
   <span class="rpm_ritual_label">Spell Effects: </span>
-  <%= rpm_inherent_spell_effects_text rpm_ritual %>
+  <% txt = rpm_inherent_spell_effects_text(rpm_ritual) -%>
+  <%= (txt.present? ? txt : "None.") %>
 </div>
 
 <div>
   <span class="rpm_ritual_label">Inherent Modifiers: </span>
-  <%= rpm_inherent_spell_modifiers_text rpm_ritual %>
+  <% txt = rpm_inherent_spell_modifiers_text(rpm_ritual) -%>
+  <%= (txt.present? ? txt : "None.") %>
 </div>
 
 <div>
