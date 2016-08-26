@@ -16,6 +16,7 @@
       <th style="width: 12%;"><%= sortable "rpm_paths.name", RpmSpellEffect, params, "Path" %></th>
       <th style="width: 20%;"><%= sortable "rpm_rituals.name", RpmSpellEffect, params, "Ritual" %></th>
       <th><%= sortable "rpm_rituals.inherent_cost", RpmSpellEffect, params, "Inherent Cost" %></th>
+      <th><%= sortable "rpm_rituals.typical_cost", RpmSpellEffect, params, "Typical Cost" %></th>
     </tr>
   </thead>
 
@@ -30,6 +31,7 @@
           <%= link_to rpm_spell_effect.rpm_ritual, rpm_spell_effect.rpm_ritual, :class => "quiet", :title => popup %>
         </td>
         <td class="count"><%= rpm_spell_effect.rpm_ritual_inherent_cost %></td>
+        <td class="count"><%= rpm_spell_effect.rpm_ritual_typical_cost %></td>
       </tr>
     <% end %>
   </tbody>

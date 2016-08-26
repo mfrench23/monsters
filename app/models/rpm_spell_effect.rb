@@ -7,6 +7,7 @@ class RpmSpellEffect < AbstractEntity
   delegate :cost_factor, to: :rpm_potency, prefix: true
   delegate :cost, to: :rpm_effect, prefix: false
   delegate :inherent_cost, to: :rpm_ritual, prefix: true
+  delegate :typical_cost, to: :rpm_ritual, prefix: true
 
   scope :inherent_only, -> (optional_ignored_param = nil) { where(:inherent => true)}
   scope :greater_effect, -> { joins(:rpm_potency).where("rpm_potencies.cost_factor > 0") }
