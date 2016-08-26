@@ -13,7 +13,8 @@ module ResultSetReturning
   end
 
   def sort_params(klass)
-    view_context.sort_param(klass, params[:sort], params[:direction])
+    # use view context to call helper method
+    view_context.sort_param(klass, params[:sort] || klass.try(:default_index_sort), params[:direction])
   end
 
   # Array of tables that need to be included because they might be used for sorting.

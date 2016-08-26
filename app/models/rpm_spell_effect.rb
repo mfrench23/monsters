@@ -23,4 +23,8 @@ class RpmSpellEffect < AbstractEntity
   def to_long_s
     "#{to_short_s} (#{cost})"
   end
+
+  def self.default_index_sort
+    "rpm_potencies.cost_factor, rpm_effects.cost, rpm_paths.name, rpm_rituals.name"
+  end
 end
