@@ -28,6 +28,7 @@
         <td class="count"><%= link_to rpm_spell_effect.rpm_path, rpm_spell_effect.rpm_path, :class => "quiet" %></td>
         <td>
           <% popup = rpm_inherent_elements_text rpm_spell_effect.rpm_ritual, ", " -%>
+          <% popup = [popup, rpm_spell_effect.rpm_ritual_description].join("\n\n") -%>
           <%= link_to rpm_spell_effect.rpm_ritual, rpm_spell_effect.rpm_ritual, :class => "quiet", :title => popup %>
         </td>
         <td class="count"><%= rpm_spell_effect.rpm_ritual_inherent_cost %></td>
