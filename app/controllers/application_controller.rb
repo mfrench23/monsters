@@ -11,11 +11,6 @@ class ApplicationController < ActionController::Base
     @javascript_variables.merge!(variables)
   end
 
-  def name_of_filtering_campaign
-    in_campaign = params[:in_campaign]
-    Campaign.find(in_campaign).name if in_campaign.present?
-  end
-
   def name_of_filtering_equipment_category
     in_cat = params[:in_equipment_category]
     EquipmentCategory.find(in_cat).name if in_cat.present?

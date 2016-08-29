@@ -66,7 +66,6 @@ class ModelBasedController < ApplicationController
     {
       controlled_model_plural_symbol => filtered_sorted_paginated_results,
       :starts_with_tags => (filtered_results.respond_to?(:first_letters) ? filtered_results.first_letters.count.keys.sort : nil),
-      :campaign_name => name_of_filtering_campaign,
       :equipment_category_name => name_of_filtering_equipment_category,
       :equipment_modifier_category_name => name_of_filtering_modifier_category,
       :rpm_path_name => name_of_filtering_rpm_path,

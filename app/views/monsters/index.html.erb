@@ -1,6 +1,6 @@
 <h1>Listing Monsters</h1>
 <h2>
-  <%= render "display_filter_params", filter_params: filter_params, campaign_name: campaign_name -%>
+  <%= render "display_filter_params", filter_params: filter_params -%>
 </h2>
 <% variant_on_page = monsters.any? { |m| (! m.root? ) } %>
 <% alias_on_page = monsters.any? { |m| m.monster_names.any? } %>
