@@ -1,53 +1,102 @@
-<div class="threecolumnblock">
-  <div class="threecol1">
-    <div><span class="field-label show">ST</span> <%= show_stat(monster.characteristic_score "ST") %></div>
-    <div><span class="field-label show">DX</span> <%= show_stat(monster.characteristic_score "DX") %></div>
-    <div><span class="field-label show">IQ</span> <%= show_stat(monster.characteristic_score "IQ") %></div>
-    <div><span class="field-label show">HT</span> <%= show_stat(monster.characteristic_score "HT") %></div>
-    <div><span class="field-label show">Dodge</span> <%= monster.characteristic_score "Dodge" %></div>
-  </div>
-  <div class="threecol2">
-    <div><span class="field-label show">Hitpoints</span> <%= show_stat(monster.characteristic_score "HP") %></div>
-    <div><span class="field-label show">Will</span> <%= show_stat(monster.characteristic_score "Will") %></div>
-    <div><span class="field-label show">Perception</span> <%= show_stat(monster.characteristic_score "Per") %></div>
-    <div><span class="field-label show">Fatigue</span> <%= show_stat(monster.characteristic_score "Fatigue") %></div>
-    <div>
-      <span class="field-label show">Parry</span>
-	<% monster.parry_scores.each do |parry| %>
-	  <%= parry.weapon %> <%= parry.parry %> <br>
-	<% end %>
-      <br>
-      <% if ! (monster.characteristic_score "Block").blank? %>
-	<span class="field-label show">Block</span> <%= monster.characteristic_score "Block" %>
-      <% end %>
-    </div>
-  </div>
-  <div class="threecol3">
-    <div><span class="field-label show">Speed</span> <%= show_stat(monster.characteristic_score "Speed") %></div>
-    <div>
-      <span class="field-label show">Move</span>
-      <% monster.movement_rates.each do |mv| %>
-	<%= pretty_movement_rate mv %><br>
-      <% end %>
-    </div>
-    <div>
-      <span class="field-label show">SM</span> <%= show_stat(monster.characteristic_score "SM") %>
-      &nbsp;&nbsp;&nbsp;
-      <% unless monster.height.blank? %>
-	Height <%= monster.height %>
-      <% end %>
-      <% unless monster.weight.blank? %>
-	Weight <%= monster.weight %>
-      <% end %>
-    </div>
-    <% if monster.damage_resistances.any? %>
-      <div>
-	<span class="field-label show">DR</span>
-	  <% monster.damage_resistances.each do |dr| %>
-	    <%= simpleDR dr %> <br>
-	  <% end %>
-      </div>
-    <% end %>
-  </div>
-</div>
+<table width="70%">
+  <tr>
+    <td width="20%">
+      <table width="80%">
+        <tr>
+          <td width="50%"><strong>ST</strong></td>
+          <td><%= show_stat(monster.characteristic_score "ST") %></td>
+        </tr>
+        <tr>
+          <td><strong>DX</strong></td>
+          <td><%= show_stat(monster.characteristic_score "DX") %></td>
+        </tr>
+        <tr>
+          <td><strong>IQ</strong></td>
+          <td><%= show_stat(monster.characteristic_score "IQ") %></td>
+        </tr>
+        <tr>
+          <td><strong>HT</strong></td>
+          <td><%= show_stat(monster.characteristic_score "HT") %></td>
+        </tr>
+        <tr>
+          <td><strong>Dodge</strong></td>
+          <td><%= monster.characteristic_score "Dodge" %></td>
+        </tr>
+      </table>
+    </td>
+    <td width="20%">
+      <table width="80%">
+        <tr>
+          <td width="60%"><strong>Hit Points</strong></td>
+          <td><%= show_stat(monster.characteristic_score "HP") %></td>
+        </tr>
+        <tr>
+          <td><strong>Will</strong></td><td><%= show_stat(monster.characteristic_score "Will") %></td>
+        </tr>
+        <tr>
+          <td><strong>Perception</strong></td><td><%= show_stat(monster.characteristic_score "Per") %></td>
+        </tr>
+        <tr>
+          <td><strong>Fatigue</strong></td><td><%= show_stat(monster.characteristic_score "Fatigue") %></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Parry</strong>
+          </td>
+          <td>
+              <% monster.parry_scores.each do |parry| %>
+                <%= parry.weapon %> <%= parry.parry %> <br>
+              <% end %>
+          </td>
+        </tr>
+        <% if ! (monster.characteristic_score "Block").blank? %>
+          <tr>
+            <td><strong>Block</strong></td><td><%= monster.characteristic_score "Block" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </td>
+    <td>
+      <table width="80%">
+        <tr>
+          <td width="20%"><strong>Speed</strong></td>
+          <td><%= show_stat(monster.characteristic_score "Speed") %></td>
+        </tr>
+        <tr>
+          <td><strong>Move</strong></td>
+          <td>
+            <% monster.movement_rates.each do |mv| %>
+              <%= pretty_movement_rate mv %><br>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>SM</strong>
+          </td>
+          <td>
+            <%= show_stat(monster.characteristic_score "SM") %>
+            &nbsp;&nbsp;&nbsp;
+            <% unless monster.height.blank? %>
+              Height <%= monster.height %>
+            <% end %>
+            <% unless monster.weight.blank? %>
+              Weight <%= monster.weight %>
+            <% end %>
+          </td>
+        </tr>
+        <% if monster.damage_resistances.any? %>
+          <tr>
+            <td><strong>DR</strong></td>
+            <td>
+              <% monster.damage_resistances.each do |dr| %>
+                <%= simpleDR dr %> <br>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>
   

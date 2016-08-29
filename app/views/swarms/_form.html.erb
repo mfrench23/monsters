@@ -16,21 +16,18 @@
     <%= f.label "Number of individuals" %>
     <%= f.text_field :number_description %>
   </div>
-  <div class="threecolumblock">
-    <div class="threecol1">
-      <% charSet = [swarm.characteristic_monster("HT")]  %>
-      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
-      <% charSet = [swarm.characteristic_monster("HP")]  %>
-      <%= render 'characteristic_monster_set_fields', f: f, c: charSet %>
-    </div>
-    <div class="threecol3">
-      <%= render 'expanding_fieldset', f: f,
-	id: "movement-rates", collection: :movement_rates,
-	partial: 'movement_rate_fields', label: 'add move', header: "Move",
-	header_list: [ :move_type_id, :rate, :enhanced_rate ], freeform: nil %>
-
-    </div>
-  </div>
+  <table>
+    <%= render 'characteristic_monster_set_fields', f: f, c: [swarm.characteristic_monster("HT")] %>
+    <%= render 'characteristic_monster_set_fields', f: f, c: [swarm.characteristic_monster("HP")] %>
+    <tr>
+      <td colspan="2">
+        <%= render 'expanding_fieldset', f: f,
+          id: "movement-rates", collection: :movement_rates,
+          partial: 'movement_rate_fields', label: 'add move', header: "Move",
+          header_list: [ :move_type_id, :rate, :enhanced_rate ], freeform: nil %>
+      </td>
+    </tr>
+  </table>
 
   <%= render 'monsters/form_attacks', f: f %>
 

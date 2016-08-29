@@ -1,16 +1,19 @@
-<div class="threecolumnblock">
-  <div class="threecol1">
-    <div><span class="field-label show">HT</span> <%= show_stat(monster.characteristic_score "HT") %></div>
-    <div><span class="field-label show">Hitpoints</span> <%= show_stat(monster.characteristic_score "HP") %></div>
-  </div>
-  <div class="threecol3">
-    <div>
-      <span class="field-label show">Move</span>
+<table width="50%">
+  <tr>
+    <td width="15%"><strong>HT</strong></td>
+    <td width="15%"><%= show_stat(monster.characteristic_score "HT") %></td>
+    <td width="25%"><strong>Hit Points</strong></td>
+    <td><%= show_stat(monster.characteristic_score "HP") %></td>
+  </tr>
+  <tr>
+    <td><strong>Move</strong></td>
+    <td>
       <% monster.movement_rates.each do |mv| %>
-	<%= pretty_movement_rate mv %><br>
+        <%= pretty_movement_rate mv %><br>
       <% end %>
-    </div>
-  </div>
-</div>
+    </td>
+  </tr>
+</table>
+
 
   

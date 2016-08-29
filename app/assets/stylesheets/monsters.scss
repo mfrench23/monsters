@@ -2,25 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div.threecolumnblock {
-  display: table;
-}
-div.threecol1 {
-  display: table-cell;
-  width: 20%;
-  padding: 10px;
-}
-div.threecol2 {
-  display: table-cell;
-  width: 20%;
-  padding: 10px;
-}
-div.threecol3 {
-  display: table-cell;
-  width: 60%;
-  padding: 10px;
-}
-
 li.nested-fields {
   display: table-row;
 }

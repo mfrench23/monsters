@@ -2,9 +2,12 @@
 <% append_node_id = id + (Time.now.to_f * 1000).to_i.to_s %>
 <% freeform ||= nil %>
 <% header_list ||= nil %>
+<% header ||= nil %>
 <% locals ||= {} %>
 <div class="field">
-  <span class="field-label"><%= raw header %></span>
+  <% if header.present? %>
+    <span class="field-label"><%= raw header %></span>
+  <% end %>
   <fieldset id="<%= id %>[<%= (Time.now.to_f * 1000).to_i.to_s %>]" class="expanding-fieldset-container">
     <% if not freeform.blank? %>
       <div class="field">
