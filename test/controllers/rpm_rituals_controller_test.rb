@@ -19,6 +19,12 @@ class RpmRitualsControllerTest < ActionController::TestCase
     assert_select "table tbody tr" # expect at least one row in the body of the table
   end
 
+  test "should get grid" do
+    get :grid
+    assert_response :success
+    assert_select "table", 0 # no table, just a warning that there's no data
+  end
+
   test "should get new" do
     get :new
     assert_response :success

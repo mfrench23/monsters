@@ -1,4 +1,10 @@
 module RpmRitualsHelper
+  def long_ritual_link(ritual)
+    popup = rpm_inherent_elements_text ritual, ", "
+    popup = [popup, ritual.description].join("\n\n")
+    link_to ritual, ritual, :class => "quiet", :title => popup
+  end
+
   def rpm_inherent_elements_text(rpm_ritual, join_text = " + " )
     [ rpm_inherent_spell_effects_text(rpm_ritual, join_text), rpm_inherent_spell_modifiers_text(rpm_ritual, join_text) ].select{|txt| txt.present? }.join( join_text )
   end

@@ -1,6 +1,10 @@
 # Controller functionality specific to the RpmRitual model
 class RpmRitualsController < ModelBasedController
 
+  def grid
+    render locals: { :grid_data => RpmRitualGridService.new.grid(selected_campaign_id) }
+  end
+
   def standard_rpm
     RpmInitializerService.new.standardize(selected_campaign_id)
     redirect_to new_rpm_ritual_path
@@ -8,12 +12,16 @@ class RpmRitualsController < ModelBasedController
 
   private
 
+  def campaign_paths
+    RpmPath.in_campaign(selected_campaign_id).order_by_name
+  end
+
   def acceptable_filter_scopes
     [:starting_with, :in_campaign, :with_path]
   end
 
   def additional_index_locals
-    {rpm_paths: RpmPath.in_campaign(selected_campaign_id).order_by_name }
+    {rpm_paths: campaign_paths }
   end
 
   def additional_form_locals

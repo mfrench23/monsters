@@ -5,4 +5,6 @@ class RpmPotency < AbstractEntity
 
   belongs_to :campaign
   validates_uniqueness_of :name, :scope => :campaign_id
+
+  scope :order_by_cost_factor, -> { order(:cost_factor) }
 end

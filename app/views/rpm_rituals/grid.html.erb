@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Rpm Ritual Grid</h1>
+
+<% if grid_data.any? %>
+  <table class="bordered">
+  <% grid_data.keys.each_with_index do |path, index| %>
+    <tr class="bordered">
+      <th class="bordered">&nbsp;</th>
+      <% grid_data[path].keys.each do |effect| %>
+        <th class="bordered"><%= effect %></th>
+      <% end %>
+    </tr>
+    <tr class="bordered">
+    <% grid_data[path].keys.each_with_index do |effect, index| %>
+      <% if index == 0 %>
+        <th class="bordered"><%= path %></th>
+      <% end %>
+      <td class="bordered">
+      <% grid_data[path][effect].keys.each do |potency| %>
+        <ul>
+          <lh><span style="font-weight: bold;"><%= potency %></span></lh>
+          <% list = grid_data[path][effect][potency] %>
+          <% if list.any? %>
+            <% list.each do |ritual| %>
+              <li style="margin-left: -20px;">
+                <div>
+                  <%= link_to "#{ritual[:name]} (#{ritual[:typical_cost]})", rpm_ritual_path(ritual[:id]), :class => "quiet", :title => ritual[:description] %>
+                </div>
+              </li>
+            <% end %>
+          <% else %>
+            <li style="margin-left: -20px;"><span class="footnote">None</span></li>
+          <% end %>
+        </ul>
+      <% end %>
+      </td>
+    <% end %>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <span>No data for Ritual Path Magic.</span>
+<% end %>

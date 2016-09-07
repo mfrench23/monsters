@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   resources :rpm_modifiers
 
-  resources :rpm_rituals
+  resources :rpm_rituals do
+    collection do
+      get 'grid'
+    end
+  end
 
   resources :rpm_potencies
 
