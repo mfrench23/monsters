@@ -132,7 +132,7 @@
             <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">cost</span>
   <span class="ruby-identifier">base</span> = (<span class="ruby-identifier">rpm_modifier_level</span>.<span class="ruby-identifier">cost</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">subtype_factor</span>).<span class="ruby-identifier">ceil</span>
-  <span class="ruby-identifier">base</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">enhancement_addition</span>(<span class="ruby-identifier">base</span>)
+  <span class="ruby-identifier">enhancement_addition</span>(<span class="ruby-identifier">base</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">rpm_modifier_level</span>.<span class="ruby-identifier">accepts_enhancements</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">enhancement_only</span> <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">base</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -165,7 +165,7 @@
           <div class="method-source-code" id="to_long_s-source">
             <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_long_s</span>
-  <span class="ruby-node">&quot;#{rpm_modifier.to_short_s}#{name_extension} (#{cost})&quot;</span>
+  <span class="ruby-node">&quot;#{rpm_modifier.to_short_s}#{name_extension}#{enhancement_only_text} (#{cost})&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -198,7 +198,7 @@
           <div class="method-source-code" id="to_short_s-source">
             <pre><span class="ruby-comment"># File app/models/rpm_ritual_modifier.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_short_s</span>
-  <span class="ruby-node">&quot;#{rpm_modifier.to_short_s}#{name_extension(false)}&quot;</span>
+  <span class="ruby-node">&quot;#{rpm_modifier.to_short_s}#{name_extension(false)}#{enhancement_only_text}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

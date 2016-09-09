@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class RpmSpellEffect - Rails Application Documentation</title>
+<title>class RpmSpellEffectForm - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -58,7 +58,7 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="AbstractEntity.html">AbstractEntity</a>
+  <p class="link"><a href="AbstractForm.html">AbstractForm</a>
   
 </div>
 
@@ -70,11 +70,9 @@
 
   <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-default_index_sort">::default_index_sort</a>
+    <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-i-to_long_s">#to_long_s</a>
-    
-    <li ><a href="#method-i-to_short_s">#to_short_s</a>
+    <li ><a href="#method-c-permitted_attributes">::permitted_attributes</a>
     
   </ul>
 </div>
@@ -82,13 +80,16 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-RpmSpellEffect">
-  <h1 id="class-RpmSpellEffect" class="class">
-    class RpmSpellEffect
+<main role="main" aria-labelledby="class-RpmSpellEffectForm">
+  <h1 id="class-RpmSpellEffectForm" class="class">
+    class RpmSpellEffectForm
   </h1>
 
   <section class="description">
     
+<p>Organizes the collection of parameters for a single instance of the <a
+href="RpmSpellEffect.html">RpmSpellEffect</a> model</p>
+
   </section>
 
   
@@ -110,11 +111,11 @@
        </header>
 
     
-      <div id="method-c-default_index_sort" class="method-detail ">
+      <div id="method-c-new" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">default_index_sort</span><span
-            class="method-args">()</span>
+          <span class="method-name">new</span><span
+            class="method-args">(params=nil)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -128,10 +129,10 @@
           
 
           
-          <div class="method-source-code" id="default_index_sort-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_spell_effect.rb, line 28</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">default_index_sort</span>
-  <span class="ruby-string">&quot;rpm_potencies.cost_factor, rpm_effects.cost, rpm_paths.name, rpm_rituals.name&quot;</span>
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/forms/rpm_spell_effect_form.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">whitelisted_params</span>(<span class="ruby-identifier">params</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -143,18 +144,10 @@
       </div>
 
     
-    </section>
-  
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-    
-      <div id="method-i-to_long_s" class="method-detail ">
+      <div id="method-c-permitted_attributes" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">to_long_s</span><span
+          <span class="method-name">permitted_attributes</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -169,43 +162,10 @@
           
 
           
-          <div class="method-source-code" id="to_long_s-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_spell_effect.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_long_s</span>
-  <span class="ruby-node">&quot;#{to_short_s} (#{cost})&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-to_short_s" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">to_short_s</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="to_short_s-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_spell_effect.rb, line 20</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_short_s</span>
-  <span class="ruby-identifier">rpm_potency</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rpm_effect</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rpm_path</span>.<span class="ruby-identifier">to_s</span>
+          <div class="method-source-code" id="permitted_attributes-source">
+            <pre><span class="ruby-comment"># File app/forms/rpm_spell_effect_form.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">permitted_attributes</span>
+  [<span class="ruby-value">:id</span>, <span class="ruby-value">:rpm_ritual_id</span>, <span class="ruby-value">:rpm_potency_id</span>, <span class="ruby-value">:rpm_effect_id</span>, <span class="ruby-value">:rpm_path_id</span>, <span class="ruby-value">:notes</span>, <span class="ruby-value">:inherent</span>, <span class="ruby-value">:_destroy</span>]
 <span class="ruby-keyword">end</span></pre>
           </div>
           

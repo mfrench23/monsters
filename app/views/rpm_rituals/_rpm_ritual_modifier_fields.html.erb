@@ -47,6 +47,9 @@
     <span data-rpm_enhancement_fields style="display: <%= accepts_enhancements ? "inline" : "none" %>">
       <%= f.number_field :enhancement_percentage %>% for
       <%= f.text_field :enhancement_notes %>
+      <br>
+      <span class="footnote">Enhancement only?</span>
+      <%= f.check_box :enhancement_only %>
     </span>
   </div>
 

@@ -9,7 +9,7 @@ class RpmRitualForm < AbstractForm
     [:name, :description, :campaign_id,
         page_references_attributes: [:id, :book_id, :pages, :_destroy],
         rpm_spell_effects_attributes: RpmSpellEffectForm.permitted_attributes,
-        rpm_ritual_modifiers_attributes: [:id, :rpm_modifier_level_id, :rpm_modifier_subtype_id, :notes, :inherent, :enhancement_percentage, :enhancement_notes, :_destroy] ]
+        rpm_ritual_modifiers_attributes: [:id, :rpm_modifier_level_id, :rpm_modifier_subtype_id, :notes, :inherent, :enhancement_only, :enhancement_percentage, :enhancement_notes, :_destroy] ]
   end
 
   private
@@ -32,6 +32,7 @@ class RpmRitualForm < AbstractForm
   def clear_enhancement_fields(mod_hash)
     mod_hash[:enhancement_percentage] = nil
     mod_hash[:enhancement_notes] = nil
+    mod_hash[:enhancement_only] = false
   end
 
   def whitelisted_params(params)

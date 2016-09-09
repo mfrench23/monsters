@@ -9,19 +9,23 @@ class RpmRitualModifier < ActiveRecord::Base
   validates :rpm_modifier_level, presence: true
 
   def to_short_s
-    "#{rpm_modifier.to_short_s}#{name_extension(false)}"
+    "#{rpm_modifier.to_short_s}#{name_extension(false)}#{enhancement_only_text}"
   end
 
   def to_long_s
-    "#{rpm_modifier.to_short_s}#{name_extension} (#{cost})"
+    "#{rpm_modifier.to_short_s}#{name_extension}#{enhancement_only_text} (#{cost})"
   end
 
   def cost
     base = (rpm_modifier_level.cost * subtype_factor).ceil
-    base + enhancement_addition(base)
+    enhancement_addition(base) + (rpm_modifier_level.accepts_enhancements && enhancement_only ? 0 : base)
   end
 
   private
+
+  def enhancement_only_text
+    ", enhancement only" if rpm_modifier_level.accepts_enhancements && enhancement_only
+  end
 
   def name_extension(with_level=true)
     ", #{name_extension_text(with_level)}" unless name_extension_text(with_level).blank?

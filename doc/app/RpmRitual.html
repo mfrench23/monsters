@@ -91,6 +91,8 @@
     
     <li ><a href="#method-i-all_elements">#all_elements</a>
     
+    <li ><a href="#method-i-all_inherent_elements">#all_inherent_elements</a>
+    
     <li ><a href="#method-i-base_cost">#base_cost</a>
     
     <li ><a href="#method-i-inherent_cost_factor">#inherent_cost_factor</a>
@@ -154,9 +156,42 @@ produce a single magical effect at a cost based on its elements.</p>
 
           
           <div class="method-source-code" id="all_elements-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">all_elements</span>
   (<span class="ruby-identifier">rpm_spell_effects</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rpm_ritual_modifiers</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-all_inherent_elements" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_inherent_elements</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="all_inherent_elements-source">
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_inherent_elements</span>
+  (<span class="ruby-identifier">rpm_spell_effects</span>.<span class="ruby-identifier">inherent_only</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rpm_ritual_modifiers</span>.<span class="ruby-identifier">inherent_only</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -187,7 +222,7 @@ produce a single magical effect at a cost based on its elements.</p>
 
           
           <div class="method-source-code" id="base_cost-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 33</span>
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">base_cost</span>
   <span class="ruby-identifier">all_elements</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:cost</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -220,7 +255,7 @@ produce a single magical effect at a cost based on its elements.</p>
 
           
           <div class="method-source-code" id="inherent_cost_factor-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">inherent_cost_factor</span>
   <span class="ruby-constant">RpmRitual</span>.<span class="ruby-identifier">sum_cost_factor</span>(<span class="ruby-identifier">rpm_spell_effects</span>.<span class="ruby-identifier">inherent_only</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -253,7 +288,7 @@ produce a single magical effect at a cost based on its elements.</p>
 
           
           <div class="method-source-code" id="overall_cost_factor-source">
-            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 25</span>
+            <pre><span class="ruby-comment"># File app/models/rpm_ritual.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">overall_cost_factor</span>
   [<span class="ruby-value">1</span>, <span class="ruby-constant">RpmRitual</span>.<span class="ruby-identifier">sum_cost_factor</span>(<span class="ruby-identifier">rpm_spell_effects</span>)].<span class="ruby-identifier">max</span>
 <span class="ruby-keyword">end</span></pre>

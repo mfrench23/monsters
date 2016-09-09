@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>class Campaign - Rails Application Documentation</title>
+<title>class RpmSpellEffectsController - Rails Application Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -58,45 +58,25 @@
   <h3>Parent</h3>
 
   
-  <p class="link"><a href="AbstractEntity.html">AbstractEntity</a>
+  <p class="link"><a href="ModelBasedController.html">ModelBasedController</a>
   
 </div>
 
-    <div id="includes-section" class="nav-section">
-  <h3>Included Modules</h3>
-
-  <ul class="link-list">
-  
-  
-    <li><a class="include" href="Nameable.html">Nameable</a>
-  
-  
-  </ul>
-</div>
-
     
-    <!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
-
-  <ul class="link-list" role="directory">
     
-    <li ><a href="#method-c-has_contents">::has_contents</a>
     
-  </ul>
-</div>
-
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Campaign">
-  <h1 id="class-Campaign" class="class">
-    class Campaign
+<main role="main" aria-labelledby="class-RpmSpellEffectsController">
+  <h1 id="class-RpmSpellEffectsController" class="class">
+    class RpmSpellEffectsController
   </h1>
 
   <section class="description">
     
-<p>Ties together all the data for a single GURPS campaign</p>
+<p>Controller functionality specific to the <a
+href="RpmSpellEffect.html">RpmSpellEffect</a> model</p>
 
   </section>
 
@@ -113,47 +93,6 @@
     
 
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
-
-    
-      <div id="method-c-has_contents" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_contents</span><span
-            class="method-args">(klass)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="has_contents-source">
-            <pre><span class="ruby-comment"># File app/models/campaign.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">has_contents</span>(<span class="ruby-identifier">klass</span>)
-  <span class="ruby-constant">Campaign</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">pluck</span>(<span class="ruby-value">:campaign_id</span>))
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
-  
   </section>
 </main>
 

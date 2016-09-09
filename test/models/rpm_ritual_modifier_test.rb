@@ -22,8 +22,13 @@ class RpmRitualModifierTest < ActiveSupport::TestCase
     level.cost = 100
     level.save!
     assert_equal "Fnordian Strength, Variable ST 10 (Piercing, +25%) (188)", ritual_mod.to_long_s
+    # "enhancement only" pricing
+    ritual_mod.enhancement_only = true
+    assert_equal "Fnordian Strength, Variable ST 10 (Piercing, +25%), enhancement only (38)", ritual_mod.to_long_s
     # with an enhancement of 0%
     ritual_mod.enhancement_percentage = 0
+    assert_equal "Fnordian Strength, Variable ST 10 (Piercing, +25%), enhancement only (1)", ritual_mod.to_long_s
+    ritual_mod.enhancement_only = false
     assert_equal "Fnordian Strength, Variable ST 10 (Piercing, +25%) (151)", ritual_mod.to_long_s
     assert_equal "Fnordian Strength, Variable (Piercing, +25%)", ritual_mod.to_short_s
   end

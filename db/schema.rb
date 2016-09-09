@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818225127) do
+ActiveRecord::Schema.define(version: 20160909191739) do
 
   create_table "attacks", force: :cascade do |t|
     t.integer  "monster_id",  limit: 4
@@ -446,6 +446,7 @@ ActiveRecord::Schema.define(version: 20160818225127) do
     t.boolean  "inherent",                limit: 1
     t.text     "enhancement_notes",       limit: 65535
     t.integer  "rpm_modifier_subtype_id", limit: 4
+    t.boolean  "enhancement_only",        limit: 1
   end
 
   add_index "rpm_ritual_modifiers", ["rpm_modifier_level_id"], name: "index_rpm_ritual_modifiers_on_rpm_modifier_level_id", using: :btree
