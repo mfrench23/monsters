@@ -7,6 +7,11 @@ class RpmRitualsControllerTest < ActionController::TestCase
     @rpm_ritual = FactoryGirl.create(:rpm_ritual, :campaign => @campaign)
   end
 
+  test "should get pdf" do
+    get :full_book, :format => "pdf"
+    assert_response :success
+  end
+
   test "should set up static data for standard RPM" do
     get :standard_rpm
     assert_response :found

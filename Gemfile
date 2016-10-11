@@ -57,6 +57,9 @@ gem 'ancestry'
 # Automatic eager loading
 gem 'goldiloader'
 
+# Use prawn to generate PDFs
+gem 'prawn-rails'
+
 gem 'rails4-autocomplete'
 gem 'jquery-ui-rails'
 

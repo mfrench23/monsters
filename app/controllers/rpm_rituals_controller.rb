@@ -10,6 +10,14 @@ class RpmRitualsController < ModelBasedController
     redirect_to new_rpm_ritual_path
   end
 
+  def full_book
+    respond_to do |format|
+      format.pdf do
+        render :layout => false, locals: { :campaign => Campaign.find(selected_campaign_id), :view_context => view_context }
+      end
+    end
+  end
+
   private
 
   def campaign_paths

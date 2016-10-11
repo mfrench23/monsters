@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :rpm_rituals do
     collection do
       get 'grid'
+      get 'full_book', :defaults => { :format => 'pdf' }
     end
   end
 
