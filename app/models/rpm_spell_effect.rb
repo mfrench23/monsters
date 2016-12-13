@@ -28,4 +28,8 @@ class RpmSpellEffect < AbstractEntity
   def self.default_index_sort
     "rpm_potencies.cost_factor, rpm_effects.cost, rpm_paths.name, rpm_rituals.name"
   end
+
+  def deep_copy
+    dup
+  end
 end

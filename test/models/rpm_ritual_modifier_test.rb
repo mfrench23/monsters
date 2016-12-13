@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class RpmRitualModifierTest < ActiveSupport::TestCase
-  test "string versions" do
+  test "string versions and deep_copy" do
     campaign = FactoryGirl.create(:campaign)
     subtype = FactoryGirl.create(:rpm_modifier_subtype, :multiplier => 1.5, :name => "Variable")
     mod = FactoryGirl.create(:rpm_modifier, :campaign => campaign)
@@ -25,11 +25,13 @@ class RpmRitualModifierTest < ActiveSupport::TestCase
     # "enhancement only" pricing
     ritual_mod.enhancement_only = true
     assert_equal "Fnordian Strength, Variable ST 10 (Piercing, +25%), enhancement only (38)", ritual_mod.to_long_s
+    assert_equal "Fnordian Strength, Variable ST 10 (Piercing, +25%), enhancement only (38)", ritual_mod.deep_copy.to_long_s
     # with an enhancement of 0%
     ritual_mod.enhancement_percentage = 0
     assert_equal "Fnordian Strength, Variable ST 10 (Piercing, +25%), enhancement only (1)", ritual_mod.to_long_s
     ritual_mod.enhancement_only = false
     assert_equal "Fnordian Strength, Variable ST 10 (Piercing, +25%) (151)", ritual_mod.to_long_s
+    assert_equal "Fnordian Strength, Variable ST 10 (Piercing, +25%) (151)", ritual_mod.deep_copy.to_long_s
     assert_equal "Fnordian Strength, Variable (Piercing, +25%)", ritual_mod.to_short_s
   end
 end

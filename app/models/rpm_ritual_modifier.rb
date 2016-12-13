@@ -21,6 +21,10 @@ class RpmRitualModifier < ActiveRecord::Base
     enhancement_addition(base) + (rpm_modifier_level.accepts_enhancements && enhancement_only ? 0 : base)
   end
 
+  def deep_copy
+    dup
+  end
+
   private
 
   def enhancement_only_text

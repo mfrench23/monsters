@@ -18,6 +18,12 @@ class RpmRitualsController < ModelBasedController
     end
   end
 
+  def duplicate
+    instance = set_model_by_id.deep_copy
+    instance.campaign_id = selected_campaign_id if instance.respond_to? :campaign_id
+    render :new, locals: locals_hash(instance)
+  end
+
   private
 
   def campaign_paths

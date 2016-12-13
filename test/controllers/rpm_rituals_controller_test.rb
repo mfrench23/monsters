@@ -34,6 +34,12 @@ class RpmRitualsControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
+  
+  test "should get duplicate" do
+    get :duplicate, id: @rpm_ritual
+    assert_response :success
+    assert_select "#rpm_ritual_name[value=?]", @rpm_ritual.name # Expecting input box to be populated from starting ritual
+  end
 
   test "should create rpm_ritual" do
     name = "Other Banishing Ritual of the Fnord"

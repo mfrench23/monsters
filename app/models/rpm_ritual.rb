@@ -39,8 +39,18 @@ class RpmRitual < AbstractEntity
   def base_cost
     all_elements.sum(&:cost)
   end
+  
+  def deep_copy
+    copy = dup
+    reference_list_attributes.each { |reference| deep_copy_reference(reference, copy) }
+    copy
+  end
 
   private
+
+  def reference_list_attributes
+    [:rpm_spell_effects, :rpm_ritual_modifiers, :page_references]
+  end
 
   def calc_inherent_base_cost
     all_inherent_elements.sum(&:cost)

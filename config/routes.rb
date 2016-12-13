@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       get 'grid'
       get 'full_book', :defaults => { :format => 'pdf' }
     end
+    member do
+      get 'duplicate'
+    end
   end
 
   resources :rpm_potencies
