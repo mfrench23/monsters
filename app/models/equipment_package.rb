@@ -5,11 +5,11 @@ class EquipmentPackage < AbstractEntity
 
   before_save :calculate_values
 
-  belongs_to :creature
+  belongs_to :monster
   monetize :total_cost_cents, :numericality => { :greater_than_or_equal_to => 0 }
 
   def final_owner
-    creature
+    monster
   end
 
   def deep_copy

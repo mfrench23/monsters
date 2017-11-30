@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :creature_id %><br>
-    <%= f.collection_select :creature_id, Monster.where("actable_type='" + Creature.to_s + "'").order_by_name, :id, :name, {:include_blank => "-"} %>
+    <%= f.label :monster_id %><br>
+    <%= f.collection_select :monster_id, Creature.order_by_name, :id, :name, {:include_blank => "-"} %>
   </div>
   <div class="field">
     <%= f.label :name %><br>

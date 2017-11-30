@@ -26,7 +26,7 @@
   <tbody>
     <% monsters.each_with_index do |monster, index| %>
       <tr class="tr<%= index % 2 %>">
-        <td><%= link_to monster.name, monster.specific, :class => "quiet", :title => monster.name %></td>
+        <td><%= link_to monster.name, monster, :class => "quiet", :title => monster.name %></td>
         <% if alias_on_page %>
 	  <td><%= monster_alias_list monster %></td>
 	<% end %>
@@ -35,11 +35,11 @@
         <% if variant_on_page %>
           <td>
             <% if ! monster.root? %>
-              <%= link_to monster.parent.name, monster.parent.specific, :class => "quiet", :title => monster.parent.name %>
+              <%= link_to monster.parent.name, monster.parent, :class => "quiet", :title => monster.parent.name %>
             <% end %>
           </td>
         <% end %>
-        <%= render 'index_edit_destroy_links', target: monster.specific %>
+        <%= render 'index_edit_destroy_links', target: monster %>
       </tr>
     <% end %>
   </tbody>

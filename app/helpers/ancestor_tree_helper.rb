@@ -31,6 +31,6 @@ module AncestorTreeHelper
   end
 
   def format_show_link(monster)
-    link_to monster.name, monster.specific
+    link_to monster.name, monster
   end
 end
