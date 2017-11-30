@@ -1,10 +1,9 @@
 # Details concerning a GURPS Skill posessed by a particular Creature (particularly, skill level)
 class Skill < AbstractEntity
-  belongs_to :creature, touch: true
+  belongs_to :monster, touch: true
   belongs_to :master_skill
 
   has_one :characteristic, :through => :master_skill
-  has_one :monster, :through => :creature
 
   validates :master_skill, presence: true
   validate :validate_specialization_if_required
@@ -30,7 +29,7 @@ class Skill < AbstractEntity
 
   def at_actual_phrase
     mod = Modifier.new(modifier)
-    actval = mod.actual( creature.try(:characteristic_score, characteristic) )
+    actval = mod.actual( monster.try(:characteristic_score, characteristic) )
     " @#{characteristic.to_s}#{mod.to_s}#{actval}"
   end
 

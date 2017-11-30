@@ -88,7 +88,7 @@ class CreatureTest < ActiveSupport::TestCase
       copy.save!
     end
     assert_equal "Brawling", copy.skills.first.master_skill.name
-    assert_equal @one, copy.parent.specific
+    assert_equal @one, copy.parent
     assert_nil copy.notes
     assert_nil copy.description
 

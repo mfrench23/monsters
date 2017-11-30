@@ -1,7 +1,5 @@
 FactoryBot.define do
-  factory :swarm do
+  factory :swarm, parent: :monster, class: 'Swarm' do
     number_description "several dozen"
-    monster { FactoryBot.create(:monster) }
   end
-
 end

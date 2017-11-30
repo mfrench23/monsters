@@ -21,7 +21,7 @@ class SwarmTest < ActiveSupport::TestCase
     copy.characteristic_monsters.first.score = 20
     assert_equal true, copy.save
     assert_equal true, one.has_children?
-    assert_equal one, copy.parent.specific
+    assert_equal one, copy.parent
     one_loaded = Swarm.find(one.id)
     assert_equal 10, (one_loaded.characteristic_score "HT")
   end

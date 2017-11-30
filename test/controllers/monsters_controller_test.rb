@@ -11,11 +11,6 @@ class MonstersControllerTest < ActionController::TestCase
     @other_monster.save!
   end
 
-  test "should show associated creature" do
-    get :show, params: { id: @monster.specific.monster.id }
-    assert_redirected_to @monster.specific
-  end
-
   test "should get index" do
     get :index, params: { sort: "monster_classes.name" }
     assert_response :ok

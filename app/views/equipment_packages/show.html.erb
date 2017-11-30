@@ -2,8 +2,8 @@
 
 <p>
   <strong>Creature:</strong>
-  <% if equipment_package.creature.present? %>
-    <%= link_to equipment_package.creature, equipment_package.creature, :class => "quiet" %>
+  <% if equipment_package.monster.present? %>
+    <%= link_to equipment_package.monster, equipment_package.monster, :class => "quiet" %>
   <% else %>
     <span class="footnote">(no creature selected)</span>
   <% end %>

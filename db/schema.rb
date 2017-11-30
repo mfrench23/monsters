@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,526 +10,474 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160909191739) do
+ActiveRecord::Schema.define(version: 20171130000249) do
 
-  create_table "attacks", force: :cascade do |t|
-    t.integer  "monster_id",  limit: 4
-    t.string   "name",        limit: 255
-    t.string   "skill",       limit: 255
+  create_table "attacks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "monster_id"
+    t.string   "name"
+    t.string   "skill"
     t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.index ["monster_id", "name"], name: "index_attacks_on_monster_id_and_name", unique: true, using: :btree
+    t.index ["monster_id"], name: "index_attacks_on_monster_id", using: :btree
   end
 
-  add_index "attacks", ["monster_id", "name"], name: "index_attacks_on_monster_id_and_name", unique: true, using: :btree
-  add_index "attacks", ["monster_id"], name: "index_attacks_on_monster_id", using: :btree
-
-  create_table "books", force: :cascade do |t|
-    t.string   "name",         limit: 255, null: false
-    t.string   "abbreviation", limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+  create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name",         null: false
+    t.string   "abbreviation"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["name"], name: "index_books_on_name", unique: true, using: :btree
   end
 
-  add_index "books", ["name"], name: "index_books_on_name", unique: true, using: :btree
-
-  create_table "campaigns", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "campaigns", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_campaigns_on_name", unique: true, using: :btree
   end
 
-  add_index "campaigns", ["name"], name: "index_campaigns_on_name", unique: true, using: :btree
-
-  create_table "characteristic_lists", force: :cascade do |t|
-    t.integer  "characteristic_id",    limit: 4,   null: false
-    t.string   "monster_actable_type", limit: 255, null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+  create_table "characteristic_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "characteristic_id",    null: false
+    t.string   "monster_actable_type", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["characteristic_id"], name: "index_characteristic_lists_on_characteristic_id", using: :btree
+    t.index ["monster_actable_type", "characteristic_id"], name: "index_characteristic_lists_on_monster_type_and_characteristic", unique: true, using: :btree
   end
 
-  add_index "characteristic_lists", ["characteristic_id"], name: "index_characteristic_lists_on_characteristic_id", using: :btree
-  add_index "characteristic_lists", ["monster_actable_type", "characteristic_id"], name: "index_characteristic_lists_on_monster_type_and_characteristic", unique: true, using: :btree
-
-  create_table "characteristic_monsters", force: :cascade do |t|
-    t.integer  "characteristic_id", limit: 4,                         null: false
-    t.integer  "monster_id",        limit: 4,                         null: false
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
-    t.decimal  "score",                       precision: 6, scale: 2
+  create_table "characteristic_monsters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "characteristic_id",                         null: false
+    t.integer  "monster_id",                                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.decimal  "score",             precision: 6, scale: 2
+    t.index ["characteristic_id", "monster_id"], name: "characteristic_monsters_uniq_join_table_idx", unique: true, using: :btree
+    t.index ["characteristic_id"], name: "index_characteristic_monsters_on_characteristic_id", using: :btree
+    t.index ["monster_id"], name: "index_characteristic_monsters_on_monster_id", using: :btree
   end
 
-  add_index "characteristic_monsters", ["characteristic_id", "monster_id"], name: "characteristic_monsters_uniq_join_table_idx", unique: true, using: :btree
-  add_index "characteristic_monsters", ["characteristic_id"], name: "index_characteristic_monsters_on_characteristic_id", using: :btree
-  add_index "characteristic_monsters", ["monster_id"], name: "index_characteristic_monsters_on_monster_id", using: :btree
-
-  create_table "characteristics", force: :cascade do |t|
-    t.string   "name",            limit: 255,                                       null: false
-    t.integer  "sequence_number", limit: 4
-    t.datetime "created_at",                                                        null: false
-    t.datetime "updated_at",                                                        null: false
-    t.decimal  "step_size",                   precision: 4, scale: 2, default: 1.0, null: false
-    t.decimal  "base_value",                  precision: 6, scale: 2
+  create_table "characteristics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name",                                                    null: false
+    t.integer  "sequence_number"
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.decimal  "step_size",       precision: 4, scale: 2, default: "1.0", null: false
+    t.decimal  "base_value",      precision: 6, scale: 2
+    t.index ["name"], name: "index_characteristics_on_name", unique: true, using: :btree
+    t.index ["sequence_number"], name: "index_characteristics_on_sequence_number", unique: true, using: :btree
   end
 
-  add_index "characteristics", ["name"], name: "index_characteristics_on_name", unique: true, using: :btree
-  add_index "characteristics", ["sequence_number"], name: "index_characteristics_on_sequence_number", unique: true, using: :btree
-
-  create_table "creatures", force: :cascade do |t|
-    t.string   "height",            limit: 255
-    t.string   "weight",            limit: 255
-    t.integer  "parts_value_cents", limit: 4
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
-  create_table "damage_resistances", force: :cascade do |t|
-    t.integer  "location_id", limit: 4
-    t.integer  "dr",          limit: 4,     null: false
+  create_table "damage_resistances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "location_id"
+    t.integer  "dr",                        null: false
     t.text     "notes",       limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "creature_id", limit: 4,     null: false
+    t.integer  "monster_id",                null: false
+    t.index ["location_id"], name: "index_damage_resistances_on_location_id", using: :btree
+    t.index ["monster_id"], name: "fk_rails_2806873aea", using: :btree
   end
 
-  add_index "damage_resistances", ["creature_id"], name: "fk_rails_9b36326d78", using: :btree
-  add_index "damage_resistances", ["location_id"], name: "index_damage_resistances_on_location_id", using: :btree
-
-  create_table "equipment_categories", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "campaign_id", limit: 4
+  create_table "equipment_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "campaign_id"
+    t.index ["campaign_id", "name"], name: "index_equipment_categories_on_name_and_campaign_id", using: :btree
+    t.index ["campaign_id"], name: "index_equipment_categories_on_campaign_id", using: :btree
   end
 
-  add_index "equipment_categories", ["campaign_id", "name"], name: "index_equipment_categories_on_name_and_campaign_id", using: :btree
-  add_index "equipment_categories", ["campaign_id"], name: "index_equipment_categories_on_campaign_id", using: :btree
-
-  create_table "equipment_modifier_categories", force: :cascade do |t|
-    t.string   "name",                                limit: 255
+  create_table "equipment_modifier_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
     t.text     "notes",                               limit: 65535
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.integer  "equipment_modifier_supercategory_id", limit: 4
+    t.integer  "equipment_modifier_supercategory_id"
+    t.index ["equipment_modifier_supercategory_id"], name: "eq_mod_cat_supercat_idx", using: :btree
   end
 
-  add_index "equipment_modifier_categories", ["equipment_modifier_supercategory_id"], name: "eq_mod_cat_supercat_idx", using: :btree
-
-  create_table "equipment_modifier_exclusions", force: :cascade do |t|
-    t.integer  "equipment_modifier_id", limit: 4
-    t.integer  "excluded_id",           limit: 4
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+  create_table "equipment_modifier_exclusions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "equipment_modifier_id"
+    t.integer  "excluded_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["equipment_modifier_id", "excluded_id"], name: "equipment_modifier_exclusions_uniq_idx", unique: true, using: :btree
+    t.index ["equipment_modifier_id"], name: "index_equipment_modifier_exclusions_on_equipment_modifier_id", using: :btree
+    t.index ["excluded_id"], name: "index_equipment_modifier_exclusions_on_excluded_id", using: :btree
   end
 
-  add_index "equipment_modifier_exclusions", ["equipment_modifier_id", "excluded_id"], name: "equipment_modifier_exclusions_uniq_idx", unique: true, using: :btree
-  add_index "equipment_modifier_exclusions", ["equipment_modifier_id"], name: "index_equipment_modifier_exclusions_on_equipment_modifier_id", using: :btree
-  add_index "equipment_modifier_exclusions", ["excluded_id"], name: "index_equipment_modifier_exclusions_on_excluded_id", using: :btree
-
-  create_table "equipment_modifier_supercategories", force: :cascade do |t|
-    t.string   "name",       limit: 255
+  create_table "equipment_modifier_supercategories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
     t.text     "notes",      limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  create_table "equipment_modifiers", force: :cascade do |t|
-    t.string   "name",                           limit: 255
-    t.string   "base_cost_mod",                  limit: 255
-    t.string   "base_weight_mod",                limit: 255
-    t.string   "cost_mod",                       limit: 255
-    t.string   "weight_mod",                     limit: 255
+  create_table "equipment_modifiers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
+    t.string   "base_cost_mod"
+    t.string   "base_weight_mod"
+    t.string   "cost_mod"
+    t.string   "weight_mod"
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
     t.text     "notes",                          limit: 65535
-    t.integer  "equipment_modifier_category_id", limit: 4
-    t.integer  "random_weight",                  limit: 4,     default: 1
+    t.integer  "equipment_modifier_category_id"
+    t.integer  "random_weight",                                default: 1
+    t.index ["equipment_modifier_category_id"], name: "index_equipment_modifiers_on_equipment_modifier_category_id", using: :btree
   end
 
-  add_index "equipment_modifiers", ["equipment_modifier_category_id"], name: "index_equipment_modifiers_on_equipment_modifier_category_id", using: :btree
-
-  create_table "equipment_packages", force: :cascade do |t|
-    t.integer  "creature_id",      limit: 4
-    t.string   "name",             limit: 255
+  create_table "equipment_packages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
     t.text     "notes",            limit: 65535
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
-    t.integer  "total_cost_cents", limit: 4
+    t.integer  "total_cost_cents"
     t.decimal  "total_weight",                   precision: 10, scale: 4
+    t.integer  "monster_id"
+    t.index ["monster_id"], name: "fk_rails_b280677852", using: :btree
   end
 
-  add_index "equipment_packages", ["creature_id"], name: "index_equipment_packages_on_creature_id", using: :btree
-
-  create_table "equipment_piece_modifiers", force: :cascade do |t|
-    t.integer  "equipment_piece_id",    limit: 4
-    t.integer  "equipment_modifier_id", limit: 4
+  create_table "equipment_piece_modifiers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "equipment_piece_id"
+    t.integer  "equipment_modifier_id"
     t.text     "notes",                 limit: 65535
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.index ["equipment_modifier_id"], name: "index_equipment_piece_modifiers_on_equipment_modifier_id", using: :btree
+    t.index ["equipment_piece_id"], name: "index_equipment_piece_modifiers_on_equipment_piece_id", using: :btree
   end
 
-  add_index "equipment_piece_modifiers", ["equipment_modifier_id"], name: "index_equipment_piece_modifiers_on_equipment_modifier_id", using: :btree
-  add_index "equipment_piece_modifiers", ["equipment_piece_id"], name: "index_equipment_piece_modifiers_on_equipment_piece_id", using: :btree
-
-  create_table "equipment_pieces", force: :cascade do |t|
-    t.integer  "equipment_type_id", limit: 4
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
-    t.string   "name",              limit: 255
-    t.decimal  "base_weight",                   precision: 10, scale: 4
-    t.integer  "base_cost_cents",   limit: 4
-    t.decimal  "weight",                        precision: 10, scale: 4
-    t.integer  "cost_cents",        limit: 4
-    t.integer  "owner_id",          limit: 4
-    t.string   "owner_type",        limit: 255
-    t.integer  "quantity",          limit: 4,                            null: false
+  create_table "equipment_pieces", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "equipment_type_id"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "name"
+    t.decimal  "base_weight",       precision: 10, scale: 4
+    t.integer  "base_cost_cents"
+    t.decimal  "weight",            precision: 10, scale: 4
+    t.integer  "cost_cents"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "quantity",                                   null: false
+    t.index ["equipment_type_id"], name: "index_equipment_pieces_on_equipment_type_id", using: :btree
+    t.index ["owner_type", "owner_id"], name: "index_equipment_pieces_on_owner_type_and_owner_id", using: :btree
   end
 
-  add_index "equipment_pieces", ["equipment_type_id"], name: "index_equipment_pieces_on_equipment_type_id", using: :btree
-  add_index "equipment_pieces", ["owner_type", "owner_id"], name: "index_equipment_pieces_on_owner_type_and_owner_id", using: :btree
-
-  create_table "equipment_type_modifier_categories", force: :cascade do |t|
-    t.integer  "equipment_type_id",              limit: 4
-    t.integer  "equipment_modifier_category_id", limit: 4
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+  create_table "equipment_type_modifier_categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "equipment_type_id"
+    t.integer  "equipment_modifier_category_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["equipment_modifier_category_id"], name: "eq_type_mod_cat_mod_cat_idx", using: :btree
+    t.index ["equipment_type_id"], name: "eq_type_mod_cat_type_idx", using: :btree
   end
 
-  add_index "equipment_type_modifier_categories", ["equipment_modifier_category_id"], name: "eq_type_mod_cat_mod_cat_idx", using: :btree
-  add_index "equipment_type_modifier_categories", ["equipment_type_id"], name: "eq_type_mod_cat_type_idx", using: :btree
-
-  create_table "equipment_types", force: :cascade do |t|
-    t.string   "name",                  limit: 255
+  create_table "equipment_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
     t.decimal  "base_weight",                         precision: 10, scale: 4
-    t.integer  "base_cost_cents",       limit: 4
-    t.integer  "equipment_category_id", limit: 4
+    t.integer  "base_cost_cents"
+    t.integer  "equipment_category_id"
     t.text     "notes",                 limit: 65535
     t.datetime "created_at",                                                               null: false
     t.datetime "updated_at",                                                               null: false
-    t.string   "unit_of_measurement",   limit: 255
-    t.integer  "random_weight",         limit: 4,                              default: 1
-    t.integer  "campaign_id",           limit: 4
+    t.string   "unit_of_measurement"
+    t.integer  "random_weight",                                                default: 1
+    t.integer  "campaign_id"
+    t.index ["campaign_id", "name"], name: "idx_equipment_types_on_name_and_campaign", using: :btree
+    t.index ["campaign_id"], name: "index_equipment_types_on_campaign_id", using: :btree
+    t.index ["equipment_category_id"], name: "index_equipment_types_on_equipment_category_id", using: :btree
   end
 
-  add_index "equipment_types", ["campaign_id", "name"], name: "idx_equipment_types_on_name_and_campaign", using: :btree
-  add_index "equipment_types", ["campaign_id"], name: "index_equipment_types_on_campaign_id", using: :btree
-  add_index "equipment_types", ["equipment_category_id"], name: "index_equipment_types_on_equipment_category_id", using: :btree
-
-  create_table "illustrations", force: :cascade do |t|
-    t.integer  "illustratable_id",   limit: 4
-    t.string   "illustratable_type", limit: 255
+  create_table "illustrations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "illustratable_id"
+    t.string   "illustratable_type"
     t.text     "notes",              limit: 65535
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.string   "image_file_name",    limit: 255
-    t.string   "image_content_type", limit: 255
-    t.integer  "image_file_size",    limit: 4
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.index ["illustratable_type", "illustratable_id"], name: "index_illustrations_on_illustratable_type_and_illustratable_id", using: :btree
   end
 
-  add_index "illustrations", ["illustratable_type", "illustratable_id"], name: "index_illustrations_on_illustratable_type_and_illustratable_id", using: :btree
-
-  create_table "locations", force: :cascade do |t|
-    t.string   "name",       limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_locations_on_name", unique: true, using: :btree
   end
 
-  add_index "locations", ["name"], name: "index_locations_on_name", unique: true, using: :btree
-
-  create_table "master_skills", force: :cascade do |t|
-    t.string   "name",                    limit: 255,   null: false
+  create_table "master_skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name",                                  null: false
     t.text     "notes",                   limit: 65535
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.integer  "characteristic_id",       limit: 4,     null: false
-    t.boolean  "requires_specialization", limit: 1
-    t.boolean  "requires_tech_level",     limit: 1
+    t.integer  "characteristic_id",                     null: false
+    t.boolean  "requires_specialization"
+    t.boolean  "requires_tech_level"
+    t.index ["characteristic_id"], name: "index_master_skills_on_characteristic_id", using: :btree
+    t.index ["name", "characteristic_id"], name: "index_master_skills_on_name_characteristic_id", unique: true, using: :btree
+    t.index ["name"], name: "index_master_skills_on_name", unique: true, using: :btree
   end
 
-  add_index "master_skills", ["characteristic_id"], name: "index_master_skills_on_characteristic_id", using: :btree
-  add_index "master_skills", ["name", "characteristic_id"], name: "index_master_skills_on_name_characteristic_id", unique: true, using: :btree
-  add_index "master_skills", ["name"], name: "index_master_skills_on_name", unique: true, using: :btree
-
-  create_table "master_traits", force: :cascade do |t|
-    t.string   "name",       limit: 255,   null: false
+  create_table "master_traits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name",                     null: false
     t.text     "notes",      limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.index ["name"], name: "index_master_traits_on_name", using: :btree
   end
 
-  add_index "master_traits", ["name"], name: "index_master_traits_on_name", using: :btree
-
-  create_table "monster_classes", force: :cascade do |t|
-    t.string   "name",           limit: 255, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.integer  "monsters_count", limit: 4
+  create_table "monster_classes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name",           null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "monsters_count"
+    t.index ["name"], name: "index_monster_classes_on_name", unique: true, using: :btree
   end
 
-  add_index "monster_classes", ["name"], name: "index_monster_classes_on_name", unique: true, using: :btree
-
-  create_table "monster_names", force: :cascade do |t|
-    t.integer  "monster_id", limit: 4,     null: false
-    t.string   "name",       limit: 255,   null: false
+  create_table "monster_names", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "monster_id",               null: false
+    t.string   "name",                     null: false
     t.text     "notes",      limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.index ["monster_id"], name: "index_monster_names_on_monster_id", using: :btree
+    t.index ["name"], name: "index_monster_names_on_name", using: :btree
   end
 
-  add_index "monster_names", ["monster_id"], name: "index_monster_names_on_monster_id", using: :btree
-  add_index "monster_names", ["name"], name: "index_monster_names_on_name", using: :btree
-
-  create_table "monsters", force: :cascade do |t|
-    t.text     "description",      limit: 65535
-    t.text     "notes",            limit: 65535
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.integer  "monster_class_id", limit: 4,                 null: false
-    t.string   "name",             limit: 255,               null: false
-    t.integer  "actable_id",       limit: 4
-    t.string   "actable_type",     limit: 255
-    t.string   "ancestry",         limit: 255
-    t.integer  "ancestry_depth",   limit: 4,     default: 0
-    t.integer  "campaign_id",      limit: 4
+  create_table "monsters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.text     "description",        limit: 65535
+    t.text     "notes",              limit: 65535
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.integer  "monster_class_id",                             null: false
+    t.string   "name",                                         null: false
+    t.string   "ancestry"
+    t.integer  "ancestry_depth",                   default: 0
+    t.integer  "campaign_id"
+    t.string   "type"
+    t.text     "number_description", limit: 65535
+    t.string   "height"
+    t.string   "weight"
+    t.integer  "parts_value_cents"
+    t.index ["ancestry"], name: "index_monsters_on_ancestry", using: :btree
+    t.index ["campaign_id"], name: "index_monsters_on_campaign_id", using: :btree
+    t.index ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree
+    t.index ["name"], name: "index_monsters_on_name", unique: true, using: :btree
   end
 
-  add_index "monsters", ["actable_type", "actable_id"], name: "index_monsters_on_actable_type_and_actable_id", unique: true, using: :btree
-  add_index "monsters", ["ancestry"], name: "index_monsters_on_ancestry", using: :btree
-  add_index "monsters", ["campaign_id"], name: "index_monsters_on_campaign_id", using: :btree
-  add_index "monsters", ["monster_class_id"], name: "index_monsters_on_monster_class_id", using: :btree
-  add_index "monsters", ["name"], name: "index_monsters_on_name", unique: true, using: :btree
-
-  create_table "move_types", force: :cascade do |t|
-    t.string   "name",       limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "move_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_move_types_on_name", unique: true, using: :btree
   end
 
-  add_index "move_types", ["name"], name: "index_move_types_on_name", unique: true, using: :btree
-
-  create_table "movement_rates", force: :cascade do |t|
-    t.integer  "monster_id",    limit: 4, null: false
-    t.integer  "rate",          limit: 4
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "move_type_id",  limit: 4
-    t.integer  "enhanced_rate", limit: 4
+  create_table "movement_rates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "monster_id",    null: false
+    t.integer  "rate"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "move_type_id"
+    t.integer  "enhanced_rate"
+    t.index ["monster_id"], name: "index_movement_rates_on_monster_id", using: :btree
+    t.index ["move_type_id"], name: "index_movement_rates_on_move_type_id", using: :btree
   end
 
-  add_index "movement_rates", ["monster_id"], name: "index_movement_rates_on_monster_id", using: :btree
-  add_index "movement_rates", ["move_type_id"], name: "index_movement_rates_on_move_type_id", using: :btree
-
-  create_table "page_references", force: :cascade do |t|
-    t.integer  "book_id",            limit: 4
-    t.string   "pages",              limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "referenceable_id",   limit: 4
-    t.string   "referenceable_type", limit: 255
+  create_table "page_references", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "book_id"
+    t.string   "pages"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "referenceable_id"
+    t.string   "referenceable_type"
+    t.index ["book_id"], name: "index_page_references_on_book_id", using: :btree
+    t.index ["referenceable_type", "referenceable_id"], name: "index_page_references_on_referenceable_type_and_referenceable_id", using: :btree
   end
 
-  add_index "page_references", ["book_id"], name: "index_page_references_on_book_id", using: :btree
-  add_index "page_references", ["referenceable_type", "referenceable_id"], name: "index_page_references_on_referenceable_type_and_referenceable_id", using: :btree
-
-  create_table "parry_scores", force: :cascade do |t|
-    t.string   "weapon",      limit: 255
-    t.integer  "parry",       limit: 4,   null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "creature_id", limit: 4,   null: false
+  create_table "parry_scores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "weapon"
+    t.integer  "parry",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "monster_id", null: false
+    t.index ["monster_id"], name: "fk_rails_27f3207407", using: :btree
   end
 
-  add_index "parry_scores", ["creature_id"], name: "fk_rails_7faaccd889", using: :btree
-
-  create_table "random_eq_profile_line_items", force: :cascade do |t|
-    t.integer  "random_eq_profile_id",                limit: 4
-    t.integer  "equipment_modifier_supercategory_id", limit: 4
-    t.integer  "quantity",                            limit: 4
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.integer  "equipment_modifier_category_id",      limit: 4
+  create_table "random_eq_profile_line_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "random_eq_profile_id"
+    t.integer  "equipment_modifier_supercategory_id"
+    t.integer  "quantity"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "equipment_modifier_category_id"
+    t.index ["equipment_modifier_category_id"], name: "rnd_eq_prof_line_itm_cat_idx", using: :btree
+    t.index ["equipment_modifier_supercategory_id"], name: "rand_eq_prof_line_eq_sprcat_idx", using: :btree
+    t.index ["random_eq_profile_id"], name: "rand_eq_prof_line_idx", using: :btree
   end
 
-  add_index "random_eq_profile_line_items", ["equipment_modifier_category_id"], name: "rnd_eq_prof_line_itm_cat_idx", using: :btree
-  add_index "random_eq_profile_line_items", ["equipment_modifier_supercategory_id"], name: "rand_eq_prof_line_eq_sprcat_idx", using: :btree
-  add_index "random_eq_profile_line_items", ["random_eq_profile_id"], name: "rand_eq_prof_line_idx", using: :btree
-
-  create_table "random_eq_profiles", force: :cascade do |t|
-    t.integer  "equipment_type_id",     limit: 4
-    t.integer  "equipment_category_id", limit: 4
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
-    t.integer  "random_weight",         limit: 4,   default: 1
-    t.string   "quantity",              limit: 255
+  create_table "random_eq_profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "equipment_type_id"
+    t.integer  "equipment_category_id"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "random_weight",         default: 1
+    t.string   "quantity"
+    t.index ["equipment_category_id"], name: "index_random_eq_profiles_on_equipment_category_id", using: :btree
+    t.index ["equipment_type_id"], name: "index_random_eq_profiles_on_equipment_type_id", using: :btree
   end
 
-  add_index "random_eq_profiles", ["equipment_category_id"], name: "index_random_eq_profiles_on_equipment_category_id", using: :btree
-  add_index "random_eq_profiles", ["equipment_type_id"], name: "index_random_eq_profiles_on_equipment_type_id", using: :btree
-
-  create_table "rpm_effects", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.integer  "cost",        limit: 4
+  create_table "rpm_effects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
+    t.integer  "cost"
     t.text     "notes",       limit: 65535
-    t.integer  "campaign_id", limit: 4
+    t.integer  "campaign_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.index ["campaign_id", "name"], name: "idx_rpm_effects_on_name_and_campaign", using: :btree
+    t.index ["campaign_id"], name: "index_rpm_effects_on_campaign_id", using: :btree
   end
 
-  add_index "rpm_effects", ["campaign_id", "name"], name: "idx_rpm_effects_on_name_and_campaign", using: :btree
-  add_index "rpm_effects", ["campaign_id"], name: "index_rpm_effects_on_campaign_id", using: :btree
-
-  create_table "rpm_modifier_levels", force: :cascade do |t|
-    t.integer  "rpm_modifier_id",          limit: 4
-    t.string   "description",              limit: 255
-    t.integer  "cost",                     limit: 4
-    t.boolean  "include_notes_in_summary", limit: 1
-    t.boolean  "accepts_enhancements",     limit: 1
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+  create_table "rpm_modifier_levels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "rpm_modifier_id"
+    t.string   "description"
+    t.integer  "cost"
+    t.boolean  "include_notes_in_summary"
+    t.boolean  "accepts_enhancements"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["rpm_modifier_id"], name: "index_rpm_modifier_levels_on_rpm_modifier_id", using: :btree
   end
 
-  add_index "rpm_modifier_levels", ["rpm_modifier_id"], name: "index_rpm_modifier_levels_on_rpm_modifier_id", using: :btree
-
-  create_table "rpm_modifier_subtypes", force: :cascade do |t|
-    t.integer  "rpm_modifier_id", limit: 4
-    t.string   "name",            limit: 255
-    t.decimal  "multiplier",                  precision: 5, scale: 2
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+  create_table "rpm_modifier_subtypes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "rpm_modifier_id"
+    t.string   "name"
+    t.decimal  "multiplier",      precision: 5, scale: 2
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.index ["rpm_modifier_id"], name: "index_rpm_modifier_subtypes_on_rpm_modifier_id", using: :btree
   end
 
-  add_index "rpm_modifier_subtypes", ["rpm_modifier_id"], name: "index_rpm_modifier_subtypes_on_rpm_modifier_id", using: :btree
-
-  create_table "rpm_modifiers", force: :cascade do |t|
-    t.string   "name",                       limit: 255
+  create_table "rpm_modifiers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
     t.text     "notes",                      limit: 65535
-    t.integer  "campaign_id",                limit: 4
+    t.integer  "campaign_id"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
-    t.string   "short_name",                 limit: 255
-    t.boolean  "exclude_level_from_summary", limit: 1
+    t.string   "short_name"
+    t.boolean  "exclude_level_from_summary"
+    t.index ["campaign_id"], name: "index_rpm_modifiers_on_campaign_id", using: :btree
   end
 
-  add_index "rpm_modifiers", ["campaign_id"], name: "index_rpm_modifiers_on_campaign_id", using: :btree
-
-  create_table "rpm_paths", force: :cascade do |t|
-    t.string   "name",        limit: 255
+  create_table "rpm_paths", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
     t.text     "notes",       limit: 65535
-    t.integer  "campaign_id", limit: 4
+    t.integer  "campaign_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.index ["campaign_id"], name: "index_rpm_paths_on_campaign_id", using: :btree
   end
 
-  add_index "rpm_paths", ["campaign_id"], name: "index_rpm_paths_on_campaign_id", using: :btree
-
-  create_table "rpm_potencies", force: :cascade do |t|
-    t.string   "rpm_potency", limit: 255
-    t.string   "name",        limit: 255
+  create_table "rpm_potencies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "rpm_potency"
+    t.string   "name"
     t.text     "notes",       limit: 65535
-    t.integer  "campaign_id", limit: 4
+    t.integer  "campaign_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "cost_factor", limit: 4
+    t.integer  "cost_factor"
+    t.index ["campaign_id"], name: "index_rpm_potencies_on_campaign_id", using: :btree
   end
 
-  add_index "rpm_potencies", ["campaign_id"], name: "index_rpm_potencies_on_campaign_id", using: :btree
-
-  create_table "rpm_ritual_modifiers", force: :cascade do |t|
-    t.integer  "rpm_ritual_id",           limit: 4
-    t.integer  "rpm_modifier_level_id",   limit: 4
+  create_table "rpm_ritual_modifiers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "rpm_ritual_id"
+    t.integer  "rpm_modifier_level_id"
     t.text     "notes",                   limit: 65535
-    t.integer  "enhancement_percentage",  limit: 4
+    t.integer  "enhancement_percentage"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.boolean  "inherent",                limit: 1
+    t.boolean  "inherent"
     t.text     "enhancement_notes",       limit: 65535
-    t.integer  "rpm_modifier_subtype_id", limit: 4
-    t.boolean  "enhancement_only",        limit: 1
+    t.integer  "rpm_modifier_subtype_id"
+    t.boolean  "enhancement_only"
+    t.index ["rpm_modifier_level_id"], name: "index_rpm_ritual_modifiers_on_rpm_modifier_level_id", using: :btree
+    t.index ["rpm_modifier_subtype_id"], name: "index_rpm_ritual_modifiers_on_rpm_modifier_subtype_id", using: :btree
+    t.index ["rpm_ritual_id"], name: "index_rpm_ritual_modifiers_on_rpm_ritual_id", using: :btree
   end
 
-  add_index "rpm_ritual_modifiers", ["rpm_modifier_level_id"], name: "index_rpm_ritual_modifiers_on_rpm_modifier_level_id", using: :btree
-  add_index "rpm_ritual_modifiers", ["rpm_modifier_subtype_id"], name: "index_rpm_ritual_modifiers_on_rpm_modifier_subtype_id", using: :btree
-  add_index "rpm_ritual_modifiers", ["rpm_ritual_id"], name: "index_rpm_ritual_modifiers_on_rpm_ritual_id", using: :btree
-
-  create_table "rpm_rituals", force: :cascade do |t|
-    t.string   "name",          limit: 255
+  create_table "rpm_rituals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.string   "name"
     t.text     "description",   limit: 65535
-    t.integer  "typical_cost",  limit: 4
-    t.integer  "campaign_id",   limit: 4
+    t.integer  "typical_cost"
+    t.integer  "campaign_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "inherent_cost", limit: 4
+    t.integer  "inherent_cost"
+    t.index ["campaign_id"], name: "index_rpm_rituals_on_campaign_id", using: :btree
   end
 
-  add_index "rpm_rituals", ["campaign_id"], name: "index_rpm_rituals_on_campaign_id", using: :btree
-
-  create_table "rpm_spell_effects", force: :cascade do |t|
-    t.integer  "rpm_ritual_id",  limit: 4
-    t.integer  "rpm_potency_id", limit: 4
-    t.integer  "rpm_effect_id",  limit: 4
-    t.integer  "rpm_path_id",    limit: 4
+  create_table "rpm_spell_effects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "rpm_ritual_id"
+    t.integer  "rpm_potency_id"
+    t.integer  "rpm_effect_id"
+    t.integer  "rpm_path_id"
     t.text     "notes",          limit: 65535
-    t.boolean  "inherent",       limit: 1
+    t.boolean  "inherent"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.index ["rpm_effect_id"], name: "index_rpm_spell_effects_on_rpm_effect_id", using: :btree
+    t.index ["rpm_path_id"], name: "index_rpm_spell_effects_on_rpm_path_id", using: :btree
+    t.index ["rpm_potency_id"], name: "index_rpm_spell_effects_on_rpm_potency_id", using: :btree
+    t.index ["rpm_ritual_id", "inherent"], name: "index_rpm_spell_effects_on_rpm_ritual_id_and_inherent", using: :btree
   end
 
-  add_index "rpm_spell_effects", ["rpm_effect_id"], name: "index_rpm_spell_effects_on_rpm_effect_id", using: :btree
-  add_index "rpm_spell_effects", ["rpm_path_id"], name: "index_rpm_spell_effects_on_rpm_path_id", using: :btree
-  add_index "rpm_spell_effects", ["rpm_potency_id"], name: "index_rpm_spell_effects_on_rpm_potency_id", using: :btree
-  add_index "rpm_spell_effects", ["rpm_ritual_id", "inherent"], name: "index_rpm_spell_effects_on_rpm_ritual_id_and_inherent", using: :btree
-
-  create_table "skills", force: :cascade do |t|
-    t.integer  "modifier",        limit: 4,     null: false
+  create_table "skills", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "modifier",                      null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
-    t.integer  "master_skill_id", limit: 4,     null: false
-    t.string   "specialization",  limit: 255
-    t.string   "tech_level",      limit: 255
+    t.integer  "master_skill_id",               null: false
+    t.string   "specialization"
+    t.string   "tech_level"
     t.text     "notes",           limit: 65535
-    t.integer  "creature_id",     limit: 4,     null: false
+    t.integer  "monster_id",                    null: false
+    t.index ["master_skill_id"], name: "index_skills_on_master_skill_id", using: :btree
+    t.index ["monster_id"], name: "fk_rails_cdabc69603", using: :btree
   end
 
-  add_index "skills", ["creature_id"], name: "fk_rails_ab183a24b7", using: :btree
-  add_index "skills", ["master_skill_id"], name: "index_skills_on_master_skill_id", using: :btree
-
-  create_table "swarms", force: :cascade do |t|
-    t.text     "number_description", limit: 65535
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-  end
-
-  create_table "traits", force: :cascade do |t|
-    t.integer  "level",            limit: 4
+  create_table "traits", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
+    t.integer  "level"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
-    t.integer  "master_trait_id",  limit: 4,     null: false
+    t.integer  "master_trait_id",                null: false
     t.text     "notes",            limit: 65535
-    t.integer  "trait_owner_id",   limit: 4,     null: false
-    t.string   "trait_owner_type", limit: 255,   null: false
-    t.string   "ancestry",         limit: 255
-    t.integer  "creature_id",      limit: 4
+    t.integer  "trait_owner_id",                 null: false
+    t.string   "trait_owner_type",               null: false
+    t.string   "ancestry"
+    t.integer  "monster_id"
+    t.index ["ancestry"], name: "index_traits_on_ancestry", using: :btree
+    t.index ["master_trait_id"], name: "index_traits_on_master_trait_id", using: :btree
+    t.index ["monster_id"], name: "fk_rails_749a4d582c", using: :btree
+    t.index ["trait_owner_id", "trait_owner_type"], name: "index_traits_on_trait_owner_id_and_trait_owner_type", using: :btree
   end
-
-  add_index "traits", ["ancestry"], name: "index_traits_on_ancestry", using: :btree
-  add_index "traits", ["creature_id"], name: "index_traits_on_creature_id", using: :btree
-  add_index "traits", ["master_trait_id"], name: "index_traits_on_master_trait_id", using: :btree
-  add_index "traits", ["trait_owner_id", "trait_owner_type"], name: "index_traits_on_trait_owner_id_and_trait_owner_type", using: :btree
 
   add_foreign_key "attacks", "monsters"
   add_foreign_key "characteristic_lists", "characteristics"
   add_foreign_key "characteristic_monsters", "characteristics"
   add_foreign_key "characteristic_monsters", "monsters"
-  add_foreign_key "damage_resistances", "creatures"
   add_foreign_key "damage_resistances", "locations"
   add_foreign_key "damage_resistances", "locations"
+  add_foreign_key "damage_resistances", "monsters"
   add_foreign_key "equipment_categories", "campaigns"
   add_foreign_key "equipment_modifier_categories", "equipment_modifier_supercategories"
   add_foreign_key "equipment_modifier_exclusions", "equipment_modifiers"
   add_foreign_key "equipment_modifier_exclusions", "equipment_modifiers", column: "excluded_id"
   add_foreign_key "equipment_modifiers", "equipment_modifier_categories"
-  add_foreign_key "equipment_packages", "creatures"
+  add_foreign_key "equipment_packages", "monsters"
   add_foreign_key "equipment_piece_modifiers", "equipment_modifiers"
   add_foreign_key "equipment_piece_modifiers", "equipment_pieces"
   add_foreign_key "equipment_pieces", "equipment_types"
@@ -545,7 +492,7 @@ ActiveRecord::Schema.define(version: 20160909191739) do
   add_foreign_key "movement_rates", "monsters"
   add_foreign_key "movement_rates", "move_types"
   add_foreign_key "page_references", "books"
-  add_foreign_key "parry_scores", "creatures"
+  add_foreign_key "parry_scores", "monsters"
   add_foreign_key "random_eq_profile_line_items", "equipment_modifier_categories"
   add_foreign_key "random_eq_profile_line_items", "equipment_modifier_supercategories"
   add_foreign_key "random_eq_profile_line_items", "random_eq_profiles"
@@ -565,8 +512,8 @@ ActiveRecord::Schema.define(version: 20160909191739) do
   add_foreign_key "rpm_spell_effects", "rpm_paths"
   add_foreign_key "rpm_spell_effects", "rpm_potencies"
   add_foreign_key "rpm_spell_effects", "rpm_rituals"
-  add_foreign_key "skills", "creatures"
   add_foreign_key "skills", "master_skills"
-  add_foreign_key "traits", "creatures"
+  add_foreign_key "skills", "monsters"
   add_foreign_key "traits", "master_traits"
+  add_foreign_key "traits", "monsters"
 end

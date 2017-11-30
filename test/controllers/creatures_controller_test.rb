@@ -70,8 +70,8 @@ class CreaturesControllerTest < ActionController::TestCase
 
   test "should destroy creature" do
     @request.env['HTTP_REFERER'] = creatures_path
-    assert_difference(['Monster.count', 'Creature.count'], -1) do
-      delete :destroy, params: { id: @creature }
+    assert_difference('Monster.count', -1) do
+      delete :destroy, id: @creature
     end
 
     assert_redirected_to creatures_path
