@@ -9,7 +9,7 @@ class SkillTest < ActiveSupport::TestCase
     assert_equal "Stealth @DX+1", skill.to_s
     creature = Creature.new
     creature.characteristic_monsters << CharacteristicMonster.new(:characteristic => skill.characteristic, :score => 10 )
-    skill.creature = creature
+    skill.monster = creature
     assert_equal "Stealth @DX+1=11", skill.to_s
   end
 

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   # multiple table inheritance: monsters -> creatures and swarms
-  resources :monsters, :only => [:index, :show]
+  resources :monsters, :only => [:index]
   resources :creatures do
     member do
       get 'variant'

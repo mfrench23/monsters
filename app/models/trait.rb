@@ -2,7 +2,7 @@
 class Trait < AbstractEntity
   belongs_to :trait_owner, polymorphic: true, touch: true
   belongs_to :master_trait
-  belongs_to :creature
+  belongs_to :monster, touch: true
 
   validates :master_trait, presence: true
 
@@ -14,13 +14,13 @@ class Trait < AbstractEntity
   delegate :name, to: :master_trait, prefix: false
   delegate :notes, to: :master_trait, prefix: true
 
-  scope :creature_owned, -> { where('trait_owner_type = ?', "Creature") } # traits directly owned by a Creature
-  scope :meta_trait_owned, -> { where('trait_owner_type = ?', "MasterTrait") }
-  scope :creature_possessed, -> { where('creature_id is not null') } # includes traits indirectly granted through a meta-trait
-  scope :meta_trait_member, -> { meta_trait_owned.joins("inner join master_traits on traits.trait_owner_id = master_traits.id").order("master_traits.name") }
+  scope :creature_owned, -> { where('traits.trait_owner_type != ?', "Trait") } # traits directly owned by a Creature - not part of a meta-trait
+  scope :meta_trait_owned, -> { where('traits.trait_owner_type = ?', "Trait") }
+  scope :creature_possessed, -> { where('traits.monster_id is not null') } # includes traits indirectly granted through a meta-trait
+  scope :meta_trait_member, -> { meta_trait_owned.joins("inner join traits mt on traits.trait_owner_id = mt.id inner join master_traits on mt.master_trait_id = master_traits.id").order("master_traits.name") }
 
   scope :order_by_master_trait, -> { includes(:master_trait).order("master_traits.name") }
-  scope :order_by_creature, -> { includes(:creature => [ :monster ]).order("monsters.name") }
+  scope :order_by_creature, -> { includes(:monster).order("monsters.name") }
 
   after_save :add_granted_traits
   before_destroy :remove_granted_traits
@@ -35,7 +35,7 @@ class Trait < AbstractEntity
     new_trait = deep_copy
     new_trait.trait_owner = trait
     new_trait.parent = trait
-    new_trait.creature_id = trait.creature_id
+    new_trait.monster_id = trait.monster_id
     new_trait
   end
 
@@ -46,7 +46,7 @@ class Trait < AbstractEntity
   end
 
   def capture_creature_id
-    self['creature_id'] ||= trait_owner_id if trait_owner_type == 'Creature'
+    self['monster_id'] ||= trait_owner_id if trait_owner_type == 'Monster'
   end
 
   def add_granted_traits

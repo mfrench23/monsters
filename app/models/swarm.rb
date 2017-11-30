@@ -1,13 +1,6 @@
 # Represents a GURPS swarm, like a swarm of bees or a horde of rats
-class Swarm < AbstractEntity
-  acts_as :monster
+class Swarm < Monster
   before_validation :nil_blank_attributes
-
-  def deep_copy
-    copy = dup
-    copy.monster = monster.deep_copy
-    copy
-  end
 
   private
 

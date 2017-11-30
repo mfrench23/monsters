@@ -1,6 +1,6 @@
 # One value for a GURPS Parry, specific to one attack owned by a given Creature
 class ParryScore < AbstractEntity
-  belongs_to :creature, touch: true
+  belongs_to :monster, touch: true
   validates :parry, presence: true
 
   def deep_copy

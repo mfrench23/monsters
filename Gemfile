@@ -46,9 +46,6 @@ gem 'kaminari'
 # Paperclip for handling uploaded images
 gem "paperclip", "~> 4.2"
 
-# multiple table inheritance
-gem 'active_record-acts_as'
-
 gem "money-rails", "~> 1.4.1"
 
 # ancestry for hierarchical relationships

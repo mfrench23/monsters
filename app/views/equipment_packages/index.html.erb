@@ -21,8 +21,8 @@
         <% name = equipment_package.name? ? equipment_package.name : "(no name)" %>
         <td><%= link_to name, equipment_package, :class => "quiet" + (equipment_package.name? ? "" : " equipment-package-name") %></td>
         <td>
-          <% if equipment_package.creature.present? %>
-            <%= link_to equipment_package.creature, equipment_package.creature, :class => "quiet", :title => equipment_package.creature %>
+          <% if equipment_package.monster.present? %>
+            <%= link_to equipment_package.monster, equipment_package.monster, :class => "quiet", :title => equipment_package.monster %>
           <% else %>
             <span>-</span>
           <% end %>
