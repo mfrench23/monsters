@@ -22,8 +22,4 @@ class RpmSpellEffectsController < ModelBasedController
   def standard_filter_params
     super.merge( { :inherent_only => true } )
   end
-
-  def whitelisted_entity_params
-    RpmSpellEffectForm.new(params).params
-  end
 end

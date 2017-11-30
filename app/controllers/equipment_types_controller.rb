@@ -14,7 +14,7 @@ class EquipmentTypesController < ModelBasedController
   private
 
   def get_autocomplete_items(parameters)
-    super(parameters).where(:campaign_id => selected_campaign_id)
+    super(parameters).in_campaign(selected_campaign_id)
   end
 
   def render_mass_entry_page_with_error_messages(form)

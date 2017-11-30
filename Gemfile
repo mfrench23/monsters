@@ -60,6 +60,9 @@ gem 'jquery-ui-rails'
 
 gem 'rails-erd', group: :development
 
+# Automatically avoid N+1 queries
+gem 'goldiloader'
+
 group :development, :test do
   # FactoryBot to replace fixtures for test data
   gem "factory_bot_rails"

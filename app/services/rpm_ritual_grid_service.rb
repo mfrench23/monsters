@@ -4,19 +4,26 @@ class RpmRitualGridService
 
   def grid(campaign_id)
     sql = grid_sql(campaign_id)
-    ActiveRecord::Base.connection.execute(sql).inject({}) { |memo, arr| add_ritual memo, arr; memo }
+    ActiveRecord::Base.connection.exec_query(sql).inject({}) { |memo, hash| add_ritual memo, hash; memo }
   end
 
   private
 
-  def add_ritual(hash, value_array)
-    (path_name, effect_name, potency_name, ritual_id, ritual_name, ritual_description, typical_cost) = value_array
+  def add_ritual(hash, value_hash)
+    path_name = value_hash["rpm_path_name"]
+    effect_name = value_hash["rpm_effect_name"]
+    potency_name = value_hash["rpm_potency_name"]
+    ritual_id = value_hash["rpm_ritual_id"]
+    ritual_name = value_hash["name"]
+    ritual_description = value_hash["description"]
+    typical_cost = value_hash["typical_cost"]
     add_structure_for_hash hash, path_name, effect_name, potency_name
     hash[path_name][effect_name][potency_name] << {:id => ritual_id, :name => ritual_name, :description => ritual_description, :typical_cost => typical_cost} if ritual_id.present?
   end
 
   def grid_sql(campaign_id)
-    "select distinct eff.rpm_path_name, eff.rpm_effect_name, eff.rpm_potency_cost_factor, eff.rpm_potency_name, se.rpm_ritual_id, ri.name, ri.description, ri.typical_cost
+    "select distinct eff.rpm_path_name, eff.rpm_effect_name, eff.rpm_potency_cost_factor,
+      eff.rpm_potency_name, se.rpm_ritual_id, ri.name, ri.description, ri.typical_cost
     from
       (select
         pa.id as rpm_path_id, po.id as rpm_potency_id, ef.id as rpm_effect_id,

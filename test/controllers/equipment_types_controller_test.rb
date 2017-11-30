@@ -3,31 +3,35 @@ require 'test_helper'
 class EquipmentTypesControllerTest < ActionController::TestCase
   setup do
     @campaign = FactoryBot.create(:campaign)
-    eq_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign)
-    eq_category.save!
+    @eq_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign)
+    @eq_category.save!
     @equipment_type = EquipmentType.new(:name => "Rather Narrow Sword", :base_cost_cents => 1000, 
                                         :base_weight => 9.99, :random_weight => 1, :campaign => @campaign,
-                                        :equipment_category => eq_category)
+                                        :equipment_category => @eq_category)
     @equipment_type.save!
+
+    @campaign2 = FactoryBot.create(:campaign, :name => @campaign.name + "-2")
+    @eq_category2 = EquipmentCategory.new(:name => "Knickknacks Part 2, The Revenge", :campaign => @campaign2)
+    @eq_category2.save!
+
     cookies[:selected_campaign] = @campaign.id.to_s
   end
 
   test "should restrict autocomplete by campaign" do
-    campaign2 = FactoryBot.create(:campaign, :name => @campaign.name + "-2")
-    eq_category = EquipmentCategory.new(:name => "Knickknacks Part 2, The Revenge", :campaign => campaign2)
-    eq_category.save!
-    controller = EquipmentTypesController.new
     get :autocomplete_equipment_category_name, params: { :term => "Knick" }
     assert_response :ok
     body = JSON.parse @response.body
     assert_equal 1, body.count
-    assert_equal @equipment_type.equipment_category_id.to_s, body.first["id"].to_s
-    cookies[:selected_campaign] = campaign2.id.to_s # change campaign, change the results
+    assert_equal @eq_category.id.to_s, body.first["id"].to_s
+  end
+
+  test "should restrict autocomplete by campaign, part 2" do
+    cookies[:selected_campaign] = @campaign2.id.to_s # change campaign, change the results
     get :autocomplete_equipment_category_name, params: { :term => "Knick" }
     assert_response :ok
     body = JSON.parse @response.body
     assert_equal 1, body.count
-    assert_equal eq_category.id.to_s, body.first["id"].to_s
+    assert_equal @eq_category2.id.to_s, body.first["id"].to_s
   end
 
   test "should get index" do

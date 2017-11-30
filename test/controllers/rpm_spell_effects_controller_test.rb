@@ -7,7 +7,7 @@ class RpmSpellEffectsControllerTest < ActionController::TestCase
     pot = FactoryBot.create(:rpm_potency, :campaign => campaign, :name => "Lesser")
     eff = FactoryBot.create(:rpm_effect, :campaign => campaign, :name => "Create")
     path = FactoryBot.create(:rpm_path, :campaign => campaign, :name => "Nachos")
-    ritual = RpmRitual.new(:name => "Flying Pig Ritual", :campaign => campaign )
+    ritual = RpmRitual.new(:name => "Flying Pig Ritual", :campaign => campaign, :description => "You will believe that a pig can fly!" )
     @rpm_spell_effect = RpmSpellEffect.new( :rpm_potency => pot, :rpm_effect => eff, :rpm_path => path, :inherent => false)
     ritual.rpm_spell_effects << @rpm_spell_effect
     ritual.save!
@@ -22,5 +22,6 @@ class RpmSpellEffectsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_select "table tbody tr" # expect at least one row in the body of the table
+    assert_select "a", "Flying Pig Ritual"
   end
 end
