@@ -2,9 +2,9 @@ require 'test_helper'
 
 class RpmModifiersControllerTest < ActionController::TestCase
   setup do
-    @campaign = FactoryGirl.create(:campaign)
+    @campaign = FactoryBot.create(:campaign)
     cookies[:selected_campaign] = @campaign.id.to_s
-    @rpm_modifier = FactoryGirl.create(:rpm_modifier, :campaign => @campaign)
+    @rpm_modifier = FactoryBot.create(:rpm_modifier, :campaign => @campaign)
   end
 
   test "should get index" do
@@ -21,7 +21,7 @@ class RpmModifiersControllerTest < ActionController::TestCase
   test "should create rpm_modifier" do
     name = "Ectoplasm Production"
     assert_difference('RpmModifier.count') do
-      post :create, rpm_modifier: { campaign_id: @rpm_modifier.campaign_id, name: name }
+      post :create, params: { rpm_modifier: { campaign_id: @rpm_modifier.campaign_id, name: name } }
     end
 
     assert_response :found
@@ -31,24 +31,24 @@ class RpmModifiersControllerTest < ActionController::TestCase
   end
 
   test "should show rpm_modifier" do
-    get :show, id: @rpm_modifier
+    get :show, params: { id: @rpm_modifier }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @rpm_modifier
+    get :edit, params: { id: @rpm_modifier }
     assert_response :success
   end
 
   test "should update rpm_modifier" do
-    patch :update, id: @rpm_modifier, rpm_modifier: { campaign_id: @rpm_modifier.campaign_id, name: @rpm_modifier.name, notes: @rpm_modifier.notes }
+    patch :update, params: { id: @rpm_modifier, rpm_modifier: { campaign_id: @rpm_modifier.campaign_id, name: @rpm_modifier.name, notes: @rpm_modifier.notes } }
     assert_redirected_to @rpm_modifier
   end
 
   test "should destroy rpm_modifier" do
     @request.env['HTTP_REFERER'] = rpm_modifiers_path
     assert_difference('RpmModifier.count', -1) do
-      delete :destroy, id: @rpm_modifier
+      delete :destroy, params: { id: @rpm_modifier }
     end
     assert_redirected_to rpm_modifiers_path
   end

@@ -9,7 +9,7 @@ module Randomizable
     target = RandomEquipmentService.new.randomize(source)
     saved = target.try(:save)
     redirect_to target, notice: 'Randomly generated.' if saved
-    redirect_to :back, notice: 'Was not able to generate random equipment from ' + source.to_s unless saved
+    redirect_back fallback_location: root_path, notice: 'Was not able to generate random equipment from ' + source.to_s unless saved
   end
 
 end

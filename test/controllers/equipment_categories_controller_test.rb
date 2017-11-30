@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EquipmentCategoriesControllerTest < ActionController::TestCase
   setup do
-    @campaign = FactoryGirl.create(:campaign)
+    @campaign = FactoryBot.create(:campaign)
     @equipment_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign )
     @equipment_category.save!
     cookies[:selected_campaign] = @campaign.id.to_s
@@ -21,7 +21,7 @@ class EquipmentCategoriesControllerTest < ActionController::TestCase
 
   test "should fail to create equipment_category with duplicate name" do
     assert_no_difference('EquipmentCategory.count') do
-      post :create, equipment_category: { name: @equipment_category.name }
+      post :create, params: { equipment_category: { name: @equipment_category.name } }
     end
 
     assert_response 200
@@ -31,7 +31,7 @@ class EquipmentCategoriesControllerTest < ActionController::TestCase
     name = @equipment_category.name + " Again"
 
     assert_difference('EquipmentCategory.count') do
-      post :create, equipment_category: { name: name }
+      post :create, params: { equipment_category: { name: name } }
     end
 
     assert_response :found
@@ -41,17 +41,17 @@ class EquipmentCategoriesControllerTest < ActionController::TestCase
   end
 
   test "should show equipment_category" do
-    get :show, id: @equipment_category
+    get :show, params: { id: @equipment_category }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @equipment_category
+    get :edit, params: { id: @equipment_category }
     assert_response :success
   end
 
   test "should get merge" do
-    get :merge_into, id: @equipment_category
+    get :merge_into, params: { id: @equipment_category }
     assert_response :success
   end
 
@@ -59,7 +59,7 @@ class EquipmentCategoriesControllerTest < ActionController::TestCase
     dupe = EquipmentCategory.new(name: @equipment_category.name + (Time.now.to_f * 1000).to_i.to_s, campaign: @campaign)
     dupe.save!
     assert_difference('EquipmentCategory.count', -1) do
-      post :do_merge_into, { merge_into_equipment_category_id: @equipment_category.id, id: dupe.id }
+      post :do_merge_into, params: { merge_into_equipment_category_id: @equipment_category.id, id: dupe.id }
     end
 
     assert_redirected_to @equipment_category
@@ -67,26 +67,26 @@ class EquipmentCategoriesControllerTest < ActionController::TestCase
 
   test "should fail to merge a category into itself" do
     assert_no_difference('EquipmentCategory.count') do
-      post :do_merge_into, { merge_into_equipment_category_id: @equipment_category.id, id: @equipment_category.id }
+      post :do_merge_into, params: { merge_into_equipment_category_id: @equipment_category.id, id: @equipment_category.id }
     end
 
     assert_response :ok
   end
 
   test "should update equipment_category" do
-    patch :update, id: @equipment_category, equipment_category: { name: @equipment_category.name, campaign_id: @equipment_category.campaign.id }
+    patch :update, params: { id: @equipment_category, equipment_category: { name: @equipment_category.name, campaign_id: @equipment_category.campaign.id } }
     assert_redirected_to @equipment_category
   end
 
   test "should fail to update" do
-    patch :update, id: @equipment_category, equipment_category: { name: nil }
+    patch :update, params: { id: @equipment_category, equipment_category: { name: nil } }
     assert_response 200
   end
 
   test "should destroy equipment_category" do
     @request.env['HTTP_REFERER'] = equipment_categories_path
     assert_difference('EquipmentCategory.count', -1) do
-      delete :destroy, id: @equipment_category
+      delete :destroy, params: { id: @equipment_category }
     end
 
     assert_redirected_to equipment_categories_path
@@ -94,7 +94,7 @@ class EquipmentCategoriesControllerTest < ActionController::TestCase
 
   test "should get no randomized equipment without random_eq_profile definitions" do
     @request.env['HTTP_REFERER'] = equipment_categories_path
-    get :randomize, id: @equipment_category
+    get :randomize, params: { id: @equipment_category }
     assert_response :found
   end
 end

@@ -3,9 +3,9 @@ require 'test_helper'
 <% module_namespacing do -%>
 class <%= controller_class_name %>ControllerTest < ActionController::TestCase
   setup do
-    @campaign = FactoryGirl.create(:campaign)
+    @campaign = FactoryBot.create(:campaign)
     cookies[:selected_campaign] = @campaign.id.to_s
-    @<%= singular_table_name %> = FactoryGirl.create(:<%= singular_table_name %>)
+    @<%= singular_table_name %> = FactoryBot.create(:<%= singular_table_name %>)
   end
 
   test "should get index" do

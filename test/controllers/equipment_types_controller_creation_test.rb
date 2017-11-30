@@ -3,7 +3,7 @@ require 'test_helper'
 class EquipmentTypesControllerCreationTest < ActionController::TestCase
   setup do
     @controller = EquipmentTypesController.new
-    @campaign = FactoryGirl.create(:campaign)
+    @campaign = FactoryBot.create(:campaign)
     eq_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign)
     eq_category.save!
     @equipment_type = EquipmentType.new(:name => "Rather Narrow Sword", :base_cost_cents => 1000, 
@@ -25,7 +25,7 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
 
   test "should do mass entry" do
     assert_difference('EquipmentType.count', 1) do
-      post :do_mass_entry, {:equipment_category_name => "Weapons",
+      post :do_mass_entry, params: {:equipment_category_name => "Weapons",
                               :campaign_id => @campaign.id,
                               :freeform_text => "\nBig Stick ($5.50; 2.1#)\n\n"}
       assert_response :found
@@ -39,7 +39,7 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
 
   test "should refuse to do mass entry" do
     assert_no_difference('EquipmentType.count') do
-      post :do_mass_entry, {:equipment_category_name => "Weapons" + (Time.now.to_f * 1000).to_s,
+      post :do_mass_entry, params: {:equipment_category_name => "Weapons" + (Time.now.to_f * 1000).to_s,
                               :freeform_text => "Big Stick (2#)\nLittle Stick ($2)\n\n"}
       assert_equal "Unable to convert into equipment types: Errors exist.", flash[:notice]
       assert_response :ok
@@ -49,11 +49,11 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
   test "should create equipment_type" do
     name = @equipment_type.name + " Too"
     assert_difference('EquipmentType.count') do
-      post :create, equipment_type: { base_cost: @equipment_type.base_cost,
+      post :create, params: { equipment_type: { base_cost: @equipment_type.base_cost,
                                       base_weight: @equipment_type.base_weight,
                                       equipment_category_name: @equipment_type.equipment_category_name,
                                       name: name, notes: @equipment_type.notes,
-                                      random_weight: @equipment_type.random_weight}
+                                      random_weight: @equipment_type.random_weight} }
       assert_response :found
     end
     equipment_type = EquipmentType.where(:name => name ).order("created_at desc").first

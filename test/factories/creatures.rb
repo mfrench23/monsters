@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :creature do
     height "6 ft 2 in"
     weight "180 lbs."

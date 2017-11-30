@@ -2,9 +2,9 @@ require 'test_helper'
 
 class RpmPathsControllerTest < ActionController::TestCase
   setup do
-    @campaign = FactoryGirl.create(:campaign)
+    @campaign = FactoryBot.create(:campaign)
     cookies[:selected_campaign] = @campaign.id.to_s
-    @rpm_path = FactoryGirl.create(:rpm_path, campaign: @campaign)
+    @rpm_path = FactoryBot.create(:rpm_path, campaign: @campaign)
   end
 
   test "should get index" do
@@ -21,7 +21,7 @@ class RpmPathsControllerTest < ActionController::TestCase
   test "should create rpm_path" do
     name = @rpm_path.name + "-2"
     assert_difference('RpmPath.count') do
-      post :create, rpm_path: { campaign_id: @rpm_path.campaign_id, name: name, notes: @rpm_path.notes }
+      post :create, params: { rpm_path: { campaign_id: @rpm_path.campaign_id, name: name, notes: @rpm_path.notes } }
     end
 
     assert_response :found
@@ -31,24 +31,24 @@ class RpmPathsControllerTest < ActionController::TestCase
   end
 
   test "should show rpm_path" do
-    get :show, id: @rpm_path
+    get :show, params: { id: @rpm_path }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @rpm_path
+    get :edit, params: { id: @rpm_path }
     assert_response :success
   end
 
   test "should update rpm_path" do
-    patch :update, id: @rpm_path, rpm_path: { campaign_id: @rpm_path.campaign_id, name: @rpm_path.name, notes: @rpm_path.notes }
+    patch :update, params: { id: @rpm_path, rpm_path: { campaign_id: @rpm_path.campaign_id, name: @rpm_path.name, notes: @rpm_path.notes } }
     assert_redirected_to @rpm_path
   end
 
   test "should destroy rpm_path" do
     @request.env['HTTP_REFERER'] = rpm_paths_path
     assert_difference('RpmPath.count', -1) do
-      delete :destroy, id: @rpm_path
+      delete :destroy, params: { id: @rpm_path }
     end
     assert_redirected_to rpm_paths_path
   end

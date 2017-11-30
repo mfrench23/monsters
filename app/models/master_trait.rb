@@ -38,7 +38,8 @@ class MasterTrait < AbstractEntity
   end
 
   def update_granted_traits
-    traits(true).each do |trait|
+    traits.reload
+    traits.each do |trait|
       trait.save # refreshing the list of granted traits
     end
   end

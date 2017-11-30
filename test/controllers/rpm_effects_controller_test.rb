@@ -2,9 +2,9 @@ require 'test_helper'
 
 class RpmEffectsControllerTest < ActionController::TestCase
   setup do
-    @campaign = FactoryGirl.create(:campaign)
+    @campaign = FactoryBot.create(:campaign)
     cookies[:selected_campaign] = @campaign.id.to_s
-    @rpm_effect = FactoryGirl.create(:rpm_effect, campaign: @campaign)
+    @rpm_effect = FactoryBot.create(:rpm_effect, campaign: @campaign)
   end
 
   test "should get index" do
@@ -21,7 +21,7 @@ class RpmEffectsControllerTest < ActionController::TestCase
   test "should create rpm_effect" do
     name = "Modify"
     assert_difference('RpmEffect.count') do
-      post :create, rpm_effect: { campaign_id: @rpm_effect.campaign_id, cost: @rpm_effect.cost, name: name, notes: @rpm_effect.notes }
+      post :create, params: { rpm_effect: { campaign_id: @rpm_effect.campaign_id, cost: @rpm_effect.cost, name: name, notes: @rpm_effect.notes } }
     end
 
     assert_response :found
@@ -31,24 +31,24 @@ class RpmEffectsControllerTest < ActionController::TestCase
   end
 
   test "should show rpm_effect" do
-    get :show, id: @rpm_effect
+    get :show, params: { id: @rpm_effect }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @rpm_effect
+    get :edit, params: { id: @rpm_effect }
     assert_response :success
   end
 
   test "should update rpm_effect" do
-    patch :update, id: @rpm_effect, rpm_effect: { name: @rpm_effect.name + "-2", notes: "Noted." }
+    patch :update, params: { id: @rpm_effect, rpm_effect: { name: @rpm_effect.name + "-2", notes: "Noted." } }
     assert_redirected_to @rpm_effect
   end
 
   test "should destroy rpm_effect" do
     @request.env['HTTP_REFERER'] = rpm_effects_path
     assert_difference('RpmEffect.count', -1) do
-      delete :destroy, id: @rpm_effect
+      delete :destroy, params: { id: @rpm_effect }
     end
     assert_redirected_to rpm_effects_path
   end

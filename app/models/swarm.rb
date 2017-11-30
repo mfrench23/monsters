@@ -1,6 +1,15 @@
 # Represents a GURPS swarm, like a swarm of bees or a horde of rats
 class Swarm < AbstractEntity
-  acts_as :monster
+  has_one :monster, as: :actable
+  delegate :ancestry, to: :monster
+  delegate :campaign, to: :monster
+  delegate :campaign_id, to: :monster
+  delegate :description, to: :monster
+  delegate :monster_class, to: :monster
+  delegate :monster_class_id, to: :monster
+  delegate :monster_names, to: :monster
+  delegate :name, to: :monster
+
   before_validation :nil_blank_attributes
 
   def deep_copy

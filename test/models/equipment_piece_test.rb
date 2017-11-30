@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EquipmentPieceTest < ActiveSupport::TestCase
   setup do
-    @campaign = FactoryGirl.create(:campaign)
+    @campaign = FactoryBot.create(:campaign)
     @eq_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign)
     @eq_category.save!
     @type = EquipmentType.new(:name => "Kinda Narrow Sword", :base_weight => 9.99, :base_cost_cents => 1000)

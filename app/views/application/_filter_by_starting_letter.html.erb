@@ -4,7 +4,7 @@
     <table class="fixed-table boxed-list">
       <% letters.each_with_index do |starting_character, index| %>
         <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :number_of_columns => letters.count, :total_count => letters.count } do %>
-          <%= link_to "#{starting_character}", filter_params.merge(:starting_with => "#{starting_character}") %>
+          <%= link_to "#{starting_character}", filter_params.to_unsafe_h.merge(:starting_with => "#{starting_character}") %>
         <% end %>
       <% end %>
     </table>

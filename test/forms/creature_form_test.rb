@@ -24,7 +24,7 @@ class CreatureFormTest < ActionView::TestCase
   test "should convert freeform skills parameters" do
     assert_equal true, @form.params[:freeform_skill_list].blank?
     assert_not_nil @form.params[:skills_attributes]
-    assert_equal 2, @form.params[:skills_attributes].count
+    assert_equal 2, @form.params[:skills_attributes].keys.count
     stealth_array = @form.params[:skills_attributes]["0"]
     brawling_array = @form.params[:skills_attributes]["1"]
     assert_equal "Brawling", MasterSkill.find(brawling_array[:master_skill_id]).name

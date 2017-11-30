@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RandomEqProfileLineItemTest < ActiveSupport::TestCase
   setup do
-    @one = FactoryGirl.create(:random_eq_profile_line_item)
+    @one = FactoryBot.create(:random_eq_profile_line_item)
   end
 
   test "to_s" do
@@ -10,7 +10,7 @@ class RandomEqProfileLineItemTest < ActiveSupport::TestCase
   end
 
   test "complains if over-loaded with modifiers" do
-    cat = FactoryGirl.create(:equipment_modifier_category)
+    cat = FactoryBot.create(:equipment_modifier_category)
     @one.equipment_modifier_category = cat
     assert_equal false, @one.valid?
   end

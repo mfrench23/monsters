@@ -11,7 +11,7 @@ class ModelBasedController < ApplicationController
   def destroy
     set_model_by_id.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: "#{controlled_model_class_name} was successfully destroyed." }
+      format.html { redirect_back(fallback_location: root_path, notice: "#{controlled_model_class_name} was successfully destroyed.") }
     end
   end
 

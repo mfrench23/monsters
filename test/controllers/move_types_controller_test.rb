@@ -19,7 +19,7 @@ class MoveTypesControllerTest < ActionController::TestCase
   test "should create move_type" do
     name = "crawling diagonally"
     assert_difference('MoveType.count') do
-      post :create, move_type: { name: name }
+      post :create, params: { move_type: { name: name } }
     end
 
     assert_response :found
@@ -30,36 +30,36 @@ class MoveTypesControllerTest < ActionController::TestCase
 
   test "should fail to create move_type" do
     assert_no_difference('MoveType.count') do
-      post :create, move_type: { name: nil }
+      post :create, params: { move_type: { name: nil } }
     end
 
     assert_response 200
   end
 
   test "should show move_type" do
-    get :show, id: @move_type
+    get :show, params: { id: @move_type }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @move_type
+    get :edit, params: { id: @move_type }
     assert_response :success
   end
 
   test "should update move_type" do
-    patch :update, id: @move_type, move_type: { name: @move_type.name }
+    patch :update, params: { id: @move_type, move_type: { name: @move_type.name } }
     assert_redirected_to @move_type
   end
 
   test "should fail to update move_type" do
-    patch :update, id: @move_type, move_type: { name: nil }
+    patch :update, params: { id: @move_type, move_type: { name: nil } }
     assert_response 200
   end
 
   test "should destroy move_type" do
     @request.env['HTTP_REFERER'] = move_types_path
     assert_difference('MoveType.count', -1) do
-      delete :destroy, id: @move_type
+      delete :destroy, params: { id: @move_type }
     end
 
     assert_redirected_to move_types_path

@@ -6,7 +6,7 @@ class MonsterTest < ActiveSupport::TestCase
 
   test "test starts_with filter" do
     fakename = "Obviously Fake Monster Name"
-    one = FactoryGirl.create(:monster, name: fakename)
+    one = FactoryBot.create(:monster, name: fakename)
     testval = false;
     Monster.filter(:starting_with => "A").map { |m| if fakename == m.name then testval = true end }
     assert_equal false, testval
@@ -28,7 +28,7 @@ class MonsterTest < ActiveSupport::TestCase
   end
 
   test "ancestor's text fields accumulate" do
-    campaign = FactoryGirl.create(:campaign)
+    campaign = FactoryBot.create(:campaign)
     one = Monster.new(:name => "Tommy", :monster_class => MonsterClass.find_by(:name => "Undead"), :campaign => campaign)
     one.description = "One."
     one.notes = "A"

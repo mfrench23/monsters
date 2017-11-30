@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AncestorTreeHelperTest < ActionView::TestCase
   test "should build a tree with parents and alphabetized children" do
-    campaign = FactoryGirl.create(:campaign)
+    campaign = FactoryBot.create(:campaign)
     mc = MonsterClass.first
     monster_a = Swarm.new(:name => "AAA", :monster_class => mc, :campaign => campaign)
     assert_equal true, monster_a.save

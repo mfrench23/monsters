@@ -23,8 +23,7 @@ class RpmSpellEffectsController < ModelBasedController
     super.merge( { :inherent_only => true } )
   end
 
-  # unnecessary - no independent edit
-  #def whitelisted_entity_params
-  #  RpmSpellEffectForm.new(params).params
-  #end
+  def whitelisted_entity_params
+    RpmSpellEffectForm.new(params).params
+  end
 end

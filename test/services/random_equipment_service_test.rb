@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RandomEquipmentServiceTest < ActionController::TestCase
   setup do
-    @equipment_category = FactoryGirl.create(:equipment_category)
+    @equipment_category = FactoryBot.create(:equipment_category)
     @campaign = @equipment_category.campaign
     @equipment_type = EquipmentType.new(:name => "Fern",
                                         :base_cost_cents => 1000,

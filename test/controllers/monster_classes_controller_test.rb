@@ -19,7 +19,7 @@ class MonsterClassesControllerTest < ActionController::TestCase
   test "should create monster_class" do
     name = "Animal, Stuffy"
     assert_difference('MonsterClass.count') do
-      post :create, monster_class: { name: name }
+      post :create, params: { monster_class: { name: name } }
     end
 
     assert_response :found
@@ -30,36 +30,36 @@ class MonsterClassesControllerTest < ActionController::TestCase
 
   test "should fail to create monster_class" do
     assert_no_difference('MonsterClass.count') do
-      post :create, monster_class: { name: nil }
+      post :create, params: { monster_class: { name: nil } }
     end
 
     assert_response 200
   end
 
   test "should show monster_class" do
-    get :show, id: @monster_class
+    get :show, params: { id: @monster_class }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @monster_class
+    get :edit, params: { id: @monster_class }
     assert_response :success
   end
 
   test "should update monster_class" do
-    patch :update, id: @monster_class, monster_class: { name: @monster_class.name + " Part 2" }
+    patch :update, params: { id: @monster_class, monster_class: { name: @monster_class.name + " Part 2" } }
     assert_redirected_to @monster_class
   end
 
   test "should fail to update monster_class" do
-    patch :update, id: @monster_class, monster_class: { name: nil }
+    patch :update, params: { id: @monster_class, monster_class: { name: nil } }
     assert_response 200
   end
 
   test "should destroy monster_class" do
     @request.env['HTTP_REFERER'] = monster_classes_path
     assert_difference('MonsterClass.count', -1) do
-      delete :destroy, id: @monster_class
+      delete :destroy, params: { id: @monster_class }
     end
 
     assert_redirected_to monster_classes_path

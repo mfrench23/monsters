@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EquipmentCategoryTest < ActiveSupport::TestCase
   test "cannot save without a name of 2 or more characters" do
-    campaign = FactoryGirl.create(:campaign)
+    campaign = FactoryBot.create(:campaign)
     eq = EquipmentCategory.new(:name => nil, :campaign => campaign)
     assert_equal false, eq.save
     eq.name = "A"

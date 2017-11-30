@@ -2,11 +2,11 @@ require 'test_helper'
 
 class RpmRitualModifierTest < ActiveSupport::TestCase
   test "string versions and deep_copy" do
-    campaign = FactoryGirl.create(:campaign)
-    subtype = FactoryGirl.create(:rpm_modifier_subtype, :multiplier => 1.5, :name => "Variable")
-    mod = FactoryGirl.create(:rpm_modifier, :campaign => campaign)
-    level = FactoryGirl.create(:rpm_modifier_level, :campaign => campaign, :rpm_modifier => mod)
-    ritual = FactoryGirl.create(:rpm_ritual, :campaign => campaign)
+    campaign = FactoryBot.create(:campaign)
+    subtype = FactoryBot.create(:rpm_modifier_subtype, :multiplier => 1.5, :name => "Variable")
+    mod = FactoryBot.create(:rpm_modifier, :campaign => campaign)
+    level = FactoryBot.create(:rpm_modifier_level, :campaign => campaign, :rpm_modifier => mod)
+    ritual = FactoryBot.create(:rpm_ritual, :campaign => campaign)
     ritual_mod = RpmRitualModifier.new(:rpm_modifier_level => level, :rpm_ritual => ritual, :rpm_modifier_subtype => subtype )
     # vanilla modifier, with no enhancements
     assert_equal "Fnordian Strength, Variable ST 10 (15)", ritual_mod.to_long_s

@@ -19,7 +19,7 @@ class MasterSkillsControllerTest < ActionController::TestCase
   test "should create master_skill" do
     name = "A Skill In Being An Unlikely Skill Name"
     assert_difference('MasterSkill.count') do
-      post :create, master_skill: { characteristic_id: @master_skill.characteristic_id, name: name, notes: @master_skill.notes }
+      post :create, params: { master_skill: { characteristic_id: @master_skill.characteristic_id, name: name, notes: @master_skill.notes } }
     end
 
     assert_response :found
@@ -30,36 +30,36 @@ class MasterSkillsControllerTest < ActionController::TestCase
 
   test "should fail to create master_skill" do
     assert_no_difference('MasterSkill.count') do
-      post :create, master_skill: { characteristic_id: @master_skill.characteristic_id, name: nil, notes: @master_skill.notes }
+      post :create, params: { master_skill: { characteristic_id: @master_skill.characteristic_id, name: nil, notes: @master_skill.notes } }
     end
 
     assert_response 200
   end
 
   test "should show master_skill" do
-    get :show, id: @master_skill
+    get :show, params: { id: @master_skill }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @master_skill
+    get :edit, params: { id: @master_skill }
     assert_response :success
   end
 
   test "should update master_skill" do
-    patch :update, id: @master_skill, master_skill: { characteristic_id: @master_skill.characteristic_id, name: @master_skill.name, notes: @master_skill.notes }
+    patch :update, params: { id: @master_skill, master_skill: { characteristic_id: @master_skill.characteristic_id, name: @master_skill.name, notes: @master_skill.notes } }
     assert_redirected_to @master_skill
   end
 
   test "should fail to update master_skill" do
-    patch :update, id: @master_skill, master_skill: { characteristic_id: nil }
+    patch :update, params: { id: @master_skill, master_skill: { characteristic_id: nil } }
     assert_response 200
   end
 
   test "should destroy master_skill" do
     @request.env['HTTP_REFERER'] = master_skills_path
     assert_difference('MasterSkill.count', -1) do
-      delete :destroy, id: @master_skill
+      delete :destroy, params: { id: @master_skill }
     end
 
     assert_redirected_to master_skills_path

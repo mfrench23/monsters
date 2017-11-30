@@ -19,7 +19,7 @@ class LocationsControllerTest < ActionController::TestCase
   test "should create location" do
     name = "Cockles of the heart"
     assert_difference('Location.count') do
-      post :create, location: { name: name }
+      post :create, params: { location: { name: name } }
     end
 
     assert_response :found
@@ -30,36 +30,36 @@ class LocationsControllerTest < ActionController::TestCase
 
   test "should fail to create location" do
     assert_no_difference('Location.count') do
-      post :create, location: { name: nil }
+      post :create, params: { location: { name: nil } }
     end
 
     assert_response 200
   end
 
   test "should show location" do
-    get :show, id: @location
+    get :show, params: { id: @location }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @location
+    get :edit, params: { id: @location }
     assert_response :success
   end
 
   test "should update location" do
-    patch :update, id: @location, location: { name: @location.name }
+    patch :update, params: { id: @location, location: { name: @location.name } }
     assert_redirected_to @location
   end
 
   test "should fail to update location" do
-    patch :update, id: @location, location: { name: nil }
+    patch :update, params: { id: @location, location: { name: nil } }
     assert_response 200
   end
 
   test "should destroy location" do
     @request.env['HTTP_REFERER'] = locations_path
     assert_difference('Location.count', -1) do
-      delete :destroy, id: @location
+      delete :destroy, params: { id: @location }
     end
 
     assert_redirected_to locations_path

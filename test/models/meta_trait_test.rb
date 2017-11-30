@@ -13,7 +13,7 @@ class MetaTraitTest < ActiveSupport::TestCase
   end
 
   test "meta-trait creates dependant traits on the same character" do
-    creature = FactoryGirl.create(:creature)
+    creature = FactoryBot.create(:creature)
     # adding a meta-trait to a creature adds all the component traits that make up that meta-trait
     assert_difference( "Creature.find(#{creature.id}).flattened_traits.count", 3) do
       creature.traits << Trait.new(:master_trait => @master_meta)
@@ -32,7 +32,7 @@ class MetaTraitTest < ActiveSupport::TestCase
     @master_trait_nonmember = MasterTrait.new(:name => 'Moral Code')
     @master_trait_nonmember.save!
 
-    creature = FactoryGirl.create(:creature)
+    creature = FactoryBot.create(:creature)
     creature.traits << Trait.new(:master_trait => @master_meta)
     creature.save
     # adding a new trait to the meta-trait also adds the new trait to the character with the meta-trait

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :characteristic_list do
     characteristic nil
 monster_actable_type "MyString"

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :rpm_modifier_level do
     description "ST 10"
     cost 10

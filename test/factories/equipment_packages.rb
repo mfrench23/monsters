@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :equipment_package do
     creature
     name "Package #1"

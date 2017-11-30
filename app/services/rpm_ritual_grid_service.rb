@@ -16,7 +16,7 @@ class RpmRitualGridService
   end
 
   def grid_sql(campaign_id)
-    "select distinct eff.rpm_path_name, eff.rpm_effect_name, eff.rpm_potency_name, se.rpm_ritual_id, ri.name, ri.description, ri.typical_cost
+    "select distinct eff.rpm_path_name, eff.rpm_effect_name, eff.rpm_potency_cost_factor, eff.rpm_potency_name, se.rpm_ritual_id, ri.name, ri.description, ri.typical_cost
     from
       (select
         pa.id as rpm_path_id, po.id as rpm_potency_id, ef.id as rpm_effect_id,

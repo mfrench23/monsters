@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SwarmsControllerTest < ActionController::TestCase
  setup do
-    @swarm = FactoryGirl.create(:swarm)
+    @swarm = FactoryBot.create(:swarm)
     cookies[:selected_campaign] = @swarm.campaign_id.to_s
   end
 
@@ -19,10 +19,10 @@ class SwarmsControllerTest < ActionController::TestCase
   test "should create swarm" do
     name = "A Highly Unlikely Swarm Name"
     assert_difference(['Monster.count', 'Swarm.count']) do
-      post :create, swarm: { description: @swarm.description,
+      post :create, params: {swarm: { description: @swarm.description,
                                monster_class_id: @swarm.monster_class_id, name: name, 
                                notes: @swarm.notes,
-                               characteristic_monsters: @swarm.characteristic_monsters }
+                               characteristic_monsters: @swarm.characteristic_monsters } }
     end
 
     assert_response :found # not :created, since we're being redirected to "show"
@@ -33,41 +33,41 @@ class SwarmsControllerTest < ActionController::TestCase
 
   test "should fail to create swarm" do
     assert_no_difference(['Monster.count', 'Swarm.count']) do
-      post :create, swarm: { name: nil }
+      post :create, params: { swarm: { name: nil } }
     end
 
     assert_response 200
   end
 
   test "should show swarm" do
-    get :show, id: @swarm
+    get :show, params: { id: @swarm }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @swarm
+    get :edit, params: { id: @swarm }
     assert_response :success
   end
 
   test "should get variant page" do
-    get :variant, id: @swarm
+    get :variant, params: { id: @swarm }
     assert_response :success
   end
 
   test "should update swarm" do
-    patch :update, id: @swarm, swarm: { description: "Updated description" }
+    patch :update, params: { id: @swarm, swarm: { description: "Updated description" } }
     assert_redirected_to @swarm
   end
 
   test "should fail to update swarm" do
-    patch :update, id: @swarm, swarm: { name: nil }
+    patch :update, params: { id: @swarm, swarm: { name: nil } }
     assert_response 200
   end
 
   test "should destroy swarm" do
     @request.env['HTTP_REFERER'] = swarms_path
     assert_difference(['Monster.count', 'Swarm.count'], -1) do
-      delete :destroy, id: @swarm
+      delete :destroy, params: { id: @swarm }
     end
 
     assert_redirected_to swarms_path

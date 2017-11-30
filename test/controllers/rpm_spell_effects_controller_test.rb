@@ -2,11 +2,11 @@ require 'test_helper'
 
 class RpmSpellEffectsControllerTest < ActionController::TestCase
   setup do
-    campaign = FactoryGirl.create(:campaign)
+    campaign = FactoryBot.create(:campaign)
     cookies[:selected_campaign] = campaign.id.to_s
-    pot = FactoryGirl.create(:rpm_potency, :campaign => campaign, :name => "Lesser")
-    eff = FactoryGirl.create(:rpm_effect, :campaign => campaign, :name => "Create")
-    path = FactoryGirl.create(:rpm_path, :campaign => campaign, :name => "Nachos")
+    pot = FactoryBot.create(:rpm_potency, :campaign => campaign, :name => "Lesser")
+    eff = FactoryBot.create(:rpm_effect, :campaign => campaign, :name => "Create")
+    path = FactoryBot.create(:rpm_path, :campaign => campaign, :name => "Nachos")
     ritual = RpmRitual.new(:name => "Flying Pig Ritual", :campaign => campaign )
     @rpm_spell_effect = RpmSpellEffect.new( :rpm_potency => pot, :rpm_effect => eff, :rpm_path => path, :inherent => false)
     ritual.rpm_spell_effects << @rpm_spell_effect

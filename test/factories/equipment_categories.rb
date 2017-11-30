@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :equipment_category do
     name "Knickknacks"
     campaign

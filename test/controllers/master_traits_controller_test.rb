@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MasterTraitsControllerTest < ActionController::TestCase
   setup do
-    @master_trait = FactoryGirl.create(:master_trait)
+    @master_trait = FactoryBot.create(:master_trait)
   end
 
   test "should get index" do
@@ -19,7 +19,7 @@ class MasterTraitsControllerTest < ActionController::TestCase
   test "should create master_trait" do
     name = "Very Unlikely Name For A Trait, Don't You Think?"
     assert_difference('MasterTrait.count') do
-      post :create, master_trait: { name: name, notes: @master_trait.notes }
+      post :create, params: { master_trait: { name: name, notes: @master_trait.notes } }
     end
 
     assert_response :found
@@ -30,7 +30,7 @@ class MasterTraitsControllerTest < ActionController::TestCase
 
   test "should fail to create" do
     assert_no_difference('MasterTrait.count') do
-      post :create, master_trait: { name: nil }
+      post :create, params: { master_trait: { name: nil } }
     end
 
     assert_response 200
@@ -38,31 +38,31 @@ class MasterTraitsControllerTest < ActionController::TestCase
 
   test "should fail to create master_trait" do
     assert_no_difference('MasterTrait.count') do
-      post :create, master_trait: { name: nil, notes: @master_trait.notes }
+      post :create, params: { master_trait: { name: nil, notes: @master_trait.notes } }
     end
 
     assert_response :success
   end
 
   test "should show master_trait" do
-    get :show, id: @master_trait
+    get :show, params: { id: @master_trait }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @master_trait
+    get :edit, params: { id: @master_trait }
     assert_response :success
   end
 
   test "should get merge" do
-    get :merge_into, id: @master_trait
+    get :merge_into, params: { id: @master_trait }
     assert_response :success
   end
 
   test "should merge duplicate into master_trait" do
-    dupe = FactoryGirl.create(:master_trait, name: 'Copy of ' + @master_trait.name)
+    dupe = FactoryBot.create(:master_trait, name: 'Copy of ' + @master_trait.name)
     assert_difference('MasterTrait.count', -1) do
-      post :do_merge_into, { merge_into_trait_id: @master_trait.id, id: dupe.id }
+      post :do_merge_into, params: { merge_into_trait_id: @master_trait.id, id: dupe.id }
     end
 
     assert_redirected_to @master_trait
@@ -70,26 +70,26 @@ class MasterTraitsControllerTest < ActionController::TestCase
 
   test "should fail to merge a master_trait into itself" do
     assert_no_difference('MasterTrait.count') do
-      post :do_merge_into, { merge_into_trait_id: @master_trait.id, id: @master_trait.id }
+      post :do_merge_into, params: { merge_into_trait_id: @master_trait.id, id: @master_trait.id }
     end
 
     assert_response :ok
   end
 
   test "should update master_trait" do
-    patch :update, id: @master_trait, master_trait: { name: @master_trait.name, notes: @master_trait.notes.to_s + " Additional notes." }
+    patch :update, params: { id: @master_trait, master_trait: { name: @master_trait.name, notes: @master_trait.notes.to_s + " Additional notes." } }
     assert_redirected_to @master_trait
   end
 
   test "should fail to update master_trait" do
-    patch :update, id: @master_trait, master_trait: { name: nil }
+    patch :update, params: { id: @master_trait, master_trait: { name: nil } }
     assert_response 200
   end
 
   test "should destroy master_trait" do
     @request.env['HTTP_REFERER'] = master_traits_path
     assert_difference('MasterTrait.count', -1) do
-      delete :destroy, id: @master_trait
+      delete :destroy, params: { id: @master_trait }
     end
 
     assert_redirected_to master_traits_path

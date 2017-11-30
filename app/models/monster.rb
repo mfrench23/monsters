@@ -9,10 +9,11 @@ class Monster < AbstractEntity
   include PageReferenceable
   include NilBlankable
 
+  belongs_to :actable, polymorphic: true
+
   after_initialize :populate_new_monster
   before_validation :nil_blank_attributes
 
-  actable touch: true # can be a "superclass" for MTI - gem active_record-acts_as - and gets updated_at along with its child
   has_ancestry :cache_depth => true # for determining which monsters are variants of others
 
   has_many :attacks, dependent: :destroy

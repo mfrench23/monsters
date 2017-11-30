@@ -26,7 +26,7 @@ class CreatureForm < AbstractForm
   def self.merge_skill_attributes_into_params(params, skill_attributes)
     creature_params = params[:creature]
     creature_params[:skills_attributes] ||= {}
-    creature_params[:skills_attributes].merge!({ creature_params[:skills_attributes].count.to_s => skill_attributes })
+    creature_params[:skills_attributes].merge!({ creature_params[:skills_attributes].keys.count.to_s => skill_attributes })
   end
 
   def self.convert_freeform_skill_list(params)

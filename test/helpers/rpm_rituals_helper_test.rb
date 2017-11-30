@@ -2,14 +2,14 @@ require 'test_helper'
 
 class RpmRitualsHelperTest < ActionView::TestCase
   test "should combine duplicated spell effects into a single unit" do
-    campaign = FactoryGirl.create(:campaign)
-    pot = FactoryGirl.create(:rpm_potency, :campaign => campaign, :name => "Lesser")
-    pot2 = FactoryGirl.create(:rpm_potency, :campaign => campaign, :name => "Greater")
-    eff = FactoryGirl.create(:rpm_effect, :campaign => campaign, :name => "Create")
-    eff2 = FactoryGirl.create(:rpm_effect, :campaign => campaign, :name => "Control")
-    path = FactoryGirl.create(:rpm_path, :campaign => campaign, :name => "Nachos")
-    mod = FactoryGirl.create(:rpm_modifier, :campaign => campaign, :name => "A-List Spicy")
-    mod_level = FactoryGirl.create(:rpm_modifier_level, :description => "Level 1", :cost => 1)
+    campaign = FactoryBot.create(:campaign)
+    pot = FactoryBot.create(:rpm_potency, :campaign => campaign, :name => "Lesser")
+    pot2 = FactoryBot.create(:rpm_potency, :campaign => campaign, :name => "Greater")
+    eff = FactoryBot.create(:rpm_effect, :campaign => campaign, :name => "Create")
+    eff2 = FactoryBot.create(:rpm_effect, :campaign => campaign, :name => "Control")
+    path = FactoryBot.create(:rpm_path, :campaign => campaign, :name => "Nachos")
+    mod = FactoryBot.create(:rpm_modifier, :campaign => campaign, :name => "A-List Spicy")
+    mod_level = FactoryBot.create(:rpm_modifier_level, :description => "Level 1", :cost => 1)
     mod.rpm_modifier_levels << mod_level
     mod.save!
     rpm_ritual = RpmRitual.new(:name => "Flying Pig Ritual", :campaign => campaign )

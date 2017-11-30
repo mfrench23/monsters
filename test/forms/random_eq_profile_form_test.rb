@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RandomEqProfileFormTest < ActionView::TestCase
   setup do
-    supercat = FactoryGirl.create(:equipment_modifier_supercategory)
+    supercat = FactoryBot.create(:equipment_modifier_supercategory)
     params = ActionController::Parameters.new(
       {:random_eq_profile =>
        {:bogusValue => "Bogus",

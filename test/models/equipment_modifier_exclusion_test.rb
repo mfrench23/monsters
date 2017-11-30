@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EquipmentModifierExclusionTest < ActiveSupport::TestCase
   test "insert creates reciprocal, destroy deletes it" do
-    cat = FactoryGirl.create(:equipment_modifier_category)
+    cat = FactoryBot.create(:equipment_modifier_category)
     mod1 = EquipmentModifier.new(equipment_modifier_category: cat, name: 'First exclusionary', random_weight: 1)
     mod1.save!
     mod2 = EquipmentModifier.new(equipment_modifier_category: cat, name: 'Second exclusionary', random_weight: 1)

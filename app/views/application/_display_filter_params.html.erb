@@ -20,7 +20,7 @@
     <% else %>
       <% display_param = filter[1] %>
     <% end %>
-    <% if filter_params.count > 1 %>
+    <% if filter_params.keys.count > 1 %>
       <% new_params = {filter[0] => filter[1]} %>
       <%= link_to "'#{display_param}'", params.reject{ |key, val| key.to_s == filter[0].to_s }, :class => "quiet", :title => "remove filter" %>
     <% else %>

@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '5.0.5'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.3.18'
 # Use SCSS for stylesheets
@@ -25,8 +25,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # cocoon for easy nested forms
 gem 'cocoon'
-# FactoryGirl to replace fixtures for test data
-gem "factory_girl_rails", "~> 4.0"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -46,9 +44,6 @@ gem 'kaminari'
 # Paperclip for handling uploaded images
 gem "paperclip", "~> 4.2"
 
-# multiple table inheritance
-gem 'active_record-acts_as'
-
 gem "money-rails", "~> 1.4.1"
 
 # ancestry for hierarchical relationships
@@ -66,6 +61,9 @@ gem 'jquery-ui-rails'
 gem 'rails-erd', group: :development
 
 group :development, :test do
+  # FactoryBot to replace fixtures for test data
+  gem "factory_bot_rails"
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -77,8 +75,6 @@ group :development, :test do
   # detects N+1 queries while browsing in development
   gem "bullet"
 end
-
-gem 'test_after_commit', :group => :test
 
 group :test do
   gem 'simplecov', :require => false

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :rpm_spell_effect do
     rpm_ritual nil
     rpm_potency nil

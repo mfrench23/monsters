@@ -21,7 +21,7 @@ class EquipmentModifierCategoriesControllerTest < ActionController::TestCase
     name = "New Lame Eq Modifier Category"
 
     assert_difference('EquipmentModifierCategory.count') do
-      post :create, equipment_modifier_category: { name: name }
+      post :create, params: { equipment_modifier_category: { name: name } }
     end
 
     assert_response :found
@@ -31,24 +31,24 @@ class EquipmentModifierCategoriesControllerTest < ActionController::TestCase
   end
 
   test "should show equipment_modifier_category" do
-    get :show, id: @equipment_modifier_category
+    get :show, params: { id: @equipment_modifier_category }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @equipment_modifier_category
+    get :edit, params: { id: @equipment_modifier_category }
     assert_response :success
   end
 
   test "should update equipment_modifier_category" do
-    patch :update, id: @equipment_modifier_category, equipment_modifier_category: { name: @equipment_modifier_category.name + "2", notes: @equipment_modifier_category.notes }
+    patch :update, params: { id: @equipment_modifier_category, equipment_modifier_category: { name: @equipment_modifier_category.name + "2", notes: @equipment_modifier_category.notes } }
     assert_redirected_to @equipment_modifier_category
   end
 
   test "should destroy equipment_modifier_category" do
     @request.env['HTTP_REFERER'] = equipment_modifier_categories_path
     assert_difference('EquipmentModifierCategory.count', -1) do
-      delete :destroy, id: @equipment_modifier_category
+      delete :destroy, params: { id: @equipment_modifier_category }
     end
 
     assert_redirected_to equipment_modifier_categories_path

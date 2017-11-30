@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :damage_resistance do
     location { Location.find_by(name: "skull") }
     dr 1

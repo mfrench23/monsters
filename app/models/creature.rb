@@ -21,7 +21,7 @@ class Creature < AbstractEntity
 
   has_many :flattened_traits, -> { order_by_master_trait }, :dependent => :destroy, :class_name => "Trait"
 
-  acts_as :monster
+  has_one :monster, as: :actable
 
   monetize :parts_value_cents, :allow_nil => true, :numericality => { :greater_than_or_equal_to => 0 }
 

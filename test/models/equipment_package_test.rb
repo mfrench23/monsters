@@ -7,7 +7,7 @@ class EquipmentPackageTest < ActiveSupport::TestCase
   end
 
   test "final owner overriden" do
-    creature = FactoryGirl.create(:creature)
+    creature = FactoryBot.create(:creature)
     ep = EquipmentPackage.new(:name => "Package #1")
     creature.equipment_packages << ep
     assert_equal creature, ep.final_owner

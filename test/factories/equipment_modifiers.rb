@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :equipment_modifier do
     name "Stupid-Fine"
     base_cost_mod "x2"

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BooksControllerTest < ActionController::TestCase
   setup do
-    @book = FactoryGirl.create(:book)
+    @book = FactoryBot.create(:book)
   end
 
   test "should get index" do
@@ -19,7 +19,7 @@ class BooksControllerTest < ActionController::TestCase
   test "should create book" do
     @unsaved_book = Book.new(name: "War & Peace", abbreviation: "W&P")
     assert_difference('Book.count') do
-      post :create, book: { abbreviation: @unsaved_book.abbreviation, name: @unsaved_book.name }
+      post :create, params: { book: { abbreviation: @unsaved_book.abbreviation, name: @unsaved_book.name } }
     end
 
     assert_response :found
@@ -31,36 +31,36 @@ class BooksControllerTest < ActionController::TestCase
 
   test "should fail to create book" do
     assert_no_difference('Book.count') do
-      post :create, book: { abbreviation: @book.abbreviation, name: nil }
+      post :create, params: { book: { abbreviation: @book.abbreviation, name: nil } }
     end
 
     assert_response 200
   end
 
   test "should show book" do
-    get :show, id: @book
+    get :show, params: { id: @book }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @book
+    get :edit, params: { id: @book }
     assert_response :success
   end
 
   test "should update book" do
-    patch :update, id: @book, book: { abbreviation: @book.abbreviation, name: @book.name }
+    patch :update, params: { id: @book, book: { abbreviation: @book.abbreviation, name: @book.name } }
     assert_redirected_to @book
   end
 
   test "should fail to update book" do
-    patch :update, id: @book, book: { abbreviation: @book.abbreviation, name: nil }
+    patch :update, params: { id: @book, book: { abbreviation: @book.abbreviation, name: nil } }
     assert_response 200
   end
 
   test "should destroy book" do
     @request.env['HTTP_REFERER'] = books_path
     assert_difference('Book.count', -1) do
-      delete :destroy, id: @book
+      delete :destroy, params: { id: @book }
     end
 
     assert_redirected_to books_path

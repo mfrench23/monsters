@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :rpm_ritual_modifier do
     association :rpm_ritual
     association :rpm_modifier_level

@@ -3,7 +3,7 @@ require 'test_helper'
 class CreatureTest < ActiveSupport::TestCase
   setup do
     dx = Characteristic.find_by(name: "DX")
-    @campaign = FactoryGirl.create(:campaign)
+    @campaign = FactoryBot.create(:campaign)
     eq_category = EquipmentCategory.new(:name => "Knickknacks", :campaign => @campaign)
     eq_category.save!
     @equipment_type = EquipmentType.new(:name => "Rather Narrow Sword", :base_cost_cents => 1000, 

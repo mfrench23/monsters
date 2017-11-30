@@ -6,7 +6,7 @@ class RpmInitializerServiceTest < ActionView::TestCase
   end
 
   test "performs standard setup on campaign once and only once" do
-    campaign = FactoryGirl.create(:campaign, :name => "Blank Campaign 1")
+    campaign = FactoryBot.create(:campaign, :name => "Blank Campaign 1")
     assert_difference( "RpmPath.where(:campaign_id => #{campaign.id}).count", 9) do
       @service.standardize(campaign.id)
     end

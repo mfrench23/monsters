@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EquipmentTypeTest < ActiveSupport::TestCase
   setup do
-    @equipment_category = FactoryGirl.create(:equipment_category)
+    @equipment_category = FactoryBot.create(:equipment_category)
     @campaign = @equipment_category.campaign
   end
 
