@@ -42,6 +42,6 @@ class Creature < Monster
   end
 
   def blankable_attributes
-    [:height, :weight, :parts_value_cents]
+    super + [:height, :weight, :parts_value_cents]
   end
 end

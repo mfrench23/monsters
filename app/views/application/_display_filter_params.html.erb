@@ -30,6 +30,6 @@
 <% end %>
 <% if params[:sort].present? %>
   <span>
-  <%= link_to "sorted", params.reject{ |key, val| key.to_s == :sort.to_s || key.to_s == :direction.to_s }, :class => "quiet", :title => "remove sort" %>
+  <%= link_to "sorted", params.reject{ |key, val| key.to_s == :sort.to_s || key.to_s == :direction.to_s }.to_unsafe_h, :class => "quiet", :title => "remove sort" %>
   </span>
 <% end %>

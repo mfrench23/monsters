@@ -15,6 +15,6 @@ class Campaign < AbstractEntity
   validates_uniqueness_of :name
 
   def self.has_contents(klass)
-    Campaign.where(id: klass.uniq.pluck(:campaign_id))
+    Campaign.where(id: klass.distinct.pluck(:campaign_id))
   end
 end
