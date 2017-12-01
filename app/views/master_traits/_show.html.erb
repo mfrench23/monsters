@@ -34,7 +34,7 @@
   <ul>
   <% master_trait.traits.creature_possessed.order_by_creature.each do |trait| %>
     <li>
-      <%= link_to trait.creature.name, trait.creature, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
+      <%= link_to trait.monster.name, trait.monster, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
       <% unless (trait.level.blank? && trait.notes.blank?) %>
         <%= render "show_base_trait", trait: trait -%>
       <% end %>

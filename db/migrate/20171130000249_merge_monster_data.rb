@@ -7,6 +7,8 @@ class MergeMonsterData < ActiveRecord::Migration
     transplant_fk(:equipment_packages, true)
     transplant_fk(:parry_scores)
     transplant_fk(:skills)
+
+    execute "update traits d inner join monsters m on m.actable_type = 'Creature' and m.actable_id = d.trait_owner_id set d.trait_owner_id = m.id, trait_owner_type = 'Monster' where d.trait_owner_type = 'Creature';"
     transplant_fk(:traits, true)
 
     drop_table :swarms
