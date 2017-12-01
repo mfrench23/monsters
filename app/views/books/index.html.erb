@@ -23,7 +23,7 @@
         <td><%= link_to book.name, book, :class => "quiet" %></td>
         <td style="text-align: center;"><%= book.abbreviation %></td>
         <td class="count"><%= content_tag :span, book.page_references.count, :title => reference_count_tooltip %></td>
-        <%= render 'index_edit_destroy_links', target: book %>
+        <%= edit_destroy_links book %>
       </tr>
     <% end %>
   </tbody>

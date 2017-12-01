@@ -27,7 +27,7 @@
         <% columns_to_count.each do |col| %>
           <td class="count"><%= list_member.try(col).count %></td>
         <% end %>
-        <%= render 'index_edit_destroy_links', target: list_member %>
+        <%= edit_destroy_links list_member %>
       </tr>
     <% end %>
   </tbody>

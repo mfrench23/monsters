@@ -31,7 +31,7 @@
         <td class="count"><%= equipment_package.equipment_pieces.count(:equipment_type_id) %></td>
         <td class="count"><%= currency_symbol %><%= equipment_package.total_cost %></td>
         <td class="count"><%= equipment_package.total_weight %></td>
-        <%= render 'index_edit_destroy_links', target: equipment_package %>
+        <%= edit_destroy_links equipment_package %>
       </tr>
     <% end %>
   </tbody>

@@ -30,7 +30,7 @@
             <%= master_trait.meta_trait? ? "Y" : "N" %>
           </span>
         </td>
-        <%= render 'index_edit_destroy_links', target: master_trait %>
+        <%= edit_destroy_links master_trait %>
         <td style="font-size: 80%;"><%= link_to 'Merge into...', merge_into_master_trait_path(master_trait) %></td>
       </tr>
     <% end %>

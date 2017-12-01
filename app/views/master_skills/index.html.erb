@@ -25,7 +25,7 @@
         <td style="text-align: center;"><%= master_skill.requires_tech_level ? "Y" : "" %></td>
         <td style="text-align: center;"><%= master_skill.characteristic.to_s %></td>
         <td><span title="<%= master_skill.notes %>"><%= master_skill.notes %></span></td>
-        <%= render 'index_edit_destroy_links', target: master_skill %>
+        <%= edit_destroy_links master_skill %>
       </tr>
     <% end %>
   </tbody>

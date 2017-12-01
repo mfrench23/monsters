@@ -24,7 +24,7 @@
         <td><%= link_to rpm_effect.name, rpm_effect_path(rpm_effect), { :class => "quiet" } %></td>
         <td><%= rpm_effect.cost %></td>
         <td><%= rpm_effect.notes %></td>
-        <%= render 'index_edit_destroy_links', target: rpm_effect %>
+        <%= edit_destroy_links rpm_effect %>
       </tr>
     <% end %>
   </tbody>

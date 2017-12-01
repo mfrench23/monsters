@@ -30,7 +30,7 @@
         <td><%= content_tag :span, mods, :title => mods, :class => "hover-highlight" %></td>
         <td class="count"><%= rpm_ritual.inherent_cost %></td>
         <td class="count"><%= rpm_ritual.typical_cost %></td>
-        <%= render 'index_edit_destroy_links', target: rpm_ritual %>
+        <%= edit_destroy_links rpm_ritual %>
       </tr>
     <% end %>
   </tbody>

@@ -26,7 +26,7 @@
         <td><%= rpm_modifier.short_name %></td>
         <td class="count"><%= rpm_modifier.level_count %></td>
         <td class="count"><%= rpm_modifier.rpm_modifier_subtypes.count %></td>
-        <%= render 'index_edit_destroy_links', target: rpm_modifier %>
+        <%= edit_destroy_links rpm_modifier %>
       </tr>
     <% end %>
   </tbody>

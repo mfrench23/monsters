@@ -30,7 +30,7 @@
         <td class="count"><%= equipment_modifier.base_weight_mod %></td>
         <td class="count"><%= equipment_modifier.cost_mod %></td>
         <td class="count"><%= equipment_modifier.weight_mod %></td>
-        <%= render 'index_edit_destroy_links', target: equipment_modifier %>
+        <%= edit_destroy_links equipment_modifier %>
       </tr>
     <% end %>
   </tbody>

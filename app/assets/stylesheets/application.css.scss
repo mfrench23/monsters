@@ -246,3 +246,12 @@ span.disabled {
   border: 1px solid black;
   border-collapse: collapse;
 }
+// index pages
+.index_edit_link {
+  font-size: 80%; 
+  min-width: 20px;
+}
+.index_destroy_link {
+  font-size: 80%;
+  min-width: 40px;
+}
