@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20171130000249) do
   end
 
   add_index "damage_resistances", ["location_id"], name: "index_damage_resistances_on_location_id", using: :btree
-  add_index "damage_resistances", ["monster_id"], name: "fk_rails_9e67e63f62", using: :btree
+  add_index "damage_resistances", ["monster_id"], name: "fk_rails_4da9505270", using: :btree
 
   create_table "equipment_categories", force: :cascade do |t|
     t.string   "name",        limit: 255
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 20171130000249) do
     t.integer  "monster_id",       limit: 4
   end
 
-  add_index "equipment_packages", ["monster_id"], name: "fk_rails_33d63e71fa", using: :btree
+  add_index "equipment_packages", ["monster_id"], name: "fk_rails_cefbf21df2", using: :btree
 
   create_table "equipment_piece_modifiers", force: :cascade do |t|
     t.integer  "equipment_piece_id",    limit: 4
@@ -335,7 +335,7 @@ ActiveRecord::Schema.define(version: 20171130000249) do
     t.integer  "monster_id", limit: 4,   null: false
   end
 
-  add_index "parry_scores", ["monster_id"], name: "fk_rails_1c1d0f4047", using: :btree
+  add_index "parry_scores", ["monster_id"], name: "fk_rails_442e1fa720", using: :btree
 
   create_table "random_eq_profile_line_items", force: :cascade do |t|
     t.integer  "random_eq_profile_id",                limit: 4
@@ -487,7 +487,7 @@ ActiveRecord::Schema.define(version: 20171130000249) do
   end
 
   add_index "skills", ["master_skill_id"], name: "index_skills_on_master_skill_id", using: :btree
-  add_index "skills", ["monster_id"], name: "fk_rails_afdedcbc19", using: :btree
+  add_index "skills", ["monster_id"], name: "fk_rails_62344a3774", using: :btree
 
   create_table "traits", force: :cascade do |t|
     t.integer  "level",            limit: 4
@@ -503,7 +503,7 @@ ActiveRecord::Schema.define(version: 20171130000249) do
 
   add_index "traits", ["ancestry"], name: "index_traits_on_ancestry", using: :btree
   add_index "traits", ["master_trait_id"], name: "index_traits_on_master_trait_id", using: :btree
-  add_index "traits", ["monster_id"], name: "fk_rails_e7afa2fa65", using: :btree
+  add_index "traits", ["monster_id"], name: "fk_rails_11e8c6fb24", using: :btree
   add_index "traits", ["trait_owner_id", "trait_owner_type"], name: "index_traits_on_trait_owner_id_and_trait_owner_type", using: :btree
 
   add_foreign_key "attacks", "monsters"
