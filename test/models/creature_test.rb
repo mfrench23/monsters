@@ -98,6 +98,6 @@ class CreatureTest < ActiveSupport::TestCase
     assert_equal "Brawling @DX+1=11", one_loaded.skills.first.to_s
     assert_equal "Brawling", one_loaded.parry_scores.first.weapon
     assert_nil one_loaded.traits.first.level
-    assert_equal 10, one_loaded.equipment_packages.first.equipment_pieces.first.cost
+    assert_equal "10.00", one_loaded.equipment_packages.first.equipment_pieces.first.cost.to_s
   end
 end

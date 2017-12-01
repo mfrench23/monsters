@@ -39,10 +39,11 @@ class EquipmentTypesControllerCreationTest < ActionController::TestCase
 
   test "should refuse to do mass entry" do
     assert_no_difference('EquipmentType.count') do
-      post :do_mass_entry, params: {:equipment_category_name => "Weapons" + (Time.now.to_f * 1000).to_s,
+      post :do_mass_entry, params: {:equipment_category_name => "",
                               :freeform_text => "Big Stick (2#)\nLittle Stick ($2)\n\n"}
-      assert_equal "Unable to convert into equipment types: Errors exist.", flash[:notice]
       assert_response :ok
+      assert_equal "Unable to convert into equipment types: Errors exist.", flash[:notice]
+      assert_select "li.mass_entry_error", /Equipment category can't be blank/
     end
   end
 
