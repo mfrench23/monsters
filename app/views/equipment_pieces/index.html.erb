@@ -36,7 +36,7 @@
         <td><%= link_to equipment_piece.equipment_category, equipment_piece.equipment_category, :title => equipment_piece.equipment_category, :class => "quiet" %></td>
         <td class="cash"><%= currency_symbol %><%= equipment_piece.cost %></td>
         <td class="count"><%= equipment_piece.weight %></td>
-        <%= render 'index_edit_destroy_links', target: equipment_piece %>
+        <%= edit_destroy_links equipment_piece %>
       </tr>
     <% end %>
   </tbody>

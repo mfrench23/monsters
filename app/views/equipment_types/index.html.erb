@@ -28,7 +28,7 @@
         <td class="cash"><%= currency_symbol %><%= equipment_type.base_cost %></td>
         <td><%= link_to equipment_type.equipment_category, equipment_type.equipment_category, :class => "quiet" unless equipment_type.equipment_category.blank? %></td>
         <td><%= equipment_type.notes %></td>
-        <%= render 'index_edit_destroy_links', target: equipment_type %>
+        <%= edit_destroy_links equipment_type %>
       </tr>
     <% end %>
   </tbody>

@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to equipment_modifier_supercategory.name, equipment_modifier_supercategory, :class => "quiet" %></td>
         <td><%= equipment_modifier_supercategory.notes %></td>
-        <%= render 'index_edit_destroy_links', target: equipment_modifier_supercategory %>
+        <%= edit_destroy_links equipment_modifier_supercategory %>
       </tr>
     <% end %>
   </tbody>

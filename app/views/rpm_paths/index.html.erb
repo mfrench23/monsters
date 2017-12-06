@@ -22,7 +22,7 @@
       <tr>
         <td><%= link_to rpm_path.name, rpm_path_path(rpm_path), { :class => "quiet" } %></td>
         <td><%= rpm_path.notes %></td>
-        <%= render 'index_edit_destroy_links', target: rpm_path %>
+        <%= edit_destroy_links rpm_path %>
       </tr>
     <% end %>
   </tbody>
