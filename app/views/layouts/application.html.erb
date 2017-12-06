@@ -6,7 +6,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Monsters" %>">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag "http://code.highcharts.com/highcharts.js", "chartkick", {:skip_pipline => true} %>
+    <%= javascript_include_tag "http://code.highcharts.com/highcharts.js", {:skip_pipline => true} %>
     <%= csrf_meta_tags %>
     <script>
       <%= javascript_variables %>
