@@ -70,10 +70,28 @@
           <% row_options = { "data-toggle_id" => toggle_link_key, "style" => row_style_display } %>
           <% intersection_row = intersection_rows[index] %>
           <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => display_index, :number_of_columns => number_of_columns, :total_count => total_count, :row_options => row_options } do %>
-            <%= render "many_to_many_checkbox_cell", :intersected => intersected, :intersected_table => intersected_table,
-                :intersection_row => intersection_row, :base_id => "#{base_id}[#{index}]",
-                :foreign_key_name => foreign_key_name, :other_hidden_fields => other_hidden_fields,
-                :title_field => title_field, :displayed_field => displayed_field, :on_click => on_click %>
+            <% check_box_options = { :onclick => on_click } %>
+            <% base_id = "#{base_id}[#{index}]" %>
+            <span name="<%= base_id %>" class="many_to_many_cell">
+              <%= hidden_field_tag "#{base_id}[id]", intersection_row.try(:id) %>
+              <%= hidden_field_tag "#{base_id}[#{foreign_key_name}]", intersected[:id] %>
+              <% other_hidden_fields.each do |(key, val)| %>
+                <% val ||= intersected.try(key) %>
+                <% if val.respond_to?(:each_with_index) %>
+                  <%# must be an associated entity, so list the id for each one %>
+                  <% val.each_with_index do |one_val, index| %>
+                    <%= hidden_field_tag "#{base_id}[#{key}][#{index}]", one_val.try(:id) %>
+                  <% end %>
+                <% else %>
+                  <%= hidden_field_tag "#{base_id}[#{key}]", val %>
+                <% end %>
+              <% end %>
+              <%= hidden_field_tag "#{base_id}[_destroy]", "true" %>
+              <%= check_box_tag "#{base_id}[_destroy]", "false", intersection_row.present?, check_box_options %>
+              <span title="<%= intersected[title_field] %>" data-displayed_field>
+                <%= intersected[displayed_field] %>
+              </span>
+            </span>
           <% end %>
         <% end %>
       <% else %>

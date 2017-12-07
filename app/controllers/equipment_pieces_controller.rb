@@ -16,7 +16,9 @@ class EquipmentPiecesController < ModelBasedController
   end
 
   def self.collect_all_modifiers(eq_type, eq_piece)
-    ([*eq_type.try(:equipment_modifiers)] + [*eq_piece.try(:equipment_modifiers)]).uniq.sort_by{|mod| [mod.equipment_modifier_category_name, mod.name] }
+    ([*eq_type.try(:equipment_modifiers).includes(:equipment_modifier_category)] + [*eq_piece.try(:equipment_modifiers).includes(:equipment_modifier_category)])
+      .uniq
+      .sort_by{|mod| [mod.equipment_modifier_category_name, mod.name] }
   end
 
   def self.modifiers_for_piece_local_hash_params(params)
