@@ -52,6 +52,10 @@ gem 'prawn-rails'
 gem 'rails4-autocomplete'
 gem 'jquery-ui-rails'
 
+# Use React on front-end
+gem 'webpacker'
+gem 'react-rails'
+
 gem 'rails-erd', group: :development
 
 group :development do

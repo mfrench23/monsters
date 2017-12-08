@@ -77,9 +77,7 @@
               <% end %>
               <%= hidden_field_tag "#{base_id}[_destroy]", "true" %>
               <%= check_box_tag "#{base_id}[_destroy]", "false", intersection_row.present?, check_box_options %>
-              <span title="<%= intersected[title_field] %>" data-displayed_field>
-                <%= intersected[displayed_field] %>
-              </span>
+              <%= react_component 'ManyToManyDisplayedField', {title: intersected[title_field], text: intersected[displayed_field]}, {prerender: true, tag: "span"} %>
             </span>
           <% end %>
         <% end %>
