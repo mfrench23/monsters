@@ -24,7 +24,7 @@
         <% available_intersection_list.each_with_index do |intersected, index| %>
           <% intersection_row = intersections.find{ |rw| (rw.try(intersection_field) == intersected) } %>
           <% intersection_rows << intersection_row %>
-          <% intersections = intersections - [intersection_row] %>
+          <% intersections = intersections - [intersection_row] if intersection_row.present? %>
           <% if subheader_field.present? %>
             <% subheader = intersected.try(subheader_field) %>
             <% count = subheader_counts[subheader] || 0 %>
@@ -44,19 +44,15 @@
               <% toggle_link_key = base_id.gsub(/[\[\]]/, "_") + member_name.to_s + "_sub" + subheader_index.to_s %>
               <tr>
                 <td colspan="<%= number_of_columns %>">
-                  <% if new_subheader.blank? %>
-                    <span class="footnote">(n/a) </span>
-                  <% else %>
-                    <%= new_subheader %>
-                  <% end %>
+                  <%= display_subheader new_subheader -%>
                   <% if subheader_counts[new_subheader] > 0 %>
-                    <%= toggle_links(toggle_link_key, "-", "+") %>
+                    <%= toggle_links(toggle_link_key, "-", "+") -%>
                     <% row_style_display = "" %>
                   <% else %>
-                    <%= toggle_links(toggle_link_key, "+", "-") %>
+                    <%= toggle_links(toggle_link_key, "+", "-") -%>
                     <% row_style_display = "display: none" %>
                   <% end %>
-                  <%= link_to "select all", "#", :class => "quiet blue-highlight", 'data-target_toggle_id' => toggle_link_key, 'data-select_all' => 1 %>
+                  <%= link_to "select all", "#", :class => "quiet blue-highlight", 'data-target_toggle_id' => toggle_link_key, 'data-select_all' => 1 -%>
                   <%= link_to "de-select all", "#", :class => "quiet blue-highlight", 'data-target_toggle_id' => toggle_link_key, 'data-select_all' => 0 %>
                 </td>
               </tr>
@@ -69,22 +65,15 @@
           <% end %>
           <% row_options = { "data-toggle_id" => toggle_link_key, "style" => row_style_display } %>
           <% intersection_row = intersection_rows[index] %>
+          <% check_box_options = { :onclick => on_click } %>
+          <% base_id = "#{base_id}[#{index}]" %>
           <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => display_index, :number_of_columns => number_of_columns, :total_count => total_count, :row_options => row_options } do %>
-            <% check_box_options = { :onclick => on_click } %>
-            <% base_id = "#{base_id}[#{index}]" %>
             <span name="<%= base_id %>" class="many_to_many_cell">
               <%= hidden_field_tag "#{base_id}[id]", intersection_row.try(:id) %>
               <%= hidden_field_tag "#{base_id}[#{foreign_key_name}]", intersected[:id] %>
               <% other_hidden_fields.each do |(key, val)| %>
                 <% val ||= intersected.try(key) %>
-                <% if val.respond_to?(:each_with_index) %>
-                  <%# must be an associated entity, so list the id for each one %>
-                  <% val.each_with_index do |one_val, index| %>
-                    <%= hidden_field_tag "#{base_id}[#{key}][#{index}]", one_val.try(:id) %>
-                  <% end %>
-                <% else %>
-                  <%= hidden_field_tag "#{base_id}[#{key}]", val %>
-                <% end %>
+                <%= display_other_values(base_id, key, val) %>
               <% end %>
               <%= hidden_field_tag "#{base_id}[_destroy]", "true" %>
               <%= check_box_tag "#{base_id}[_destroy]", "false", intersection_row.present?, check_box_options %>
