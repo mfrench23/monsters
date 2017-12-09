@@ -66,17 +66,19 @@
           <% row_options = { "data-toggle_id" => toggle_link_key, "style" => row_style_display } %>
           <% intersection_row = intersection_rows[index] %>
           <% check_box_options = { :onclick => on_click } %>
-          <% base_id = "#{base_id}[#{index}]" %>
+          <% cell_id = "#{base_id}[#{index}]" %>
           <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => display_index, :number_of_columns => number_of_columns, :total_count => total_count, :row_options => row_options } do %>
-            <span name="<%= base_id %>" class="many_to_many_cell">
-              <%= hidden_field_tag "#{base_id}[id]", intersection_row.try(:id) %>
-              <%= hidden_field_tag "#{base_id}[#{foreign_key_name}]", intersected[:id] %>
-              <% other_hidden_fields.each do |(key, val)| %>
-                <% val ||= intersected.try(key) %>
-                <%= display_other_values(base_id, key, val) %>
+            <span name="<%= cell_id %>" class="many_to_many_cell">
+              <%= hidden_field_tag "#{cell_id}[id]", intersection_row.try(:id) %>
+              <%= hidden_field_tag "#{cell_id}[#{foreign_key_name}]", intersected[:id] %>
+              <% if other_hidden_fields.present? && other_hidden_fields.any? %>
+                <% other_hidden_fields.each do |(key, val)| %>
+                  <% val ||= intersected.try(key) %>
+                  <%= display_other_values(cell_id, key, val) %>
+                <% end %>
               <% end %>
-              <%= hidden_field_tag "#{base_id}[_destroy]", "true" %>
-              <%= check_box_tag "#{base_id}[_destroy]", "false", intersection_row.present?, check_box_options %>
+              <%= hidden_field_tag "#{cell_id}[_destroy]", "true" %>
+              <%= check_box_tag "#{cell_id}[_destroy]", "false", intersection_row.present?, check_box_options %>
               <%= react_component 'ManyToManyDisplayedField', {title: intersected[title_field], text: intersected[displayed_field]}, {prerender: true, tag: "span"} %>
             </span>
           <% end %>

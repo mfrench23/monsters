@@ -93,11 +93,11 @@ class EquipmentPiecesControllerTest < ActionController::TestCase
       assert_select "td" do
         assert_select "span[class=\"many_to_many_cell\"]", /^Second exclusionary$/ do
           assert_select "span", "Second exclusionary" # Cell for 2nd mod
-          assert_select "input[type=\"hidden\"][name=\"base_id_[0][1][id]\"]", 1
-          assert_select "input[type=\"hidden\"][name=\"base_id_[0][1][equipment_modifier_id]\"][value=\"#{mod2.id}\"]" # id for 2nd mod
-          assert_select "input[type=\"hidden\"][name=\"base_id_[0][1][excluded_equipment_modifiers][0]\"][value=\"#{mod1.id}\"]" # 2nd mod excludes 1st
-          assert_select "input[type=\"hidden\"][name=\"base_id_[0][1][_destroy]\"][value=\"true\"]" # destroy if not selected
-          assert_select "input[type=\"checkbox\"][name=\"base_id_[0][1][_destroy]\"][value=\"false\"][onclick=\"disable_excluded_equipment_modifiers(this)\"]" # checkbox
+          assert_select "input[type=\"hidden\"][name=\"base_id_[1][id]\"]", 1
+          assert_select "input[type=\"hidden\"][name=\"base_id_[1][equipment_modifier_id]\"][value=\"#{mod2.id}\"]" # id for 2nd mod
+          assert_select "input[type=\"hidden\"][name=\"base_id_[1][excluded_equipment_modifiers][0]\"][value=\"#{mod1.id}\"]" # 2nd mod excludes 1st
+          assert_select "input[type=\"hidden\"][name=\"base_id_[1][_destroy]\"][value=\"true\"]" # destroy if not selected
+          assert_select "input[type=\"checkbox\"][name=\"base_id_[1][_destroy]\"][value=\"false\"][onclick=\"disable_excluded_equipment_modifiers(this)\"]" # checkbox
         end
       end
     end
