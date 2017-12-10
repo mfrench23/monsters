@@ -1,6 +1,6 @@
-<%= render 'many_to_many_checkbox_table', available_intersection_list: available_intersection_list,
-  intersection_field: :equipment_modifier, target: target, base_id: base_id,
-  member_name: :equipment_piece_modifiers, intersected_table: EquipmentPieceModifier,
-  table_class: "", title: title, subheader_field: :equipment_modifier_category_name,
+<%= render 'many_to_many_checkbox_table',
+  base_id: base_id,
+  intersected_table: EquipmentPieceModifier,
+  table_class: "", title: title,
   on_click: 'disable_excluded_equipment_modifiers(this)',
-  other_hidden_fields: { :excluded_equipment_modifiers => nil }, number_of_columns: 5 %>
+  other_hidden_fields: { :excluded_equipment_modifiers => nil }, number_of_columns: 5, table_spec: table_spec %>

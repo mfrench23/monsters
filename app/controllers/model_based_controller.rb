@@ -87,7 +87,7 @@ class ModelBasedController < ApplicationController
   end
 
   def set_model_by_id
-    controlled_model_class.find(params[:id])
+    @model = controlled_model_class.find(params[:id])
   end
 
   def render_or_redirect

@@ -2,8 +2,15 @@ require 'test_helper'
 
 class EquipmentModifierCategoriesControllerTest < ActionController::TestCase
   setup do
+    campaign = Campaign.new(:name => "EQModCat Campaign")
+    campaign.save!
     @equipment_modifier_category = EquipmentModifierCategory.new( :name => "EqModCat", :notes => "Some notes")
-    @equipment_modifier_category.save
+    equipment_category = EquipmentCategory.new(:name => "Eq Cat", :campaign => campaign)
+    equipment_category.save!
+    type = EquipmentType.new( :name => "Dice bag", :base_cost_cents => 100, :campaign => campaign, :equipment_category => equipment_category )
+    type.save!
+    @equipment_modifier_category.equipment_types << type
+    @equipment_modifier_category.save!
   end
 
   test "should get index" do

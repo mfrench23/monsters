@@ -37,12 +37,10 @@
     <%= f.select :random_weight, (1..10) %>
   </div>
 
-  <%= render 'many_to_many_checkbox_table', available_intersection_list: equipment_modifier_categories,
-    intersection_field: :equipment_modifier_category, target: equipment_type,
+  <%= render 'many_to_many_checkbox_table',
     base_id: f.object_name.to_s + "[equipment_type_modifier_categories_attributes]",
-    member_name: :equipment_type_modifier_categories, intersected_table: EquipmentModifierCategory,
-    subheader_field: :equipment_modifier_supercategory,
-    table_class: "fixed-table", title: "Equipment Modifier Categories" %>
+    intersected_table: EquipmentModifierCategory,
+    table_class: "fixed-table", title: "Equipment Modifier Categories", table_spec: table_spec %>
 
   <div class="field">
     <%= f.label :notes %><br>

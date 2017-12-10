@@ -26,12 +26,10 @@
     partial: 'equipment_modifier_fields', label: 'add modifier', header: "Modifiers",
     header_list: [ :name, :base_cost_mod, :base_weight_mod, :cost_mod, :weight_mod, :random_weight, :notes ], freeform: nil %>
 
-  <%= render 'many_to_many_checkbox_table', available_intersection_list: equipment_types,
-    intersection_field: :equipment_type, target: equipment_modifier_category,
+  <%= render 'many_to_many_checkbox_table',
     base_id: f.object_name.to_s + "[equipment_type_modifier_categories_attributes]",
-    member_name: :equipment_type_modifier_categories, intersected_table: EquipmentType,
-    subheader_field: :equipment_category_name,
-    table_class: "fixed-table", title: "Equipment Types" %>
+    intersected_table: EquipmentType,
+    table_class: "fixed-table", title: "Equipment Types", table_spec: table_spec %>
 
   <div class="field">
     <%= f.label :notes %><br>

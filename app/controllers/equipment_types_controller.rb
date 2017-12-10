@@ -48,7 +48,11 @@ class EquipmentTypesController < ModelBasedController
   def additional_form_locals
     # TODO Limit by campaign
     categories = EquipmentModifierCategory.all.sort_by{|item| [(item.equipment_modifier_supercategory_name || 'zzzzz').to_s, item.name] }
-    {equipment_modifier_categories: categories, error_messages: []}
+    {error_messages: [],
+     :table_spec => ManyToManyCheckboxTableSpecification.new(subheader_field: :equipment_modifier_supercategory,
+                                                             available_intersection_list: categories,
+                                                             intersection_field: :equipment_modifier_category,
+                                                             target: @model, member_name: :equipment_type_modifier_categories)}
   end
 
   def includes_for_sorting

@@ -12,7 +12,10 @@ class EquipmentModifiersController < ModelBasedController
   end
 
   def additional_form_locals
-    { excludable_modifiers: all_modifiers_that_can_be_mutually_exclusive }
+    { table_spec: ManyToManyCheckboxTableSpecification.new(subheader_field: :equipment_modifier_category_name,
+                                                           available_intersection_list: all_modifiers_that_can_be_mutually_exclusive,
+                                                           intersection_field: :excluded,
+                                                           target: @model, member_name: :equipment_modifier_exclusions) }
   end
 
   def all_modifiers_that_can_be_mutually_exclusive

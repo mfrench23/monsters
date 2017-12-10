@@ -14,6 +14,10 @@ class EquipmentTypesControllerTest < ActionController::TestCase
     @eq_category2 = EquipmentCategory.new(:name => "Knickknacks Part 2, The Revenge", :campaign => @campaign2)
     @eq_category2.save!
 
+    @equipment_modifier_category = EquipmentModifierCategory.new( :name => "EqModCat", :notes => "Some notes")
+    @equipment_modifier_category.equipment_types << @equipment_type
+    @equipment_modifier_category.save!
+    
     cookies[:selected_campaign] = @campaign.id.to_s
   end
 

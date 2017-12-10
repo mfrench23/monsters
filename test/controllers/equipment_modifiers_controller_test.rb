@@ -3,6 +3,7 @@ require 'test_helper'
 class EquipmentModifiersControllerTest < ActionController::TestCase
   setup do
     @equipment_modifier = FactoryBot.create(:equipment_modifier)
+    @equipment_modifier.excluded_equipment_modifiers << FactoryBot.create(:equipment_modifier, :name => "Another Mod")
   end
 
   test "should get index" do
