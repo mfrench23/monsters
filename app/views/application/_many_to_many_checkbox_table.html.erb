@@ -54,11 +54,16 @@
           <% cell_id = "#{base_id}[#{index}]" %>
           <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => display_index, :number_of_columns => number_of_columns, :total_count => total_count, :row_options => row_options } do %>
             <span name="<%= cell_id %>" class="many_to_many_cell">
-              <%= react_component 'HiddenField', {identifier: "#{cell_id}[id]", val: intersection_row.try(:id).to_s}, {tag: "span"} %>
-              <%= react_component 'HiddenField', {identifier: "#{cell_id}[#{foreign_key_name}]", val: intersected[:id].to_s}, {tag: "span"} %>
+              <% intersection_row_id = intersection_row.try(:id).to_s %>
+              <% intersected_id = intersected[:id].to_s %>
+              <% is_checked = intersection_row.present? %>
+              <% display_title = intersected[title_field] %>
+              <% display_text = intersected[displayed_field] %>
+              <%= react_component 'HiddenField', {identifier: "#{cell_id}[id]", val: intersection_row_id}, {tag: "span"} %>
+              <%= react_component 'HiddenField', {identifier: "#{cell_id}[#{foreign_key_name}]", val: intersected_id}, {tag: "span"} %>
               <%= react_component 'HiddenField', {identifier: "#{cell_id}[_destroy]", val: "true"}, {tag: "span"} %>
-              <%= react_component 'ManyToManyCheckbox', {identifier: "#{cell_id}[_destroy]", val: "false", checked: intersection_row.present?}, {tag: "span"} %>
-              <%= react_component 'ManyToManyDisplayedField', {title: intersected[title_field], text: intersected[displayed_field]}, {tag: "span"} %>
+              <%= react_component 'ManyToManyCheckbox', {identifier: "#{cell_id}[_destroy]", val: "false", checked: is_checked}, {tag: "span"} %>
+              <%= react_component 'ManyToManyDisplayedField', {title: display_title, text: display_text}, {tag: "span"} %>
               <% if other_hidden_fields.present? && other_hidden_fields.any? %>
                 <% other_hidden_fields.each do |(key, val)| %>
                   <% val ||= intersected.try(key) %>
