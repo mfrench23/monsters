@@ -9,7 +9,7 @@ class ManyToManyCheckboxTableSpecification
     @member_name = props[:member_name]
     @intersection_field = props[:intersection_field]
 
-    intersections = @target.try(@member_name).includes(@intersection_field).to_a
+    intersections = @target.try(@member_name).try(:includes, @intersection_field).to_a
     @intersection_rows = []
     @subheader_counts = {}
     @item_hash = {}

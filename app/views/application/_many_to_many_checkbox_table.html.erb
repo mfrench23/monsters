@@ -56,15 +56,15 @@
             <span name="<%= cell_id %>" class="many_to_many_cell">
               <%= react_component 'HiddenField', {identifier: "#{cell_id}[id]", val: intersection_row.try(:id).to_s}, {tag: "span"} %>
               <%= react_component 'HiddenField', {identifier: "#{cell_id}[#{foreign_key_name}]", val: intersected[:id].to_s}, {tag: "span"} %>
+              <%= react_component 'HiddenField', {identifier: "#{cell_id}[_destroy]", val: "true"}, {tag: "span"} %>
+              <%= react_component 'ManyToManyCheckbox', {identifier: "#{cell_id}[_destroy]", val: "false", checked: intersection_row.present?}, {tag: "span"} %>
+              <%= react_component 'ManyToManyDisplayedField', {title: intersected[title_field], text: intersected[displayed_field]}, {tag: "span"} %>
               <% if other_hidden_fields.present? && other_hidden_fields.any? %>
                 <% other_hidden_fields.each do |(key, val)| %>
                   <% val ||= intersected.try(key) %>
                   <%= display_other_values(cell_id, key, val) %>
                 <% end %>
               <% end %>
-              <%= react_component 'HiddenField', {identifier: "#{cell_id}[_destroy]", val: "true"}, {tag: "span"} %>
-              <%= check_box_tag "#{cell_id}[_destroy]", "false", intersection_row.present?, check_box_options %>
-              <%= react_component 'ManyToManyDisplayedField', {title: intersected[title_field], text: intersected[displayed_field]}, {tag: "span"} %>
             </span>
           <% end %>
         <% end %>
