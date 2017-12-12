@@ -1,9 +1,4 @@
 module ManyToManyCheckboxTableHelper
-  def display_subheader(subheader)
-    return content_tag(:span, subheader) unless subheader.blank?
-    content_tag(:span, "(n/a) ", class: "footnote")
-  end
-
   def display_other_values(base_id, key, val)
     capture do
       if val.respond_to?(:each_with_index)

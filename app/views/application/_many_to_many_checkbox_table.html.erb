@@ -29,7 +29,7 @@
               <% toggle_link_key = base_id.gsub(/[\[\]]/, "_") + table_spec.member_name.to_s + "_sub" + subheader_index.to_s %>
               <tr>
                 <td colspan="<%= number_of_columns %>">
-                  <%= display_subheader new_subheader -%>
+                  <%= react_component 'ManyToManySubheaderSpan', {subheader: new_subheader}, {tag: "span"} -%>
                   <% if table_spec.subheader_counts[new_subheader] > 0 %>
                     <%= toggle_links(toggle_link_key, "-", "+") -%>
                     <% row_style_display = "" %>
@@ -54,17 +54,17 @@
           <% cell_id = "#{base_id}[#{index}]" %>
           <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => display_index, :number_of_columns => number_of_columns, :total_count => total_count, :row_options => row_options } do %>
             <span name="<%= cell_id %>" class="many_to_many_cell">
-              <%= hidden_field_tag "#{cell_id}[id]", intersection_row.try(:id) %>
-              <%= hidden_field_tag "#{cell_id}[#{foreign_key_name}]", intersected[:id] %>
+              <%= react_component 'HiddenField', {identifier: "#{cell_id}[id]", val: intersection_row.try(:id).to_s}, {tag: "span"} %>
+              <%= react_component 'HiddenField', {identifier: "#{cell_id}[#{foreign_key_name}]", val: intersected[:id].to_s}, {tag: "span"} %>
               <% if other_hidden_fields.present? && other_hidden_fields.any? %>
                 <% other_hidden_fields.each do |(key, val)| %>
                   <% val ||= intersected.try(key) %>
                   <%= display_other_values(cell_id, key, val) %>
                 <% end %>
               <% end %>
-              <%= hidden_field_tag "#{cell_id}[_destroy]", "true" %>
+              <%= react_component 'HiddenField', {identifier: "#{cell_id}[_destroy]", val: "true"}, {tag: "span"} %>
               <%= check_box_tag "#{cell_id}[_destroy]", "false", intersection_row.present?, check_box_options %>
-              <%= react_component 'ManyToManyDisplayedField', {title: intersected[title_field], text: intersected[displayed_field]}, {prerender: true, tag: "span"} %>
+              <%= react_component 'ManyToManyDisplayedField', {title: intersected[title_field], text: intersected[displayed_field]}, {tag: "span"} %>
             </span>
           <% end %>
         <% end %>

@@ -75,38 +75,9 @@ class EquipmentPiecesControllerTest < ActionController::TestCase
     get :modifiers_for_piece, params: {:equipment_piece_id => equipment_piece.id, :equipment_type_id => equipment_type.id, :title => "true", :base_id => "base_id_" }
     assert_response :success
 
-    assert_select "span", { :text => "Equipment Piece Modifiers" }
-    assert_select "td[colspan=\"5\"]", /^Complex\s+-\+\s+select all\s+de-select all/ # has EquipmentModifierCategory header
-    assert_select "tr[data-toggle_id=\"base_id_equipment_piece_modifiers_sub1\"]" do
-      assert_select "td", 3 # TODO expecting 3 columns - but really should expect 5
-      assert_select "td" do
-        assert_select "span[class=\"many_to_many_cell\"]", /^First exclusionary$/ do
-          assert_select "input:not([value])[type=\"hidden\"][name=\"base_id_[0][id]\"]", 1 # no id, not selected
-          assert_select "input[type=\"hidden\"][name=\"base_id_[0][equipment_modifier_id]\"][value=\"#{mod1.id}\"]" # id for 1st mod
-          assert_select "input[type=\"hidden\"][name=\"base_id_[0][excluded_equipment_modifiers][0]\"][value=\"#{mod2.id}\"]" # 1st mod excludes 2nd
-          assert_select "input[type=\"hidden\"][name=\"base_id_[0][excluded_equipment_modifiers][1]\"][value=\"#{mod3.id}\"]" # 1st mod excludes 3rd
-          assert_select "input[type=\"hidden\"][name=\"base_id_[0][_destroy]\"][value=\"true\"]" # destroy if not selected
-          assert_select "input[type=\"checkbox\"][name=\"base_id_[0][_destroy]\"][value=\"false\"][onclick=\"disable_excluded_equipment_modifiers(this)\"]" # checkbox
-        end
-      end
-      assert_select "td" do
-        assert_select "span[class=\"many_to_many_cell\"]", /^Second exclusionary$/ do
-          assert_select "input:not([value])[type=\"hidden\"][name=\"base_id_[1][id]\"]", 1 # no id, not selected
-          assert_select "input[type=\"hidden\"][name=\"base_id_[1][equipment_modifier_id]\"][value=\"#{mod2.id}\"]" # id for 2nd mod
-          assert_select "input[type=\"hidden\"][name=\"base_id_[1][excluded_equipment_modifiers][0]\"][value=\"#{mod1.id}\"]" # 2nd mod excludes 1st
-          assert_select "input[type=\"hidden\"][name=\"base_id_[1][_destroy]\"][value=\"true\"]" # destroy if not selected
-          assert_select "input[type=\"checkbox\"][name=\"base_id_[1][_destroy]\"][value=\"false\"][onclick=\"disable_excluded_equipment_modifiers(this)\"]" # checkbox
-        end
-      end
-      assert_select "td" do
-        assert_select "span[class=\"many_to_many_cell\"]", /^Third exclusionary$/ do
-          assert_select "input[type=\"hidden\"][name=\"base_id_[2][id]\"][value=?]", equipment_piece.equipment_piece_modifiers.first.id.to_s # has id for intersection table, because the modifier is on the equipment_piece
-          assert_select "input[type=\"hidden\"][name=\"base_id_[2][equipment_modifier_id]\"][value=\"#{mod3.id}\"]" # id for 3rd mod
-          assert_select "input[type=\"hidden\"][name=\"base_id_[2][excluded_equipment_modifiers][0]\"][value=\"#{mod1.id}\"]" # 3rd mod excludes 1st
-          assert_select "input[type=\"hidden\"][name=\"base_id_[2][_destroy]\"][value=\"true\"]" # destroy if not selected
-          assert_select "input[type=\"checkbox\"][name=\"base_id_[2][_destroy]\"][value=\"false\"][onclick=\"disable_excluded_equipment_modifiers(this)\"][checked=\"checked\"]" # checkbox
-        end
-      end
-    end
+    assert_match /First exclusionary/, @response.body
+    assert_match /Second exclusionary/, @response.body
+    assert_match /Third exclusionary/, @response.body
+    assert_match /Complex/, @response.body
   end
 end

@@ -27,6 +27,7 @@
         found = $(target_div).find("input:checkbox:first")
         if( found.length > 0 )
           disable_excluded_equipment_modifiers(found)
+        ReactRailsUJS.mountComponents()
       )
   return
 

@@ -50,7 +50,6 @@
     <%= f.label :equipment_modifier_exclusions %><br>
     <%= render 'many_to_many_checkbox_table',
       base_id: f.object_name.to_s + "[equipment_modifier_exclusions_attributes]",
-      intersected_table: EquipmentModifierExclusion,
       table_class: "", title: "Exclused Modifiers",
       number_of_columns: 5, table_spec: table_spec %>
   </div>

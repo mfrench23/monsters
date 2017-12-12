@@ -1,6 +1,5 @@
 <%= render 'many_to_many_checkbox_table',
   base_id: base_id,
-  intersected_table: EquipmentPieceModifier,
   table_class: "", title: title,
   on_click: 'disable_excluded_equipment_modifiers(this)',
   other_hidden_fields: { :excluded_equipment_modifiers => nil }, number_of_columns: 5, table_spec: table_spec %>
