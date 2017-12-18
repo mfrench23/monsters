@@ -41,7 +41,7 @@ class EquipmentPiecesController < ModelBasedController
   end
 
   def includes_for_sorting
-    [:equipment_type, :equipment_category]
+    [:equipment_type, :equipment_category, owner: [:monster], equipment_modifiers: [:equipment_modifier_category]]
   end
 
   def acceptable_filter_scopes
