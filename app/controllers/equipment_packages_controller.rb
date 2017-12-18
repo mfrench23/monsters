@@ -10,4 +10,8 @@ class EquipmentPackagesController < ModelBasedController
   def acceptable_filter_scopes
     []
   end
+
+  def includes_for_sorting
+    [:monster, equipment_pieces: [:equipment_type] ]
+  end
 end
