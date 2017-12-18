@@ -51,4 +51,8 @@ class RpmRitualsController < ModelBasedController
   def rpm_modifier_levels_accepting_enhancements(campaign_id)
     RpmModifierLevel.in_campaign(campaign_id).where(:accepts_enhancements => true).pluck(:id)
   end
+
+  def includes_for_sorting
+    [rpm_spell_effects: [:rpm_potency, :rpm_effect, :rpm_path], rpm_ritual_modifiers: [:rpm_modifier, :rpm_modifier_subtype, :rpm_modifier_level]]
+  end
 end
