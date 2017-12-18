@@ -25,3 +25,8 @@ coverage
 
 # Ignore byebug history
 /.byebug_history
+
+/node_modules
+/public/packs-test
+/public/packs
+
