@@ -63,7 +63,7 @@ class ManyToManyTable extends React.Component {
               <div>
                 {subheader}
                 &nbsp;
-                <button type="button" data-subheader={subheader} onClick={this.toggleVisible.bind(this, subheader)} >{ this.state.isVisible[subheader] ? "-" : "+" }</button>
+                <button type="button" className="m2mbtn" data-subheader={subheader} onClick={this.toggleVisible.bind(this, subheader)} >{ this.state.isVisible[subheader] ? "-" : "+" }</button>
               </div>
               <ul className="grid_layout" style={ this.state.isVisible[subheader] ? null : {display: 'none'}}>
                 { this.state.spec.item_hash[subheader]["members"].map((member, mIdx) => (
