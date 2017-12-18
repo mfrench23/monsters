@@ -12,11 +12,14 @@ class EquipmentPiecesController < ModelBasedController
     eq_piece = EquipmentPiece.find(param_piece_id) if (param_piece_id.try(:to_i)) > 0
     eq_type = EquipmentType.find(param_type_id)
     mod_list = collect_all_modifiers(eq_type, eq_piece)
+    mod_ids = mod_list.map{ |e| e.id }
+    exclusions = EquipmentModifier.where(:id => mod_ids).joins(:equipment_modifier_exclusions => [:excluded]).pluck( "equipment_modifiers.id, excludeds_equipment_modifier_exclusions.id as excluded_id").inject( Hash.new([]) ) { |memo, (a, b)| memo[a] = memo[a] + [b]; memo }
     modifiers_for_piece_local_hash = {:target => eq_piece, :base_id => base_id, :title => title,
                                       :table_spec => ManyToManyCheckboxTableSpecification.new(subheader_field: :equipment_modifier_category_name,
                                                                                               available_intersection_list: mod_list,
                                                                                               intersection_field: :equipment_modifier,
-                                                                                              target: eq_piece, member_name: :equipment_piece_modifiers)}
+                                                                                              target: eq_piece, member_name: :equipment_piece_modifiers,
+                                                                                              exclusion_hash: exclusions)}
   end
 
   def self.collect_all_modifiers(eq_type, eq_piece)

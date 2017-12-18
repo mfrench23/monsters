@@ -1,79 +1,9 @@
-<% number_of_columns ||= 5 %>
-<% foreign_key_type_name ||= nil %>
-<% displayed_field ||= :name %>
-<% title_field ||= displayed_field %>
-<% foreign_key_name ||= (table_spec.intersection_field.to_s + "_id").to_sym %>
-<% total_count = table_spec.available_intersection_list.count %>
-<% other_hidden_fields ||= nil %>
-<% on_click ||= nil %>
-<%# --- everything above this line is an optional parameter %>
-<% previous_subheader_value = nil %>
-
 <div class="field">
   <% if title.present? %>
     <span class="field-label"><%= title %></span>
   <% end %>
   <fieldset id="<%= table_spec.member_name %>" class="expanding-fieldset-container">
-    <table class="many_to_many_table <%= table_class %>">
-      <% if total_count > 0 %>
-        <% display_index = nil %>
-        <% row_style_display = "" %>
-        <% subheader_index = 0 %>
-        <% toggle_link_key = nil %>
-        <% table_spec.available_intersection_list.each_with_index do |intersected, index| %>
-          <% if table_spec.subheader_field.present? %>
-            <% display_index = (display_index.nil? ? 0 : display_index+1) %>
-            <% new_subheader = intersected.try(table_spec.subheader_field) %>
-            <% if new_subheader != previous_subheader_value %>
-              <% subheader_index = subheader_index + 1 %>
-              <% toggle_link_key = base_id.gsub(/[\[\]]/, "_") + table_spec.member_name.to_s + "_sub" + subheader_index.to_s %>
-              <tr>
-                <td colspan="<%= number_of_columns %>">
-                  <%= react_component 'ManyToManySubheaderSpan', {subheader: new_subheader}, {tag: "span"} -%>
-                  <% if table_spec.subheader_counts[new_subheader] > 0 %>
-                    <%= toggle_links(toggle_link_key, "-", "+") -%>
-                    <% row_style_display = "" %>
-                  <% else %>
-                    <%= toggle_links(toggle_link_key, "+", "-") -%>
-                    <% row_style_display = "display: none" %>
-                  <% end %>
-                  <%= link_to "select all", "#", :class => "quiet blue-highlight", 'data-target_toggle_id' => toggle_link_key, 'data-select_all' => 1 -%>
-                  <%= link_to "de-select all", "#", :class => "quiet blue-highlight", 'data-target_toggle_id' => toggle_link_key, 'data-select_all' => 0 %>
-                </td>
-              </tr>
-              <% display_index = 0 %>
-              <% previous_subheader_value = new_subheader %>
-            <% end %>
-          <% else %>
-            <% display_index = index %>
-            <% row_style_display = "" %>
-          <% end %>
-          <% row_options = { "data-toggle_id" => toggle_link_key, "style" => row_style_display } %>
-          <% intersection_row = table_spec.intersection_rows[index] %>
-          <% check_box_options = { :onclick => on_click } %>
-          <% cell_id = "#{base_id}[#{index}]" %>
-          <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => display_index, :number_of_columns => number_of_columns, :total_count => total_count, :row_options => row_options } do %>
-            <span name="<%= cell_id %>" class="many_to_many_cell">
-              <% intersected_id = intersected[:id].to_s %>
-              <% display_title = intersected[title_field] %>
-              <% display_text = intersected[displayed_field] %>
-              <%= react_component 'ManyToManyCell', {cellId: cell_id,
-                intersectedId: intersected_id, foreignKeyName: foreign_key_name,
-                displayTitle: display_title, displayText: display_text,
-                intersectionRow: intersection_row } %>
-              <% if other_hidden_fields.present? && other_hidden_fields.any? %>
-                <% other_hidden_fields.each do |(key, val)| %>
-                  <% val ||= intersected.try(key) %>
-                  <%= display_other_values(cell_id, key, val) %>
-                <% end %>
-              <% end %>
-            </span>
-          <% end %>
-        <% end %>
-      <% else %>
-        <span class="footnote">none applicable</span>
-      <% end %>
-    </table>
+    <%= react_component 'ManyToManyTable', { spec: table_spec, baseId: base_id }, { tag: "span" } %>
   </fieldset>
 </div>
 
