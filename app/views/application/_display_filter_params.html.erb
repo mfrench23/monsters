@@ -1,28 +1,28 @@
-<% filter_params.each do |filter| %>
-  <% if filter[0].to_s =~ /in_campaign/ %>
+<% filter_params.each do |(filter,filter_value)| %>
+  <% if filter.to_s =~ /in_campaign/ %>
     <% next %><%# skip any mention of the filtering by selected campaign %>
   <% end %>
-  <% if filter[0].to_s =~ /inherent_only/ %>
+  <% if filter.to_s =~ /inherent_only/ %>
     <% next %><%# skip any mention of filtering RPMSpellEffect by "inherent" %>
   <% end %>
   <span>
-    <%= "#{filter[0].titleize.downcase}" %>
-    <% if filter[0].to_s =~ /in_equipment_category/ %>
+    <%= "#{filter.titleize.downcase}" %>
+    <% if filter.to_s =~ /in_equipment_category/ %>
       <% display_param = equipment_category_name %>
-    <% elsif filter[0].to_s =~ /in_modifier_category/ %>
+    <% elsif filter.to_s =~ /in_modifier_category/ %>
       <% display_param = equipment_modifier_category_name %>
-    <% elsif filter[0].to_s =~ /with_path/ %>
+    <% elsif filter.to_s =~ /with_path/ %>
       <% display_param = rpm_path_name %>
-    <% elsif filter[0].to_s =~ /with_effect/ %>
+    <% elsif filter.to_s =~ /with_effect/ %>
       <% display_param = rpm_effect_name %>
-    <% elsif filter[0].to_s =~ /with_potency/ %>
+    <% elsif filter.to_s =~ /with_potency/ %>
       <% display_param = rpm_potency_name %>
     <% else %>
-      <% display_param = filter[1] %>
+      <% display_param = filter_params[filter] %>
     <% end %>
     <% if filter_params.keys.count > 1 %>
-      <% new_params = {filter[0] => filter[1]} %>
-      <%= link_to "'#{display_param}'", params.reject{ |key, val| key.to_s == filter[0].to_s }, :class => "quiet", :title => "remove filter" %>
+      <% new_params = filter_params.reject{ |key, val| key.to_s == filter.to_s } %>
+      <%= link_to "'#{display_param}'", new_params, :class => "quiet", :title => "remove filter" %>
     <% else %>
       <%= "'#{display_param}'" %>
     <% end %>
