@@ -27,7 +27,7 @@ module ResultSetReturning
   end
 
   def filter_params
-    params.merge(standard_filter_params).slice(*acceptable_filter_scopes)
+    params.merge(standard_filter_params).permit(*acceptable_filter_scopes)
   end
 
   def standard_filter_params

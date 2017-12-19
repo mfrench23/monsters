@@ -40,6 +40,12 @@ class EquipmentTypesControllerTest < ActionController::TestCase
     assert_select "table tbody tr" # expect at least one row in the body of the table
   end
 
+  test "should get index with filter" do
+    get :index, params: {in_equipment_category: @eq_category.id}
+    assert_response :ok
+    assert_select "table tbody tr" # expect at least one row in the body of the table
+  end
+
   test "should fail to create equipment_type with duplicate name" do
     name = @equipment_type.name
     assert_no_difference('EquipmentType.count') do
