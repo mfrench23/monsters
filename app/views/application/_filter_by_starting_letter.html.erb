@@ -1,7 +1,7 @@
 <% unless params[:starting_with ] %>
   <div class="field">
     <span class="filter-label">Filter by initial</span>
-    <ul class="tight-grid">
+    <ul class="tight-grid bordered-grid">
       <% letters.each_with_index do |starting_character, index| %>
         <%= link_to "#{starting_character}", url_for(filter_params.merge(:starting_with => "#{starting_character}")) %>
       <% end %>
