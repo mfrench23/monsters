@@ -11,12 +11,12 @@
 <table>
   <thead>
     <tr>
-      <th><%= sortable "equipment_modifiers.name", EquipmentModifier, params, "Name" %></th>
-      <th><%= sortable "equipment_modifier_categories.name", EquipmentModifier, params, "Equipment Modifier Category" %></th>
-      <th><%= sortable "equipment_modifiers.base_cost_mod", EquipmentModifier, params, "Base Cost mod" %></th>
-      <th><%= sortable "equipment_modifiers.base_weight_mod", EquipmentModifier, params, "Base Weight mod" %></th>
-      <th><%= sortable "equipment_modifiers.cost_mod", EquipmentModifier, params, "Cost mod" %></th>
-      <th><%= sortable "equipment_modifiers.weight_mod", EquipmentModifier, params, "Weight mod" %></th>
+      <th><%= sortable "equipment_modifiers.name", EquipmentModifier, filter_params, "Name" %></th>
+      <th><%= sortable "equipment_modifier_categories.name", EquipmentModifier, filter_params, "Equipment Modifier Category" %></th>
+      <th><%= sortable "equipment_modifiers.base_cost_mod", EquipmentModifier, filter_params, "Base Cost mod" %></th>
+      <th><%= sortable "equipment_modifiers.base_weight_mod", EquipmentModifier, filter_params, "Base Weight mod" %></th>
+      <th><%= sortable "equipment_modifiers.cost_mod", EquipmentModifier, filter_params, "Cost mod" %></th>
+      <th><%= sortable "equipment_modifiers.weight_mod", EquipmentModifier, filter_params, "Weight mod" %></th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>

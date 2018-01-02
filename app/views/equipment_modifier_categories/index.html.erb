@@ -7,8 +7,8 @@
 <table>
   <thead>
     <tr>
-      <th><%= sortable "equipment_modifier_categories.name", EquipmentModifierCategory, params, "Name" %></th>
-      <th><%= sortable "equipment_modifier_supercategories.name", EquipmentModifierCategory, params, "Super-Category" %></th>
+      <th><%= sortable "equipment_modifier_categories.name", EquipmentModifierCategory, filter_params, "Name" %></th>
+      <th><%= sortable "equipment_modifier_supercategories.name", EquipmentModifierCategory, filter_params, "Super-Category" %></th>
       <th>Notes</th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>

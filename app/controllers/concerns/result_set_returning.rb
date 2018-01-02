@@ -23,11 +23,11 @@ module ResultSetReturning
   end
 
   def filtered_results
-    controlled_model_class.filter(filter_params)
+    controlled_model_class.filter(filter_params.permit(*acceptable_filter_scopes))
   end
 
   def filter_params
-    params.merge(standard_filter_params).permit(*acceptable_filter_scopes)
+    params.merge(standard_filter_params).permit(*acceptable_filter_scopes + [:sort, :direction])
   end
 
   def standard_filter_params

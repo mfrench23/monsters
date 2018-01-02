@@ -8,8 +8,8 @@
 <table class="fixed-table" style="width: 75%;">
   <thead>
     <tr>
-      <th><%= sortable "books.name", Book, params, "Name" %></th>
-      <th style="width: 20%;"><%= sortable "books.abbreviation", Book, params, "Abbreviation" %></th>
+      <th><%= sortable "books.name", Book, filter_params, "Name" %></th>
+      <th style="width: 20%;"><%= sortable "books.abbreviation", Book, filter_params, "Abbreviation" %></th>
       <th style="width: 12%;"># References</th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>

@@ -8,7 +8,7 @@
 <table class="fixed-table" style="width: 75%;">
   <thead>
     <tr>
-      <th><%= sortable "master_traits.name, master_traits.notes", MasterTrait, params, "Name" %></th>
+      <th><%= sortable "master_traits.name, master_traits.notes", MasterTrait, filter_params, "Name" %></th>
       <th style="width: 12%; font-size: 80%;"># of monsters<br>possessing</th>
       <th style="width: 10%;">Meta-Trait?</th>
       <%= render 'index_edit_destroy_headers' %>

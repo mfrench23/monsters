@@ -1,4 +1,7 @@
 <% filter_params.each do |(filter,filter_value)| %>
+  <% if filter.to_s =~ /^sort$|^direction$/ %>
+    <% next %><%# skip any mention of sorting %>
+  <% end %>
   <% if filter.to_s =~ /in_campaign/ %>
     <% next %><%# skip any mention of the filtering by selected campaign %>
   <% end %>
@@ -28,8 +31,8 @@
     <% end %>
   </span>
 <% end %>
-<% if params[:sort].present? %>
+<% if filter_params[:sort].present? %>
   <span>
-  <%= link_to "sorted", params.reject{ |key, val| key.to_s == :sort.to_s || key.to_s == :direction.to_s }.to_unsafe_h, :class => "quiet", :title => "remove sort" %>
+  <%= link_to "sorted", filter_params.merge(:sort => "", :direction => ""), :class => "quiet", :title => "remove sort" %>
   </span>
 <% end %>

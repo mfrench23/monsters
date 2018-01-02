@@ -8,10 +8,10 @@
 <table class="fixed-table" style="width: 75%;">
   <thead>
     <tr>
-      <th><%= sortable "master_skills.name", MasterSkill, params, "Name" %></th>
+      <th><%= sortable "master_skills.name", MasterSkill, filter_params, "Name" %></th>
       <th style="width: 85px;">Specialized?</th>
       <th style="width: 45px;">TL?</th>
-      <th style="width: 65px;"><%= sortable "characteristics.name", MasterSkill, params, "Base Stat" %></th>
+      <th style="width: 65px;"><%= sortable "characteristics.name", MasterSkill, filter_params, "Base Stat" %></th>
       <th>Notes</th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>

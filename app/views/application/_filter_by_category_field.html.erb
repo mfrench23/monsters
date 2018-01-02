@@ -15,8 +15,7 @@
         <% if filter_params[filter_param_key].to_s == category.id.to_s %>
           <%= "#{category.name}" %>
         <% else %>
-          <%= link_to "#{category.name}",
-            polymorphic_path(klass, filter_params.to_unsafe_h.merge(filter_param_key => "#{category.id}")),
+          <%= link_to "#{category.name}", url_for(filter_params.merge(filter_param_key => "#{category.id}")),
             :title => category.name + " (" + pluralize(category.try(callback).try(:count), category_name) + ")" %>
         <% end %>
       <% end %>

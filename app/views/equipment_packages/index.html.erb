@@ -5,12 +5,12 @@
 <table>
   <thead>
     <tr>
-      <th><%= sortable "equipment_packages.name", EquipmentPackage, params, "Name" %></th>
+      <th><%= sortable "equipment_packages.name", EquipmentPackage, filter_params, "Name" %></th>
       <th>Creature</th>
       <th>Equipment Pieces</th>
       <th>Distinct Equipment Types</th>
-      <th style="width: 100px;"><%= sortable "equipment_packages.total_cost_cents", EquipmentPackage, params, "Total Cost" %></th>
-      <th style="width: 100px;"><%= sortable "equipment_packages.total_weight", EquipmentPackage, params, "Total Weight (lbs.)" %></th>
+      <th style="width: 100px;"><%= sortable "equipment_packages.total_cost_cents", EquipmentPackage, filter_params, "Total Cost" %></th>
+      <th style="width: 100px;"><%= sortable "equipment_packages.total_weight", EquipmentPackage, filter_params, "Total Weight (lbs.)" %></th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>

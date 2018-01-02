@@ -8,15 +8,15 @@
 <table class="fixed-table" style="width: 95%;">
   <thead>
     <tr>
-      <th style="width: <% needs_name_column ? "15" : "20" %>%"><%= sortable "equipment_types.name", EquipmentPiece, params, "Item Type" %></th>
+      <th style="width: <% needs_name_column ? "15" : "20" %>%"><%= sortable "equipment_types.name", EquipmentPiece, filter_params, "Item Type" %></th>
       <% if needs_name_column %>
-        <th style="width: 20%"><%= sortable "equipment_pieces.name", EquipmentPiece, params, "Name" %></th>
+        <th style="width: 20%"><%= sortable "equipment_pieces.name", EquipmentPiece, filter_params, "Name" %></th>
       <% end %>
       <th>Modifiers</th>
       <th>Owner</th>
-      <th style="width: 120px;"><%= sortable "equipment_categories.name", EquipmentPiece, params, "Category" %></th>
-      <th style="width: 100px;"><%= sortable "equipment_pieces.cost_cents", EquipmentPiece, params, "Value" %></th>
-      <th style="width: 100px;"><%= sortable "equipment_pieces.weight", EquipmentPiece, params, "Weight (lbs.)" %></th>
+      <th style="width: 120px;"><%= sortable "equipment_categories.name", EquipmentPiece, filter_params, "Category" %></th>
+      <th style="width: 100px;"><%= sortable "equipment_pieces.cost_cents", EquipmentPiece, filter_params, "Value" %></th>
+      <th style="width: 100px;"><%= sortable "equipment_pieces.weight", EquipmentPiece, filter_params, "Weight (lbs.)" %></th>
       <%= render 'index_edit_destroy_headers' %>
     </tr>
   </thead>
