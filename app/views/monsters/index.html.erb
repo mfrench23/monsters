@@ -10,11 +10,11 @@
 <table class="fixed-table" style="width: 100%;">
   <thead>
     <tr>
-      <th style="width: 15%;"><%= sortable "monsters.name", Monster, params, "Name" %></th>
+      <th style="width: 15%;"><%= sortable "monsters.name", Monster, filter_params, "Name" %></th>
       <% if alias_on_page %>
         <th style="width: 15%;">Aliases</th>
       <% end %>
-      <th style="width: 10%;"><%= sortable "monster_classes.name", Monster, params, "Class" %></th>
+      <th style="width: 10%;"><%= sortable "monster_classes.name", Monster, filter_params, "Class" %></th>
       <th>Description</th>
       <% if variant_on_page %>
         <th style="width: 15%;">Variant of</th>

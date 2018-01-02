@@ -1,11 +1,10 @@
 module SortableHelper
-  def sortable(column, klass, params, title = nil)
+  def sortable(column, klass, filter_params, title = nil)
     title ||= column.titleize
     curr_col = sort_column(klass, params[:sort])
     sd = sort_direction(params[:direction])
     direction = (column == curr_col && sd == "asc") ? "desc" : "asc"
-    # TODO Something besides to_unsafe_h?
-    link_to title, params.to_unsafe_h.merge({:sort => column, :direction => direction}), {:class => css_class(column, curr_col, sd)}
+    link_to title, filter_params.merge({:sort => column, :direction => direction}), {:class => css_class(column, curr_col, sd)}
   end
 
   def sort_param(klass, param_sort, param_direction)

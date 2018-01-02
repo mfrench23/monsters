@@ -11,8 +11,8 @@
 <table>
   <thead>
     <tr>
-      <th><%= sortable "rpm_modifiers.name", RpmModifier, params, "Name" %></th>
-      <th><%= sortable "rpm_modifiers.short_name", RpmModifier, params, "Short Name" %></th>
+      <th><%= sortable "rpm_modifiers.name", RpmModifier, filter_params, "Name" %></th>
+      <th><%= sortable "rpm_modifiers.short_name", RpmModifier, filter_params, "Short Name" %></th>
       <th>Levels</th>
       <th>Subtypes</th>
       <%= render 'index_edit_destroy_headers' %>
