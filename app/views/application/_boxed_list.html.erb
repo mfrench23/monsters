@@ -2,7 +2,6 @@
 <% link_data_attributes ||= {} %>
 <%#----%>
 <% row_style_inverse = ( row_style_display.present? ? "" : "display: none") %>
-<% row_style_inverse = ( row_style_display.present? ? "" : "display: none") %>
 <% starting_icon = ( row_style_display.present? ? "+" : "-") %>
 <% alternate_icon = ( row_style_display.present? ? "-" : "+") %>
 <% toggle_id = "boxed_list_" + (Time.now.to_f * 1000).to_i.to_s %>
@@ -12,26 +11,30 @@
 <% link_data_attributes.each do |key, value| %>
   <% extra_html_options[key] = value %>
 <% end %>
+<% link_html_options = {:class => "quiet"}.merge(extra_html_options) %>
+<% links = list.order_by_name.map { |item| link_to(item.name, item, link_html_options.merge(:title => item.name))} %>
+<% count_header = pluralize(links.count, "item") %>
 <%# ------------------- %>
 <span>
-  <% if list.count > 0 %>
+  <% if links.count > 0 %>
     <span style="float: left"><%= toggle_links toggle_id, starting_icon, alternate_icon %></span>
   <% end %>
-  <table class="fixed-table boxed-list">
-    <% if list.none? %>
-      <tr>
-        <td><span class="footnote">(<%= pluralize list.count, "item" %>)</span></td>
-      </tr>
+  <div class="fixed-table">
+    <% if links.none? %>
+      <div>
+        <span class="bordered-grid footnote">(<%= count_header %>)</span>
+      </div>
     <% else %>
-      <tr data-toggle_id="<%= toggle_id %>" style="<%= row_style_inverse %>">
-        <td><span class="footnote">(<%= pluralize list.count, "item" %>)</span></td>
-      </tr>
-      <% list.order_by_name.each_with_index do |item, index| %>
-        <% link_html_options = {:class => "quiet", :title => item.name}.merge(extra_html_options) %>
-        <%= render :layout => 'layouts/fixed_table_columns', :locals => { :index => index, :total_count => list.count, :row_options => row_options } do %>
-          <%= link_to item.name, item, link_html_options %>
-        <% end %>
-      <% end %>
+      <div data-toggle_id="<%= toggle_id %>" style="<%= row_style_inverse %>">
+        <span class="bordered-grid footnote">(<%= count_header %>)</span>
+      </div>
+      <div data-toggle_id="<%= toggle_id %>" style="<%= row_style_display %>">
+        <ul class="bordered-grid loose-grid">
+          <% links.each do |link| %>
+            <li><%= link %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-  </table>
+  </div>
 </span>

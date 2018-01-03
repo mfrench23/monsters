@@ -198,11 +198,10 @@ a.quiet:active {
 }
 // fixed-width table
 .fixed-table {
-  table-layout: fixed;
   width: 95%;
   white-space: nowrap;
 }
-.fixed-table td {
+.fixed-table li {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
