@@ -44,7 +44,7 @@
 
 <div class="field">
   <span class="field-label show">Mutually exclusive with:</span>
-  <%= render "boxed_list", list: equipment_modifier.excluded_equipment_modifiers %>
+  <%= render "boxed_list", list: equipment_modifier.excluded_equipment_modifiers.order_by_name %>
 </div>
 
 <%= link_to 'Edit', edit_equipment_modifier_path(equipment_modifier) %> |

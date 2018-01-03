@@ -2,7 +2,7 @@
 
 <p>
   <span class="field-label show">Monsters:</span>
-  <%= render "boxed_list", list: monsters, row_style_display: "" %>
+  <%= render "boxed_list", list: monsters.order_by_name, row_style_display: "" %>
   <% if includes_variants %>
     <span class="field-label show">&nbsp;</span>
     <span style="padding-left: 50px;">

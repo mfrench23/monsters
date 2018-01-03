@@ -36,7 +36,7 @@
 
 <div class="field">
   <span class="field-label show">Modifier Categories</span>
-  <%= render "boxed_list", list: equipment_type.equipment_modifier_categories %>
+  <%= render "boxed_list", list: equipment_type.equipment_modifier_categories.order_by_name %>
 </div>
 
 <% if equipment_type.notes? %>

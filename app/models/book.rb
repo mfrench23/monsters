@@ -4,6 +4,10 @@ class Book < AbstractEntity
 
   has_many :page_references, dependent: :destroy
 
+  def page_references_by_type
+    page_references.group_by{ |p| p.referenceable_type }
+  end
+
   def to_reference_s
     abbreviation.blank? ? name : abbreviation
   end

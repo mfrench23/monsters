@@ -10,37 +10,19 @@
 
 <div class="field">
   <span class="field-label show">References</span>
-  <table class="fixed-table boxed-list">
-    <% index = 0 %>
-    <% previous_type = nil %>
-    <% toggle_id = nil %>
-    <% row_options = {} %>
-    <% book.page_references.sort_by{ |pg| [pg.referenceable_type, pg.referenceable.name] }.each do |reference| %>
-      <% if reference.referenceable_type != previous_type %>
-        <% toggle_id = "referencesOfType" + reference.referenceable_type %>
-        <% row_options = { "data-toggle_id" => toggle_id } %>
-        <% if index > 0 %>
-          </tr>
-        <% end %>
-        <tr>
-          <th style="text-align: left;">
-            <%= reference.referenceable_type.pluralize.titleize %>
-            <span><%= toggle_links toggle_id, "+", "-" %></span>
-          </th>
-        </tr>
-        <% index = 0 %>
-      <% end %>
-      <%= render :layout => 'layouts/fixed_table_columns',
-          :locals => { :index => index, :total_count => book.page_references.count, :row_options => row_options } do %>
-        <%= link_to reference.referenceable.to_s, reference.referenceable,
-            :class => "quiet",
-            :title => reference.referenceable.to_s %>
-      <% end %>
-      <% index = index + 1 %>
-      <% previous_type = reference.referenceable_type %>
+  <div class="fixed-table boxed-list" style="width: 88%; float: right; padding-left: 2px;">
+    <% ref_hash = book.page_references_by_type %>
+    <% ref_hash.keys.sort.each do |ref_type| %>
+      <dl>
+        <dt><strong><%= ref_type.pluralize.titleize %></strong></dt>
+        <dd>
+          <%= render "boxed_list", list: ref_hash[ref_type].map{ |pr| pr.referenceable }.sort_by{ |r| r.name } %>
+        </dd>
+      </dl>
     <% end %>
-  </table>
+  </div>
 </div>
+<div style="clear: both;" />
 
 <%= link_to 'Edit', edit_book_path(book) %> |
 <%= link_to 'Index', books_path %>
