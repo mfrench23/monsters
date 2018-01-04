@@ -49,13 +49,8 @@
 <% if master_trait.traits.meta_trait_owned.any? %>
   <strong>Included in...</strong>
   <ul>
-  <% master_trait.traits.meta_trait_member.each do |trait| %>
-    <li>
-      <%= link_to trait.trait_owner.name, trait.trait_owner, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
-      <% unless (trait.level.blank? && trait.notes.blank?) %>
-        <%= render "show_trait", trait: trait -%>
-      <% end %>
-    </li>
+  <% master_trait.traits.meta_trait_member.map{ |x| x.trait_owner.name }.uniq.each do |owner| %>
+    <li><%= owner %></li>
   <% end %>
   </ul>
 <% end %>
