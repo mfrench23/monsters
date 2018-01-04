@@ -3,10 +3,6 @@ module MonstersHelper
     monster.monster_names.sort.collect { |x| x.to_s }.join('; ')
   end
 
-  def master_trait_link(master_trait)
-    link_to master_trait.name, master_trait, :class => "quiet", :title => master_trait.notes
-  end
-
   def toggle_links(target_id, expand = "expand", hide = "hide")
     toggle_link(target_id, expand) + toggle_link(target_id, hide, true )
   end

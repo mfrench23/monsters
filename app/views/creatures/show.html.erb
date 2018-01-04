@@ -43,7 +43,7 @@
             <% end %>
             <ul style="list-style-type: circle">
             <% equipment_package.equipment_pieces.each do |equipment_piece| %>
-              <li><%= link_to pretty_print_equipment_piece(equipment_piece), equipment_piece, :class => "quiet" %></li>
+              <li><%= react_component 'QuietLink', {txt: pretty_print_equipment_piece(equipment_piece), url: url_for(equipment_piece)}, {tag: "span"} %></li>
             <% end %>
             </ul>
           <% end %>

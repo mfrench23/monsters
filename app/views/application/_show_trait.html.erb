@@ -1,2 +1,2 @@
-<%= render "show_base_trait", trait: trait -%>
+<%= react_component 'BaseTrait', {trait: trait, masterTrait: trait.master_trait, url: url_for(trait.master_trait) }, {tag: "span"} %>
 <%= render "show_meta_trait_extensions", :meta_id => trait.class.to_s + trait.id.to_s, :granted_traits => trait.master_trait.traits_in_meta_trait -%>

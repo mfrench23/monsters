@@ -19,7 +19,7 @@
   <tbody>
     <% master_traits.each_with_index do |master_trait, index| %>
       <tr class="tr<%= index % 2 %>">
-        <td><%= link_to master_trait.name, master_trait, :class => "quiet" %></td>
+        <td><%= react_component 'QuietLink', {txt: master_trait.name, url: url_for(master_trait)}, {tag: "span"} %></td>
         <td class="count">
           <span title="<%= master_trait.traits.creature_possessed.map{ |t| t.monster.name }.sort.join("; ") %>">
             <%= master_trait.traits.creature_possessed.count %>
