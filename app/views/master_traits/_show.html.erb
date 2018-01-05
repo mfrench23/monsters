@@ -49,8 +49,8 @@
 <% if master_trait.traits.meta_trait_owned.any? %>
   <strong>Included in...</strong>
   <ul>
-  <% master_trait.traits.meta_trait_member.map{ |x| x.trait_owner.name }.uniq.each do |owner| %>
-    <li><%= owner %></li>
+  <% master_trait.traits.meta_trait_member.map{ |x| x.trait_owner.master_trait }.uniq.each do |owner| %>
+    <li><%= react_component 'QuietLink', { txt: owner.name, url: url_for(owner) }, {tag: "span"} %></li>
   <% end %>
   </ul>
 <% end %>
