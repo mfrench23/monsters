@@ -6,11 +6,24 @@ class BoxedList extends React.Component {
     super(props);
     this.state = { isVisible: false };
     this.toggleVisible = this.toggleVisible.bind(this);
+    this.renderLink = this.renderLink.bind(this);
   }
 
   toggleVisible () {
     var iV = ! this.state.isVisible;
     this.setState( {isVisible: iV } );
+  }
+
+  renderLink(link) {
+    if(link.url) {
+      return (
+        <a className="quiet" title={link.name} {...link.opts} href={link.url}>{link.name}</a>
+      );
+    } else {
+      return (
+        <span title={link.name}>{link.name}</span>
+      );
+    };
   }
 
   render () {
@@ -33,7 +46,7 @@ class BoxedList extends React.Component {
             <ul className="bordered-grid loose-grid">
               { this.props.links.map((link, mIdx) => (
                 <li key={link.name}>
-                  <a className="quiet" title={link.name} {...link.opts} href={link.url}>{link.name}</a>
+                  { this.renderLink(link) }
                 </li>
               ))}
             </ul>

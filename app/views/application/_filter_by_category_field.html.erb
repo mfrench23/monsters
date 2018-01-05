@@ -1,22 +1,17 @@
 <% start_expanded ||= false %>
 <%#----------------%>
+<% count_header = pluralize(category_list.to_a.count, category_name) %>
+<% links = [] %>
+<% category_list.order_by_name.each_with_index do |category, index| %>
+  <% title = category.name + " (" + pluralize(category.try(callback).try(:count), category_name) + ")" %>
+  <% hash = {:name => category.name, :opts => {:title => title } } %>
+  <% if filter_params[filter_param_key].to_s != category.id.to_s %>
+    <% hash[:url] = url_for(filter_params.merge(filter_param_key => "#{category.id}")) %>
+  <% end %>
+  <% links << hash %>
+<% end %>
+<%#----------------%>
 <div class="field">
   <span class="filter-label">Filter by <%= category_name %></span>
-  <% toggle_id = "filterBy" + category_name.gsub(/ /, "_") + (Time.now.to_f * 1000).to_i.to_s %>
-  <span style="float: left"><%= toggle_links toggle_id, (start_expanded ? "-" : "+"), (start_expanded ? "-" : "+") %></span>
-    <ul class="bordered-grid loose-grid" data-toggle_id="<%= toggle_id %>" style="<%= (start_expanded ? "display: none" : "") %>">
-      <li><span class="footnote">(<%= pluralize category_list.to_a.count, category_name %>)</span></li>
-    </ul>
-    <ul class="bordered-grid loose-grid" data-toggle_id="<%= toggle_id %>" style="<%= (start_expanded ? "" : "display: none") %>">
-      <% category_list.order_by_name.each_with_index do |category, index| %>
-        <li>
-          <% if filter_params[filter_param_key].to_s == category.id.to_s %>
-            <%= "#{category.name}" %>
-          <% else %>
-            <%= link_to "#{category.name}", url_for(filter_params.merge(filter_param_key => "#{category.id}")),
-              :title => category.name + " (" + pluralize(category.try(callback).try(:count), category_name) + ")" %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+  <%= react_component 'BoxedList', {countHeader: count_header, links: links}, {tag: "span"} %>
 </div>
