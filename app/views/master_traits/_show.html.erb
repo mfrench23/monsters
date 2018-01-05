@@ -16,7 +16,7 @@
   <% master_trait.traits_in_meta_trait.order_by_master_trait.each do |trait| %>
     <li>
       <% if (trait.level.blank? && trait.notes.blank?) -%>
-        <%= link_to trait.master_trait_name, trait.master_trait, :class => "quiet" %>
+        <%= react_component 'QuietLink', { txt: trait.master_trait_name, url: url_for(trait.master_trait)}, {tag: "span"} %>
       <% else %>
         <%= render "show_trait", trait: trait -%>
       <% end %>
@@ -34,12 +34,12 @@
   <ul>
   <% master_trait.traits.creature_possessed.order_by_creature.each do |trait| %>
     <li>
-      <%= link_to trait.monster.name, trait.monster, :class => "quiet" %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
+      <%= react_component 'QuietLink', {txt: trait.monster.name, url: url_for(trait.monster)}, {tag: "span"} %><%= ": " unless (trait.level.blank? && trait.notes.blank?) -%>
       <% unless (trait.level.blank? && trait.notes.blank?) %>
         <%= render "show_base_trait", trait: trait -%>
       <% end %>
       <% unless trait.root? -%>
-        (granted by <%= Trait.sort_by_ancestry(trait.ancestors).map{ |trait| link_to trait.master_trait_name, trait.master_trait, :class => "quiet" }.join(" > ").html_safe %>)
+        (granted by <%= Trait.sort_by_ancestry(trait.ancestors).map{ |trait| react_component 'QuietLink', {txt: trait.master_trait_name, url: url_for(trait.master_trait)}, {tag: "span"} }.join(" > ").html_safe %>)
       <% end -%>
     </li>
   <% end %>

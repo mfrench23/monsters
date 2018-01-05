@@ -18,7 +18,7 @@
     <ul>
   <% rpm_path.rpm_rituals.order_by_name.uniq.each do |ritual| %>
     <% popup = rpm_inherent_elements_text ritual, ", " -%>
-    <li><%= link_to ritual.name, ritual, :class => "quiet", :title => popup %> <span style="font-style: italic; padding-left: 15px;">(inherent <%= ritual.inherent_cost %>/typical <%= ritual.typical_cost %>)</span></li>
+    <li><%= react_component 'QuietLink', { txt: ritual.name, url: url_for(ritual), popupText: popup }, {tag: "span"} %> <span style="font-style: italic; padding-left: 15px;">(inherent <%= ritual.inherent_cost %>/typical <%= ritual.typical_cost %>)</span></li>
   <% end -%>
     </ul>
 <% end %>

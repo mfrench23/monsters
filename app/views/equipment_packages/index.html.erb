@@ -22,7 +22,7 @@
         <td><%= link_to name, equipment_package, :class => "quiet" + (equipment_package.name? ? "" : " equipment-package-name") %></td>
         <td>
           <% if equipment_package.monster.present? %>
-            <%= link_to equipment_package.monster, equipment_package.monster, :class => "quiet", :title => equipment_package.monster %>
+            <%= react_component 'QuietLink', { txt: equipment_package.monster.name, url: url_for(equipment_package.monster), popupText: equipment_package.monster.name }, {tag: "span"} %>
           <% else %>
             <span>-</span>
           <% end %>

@@ -27,13 +27,13 @@
       <% modifiers_string = pretty_print_equipment_piece_modifiers equipment_piece -%>
       <% modifiers_span = content_tag( :span, modifiers_string, :title => modifiers_string ) -%>
       <tr class="tr<%= index % 2 %>">
-        <td><%= link_to equipment_piece.equipment_type, equipment_piece, :title => equipment_piece.equipment_type, :class => "quiet" %></td>
+        <td><%= react_component 'QuietLink', {txt: equipment_piece.equipment_type_name, url: url_for(equipment_piece), popupText: equipment_piece.equipment_type_name}, {tag: "span"} %></td>
         <% if needs_name_column %>
           <td><%= content_tag :span, name, :title => name %></td>
         <% end %>
         <td><%= modifiers_span %></td>
-        <td><%= link_to(equipment_piece.final_owner.to_s, equipment_piece.final_owner, :title => equipment_piece.final_owner.to_s, :class => "quiet") if equipment_piece.final_owner.present? %></td>
-        <td><%= link_to equipment_piece.equipment_category, equipment_piece.equipment_category, :title => equipment_piece.equipment_category, :class => "quiet" %></td>
+        <td><%= react_component('QuietLink', {txt: equipment_piece.final_owner.to_s, url: url_for(equipment_piece.final_owner), popupText: equipment_piece.final_owner.to_s}, {tag: "span"}) if equipment_piece.final_owner.present? %></td>
+        <td><%= react_component 'QuietLink', {txt: equipment_piece.equipment_category_name, url: url_for(equipment_piece.equipment_category), popupText: equipment_piece.equipment_category_name}, {tag: "span"} %></td>
         <td class="cash"><%= currency_symbol %><%= equipment_piece.cost %></td>
         <td class="count"><%= equipment_piece.weight %></td>
         <%= edit_destroy_links equipment_piece %>

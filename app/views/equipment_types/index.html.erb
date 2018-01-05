@@ -22,11 +22,11 @@
   <tbody>
     <% equipment_types.each_with_index do |equipment_type, index| %>
       <tr class="tr<%= index % 2 %>">
-        <td><%= link_to equipment_type.name, equipment_type, :class => "quiet", :title => equipment_type.name %></td>
+        <td><%= react_component 'QuietLink', {txt: equipment_type.name, url: url_for(equipment_type), popupText: equipment_type.name}, {tag: "span"} %></td>
         <td><%= equipment_type.unit_of_measurement %></td>
         <td class="count"><%= equipment_type.base_weight %></td>
         <td class="cash"><%= currency_symbol %><%= equipment_type.base_cost %></td>
-        <td><%= link_to equipment_type.equipment_category, equipment_type.equipment_category, :class => "quiet" unless equipment_type.equipment_category.blank? %></td>
+        <td><%= react_component('QuietLink', {txt: equipment_type.equipment_category_name, url: url_for(equipment_type.equipment_category)}, {tag: "span"}) unless equipment_type.equipment_category.blank? %></td>
         <td><%= equipment_type.notes %></td>
         <%= edit_destroy_links equipment_type %>
       </tr>

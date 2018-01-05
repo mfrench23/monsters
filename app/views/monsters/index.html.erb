@@ -7,15 +7,14 @@
 
 <%= page_entries_info monsters %>
 
-<table class="fixed-table" style="width: 100%;">
+<table class="fixed-table" style="width: 80%;">
   <thead>
     <tr>
-      <th style="width: 15%;"><%= sortable "monsters.name", Monster, filter_params, "Name" %></th>
+      <th><%= sortable "monsters.name", Monster, filter_params, "Name" %></th>
       <% if alias_on_page %>
         <th style="width: 15%;">Aliases</th>
       <% end %>
       <th style="width: 10%;"><%= sortable "monster_classes.name", Monster, filter_params, "Class" %></th>
-      <th>Description</th>
       <% if variant_on_page %>
         <th style="width: 15%;">Variant of</th>
       <% end %>
@@ -26,16 +25,15 @@
   <tbody>
     <% monsters.each_with_index do |monster, index| %>
       <tr class="tr<%= index % 2 %>">
-        <td><%= link_to monster.name, monster, :class => "quiet", :title => monster.name %></td>
+        <td><%= react_component 'QuietLink', { txt: monster.name, url: url_for(monster), popupText: monster.description }, { tag: "span" } %></td>
         <% if alias_on_page %>
 	  <td><%= monster_alias_list monster %></td>
 	<% end %>
-	<td><%= link_to monster.monster_class_name, monster.monster_class, :class => "quiet", :title => monster.monster_class_name %></td>
-        <td><span title="<%= monster.description %>"><%= monster.description %></span></td>
+	<td><%= react_component 'QuietLink', { txt: monster.monster_class_name, url: url_for(monster.monster_class), popupText: monster.monster_class_name }, { tag: "span" } %></td>
         <% if variant_on_page %>
           <td>
             <% if ! monster.root? %>
-              <%= link_to monster.parent.name, monster.parent, :class => "quiet", :title => monster.parent.name %>
+              <%= react_component 'QuietLink', { txt: monster.parent.name, url: url_for(monster.parent), popupText: monster.parent.description }, {tag: "span"} %>
             <% end %>
           </td>
         <% end %>

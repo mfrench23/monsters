@@ -26,7 +26,7 @@
         <div class="field-label show trait">Skills</div>
         <div class="trait">
           <% creature.skills.order_by_master_skill.each_with_index do |skill, i| %>
-            <%= render "show_skill", skill: skill %><%= (i < (all-1) ? "; " : "") -%>
+            <%= react_component 'QuietLink', {txt: skill.to_s, url: url_for(skill.master_skill), popupText: skill.master_skill_notes}, {tag: "span"} -%><%= (i < (all-1) ? "; " : "") -%>
           <% end %>
 	</div>
       </div>

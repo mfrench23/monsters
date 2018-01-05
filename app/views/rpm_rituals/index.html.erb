@@ -25,7 +25,7 @@
       <% effects = rpm_inherent_spell_effects_text(rpm_ritual, ", ") -%>
       <% mods = rpm_inherent_spell_modifiers_text(rpm_ritual, ", ") -%>
       <tr>
-        <td><%= link_to rpm_ritual.name, rpm_ritual_path(rpm_ritual), { :class => "quiet", :title => rpm_ritual.description } %></td>
+        <td><%= react_component 'QuietLink', { txt: rpm_ritual.name, url: url_for(rpm_ritual), popupText: rpm_ritual.description }, {tag: "span"} %></td>
         <td><%= content_tag :span, effects, :title => effects, :class => "hover-highlight" %></td>
         <td><%= content_tag :span, mods, :title => mods, :class => "hover-highlight" %></td>
         <td class="count"><%= rpm_ritual.inherent_cost %></td>
