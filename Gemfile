@@ -36,7 +36,7 @@ gem 'puma'
 gem 'kaminari'
 
 # Paperclip for handling uploaded images
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 5.2.0"
 
 gem "money-rails", "~> 1.9"
 

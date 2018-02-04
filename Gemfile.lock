@@ -129,7 +129,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
-    paperclip (5.0.0)
+    paperclip (5.2.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -256,7 +256,7 @@ DEPENDENCIES
   kaminari
   money-rails (~> 1.9)
   mysql2 (~> 0.3.18)
-  paperclip (~> 5.0.0)
+  paperclip (~> 5.2.0)
   prawn-rails
   puma
   rails (= 5.0.5)
