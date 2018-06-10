@@ -60,5 +60,20 @@
   </p>
 <% end -%>
 
+<p>
+  <strong>Rituals:</strong>
+  <% if rpm_modifier.rpm_rituals.any? %>
+    <ul>
+      <% rpm_modifier.rpm_rituals.each do |rpm_ritual| %>
+        <li>
+          <%= react_component 'QuietLink', { txt: rpm_ritual.name, url: url_for(rpm_ritual), popupText: rpm_ritual.description }, {tag: "span"} %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+      <em>none</em>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_rpm_modifier_path(rpm_modifier) %> |
 <%= link_to 'Index', rpm_modifiers_path %>

@@ -11,6 +11,9 @@ class RpmModifier < AbstractEntity
   has_many :rpm_modifier_subtypes, dependent: :destroy
   accepts_nested_attributes_for :rpm_modifier_subtypes, allow_destroy: true
 
+  has_many :rpm_ritual_modifiers, :through => :rpm_modifier_levels
+  has_many :rpm_rituals, :through => :rpm_ritual_modifiers
+
   validates_uniqueness_of :name, :scope => :campaign_id
 
   def level_count
