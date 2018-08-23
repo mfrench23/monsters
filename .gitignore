@@ -27,4 +27,14 @@ coverage
 /.byebug_history
 /public/packs
 /public/packs-test
+
+# Ignore node modules and webpacker files
 /node_modules
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
+
+# Ignore vendor directory
+/vendor
