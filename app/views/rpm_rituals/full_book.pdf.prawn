@@ -15,27 +15,6 @@ def ritual_descriptions(pdf, view_context, campaign)
   end
 end
 
-def by_required_skill(pdf, view_context, campaign)
-  pdf.formatted_text [{:text => "Rituals by minimum recommended effective skill", :styles => [:bold], :size => 12 }], :align => :center
-  pdf.move_down 6
-
-  pdf.column_box([0, pdf.cursor], :columns => 2, :width => pdf.bounds.width) do
-    last_effective = 0
-
-    campaign.rpm_rituals.order([:effective_skill, :name]).each do |ritual|
-      if ritual.effective_skill != last_effective
-        pdf.move_down 12
-        label_and_text pdf, "Effective Skill: ", ritual.effective_skill.to_s
-        pdf.stroke_horizontal_rule
-        pdf.move_down 6
-        last_effective = ritual.effective_skill
-      end
-      
-      pdf.text "#{ritual.name}"
-    end
-  end
-end
-
 def one_ritual(pdf, view_context, ritual)
   pdf.font("Helvetica", :size => 10) do
     pdf.formatted_text [{:text => ritual.name, :styles => [:bold]}]
@@ -90,9 +69,6 @@ prawn_document(:page_layout => :portrait, :top_margin => 50 ) do |pdf|
   end
 
   ritual_descriptions pdf, view_context, campaign
-
-  pdf.start_new_page
-  by_required_skill pdf, view_context, campaign
 
   pdf.number_pages "Pg <page>/<total>", { :at => [pdf.bounds.right - 150, 0], :width => 150, :align => :right, :size => 7 }
 end
