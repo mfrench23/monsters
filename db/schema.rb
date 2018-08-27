@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180707210235) do
+ActiveRecord::Schema.define(version: 20180823195759) do
 
   create_table "attacks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "monster_id"
@@ -412,13 +412,12 @@ ActiveRecord::Schema.define(version: 20180707210235) do
 
   create_table "rpm_rituals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "name"
-    t.text     "description",     limit: 65535
+    t.text     "description",   limit: 65535
     t.integer  "typical_cost"
     t.integer  "campaign_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "inherent_cost"
-    t.integer  "effective_skill"
     t.index ["campaign_id"], name: "index_rpm_rituals_on_campaign_id", using: :btree
   end
 

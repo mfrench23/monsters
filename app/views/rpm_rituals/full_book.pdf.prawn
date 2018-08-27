@@ -50,9 +50,6 @@ def one_ritual(pdf, view_context, ritual)
 
   pdf.move_down 6
 
-  pdf.text "<i>Recommended skill:</i> #{ritual.effective_skill}", :inline_format => true
-  pdf.move_down 6
-
   if ritual.page_references.any?
     txt = ritual.page_references.inject([]) { |memo, pg| memo << pg.to_s }.join("; ")
     label_and_text pdf, "Sources: ", txt

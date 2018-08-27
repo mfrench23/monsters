@@ -46,25 +46,6 @@ class RpmRitual < AbstractEntity
     copy
   end
 
-  def self.calc_effective_skill(for_cost)
-    return ((for_cost-75)/10)+21 if for_cost > 75
-    return 21 if for_cost > 65
-    return 20 if for_cost > 55
-    return 19 if for_cost > 42
-    return 18 if for_cost > 29
-    return 17 if for_cost > 15
-    return 16 if for_cost > 11
-    return 15 if for_cost > 9
-    return 14 if for_cost > 7
-    return 13 if for_cost > 6
-    return 12 if for_cost > 5
-    return 11 if for_cost > 4
-    return 10 if for_cost > 3
-    return 9 if for_cost > 2
-    return 8 if for_cost > 1
-    return 7
-  end
-
   private
 
   def reference_list_attributes
@@ -81,7 +62,6 @@ class RpmRitual < AbstractEntity
 
   def calculate_cost
     self.update_columns(:inherent_cost => calc_inherent_base_cost * inherent_cost_factor,
-                        :typical_cost => base_cost * overall_cost_factor,
-                        :effective_skill => RpmRitual.calc_effective_skill(base_cost * overall_cost_factor))
+                        :typical_cost => base_cost * overall_cost_factor)
   end
 end
