@@ -1,0 +1,4 @@
+<span><%= rpm_ritual.all_elements.collect(&:to_long_s).join(" + ") %>.</span>
+<span style="font-style: italic;">
+    <%= rpm_ritual.typical_cost %> energy (<%= rpm_ritual.base_cost %> x <%= rpm_ritual.overall_cost_factor %>). 
+</span>

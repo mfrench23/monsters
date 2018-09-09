@@ -24,6 +24,10 @@ class RpmRitualsController < ModelBasedController
     render :new, locals: locals_hash(instance)
   end
 
+  def variant
+    render_or_redirect
+  end
+
   private
 
   def campaign_paths

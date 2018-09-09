@@ -1,0 +1,51 @@
+<div class="rpm_ritual_title"><%= rpm_ritual.name %></div>
+
+<div>
+  <span class="rpm_ritual_label">Spell Effects: </span>
+  <% txt = rpm_inherent_spell_effects_text(rpm_ritual) -%>
+  <%= (txt.present? ? txt : "None.") %>
+</div>
+
+<div>
+  <span class="rpm_ritual_label">Inherent Modifiers: </span>
+  <% txt = rpm_inherent_spell_modifiers_text(rpm_ritual) -%>
+  <%= (txt.present? ? txt : "None.") %>
+</div>
+
+<div>
+  <span class="rpm_ritual_label">Greater Effects: </span>
+  <%= rpm_ritual.rpm_spell_effects.inherent_only.greater_effect.count %> 
+  (x<%= rpm_ritual.inherent_cost_factor %>)
+</div>
+
+
+<div class="multiline-description"><%= rpm_ritual.description %></div>
+
+<div>
+  <span class="rpm_ritual_label">Typical Casting: </span>
+  <%= render 'casting', rpm_ritual: rpm_ritual %>
+</div>
+
+<% if rpm_ritual.rpm_ritual_variants.any? %>
+  <div style="padding-top: 10px">
+    <span class="rpm_ritual_label">Variations:</span>
+    <ul style="margin-left: 25px">
+      <% rpm_ritual.rpm_ritual_variants.order_by_name.each do |variant| %>
+        <li class="standard" style="font-size: 90%;">
+          <i><%= variant.name + ": " if variant.name.present? %></i>
+          <%= render 'casting', rpm_ritual: variant %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if rpm_ritual.page_references.any? %>
+  <div style="padding-top: 15px;">
+    <span class="rpm_ritual_label">Sources:</span>
+    <span>
+      <%= page_references_compact(rpm_ritual) %>
+    <span>
+  </div>
+<% end %>
+

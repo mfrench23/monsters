@@ -40,6 +40,12 @@ class RpmRitualsControllerTest < ActionController::TestCase
     assert_response :success
     assert_select "#rpm_ritual_name[value=?]", @rpm_ritual.name # Expecting input box to be populated from starting ritual
   end
+  
+  test "should get variant form" do
+    get :variant, params: { id: @rpm_ritual }
+    assert_response :success
+    assert_select "div", @rpm_ritual.name
+  end
 
   test "should create rpm_ritual" do
     name = "Other Banishing Ritual of the Fnord"

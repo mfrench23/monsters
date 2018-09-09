@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :rpm_ritual_variants, :only => [:create]
+
   resources :rpm_spell_effects, :only => [:index]
 
   get 'rpm_ritual_modifiers/:id' => "rpm_ritual_modifiers#levels", :format => :json
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'duplicate'
+      get 'variant'
     end
   end
 

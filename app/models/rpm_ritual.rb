@@ -5,6 +5,7 @@ class RpmRitual < AbstractEntity
   include CampaignContained
   include PageReferenceable
   include Nameable
+  include TypicalRitual
 
   belongs_to :campaign
 
@@ -14,7 +15,9 @@ class RpmRitual < AbstractEntity
   has_many :rpm_ritual_modifiers, dependent: :destroy
   accepts_nested_attributes_for :rpm_ritual_modifiers, allow_destroy: true
 
-  after_save :calculate_cost
+  has_many :rpm_ritual_variants, dependent: :destroy
+
+  after_save :calculate_cost_and_remove_variants
 
   validates_uniqueness_of :name, :scope => :campaign_id
 
@@ -36,10 +39,6 @@ class RpmRitual < AbstractEntity
     (rpm_spell_effects.inherent_only + rpm_ritual_modifiers.inherent_only)
   end
 
-  def base_cost
-    all_elements.sum(&:cost)
-  end
-  
   def deep_copy
     copy = dup
     reference_list_attributes.each { |reference| deep_copy_reference(reference, copy) }
@@ -60,8 +59,9 @@ class RpmRitual < AbstractEntity
     mods.greater_effect.inject(1) { |sum, eff| sum + eff.rpm_potency_cost_factor }
   end
 
-  def calculate_cost
+  def calculate_cost_and_remove_variants
     self.update_columns(:inherent_cost => calc_inherent_base_cost * inherent_cost_factor,
-                        :typical_cost => base_cost * overall_cost_factor)
+                        :typical_cost => calc_typical_cost)
+    self.rpm_ritual_variants.destroy_all
   end
 end

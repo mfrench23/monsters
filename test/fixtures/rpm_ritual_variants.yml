@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rpm_ritual: one
+  name: MyString
+  description: MyText
+  typical_cost: 1
+
+two:
+  rpm_ritual: two
+  name: MyString
+  description: MyText
+  typical_cost: 1

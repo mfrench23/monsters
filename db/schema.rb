@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180823195759) do
+ActiveRecord::Schema.define(version: 20180908165516) do
 
   create_table "attacks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "monster_id"
@@ -410,6 +410,31 @@ ActiveRecord::Schema.define(version: 20180823195759) do
     t.index ["rpm_ritual_id"], name: "index_rpm_ritual_modifiers_on_rpm_ritual_id", using: :btree
   end
 
+  create_table "rpm_ritual_variant_modifiers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "rpm_ritual_variant_id"
+    t.integer  "rpm_modifier_level_id"
+    t.text     "notes",                   limit: 65535
+    t.integer  "enhancement_percentage"
+    t.text     "enhancement_notes",       limit: 65535
+    t.integer  "rpm_modifier_subtype_id"
+    t.boolean  "enhancement_only"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.index ["rpm_modifier_level_id"], name: "index_rpm_ritual_variant_modifiers_on_rpm_modifier_level_id", using: :btree
+    t.index ["rpm_modifier_subtype_id"], name: "index_rpm_ritual_variant_modifiers_on_rpm_modifier_subtype_id", using: :btree
+    t.index ["rpm_ritual_variant_id"], name: "index_rpm_ritual_variant_modifiers_on_rpm_ritual_variant_id", using: :btree
+  end
+
+  create_table "rpm_ritual_variants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "rpm_ritual_id"
+    t.string   "name"
+    t.text     "description",   limit: 65535
+    t.integer  "typical_cost"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["rpm_ritual_id"], name: "index_rpm_ritual_variants_on_rpm_ritual_id", using: :btree
+  end
+
   create_table "rpm_rituals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "name"
     t.text     "description",   limit: 65535
@@ -506,6 +531,10 @@ ActiveRecord::Schema.define(version: 20180823195759) do
   add_foreign_key "rpm_ritual_modifiers", "rpm_modifier_levels"
   add_foreign_key "rpm_ritual_modifiers", "rpm_modifier_subtypes"
   add_foreign_key "rpm_ritual_modifiers", "rpm_rituals"
+  add_foreign_key "rpm_ritual_variant_modifiers", "rpm_modifier_levels"
+  add_foreign_key "rpm_ritual_variant_modifiers", "rpm_modifier_subtypes"
+  add_foreign_key "rpm_ritual_variant_modifiers", "rpm_ritual_variants"
+  add_foreign_key "rpm_ritual_variants", "rpm_rituals"
   add_foreign_key "rpm_rituals", "campaigns"
   add_foreign_key "rpm_spell_effects", "rpm_effects"
   add_foreign_key "rpm_spell_effects", "rpm_paths"

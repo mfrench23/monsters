@@ -1,0 +1,17 @@
+<%= form_for(rpm_ritual_variant) do |f| %>
+  <% if rpm_ritual_variant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rpm_ritual_variant.errors.count, "error") %> prohibited this rpm_ritual_variant from being saved:</h2>
+
+      <ul>
+      <% rpm_ritual_variant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

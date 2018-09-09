@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Rpm Ritual Variants</h1>
+
+<h2>
+  <%= render "display_filter_params", filter_params: filter_params -%>
+</h2>
+
+<%= page_entries_info rpm_ritual_variants %>
+
+<table>
+  <thead>
+    <tr>
+      <%= render 'index_edit_destroy_headers' %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% rpm_ritual_variants.each do |rpm_ritual_variant| %>
+      <tr>
+        <%= edit_destroy_links rpm_ritual_variant %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= paginate rpm_ritual_variants %>
+
+<%= link_to 'New Rpm ritual variant', new_rpm_ritual_variant_path %>

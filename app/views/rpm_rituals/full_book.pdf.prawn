@@ -50,6 +50,20 @@ def one_ritual(pdf, view_context, ritual)
 
   pdf.move_down 6
 
+  if ritual.rpm_ritual_variants.any?
+    pdf.indent(10, 10 ) do
+      pdf.text "<i>Variations:</i>", :inline_format => true
+      pdf.indent(10, 10) do
+        ritual.rpm_ritual_variants.order_by_name.each do |variant|
+          txt = variant.rpm_ritual_variant_modifiers.collect(&:to_long_s).join(" + ")
+          pdf.text "  * <i>#{variant.name.present? ? variant.name + ": " : ""}</i> #{txt}. <i>#{variant.typical_cost} energy (#{variant.base_cost} x #{variant.overall_cost_factor}).</i>", :inline_format => true
+        end
+      end
+    end
+  end
+  
+  pdf.move_down 6
+  
   if ritual.page_references.any?
     txt = ritual.page_references.inject([]) { |memo, pg| memo << pg.to_s }.join("; ")
     label_and_text pdf, "Sources: ", txt
