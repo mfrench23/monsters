@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180908165516) do
+ActiveRecord::Schema.define(version: 20180910034324) do
 
   create_table "attacks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.integer  "monster_id"
@@ -428,10 +428,9 @@ ActiveRecord::Schema.define(version: 20180908165516) do
   create_table "rpm_ritual_variants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "rpm_ritual_id"
     t.string   "name"
-    t.text     "description",   limit: 65535
     t.integer  "typical_cost"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["rpm_ritual_id"], name: "index_rpm_ritual_variants_on_rpm_ritual_id", using: :btree
   end
 
