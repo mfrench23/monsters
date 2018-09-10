@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :equipment_modifier do
-    name "Stupid-Fine"
-    base_cost_mod "x2"
-    base_weight_mod "x0.75"
-    cost_mod nil
-    weight_mod nil
+    name {"Stupid-Fine"}
+    base_cost_mod {"x2"}
+    base_weight_mod {"x0.75"}
+    cost_mod {nil}
+    weight_mod {nil}
     association :equipment_modifier_category
-    random_weight 1
+    random_weight {1}
   end
 
 end

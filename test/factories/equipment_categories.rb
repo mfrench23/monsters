@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :equipment_category do
-    name "Knickknacks"
+    name {"Knickknacks"}
     campaign
   end
 

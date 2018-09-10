@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :monster_name do
-    name "Bob"
+    name {"Bob"}
   end
 end

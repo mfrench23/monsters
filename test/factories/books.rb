@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :book do
-    name "Some Random Book"
+    name {"Some Random Book"}
   end
 end
