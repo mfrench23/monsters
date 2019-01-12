@@ -22,7 +22,7 @@
         <%= entity_links :equipment_package %>
     </ul>
   </li>
-<% if cookies[:selected_campaign].present? -%>
+<% if cookies[:selected_campaign].present? && Campaign.exists?(cookies[:selected_campaign]) -%>
   <li><%= link_to 'Ritual Path Magic', controller: 'rpm_rituals' %>
   <% if Campaign.find(cookies[:selected_campaign]).try(:rpm_potencies).try(:count).to_i > 0 -%>
     <%= entity_links :rpm_ritual %>
