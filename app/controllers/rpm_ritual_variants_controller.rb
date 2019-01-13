@@ -23,6 +23,8 @@ class RpmRitualVariantsController < ModelBasedController
   def whitelisted_entity_params
     params.fetch(:rpm_ritual_variant, {}).permit(     
       [:name, :rpm_ritual_id,
-        rpm_ritual_variant_modifiers_attributes: [:id, :rpm_modifier_level_id, :rpm_modifier_subtype_id, :notes, :enhancement_only, :enhancement_percentage, :enhancement_notes, :_destroy] ] )
+        rpm_ritual_variant_modifiers_attributes: [:id, :rpm_modifier_level_id, :rpm_modifier_subtype_id,
+                                                  :notes, :enhancement_only, :enhancement_percentage,
+                                                  :enhancement_notes, :_destroy] ] )
   end
 end

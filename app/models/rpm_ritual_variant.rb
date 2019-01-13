@@ -17,6 +17,7 @@ class RpmRitualVariant < AbstractEntity
 
   def self.from_ritual(ritual)
     variant = RpmRitualVariant.new(:rpm_ritual => ritual)
+    # TODO Allow modification of values of inherent properties, so one can (for example) change the level of damage a spell does
     ritual.rpm_ritual_modifiers.where(:inherent => false).each do |m| 
       variant.rpm_ritual_variant_modifiers << RpmRitualVariantModifier.new(m.as_json.except("rpm_ritual_id", "inherent"))
     end

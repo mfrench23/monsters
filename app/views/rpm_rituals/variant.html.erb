@@ -13,7 +13,8 @@
   <%= render 'expanding_fieldset', f: f,
     id: "rpm_ritual_variant_modifiers", collection: :rpm_ritual_variant_modifiers,
     partial: 'rpm_ritual_variant_modifier_fields', label: 'add modifier', header: "Spell Modifiers",
-    header_list: [ :modifier, :subtype, :level, :notes, :enhancements ], locals: {rpm_modifiers: rpm_modifiers, rpm_modifier_levels_accepting_enhancements: rpm_modifier_levels_accepting_enhancements} %>
+    header_list: [ :modifier, :subtype, :level, :notes, :enhancements ],
+    locals: {rpm_modifiers: rpm_modifiers, rpm_modifier_levels_accepting_enhancements: rpm_modifier_levels_accepting_enhancements} %>
 
   <div class="actions">
     <%= f.submit %>
