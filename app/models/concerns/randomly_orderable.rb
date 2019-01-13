@@ -6,7 +6,7 @@ module RandomlyOrderable
   included do
     validates :random_weight, :allow_nil => false, :numericality => { :greater_than_or_equal_to => 1 }
 
-    # optional "seed" parameter can be used for repeatable results
-    scope :order_by_rand, -> (opts = {}) { order("-log(rand(" + opts[:seed].to_s + "))*(1/random_weight)") }
+    # optional "seed" parameter can be used for r0epeatable results
+    scope :order_by_rand, -> (opts = {}) { order(Arel.sql("-log(rand(" + opts[:seed].to_s + "))*(1/random_weight)")) }
   end
 end
