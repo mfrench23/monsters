@@ -1,0 +1,24 @@
+# ignore; generated when Docker image gets built
+Gemfile.lock
+
+# ignore source history stuff that doesn't need to go into the image
+.git
+.gitignore
+
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+/doc/tmp
+
+# Ignore coverage reports
+coverage
+
+# Ignore any uploaded images
+/public/system/*
+
+# Ignore byebug history
+/.byebug_history
+/public/packs
+/public/packs-test

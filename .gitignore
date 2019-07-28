@@ -38,3 +38,5 @@ yarn-debug.log*
 
 # Ignore vendor directory
 /vendor
+
+Gemfile.lock
