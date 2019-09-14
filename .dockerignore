@@ -5,6 +5,8 @@ Gemfile.lock
 .git
 .gitignore
 
+# Use the fresh dependencies that we download
+/node_modules
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -20,5 +22,3 @@ coverage
 
 # Ignore byebug history
 /.byebug_history
-/public/packs
-/public/packs-test

@@ -4,6 +4,10 @@ Rails.application.configure do
 # - Workaround: https://github.com/rails/webpacker/issues/1568
 config.webpacker.check_yarn_integrity = false
 
+  # Configure static file server for Docker with Cache-Control for performance.
+  config.public_file_server.enabled   = true
+  config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=3600' }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
