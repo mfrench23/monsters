@@ -19,10 +19,6 @@ RUN apk add --no-cache --update \
     ruby-nokogiri \
     mariadb-dev
 
-#RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -rf /var/lib/apt/lists/*
-#RUN apt-get update && apt remove cmdtest && apt-get install -y yarn --no-install-recommends && rm -rf /var/lib/apt/lists/*
-#RUN apt-get update && apt-get install -y default-mysql-client --no-install-recommends && rm -rf /var/lib/apt/lists/*
-
 COPY Gemfile /usr/src/app/
 
 RUN gem install bundler
