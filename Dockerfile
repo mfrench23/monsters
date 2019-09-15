@@ -1,4 +1,4 @@
-FROM ruby:2.6-alpine
+FROM starefossen/ruby-node:alpine
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -11,12 +11,11 @@ RUN apk update && apk upgrade
 RUN apk add --no-cache --update \
     build-base \
     linux-headers \
-    nodejs \
     mysql-client \
-    yarn \
     tzdata \
     graphviz \
     gmp-dev \
+    yarn \
     ruby-nokogiri \
     mariadb-dev
 
