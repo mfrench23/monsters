@@ -65,7 +65,9 @@ production:
   <<: *default
 
   # Production depends on precompilation of packs prior to booting for performance.
-  compile: false
+  #compile: false
+  # ... but until we figure out that one weird error...
+  compile: true
 
   # Cache manifest.json for performance
   cache_manifest: true
